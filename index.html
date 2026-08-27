@@ -116,21 +116,23 @@
       <div class="container hero-wrap">
         <div class="hero-left">
           <h1>Tarik Gungor</h1>
-          <div class="title">IT Support &amp; Infrastructure-Focused Technologist</div>
+          <div class="title">IT Support &amp; Infrastructure Specialist</div>
 
           <p class="tagline">
-            Building reliable systems with a calm, operations-first mindset — from enterprise-style labs to real-world environments.
+            I support users, troubleshoot systems, and build reliable Windows, Linux, and network infrastructure.
+          </p>
+          <p class="tagline tagline-sub">
+            Hands-on experience with Active Directory, endpoint management, virtualization, networking, and enterprise-style lab environments.
           </p>
 
           <div class="location">Toronto, Canada</div>
 
           <div class="actions">
             <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="#contact">Contact</a>
-
             <a class="btn" href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">
               View Resume
             </a>
+            <a class="btn" href="#contact">Contact</a>
             <a class="btn" href="assets/docs/Tarik_Gungor_Resume.pdf" download>
               Download Resume
             </a>
@@ -205,120 +207,82 @@
          ========================= -->
     <section class="section" id="projects">
       <div class="container">
-        <h2>Selected Projects</h2>
-        <p>Hands-on infrastructure projects focused on reliability, design clarity, and practical implementation.</p>
+        <h2>Projects</h2>
+        <p>Hands-on infrastructure work focused on reliability, design clarity, and practical implementation.</p>
 
-        <div class="grid">
-          <!-- BCIT / Lab-forward -->
-          <div class="card">
-            <h3>Capstone: Virtualized Enterprise Lab</h3>
-            <p>NAT/Firewall routing, multi-DC design, Linux DHCP, DNS, SAN/iSCSI, and failover testing.</p>
-            <div class="meta">
-              <span class="pill accent">Hyper-V</span>
-              <span class="pill">AD DS</span>
-              <span class="pill">iSCSI/SAN</span>
-              <span class="pill">Failover</span>
+        <div class="projects-block">
+          <h3 class="projects-subhead">Featured Projects</h3>
+          <div class="grid projects-featured">
+            <div class="card featured-primary">
+              <h3>Virtualized Enterprise Infrastructure</h3>
+              <p>
+                Designed and tested a multi-server enterprise lab combining Active Directory, DNS, DHCP, network routing, shared storage, and failover services.
+              </p>
+              <div class="meta">
+                <span class="pill accent">AD DS</span>
+                <span class="pill">Hyper-V</span>
+                <span class="pill">DNS</span>
+                <span class="pill">DHCP</span>
+                <span class="pill">iSCSI</span>
+                <span class="pill">Failover Clustering</span>
+              </div>
+            </div>
+
+            <div class="card featured">
+              <h3>Endpoint Management &amp; IT Operations</h3>
+              <p>
+                Endpoint configuration, device management, monitoring, and troubleshooting across operational IT environments.
+              </p>
+              <div class="meta">
+                <span class="pill accent">Endpoint Central</span>
+                <span class="pill">MDM</span>
+                <span class="pill">Windows</span>
+                <span class="pill">Troubleshooting</span>
+              </div>
+            </div>
+
+            <div class="card featured">
+              <h3>Network Segmentation &amp; Infrastructure</h3>
+              <p>
+                Designed practical network segmentation for staff, guest, and operational environments with reliability and security in mind.
+              </p>
+              <div class="meta">
+                <span class="pill accent">Networking</span>
+                <span class="pill">VLANs</span>
+                <span class="pill">DNS</span>
+                <span class="pill">DHCP</span>
+                <span class="pill">Wi-Fi</span>
+              </div>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <h3>Active Directory: Users, OUs &amp; GPO</h3>
-            <p>Structured OU design, security groups, permissions, and policy-based workstation/user settings.</p>
-            <div class="meta">
-              <span class="pill accent">ADUC</span>
-              <span class="pill">GPO</span>
-              <span class="pill">Security Groups</span>
+        <div class="projects-block">
+          <h3 class="projects-subhead">More Labs</h3>
+          <div class="lab-list">
+            <div class="lab-item">
+              <span class="lab-name">Active Directory</span>
+              <span class="lab-desc">Structured OU design, security groups, permissions, and policy-based workstation settings.</span>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>DNS: Primary/Secondary + AD-Integrated Zones</h3>
-            <p>DNS service configuration, zone design, and troubleshooting patterns.</p>
-            <div class="meta">
-              <span class="pill accent">DNS</span>
-              <span class="pill">Zones</span>
-              <span class="pill">Windows Server</span>
+            <div class="lab-item">
+              <span class="lab-name">DNS Infrastructure</span>
+              <span class="lab-desc">Primary/secondary DNS, AD-integrated zones, and troubleshooting patterns.</span>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>DHCP: Linux + Advanced DHCP Service</h3>
-            <p>Scope planning, options, reservations, and service validation in a segmented environment.</p>
-            <div class="meta">
-              <span class="pill accent">DHCP</span>
-              <span class="pill">Linux</span>
-              <span class="pill">Validation</span>
+            <div class="lab-item">
+              <span class="lab-name">DHCP Services</span>
+              <span class="lab-desc">Scope planning, options, reservations, and service validation in a segmented environment.</span>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>Storage: SAN + iSCSI + RAID</h3>
-            <p>Storage planning, iSCSI connectivity, and redundancy testing (multi-disk failure scenario).</p>
-            <div class="meta">
-              <span class="pill accent">SAN</span>
-              <span class="pill">iSCSI</span>
-              <span class="pill">RAID</span>
-              <span class="pill">Resilience</span>
+            <div class="lab-item">
+              <span class="lab-name">SAN &amp; iSCSI Storage</span>
+              <span class="lab-desc">Storage planning, iSCSI connectivity, and redundancy testing.</span>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>Failover Cluster: File Servers + Shared Storage</h3>
-            <p>Cluster design, shared storage (VHD Set), and failover validation for availability.</p>
-            <div class="meta">
-              <span class="pill accent">Failover Cluster</span>
-              <span class="pill">File Services</span>
-              <span class="pill">VHD Set</span>
+            <div class="lab-item">
+              <span class="lab-name">Windows Failover Cluster</span>
+              <span class="lab-desc">Cluster design, shared storage, and failover validation for availability.</span>
             </div>
-          </div>
-
-          <div class="card">
-            <h3>VMware ESXi: Nested Build &amp; Management</h3>
-            <p>VMware Workstation + nested ESXi environment setup for lab workflows and repeatability.</p>
-            <div class="meta">
-              <span class="pill accent">VMware</span>
-              <span class="pill">ESXi</span>
-              <span class="pill">Lab Build</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Other</h3>
-            <p>Personal Website (this site) — minimal, premium, and documentation-driven.</p>
-            <div class="meta">
-              <span class="pill">HTML/CSS</span>
-              <span class="pill">GitHub Pages</span>
-            </div>
-          </div>
-
-          <!-- Additional (legacy) -->
-          <div class="card">
-            <h3>Home Server Infrastructure</h3>
-            <p>Private cloud and media stack planning with a reliability-first mindset.</p>
-            <div class="meta">
-              <span class="pill accent">Architecture</span>
-              <span class="pill">Storage</span>
-              <span class="pill">Remote Access</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Café Network Segmentation</h3>
-            <p>Staff vs guest network separation with operational and security considerations.</p>
-            <div class="meta">
-              <span class="pill accent">Networking</span>
-              <span class="pill">Security</span>
-              <span class="pill">Wi-Fi</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Endpoint Management Lab</h3>
-            <p>Device configuration, monitoring, and policy deployment using Endpoint Central.</p>
-            <div class="meta">
-              <span class="pill accent">Endpoint</span>
-              <span class="pill">Device Config</span>
-              <span class="pill">Policy</span>
+            <div class="lab-item">
+              <span class="lab-name">VMware ESXi</span>
+              <span class="lab-desc">Nested ESXi lab environment setup for repeatable workflows.</span>
             </div>
           </div>
         </div>

@@ -281,7 +281,15 @@ body.light .hero::before{
   color: rgba(234,234,234,0.92);
 }
 
+.hero .tagline.tagline-sub{
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
 body.light .hero .tagline{ color: rgba(18,18,18,0.85); }
+
+body.light .hero .tagline.tagline-sub{ color: var(--muted); }
 
 .hero .location{
   margin-top: 18px;
@@ -415,6 +423,73 @@ body.light .card{ background: rgba(255,255,255,0.85); }
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+/* Projects hierarchy */
+.projects-block{
+  margin-top: 28px;
+}
+
+.projects-block:first-of-type{
+  margin-top: 18px;
+}
+
+.projects-subhead{
+  margin: 0 0 14px 0;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.projects-featured .featured-primary{
+  grid-column: span 12;
+}
+
+.projects-featured .featured{
+  grid-column: span 6;
+}
+
+.card.featured-primary{
+  padding: 22px 24px;
+}
+
+.card.featured-primary h3{
+  font-size: 18px;
+}
+
+.lab-list{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.lab-item{
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+}
+
+body.light .lab-item{ background: rgba(255,255,255,0.70); }
+
+@supports (background: color-mix(in srgb, white 50%, transparent)){
+  .lab-item{ background: color-mix(in srgb, var(--bg2) 45%, transparent); }
+}
+
+.lab-name{
+  display: block;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.lab-desc{
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
 }
 
 /* Pills */
@@ -653,6 +728,9 @@ body.light .timeline-item:hover .timeline-dot{
 /* Responsive */
 @media (max-width: 860px){
   .card{ grid-column: span 12; }
+  .projects-featured .featured,
+  .projects-featured .featured-primary{ grid-column: span 12; }
+  .lab-list{ grid-template-columns: 1fr; }
   .hero{ padding: 72px 0 46px; }
   .hero-wrap{ flex-direction: column-reverse; align-items: flex-start; }
   .avatar{ width: 130px; height: 130px; }
