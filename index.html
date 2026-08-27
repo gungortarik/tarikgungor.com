@@ -1,6 +1,3 @@
-<!-- =========================
-     index.html
-     ========================= -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,7 +13,7 @@
     name="description"
     content="Tarik Gungor is an IT Support & Infrastructure Specialist based in Toronto, Canada, focused on systems administration, networking, endpoint management, and practical business-driven IT operations."
   />
-  <meta name="theme-color" content="#0e0e0e" />
+  <meta name="theme-color" content="#0f1624" />
 
   <meta property="og:title" content="Tarik Gungor — IT Support & Infrastructure Specialist" />
   <meta
@@ -66,404 +63,428 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
+    rel="stylesheet"
+  />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- =========================
-       Topbar
-       ========================= -->
-  <header class="topbar">
-    <div class="container">
-      <nav class="nav">
-        <a class="brand" href="#top">
-          <span class="dot" aria-hidden="true"></span>
-          <span>Tarik Gungor</span>
-        </a>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a class="site-brand" href="#top">Tarik Gungor</a>
 
-        <div class="nav-right">
-          <div class="navlinks" aria-label="Primary">
-            <a href="#what">What I Do</a>
-            <a href="#projects">Projects</a>
-            <a href="#experience">Experience</a>
-            <a href="#volunteer">Volunteer</a>
-            <a href="#education">Education</a>
-            <a href="#contact">Contact</a>
-          </div>
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+      >
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
 
-          <button
-            class="themeToggle"
-            id="themeToggle"
-            type="button"
-            aria-label="Toggle theme"
-            title="Toggle theme"
-          >
-            <span class="icon" aria-hidden="true">☾</span>
-            <span class="label">Dark</span>
-          </button>
-        </div>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav-resume" href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">Resume</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
-    <!-- =========================
-         Hero
-         ========================= -->
-    <section class="hero">
-      <div class="container hero-wrap">
-        <div class="hero-left">
-          <h1>Tarik Gungor</h1>
-          <div class="title">IT Support &amp; Infrastructure Specialist</div>
-
-          <p class="tagline">
-            I support users, troubleshoot systems, and build reliable Windows, Linux, and network infrastructure.
-          </p>
-          <p class="tagline tagline-sub">
-            Hands-on experience with Active Directory, endpoint management, virtualization, networking, and enterprise-style lab environments.
-          </p>
-
-          <div class="location">Toronto, Canada</div>
-
-          <div class="actions">
-            <a class="btn primary" href="#projects">View Projects</a>
-            <a class="btn" href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">
-              View Resume
-            </a>
-            <a class="btn" href="#contact">Contact</a>
-          </div>
-        </div>
-
-        <div class="hero-right">
-          <img class="avatar" src="assets/img/profile.jpg" alt="Tarik Gungor" />
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
-         What I Do
-         ========================= -->
-    <section class="section" id="what">
-      <div class="container">
-        <h2>What I Do</h2>
-        <p>
-          I support end users, build reliable infrastructure, and document systems clearly so teams can review and reuse the work.
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-statement">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container hero-layout">
+      <div class="hero-main">
+        <p class="hero-eyebrow">IT Support &amp; Infrastructure Specialist</p>
+        <h1 class="hero-statement" id="hero-statement">Making complex systems work quietly.</h1>
+        <p class="hero-copy">
+          I support users, troubleshoot systems, and build reliable Windows, Linux, and network infrastructure.
         </p>
 
-        <div class="grid">
-          <div class="card">
-            <h3>Infrastructure &amp; Systems</h3>
-            <p>Windows/Linux fundamentals, virtualization, and repeatable lab builds that reflect real enterprise patterns.</p>
-            <div class="meta">
-              <span class="pill accent">Infrastructure</span>
-              <span class="pill">Windows</span>
-              <span class="pill">Linux</span>
-              <span class="pill">Virtualization</span>
-            </div>
-          </div>
+        <ul class="hero-areas" aria-label="Technical areas">
+          <li>Active Directory</li>
+          <li>Endpoint Management</li>
+          <li>Networking</li>
+          <li>Virtualization</li>
+          <li>Windows Server</li>
+          <li>Linux</li>
+          <li>Documentation</li>
+        </ul>
 
-          <div class="card">
-            <h3>Networking</h3>
-            <p>Segmentation, DNS/DHCP fundamentals, secure connectivity, and practical troubleshooting.</p>
-            <div class="meta">
-              <span class="pill accent">Networking</span>
-              <span class="pill">DNS</span>
-              <span class="pill">DHCP</span>
-              <span class="pill">Segmentation</span>
-            </div>
-          </div>
+        <p class="hero-location">Toronto, Canada</p>
 
-          <div class="card">
-            <h3>Endpoint &amp; Operations</h3>
-            <p>Device configuration, monitoring, and support in busy environments with reliability as the priority.</p>
-            <div class="meta">
-              <span class="pill">Troubleshooting</span>
-              <span class="pill">Endpoint</span>
-              <span class="pill">Monitoring</span>
-              <span class="pill">Process</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Documentation</h3>
-            <p>Clear write-ups, diagrams, and step-by-step build notes for review, handover, and future reuse.</p>
-            <div class="meta">
-              <span class="pill accent">Case Studies</span>
-              <span class="pill">Diagrams</span>
-              <span class="pill">Runbooks</span>
-            </div>
-          </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">View Selected Work</a>
+          <a class="btn btn-secondary" href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
+          <a class="btn btn-tertiary" href="#contact">Contact</a>
         </div>
       </div>
-    </section>
 
-    <!-- =========================
-         Projects
-         ========================= -->
-    <section class="section" id="projects">
-      <div class="container">
-        <h2>Projects</h2>
-        <p>Hands-on infrastructure work focused on reliability, design clarity, and practical implementation.</p>
-
-        <div class="projects-block">
-          <h3 class="projects-subhead">Featured Projects</h3>
-          <div class="grid projects-featured">
-            <div class="card featured-primary">
-              <h3>Virtualized Enterprise Infrastructure</h3>
-              <p>
-                Designed and tested a multi-server enterprise lab combining Active Directory, DNS, DHCP, network routing, shared storage, and failover services.
-              </p>
-              <div class="meta">
-                <span class="pill accent">AD DS</span>
-                <span class="pill">Hyper-V</span>
-                <span class="pill">DNS</span>
-                <span class="pill">DHCP</span>
-                <span class="pill">iSCSI</span>
-                <span class="pill">Failover Clustering</span>
-              </div>
-            </div>
-
-            <div class="card featured">
-              <h3>Endpoint Management &amp; IT Operations</h3>
-              <p>
-                Endpoint configuration, device management, monitoring, and troubleshooting across operational IT environments.
-              </p>
-              <div class="meta">
-                <span class="pill accent">Endpoint Central</span>
-                <span class="pill">MDM</span>
-                <span class="pill">Windows</span>
-                <span class="pill">Troubleshooting</span>
-              </div>
-            </div>
-
-            <div class="card featured">
-              <h3>Network Segmentation &amp; Infrastructure</h3>
-              <p>
-                Designed practical network segmentation for staff, guest, and operational environments with reliability and security in mind.
-              </p>
-              <div class="meta">
-                <span class="pill accent">Networking</span>
-                <span class="pill">VLANs</span>
-                <span class="pill">DNS</span>
-                <span class="pill">DHCP</span>
-                <span class="pill">Wi-Fi</span>
-              </div>
-            </div>
-          </div>
+      <div class="hero-aside">
+        <div class="hero-portrait-wrap">
+          <img class="hero-portrait" src="assets/img/profile.jpg" alt="Tarik Gungor" width="280" height="280" />
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="projects-block">
-          <h3 class="projects-subhead">More Labs</h3>
-          <div class="lab-list">
-            <div class="lab-item">
+  <!-- Selected Work -->
+  <section class="section section-paper" id="work" aria-labelledby="work-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-label">Portfolio</p>
+        <h2 class="section-title" id="work-heading">Selected Work</h2>
+        <p class="section-intro">
+          Hands-on infrastructure projects focused on reliability, design clarity, and practical implementation.
+        </p>
+      </header>
+
+      <article class="case case-flagship" id="work-01">
+        <div class="case-grid" aria-hidden="true"></div>
+        <div class="case-inner">
+          <div class="case-meta">
+            <span class="case-number">01</span>
+            <span class="case-type">Flagship lab</span>
+          </div>
+          <h3 class="case-title">Virtualized Enterprise Infrastructure</h3>
+          <p class="case-statement">
+            Designed and tested a multi-server enterprise lab involving Active Directory, DNS, DHCP, network routing, shared storage, virtualization, and failover services.
+          </p>
+          <ul class="case-tech" aria-label="Technologies">
+            <li>AD DS</li>
+            <li>Hyper-V</li>
+            <li>DNS</li>
+            <li>DHCP</li>
+            <li>iSCSI</li>
+            <li>Windows Failover Clustering</li>
+            <li>Windows Server</li>
+          </ul>
+          <p class="case-affordance"><span>Case study forthcoming</span><span class="case-arrow" aria-hidden="true">→</span></p>
+        </div>
+      </article>
+
+      <div class="case-pair">
+        <article class="case" id="work-02">
+          <div class="case-inner">
+            <div class="case-meta">
+              <span class="case-number">02</span>
+            </div>
+            <h3 class="case-title">Endpoint Management &amp; IT Operations</h3>
+            <p class="case-statement">
+              Endpoint configuration, device management, monitoring, and troubleshooting across operational IT environments — including managed Endpoint Central and mobile device management workflows.
+            </p>
+            <ul class="case-tech" aria-label="Technologies">
+              <li>ManageEngine Endpoint Central</li>
+              <li>MDM</li>
+              <li>Windows</li>
+              <li>Device Deployment</li>
+              <li>Troubleshooting</li>
+            </ul>
+            <p class="case-affordance"><span>Case study forthcoming</span><span class="case-arrow" aria-hidden="true">→</span></p>
+          </div>
+        </article>
+
+        <article class="case" id="work-03">
+          <div class="case-inner">
+            <div class="case-meta">
+              <span class="case-number">03</span>
+            </div>
+            <h3 class="case-title">Network Segmentation &amp; Business Infrastructure</h3>
+            <p class="case-statement">
+              Staff and guest network separation with operational and security considerations — practical infrastructure planning for reliability in a business environment.
+            </p>
+            <ul class="case-tech" aria-label="Technologies">
+              <li>Networking</li>
+              <li>DNS</li>
+              <li>DHCP</li>
+              <li>Wi-Fi</li>
+              <li>Security</li>
+            </ul>
+            <p class="case-affordance"><span>Case study forthcoming</span><span class="case-arrow" aria-hidden="true">→</span></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="labs-block">
+        <header class="labs-header">
+          <h3 class="labs-title">More Labs</h3>
+          <p class="labs-intro">Additional hands-on lab work — compact technical index.</p>
+        </header>
+
+        <div class="labs-ledger">
+          <div class="lab-row">
+            <span class="lab-index">AD</span>
+            <div class="lab-content">
               <span class="lab-name">Active Directory</span>
               <span class="lab-desc">Structured OU design, security groups, permissions, and policy-based workstation settings.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">DNS</span>
+            <div class="lab-content">
               <span class="lab-name">DNS Infrastructure</span>
               <span class="lab-desc">Primary/secondary DNS, AD-integrated zones, and troubleshooting patterns.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">DHCP</span>
+            <div class="lab-content">
               <span class="lab-name">DHCP Services</span>
               <span class="lab-desc">Scope planning, options, reservations, and service validation in a segmented environment.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">SAN</span>
+            <div class="lab-content">
               <span class="lab-name">SAN &amp; iSCSI Storage</span>
               <span class="lab-desc">Storage planning, iSCSI connectivity, and redundancy testing.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">FOC</span>
+            <div class="lab-content">
               <span class="lab-name">Windows Failover Cluster</span>
               <span class="lab-desc">Cluster design, shared storage, and failover validation for availability.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">VMW</span>
+            <div class="lab-content">
               <span class="lab-name">VMware ESXi</span>
               <span class="lab-desc">Nested ESXi lab environment setup for repeatable workflows.</span>
             </div>
-            <div class="lab-item">
+          </div>
+          <div class="lab-row">
+            <span class="lab-index">HMI</span>
+            <div class="lab-content">
               <span class="lab-name">Home Server Infrastructure</span>
               <span class="lab-desc">Private cloud and media stack planning with a reliability-first mindset.</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- =========================
-         Experience (Timeline)
-         ========================= -->
-    <section id="experience" class="experience-section">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
+  <!-- Expertise -->
+  <section class="section section-navy" id="expertise" aria-labelledby="expertise-heading">
+    <div class="container">
+      <header class="section-header section-header-light">
+        <p class="section-label">Capabilities</p>
+        <h2 class="section-title" id="expertise-heading">Expertise &amp; Toolkit</h2>
+        <p class="section-intro section-intro-light">
+          Tools are only useful when they serve the system. These are the areas and platforms I work with in support and infrastructure operations.
+        </p>
+      </header>
 
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">Dec 2024 – Present</span>
-              <h3>IT Specialist — BETA PREP</h3>
-              <p class="timeline-meta">Contract · Hybrid · Toronto, ON</p>
-              <ul>
-                <li>Infrastructure &amp; endpoint oversight for fulfillment operations</li>
-                <li>Operational IT support across warehouse systems</li>
-              </ul>
+      <div class="expertise-grid">
+        <div class="expertise-block">
+          <h3 class="expertise-name">IT Support &amp; Troubleshooting</h3>
+          <p class="expertise-desc">End-user support, hardware diagnostics, and systematic problem resolution in operational environments.</p>
+          <ul class="expertise-tools">
+            <li>Troubleshooting</li>
+            <li>Hardware Support</li>
+            <li>System Monitoring</li>
+            <li>Process</li>
+          </ul>
+        </div>
+
+        <div class="expertise-block">
+          <h3 class="expertise-name">Systems &amp; Infrastructure</h3>
+          <p class="expertise-desc">Windows and Linux fundamentals, virtualization, and repeatable lab builds that reflect enterprise patterns.</p>
+          <ul class="expertise-tools">
+            <li>Windows Server</li>
+            <li>Linux</li>
+            <li>Hyper-V</li>
+            <li>VMware ESXi</li>
+            <li>Active Directory</li>
+            <li>Virtualization</li>
+          </ul>
+        </div>
+
+        <div class="expertise-block">
+          <h3 class="expertise-name">Networking</h3>
+          <p class="expertise-desc">Segmentation, DNS and DHCP fundamentals, secure connectivity, and practical troubleshooting.</p>
+          <ul class="expertise-tools">
+            <li>DNS</li>
+            <li>DHCP</li>
+            <li>Segmentation</li>
+            <li>Wi-Fi</li>
+            <li>Routing</li>
+          </ul>
+        </div>
+
+        <div class="expertise-block">
+          <h3 class="expertise-name">Endpoint Management</h3>
+          <p class="expertise-desc">Device configuration, monitoring, and policy deployment in busy environments.</p>
+          <ul class="expertise-tools">
+            <li>ManageEngine Endpoint Central</li>
+            <li>MDM</li>
+            <li>Device Configuration</li>
+            <li>Policy Deployment</li>
+          </ul>
+        </div>
+
+        <div class="expertise-block expertise-block-wide">
+          <h3 class="expertise-name">Documentation</h3>
+          <p class="expertise-desc">Clear write-ups, diagrams, and step-by-step build notes for review, handover, and future reuse.</p>
+          <ul class="expertise-tools">
+            <li>Case Studies</li>
+            <li>Diagrams</li>
+            <li>Runbooks</li>
+            <li>Technical Writing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section section-paper" id="experience" aria-labelledby="experience-heading">
+    <div class="container">
+      <header class="section-header">
+        <p class="section-label">Career</p>
+        <h2 class="section-title" id="experience-heading">Experience</h2>
+        <p class="section-intro">Professional work across IT support, endpoint management, and infrastructure operations.</p>
+      </header>
+
+      <ol class="exp-list">
+        <li class="exp-entry">
+          <div class="exp-date">Dec 2024 – Present</div>
+          <div class="exp-body">
+            <h3 class="exp-role">IT Specialist — BETA PREP</h3>
+            <p class="exp-meta">Contract · Hybrid · Toronto, ON</p>
+            <ul class="exp-details">
+              <li>Infrastructure &amp; endpoint oversight for fulfillment operations</li>
+              <li>Operational IT support across warehouse systems</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="exp-entry">
+          <div class="exp-date">Dec 2023 – Present</div>
+          <div class="exp-body">
+            <h3 class="exp-role">Information Technology Technician — Torontonian Flooring</h3>
+            <p class="exp-meta">Contract · Hybrid · Toronto, ON</p>
+            <ul class="exp-details">
+              <li>On-site IT support &amp; device configuration</li>
+              <li>Network troubleshooting &amp; systems support</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="exp-entry">
+          <div class="exp-date">Sep 2023 – Present</div>
+          <div class="exp-body">
+            <h3 class="exp-role">IT Support Specialist — Bestof Floor LTD</h3>
+            <p class="exp-meta">Contract · Hybrid · Toronto, ON</p>
+            <ul class="exp-details">
+              <li>Network administration &amp; segmentation</li>
+              <li>Endpoint configuration &amp; support</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="exp-entry">
+          <div class="exp-date">Apr 2023 – Jul 2023</div>
+          <div class="exp-body">
+            <h3 class="exp-role">IT Analyst — Payment Source</h3>
+            <p class="exp-meta">Internship · Hybrid · Toronto, ON</p>
+            <ul class="exp-details">
+              <li>Managed Endpoint Central &amp; Mobile Device Management</li>
+              <li>Deployed 50+ device configurations</li>
+              <li>System monitoring &amp; hardware support</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section section-paper section-about" id="about" aria-labelledby="about-heading">
+    <div class="container about-layout">
+      <header class="section-header about-header">
+        <p class="section-label">Background</p>
+        <h2 class="section-title" id="about-heading">About</h2>
+      </header>
+
+      <div class="about-content">
+        <p class="about-lead">
+          I work in practical IT operations — supporting users, maintaining infrastructure, and documenting systems so teams can rely on them.
+        </p>
+        <p>
+          My focus is troubleshooting, systems administration, and building lab environments that mirror real enterprise patterns. I approach infrastructure with structure and clarity, and I keep learning through applied technical work and formal training.
+        </p>
+
+        <div class="about-blocks">
+          <div class="about-block">
+            <h3 class="about-block-title">Education</h3>
+            <div class="about-item">
+              <p class="about-item-role">Computer Systems Technology (Advanced Diploma)</p>
+              <p class="about-item-meta">George Brown College · Ongoing</p>
+              <p class="about-item-desc">Systems architecture, networking fundamentals, infrastructure, and applied technical labs.</p>
+            </div>
+            <div class="about-item">
+              <p class="about-item-role">Technology Support Professional</p>
+              <p class="about-item-meta">British Columbia Institute of Technology · 2023</p>
+              <p class="about-item-desc">Active Directory, network administration, device support, and enterprise IT environments.</p>
             </div>
           </div>
 
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">Dec 2023 – Present</span>
-              <h3>Information Technology Technician — Torontonian Flooring</h3>
-              <p class="timeline-meta">Contract · Hybrid · Toronto, ON</p>
-              <ul>
-                <li>On-site IT support &amp; device configuration</li>
-                <li>Network troubleshooting &amp; systems support</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">Sep 2023 – Present</span>
-              <h3>IT Support Specialist — Bestof Floor LTD</h3>
-              <p class="timeline-meta">Contract · Hybrid · Toronto, ON</p>
-              <ul>
-                <li>Network administration &amp; segmentation</li>
-                <li>Endpoint configuration &amp; support</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-dot" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <span class="timeline-date">Apr 2023 – Jul 2023</span>
-              <h3>IT Analyst — Payment Source</h3>
-              <p class="timeline-meta">Internship · Hybrid · Toronto, ON</p>
-              <ul>
-                <li>Managed Endpoint Central &amp; Mobile Device Management</li>
-                <li>Deployed 50+ device configurations</li>
-                <li>System monitoring &amp; hardware support</li>
-              </ul>
+          <div class="about-block">
+            <h3 class="about-block-title">Volunteer</h3>
+            <div class="about-item">
+              <p class="about-item-role">IT Analyst <span class="volunteer-tag">Volunteer</span></p>
+              <p class="about-item-meta">CentreCanada Newcomer Services Society · Oct 2023 – Present</p>
+              <p class="about-item-desc">IT operations and troubleshooting for community services, with an emphasis on reliability and user support.</p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- =========================
-         Volunteer
-         ========================= -->
-    <section class="section" id="volunteer">
-      <div class="container">
-        <h2>Volunteer Experience</h2>
-        <p>Community work aligned with IT support and infrastructure operations.</p>
+  <!-- Contact -->
+  <section class="section section-navy section-contact" id="contact" aria-labelledby="contact-heading">
+    <div class="container contact-layout">
+      <header class="section-header section-header-light">
+        <p class="section-label">Reach out</p>
+        <h2 class="section-title contact-headline" id="contact-heading">Have a system worth improving?</h2>
+        <p class="section-intro section-intro-light">
+          Open to opportunities in IT Support, Systems Support, and Infrastructure Support. Email is the fastest way to connect.
+        </p>
+      </header>
 
-        <div class="list">
-          <div class="item">
-            <div class="row">
-              <div class="role">IT Analyst <span class="badge">Volunteer</span></div>
-              <div class="when">CentreCanada Newcomer Services Society • Oct 2023 – Present</div>
-            </div>
-            <p>
-              Supporting IT operations and troubleshooting for community services, with an emphasis on reliability and user support.
-            </p>
-          </div>
-        </div>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:gungortarik@icloud.com">Email</a>
+        <a class="btn btn-secondary btn-on-dark" href="https://linkedin.com/in/tarikgungor" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-secondary btn-on-dark" href="https://github.com/gungortarik" target="_blank" rel="noopener">GitHub</a>
       </div>
-    </section>
-
-    <!-- =========================
-         Education
-         ========================= -->
-    <section class="section" id="education">
-      <div class="container">
-        <h2>Education</h2>
-        <p>Formal training in systems, networking, and IT infrastructure.</p>
-
-        <div class="list">
-          <div class="item">
-            <div class="row">
-              <div class="role">Computer Systems Technology (Advanced Diploma)</div>
-              <div class="when">George Brown College • Ongoing</div>
-            </div>
-            <p>Focused on systems architecture, networking fundamentals, infrastructure, and applied technical labs.</p>
-          </div>
-
-          <div class="item">
-            <div class="row">
-              <div class="role">Technology Support Professional</div>
-              <div class="when">British Columbia Institute of Technology • 2023</div>
-            </div>
-            <p>
-              Practical training in Active Directory, network administration, device support, and enterprise IT environments.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
-         Contact
-         ========================= -->
-    <section class="section" id="contact">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>If you want to collaborate, hire, or chat — the fastest way is email.</p>
-
-        <div class="actions">
-          <a class="btn primary" href="mailto:gungortarik@icloud.com">Email</a>
-          <a class="btn" href="https://linkedin.com/in/tarikgungor" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/gungortarik" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================
-         Footer
-         ========================= -->
-    <footer class="footer">
-      <div class="container footer-wrap">
-        <div>© <span id="y"></span> Tarik Gungor • Built with HTML &amp; CSS</div>
-
-        <div class="footer-actions">
-          <a href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">View Resume</a>
-          <span class="sep" aria-hidden="true">•</span>
-          <a href="assets/docs/Tarik_Gungor_Resume.pdf" download>Download Resume</a>
-        </div>
-      </div>
-    </footer>
+    </div>
+  </section>
   </main>
 
-  <!-- =========================
-       Scripts
-       ========================= -->
-  <script>
-    const yearEl = document.getElementById("y");
-    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-copy">© <span id="y"></span> Tarik Gungor</p>
+      <div class="footer-links">
+        <a href="assets/docs/Tarik_Gungor_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="mailto:gungortarik@icloud.com">Email</a>
+        <a href="#top">Back to top</a>
+      </div>
+    </div>
+  </footer>
 
-    const toggleBtn = document.getElementById("themeToggle");
-    const iconEl = toggleBtn?.querySelector(".icon");
-    const labelEl = toggleBtn?.querySelector(".label");
-
-    function applyTheme(mode) {
-      const isLight = mode === "light";
-      document.body.classList.toggle("light", isLight);
-      localStorage.setItem("theme", isLight ? "light" : "dark");
-      if (iconEl) iconEl.textContent = isLight ? "☀" : "☾";
-      if (labelEl) labelEl.textContent = isLight ? "Light" : "Dark";
-    }
-
-    const saved = localStorage.getItem("theme");
-    applyTheme(saved === "light" ? "light" : "dark");
-
-    toggleBtn?.addEventListener("click", () => {
-      const next = document.body.classList.contains("light") ? "dark" : "light";
-      applyTheme(next);
-    });
-  </script>
+  <script src="assets/js/theme.js"></script>
 </body>
 </html>
