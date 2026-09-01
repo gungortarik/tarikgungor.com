@@ -22,9 +22,9 @@ export default function Home() {
           ))}
         </nav>
 
-        <a className="say-hello" href="mailto:hello@tarikgungor.com">
-          Say hello
-          <span aria-hidden="true">↗</span>
+        <a className="say-hello" href="#work">
+          Explore
+          <span aria-hidden="true">↓</span>
         </a>
       </header>
 
