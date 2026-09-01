@@ -93,9 +93,9 @@ export function CurrentlyFocusing() {
   ];
 
   return (
-    <section className="w-full max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-6 pt-2 pb-8 sm:pb-10 lg:pb-12">
+    <section className="w-full max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6 pt-2 pb-8 sm:pb-10 lg:pb-12">
       {/* Section Header with Rule and Far-Right Accent Dot */}
-      <div className="flex items-center gap-4 mb-8 sm:mb-10">
+      <div className="flex items-center gap-4 mb-6 sm:mb-10">
         <h2 className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-ink uppercase shrink-0">
           Currently Focusing On
         </h2>
@@ -106,8 +106,8 @@ export function CurrentlyFocusing() {
         />
       </div>
 
-      {/* 4 Equal Editorial Columns */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-paper-border">
+      {/* Desktop & Tablet Layout (4 Columns) */}
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-paper-border">
         {focusAreas.map((item, index) => (
           <div
             key={item.title}
@@ -148,6 +148,33 @@ export function CurrentlyFocusing() {
               </span>
             </a>
           </div>
+        ))}
+      </div>
+
+      {/* Mobile Sequential Indexed List (< sm) */}
+      <div className="sm:hidden flex flex-col divide-y divide-paper-border">
+        {focusAreas.map((item, index) => (
+          <a
+            key={item.title}
+            href={item.href}
+            className="flex items-center justify-between py-4 group hover:bg-paper-border/20 transition-colors px-1"
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-[11px] font-mono text-ink-muted font-medium w-5">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="text-ink">{item.icon}</div>
+              <span className="font-serif text-[18px] text-ink font-normal tracking-tight ml-1">
+                {item.title}
+              </span>
+            </div>
+            <span
+              className="text-ink-muted group-hover:text-ink text-sm transition-transform group-hover:translate-x-0.5"
+              aria-hidden="true"
+            >
+              →
+            </span>
+          </a>
         ))}
       </div>
     </section>

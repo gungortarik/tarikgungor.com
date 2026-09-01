@@ -30,14 +30,14 @@ export function DarkFeatured() {
   ];
 
   return (
-    <section className="w-full bg-[#141413] text-paper border-t border-paper-border py-14 sm:py-18 lg:py-20">
-      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-start">
+    <section className="w-full bg-[#141413] text-paper border-t border-paper-border py-10 sm:py-18 lg:py-20">
+      <div className="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-12 items-start">
           {/* 1. FEATURED PROJECT — SONOMA */}
           <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between h-full lg:pr-8 xl:pr-10 lg:border-r lg:border-white/10">
             <div>
               {/* Header Label with Rule */}
-              <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="flex items-center gap-3 mb-5 sm:mb-8">
                 <span className="text-[10.5px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-white/50 uppercase shrink-0">
                   Featured Project
                 </span>
@@ -45,17 +45,13 @@ export function DarkFeatured() {
               </div>
 
               {/* Project Card: Screenshot Slot + Project Info */}
-              <div className="flex flex-col sm:flex-row items-start gap-6 xl:gap-8">
-                {/* Neutral Screenshot Slot (~16:11 Aspect Frame) */}
+              <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6 xl:gap-8">
+                {/* Clean Neutral Screenshot Frame (Compact on mobile, 16:11 on desktop) */}
                 <div
-                  className="w-full sm:w-[280px] lg:w-[270px] xl:w-[320px] aspect-[16/11] rounded-xl bg-[#1e1e1c] border border-white/10 overflow-hidden shrink-0 flex items-center justify-center text-center p-4 select-none relative shadow-inner"
+                  className="w-full max-w-[260px] sm:max-w-none sm:w-[280px] lg:w-[270px] xl:w-[320px] aspect-[16/9] sm:aspect-[16/11] rounded-xl bg-[#1e1e1c] border border-white/10 overflow-hidden shrink-0 select-none shadow-inner mx-auto sm:mx-0"
                   role="region"
-                  aria-label="Sonoma Preview Slot"
-                >
-                  <span className="text-[9px] font-mono tracking-[0.2em] uppercase text-white/35">
-                    [ Sonoma Preview ]
-                  </span>
-                </div>
+                  aria-label="Sonoma Preview Frame"
+                />
 
                 {/* Project Details */}
                 <div className="flex-1 flex flex-col justify-between min-w-0">
