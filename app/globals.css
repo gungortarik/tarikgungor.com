@@ -6,24 +6,23 @@
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --color-paper: #f4f0e8;
-  --color-paper-light: #faf8f5;
-  --color-paper-muted: #eae5da;
-  --color-paper-border: rgba(18, 18, 17, 0.12);
-  --color-paper-border-subtle: rgba(18, 18, 17, 0.07);
+  --color-paper-muted: #e8e2d5;
+  --color-paper-border: rgba(20, 20, 19, 0.12);
+  --color-paper-border-subtle: rgba(20, 20, 19, 0.06);
 
   --color-ink: #141413;
-  --color-ink-muted: #66635c;
-  --color-ink-subtle: #8e8b82;
+  --color-ink-muted: #5c5952;
+  --color-ink-subtle: #8a867c;
 
   --color-charcoal: #141413;
   --color-charcoal-card: #181816;
   --color-charcoal-surface: #1e1e1c;
-  --color-charcoal-border: rgba(255, 255, 255, 0.12);
-  --color-charcoal-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-charcoal-border: rgba(255, 255, 255, 0.1);
+  --color-charcoal-border-subtle: rgba(255, 255, 255, 0.05);
 
-  --color-olive: #78764e;
-  --color-olive-dark: #5e5c3b;
-  --color-olive-light: #dcdbc8;
+  --color-olive: #7d7a54;
+  --color-olive-dark: #626040;
+  --color-olive-indicator: #5a6e4d;
 
   --color-status-green: #34d399;
 }
@@ -46,6 +45,8 @@ body {
   margin: 0;
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Vertical text helper for left metadata rail */
@@ -56,6 +57,7 @@ body {
 
 /* Subtle dot grid pattern */
 .bg-dot-pattern {
-  background-image: radial-gradient(rgba(18, 18, 17, 0.15) 1px, transparent 1px);
-  background-size: 16px 16px;
+  background-image: radial-gradient(rgba(20, 20, 19, 0.18) 1.2px, transparent 1.2px);
+  background-size: 14px 14px;
 }
+

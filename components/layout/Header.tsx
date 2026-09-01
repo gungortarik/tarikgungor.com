@@ -10,86 +10,82 @@ export function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-paper/90 backdrop-blur-xs border-b border-paper-border transition-colors">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-12 h-16 sm:h-20 flex items-center justify-between">
+    <header className="w-full bg-paper pt-6 sm:pt-8 pb-3">
+      <div className="max-w-[1480px] mx-auto px-4 sm:px-6 lg:px-6 flex items-center justify-between">
         {/* Brand Group */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center">
           <Link
             href="/"
-            className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-ink text-ink font-bold text-xs tracking-tight transition-transform hover:scale-105"
+            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-ink flex items-center justify-center text-[10px] sm:text-[11px] font-bold text-ink tracking-tight hover:opacity-80 transition-opacity"
             aria-label="Tarik Gungor Home"
           >
             TG
           </Link>
-          <div className="flex items-baseline gap-2.5">
-            <Link
-              href="/"
-              className="text-sm sm:text-[15px] font-bold text-ink tracking-tight hover:opacity-80 transition-opacity"
-            >
-              Tarik Gungor
-            </Link>
-            <span className="hidden md:inline-block text-[11px] font-medium tracking-wide text-ink-muted">
-              Building <span className="text-ink-subtle mx-0.5">•</span> Learning <span className="text-ink-subtle mx-0.5">•</span> Living
-            </span>
-          </div>
+          <Link
+            href="/"
+            className="text-[14px] sm:text-[15px] font-semibold text-ink ml-3 tracking-tight hover:opacity-80 transition-opacity"
+          >
+            Tarik Gungor
+          </Link>
+          <span className="hidden lg:inline text-[11px] text-ink-subtle ml-4 tracking-normal">
+            Building <span className="mx-1 text-ink-subtle/60">•</span> Learning <span className="mx-1 text-ink-subtle/60">•</span> Living
+          </span>
         </div>
 
-        {/* Center Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-xs font-semibold tracking-wide text-ink-muted">
+        {/* Center Navigation (Desktop) */}
+        <nav className="hidden md:flex items-center gap-7 lg:gap-8 text-xs text-ink-muted">
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className={`relative py-1.5 transition-colors hover:text-ink ${
-                item.active ? "text-ink font-bold" : ""
+              className={`relative py-1 transition-colors hover:text-ink ${
+                item.active ? "text-ink font-semibold" : "font-normal"
               }`}
             >
-              {item.label}
+              <span>{item.label}</span>
               {item.active && (
-                <span
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-olive rounded-full"
-                  aria-hidden="true"
-                />
+                <div className="flex items-center justify-center gap-0.5 mt-0.5" aria-hidden="true">
+                  <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-l-full" />
+                  <span className="w-1 h-1 rounded-full bg-olive-indicator" />
+                  <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-r-full" />
+                </div>
               )}
             </a>
           ))}
         </nav>
 
-        {/* Right Desktop Actions & Mobile Menu Toggle */}
+        {/* Right Actions (Desktop) & Mobile Toggle */}
         <div className="flex items-center gap-3 sm:gap-4">
           <a
             href="#explore"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:opacity-70 transition-opacity"
+            className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-ink hover:opacity-75 transition-opacity"
           >
-            Explore <span className="text-xs" aria-hidden="true">↓</span>
+            Explore <span aria-hidden="true">↓</span>
           </a>
 
-          {/* Theme/Mode Indicator Accent Icon */}
           <button
             type="button"
-            className="hidden sm:flex w-7 h-7 rounded-full bg-ink text-paper items-center justify-center hover:opacity-90 transition-opacity cursor-pointer"
-            aria-label="Toggle theme or action"
+            className="hidden sm:flex w-6 h-6 rounded-full bg-ink text-paper items-center justify-center hover:opacity-85 transition-opacity cursor-pointer"
+            aria-label="Toggle theme or view mode"
           >
             <svg
-              className="w-3.5 h-3.5"
+              className="w-3 h-3 fill-current"
               viewBox="0 0 24 24"
-              fill="currentColor"
-              stroke="none"
               aria-hidden="true"
             >
-              <path d="M12 2l2.4 6.6L21 11l-5.6 4.4L17 22l-5-4-5 4 1.6-6.6L3 11l6.6-2.4L12 2z" />
+              <path d="M12 2l2.3 6.3 6.7 1.4-4.9 4.7 1.2 6.6-5.3-3.2-5.3 3.2 1.2-6.6-4.9-4.7 6.7-1.4L12 2z" />
             </svg>
           </button>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Hamburger Menu */}
           <button
             type="button"
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1 text-ink focus:outline-hidden"
-            aria-label="Open menu"
+            className="md:hidden flex flex-col justify-center items-center w-7 h-7 gap-1.2 text-ink focus:outline-hidden"
+            aria-label="Toggle navigation menu"
           >
-            <span className="w-5 h-[1.5px] bg-ink rounded-full"></span>
-            <span className="w-5 h-[1.5px] bg-ink rounded-full"></span>
-            <span className="w-5 h-[1.5px] bg-ink rounded-full"></span>
+            <span className="w-5 h-[1.5px] bg-ink rounded-full" />
+            <span className="w-5 h-[1.5px] bg-ink rounded-full" />
+            <span className="w-5 h-[1.5px] bg-ink rounded-full" />
           </button>
         </div>
       </div>
