@@ -23,9 +23,46 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tarik Gungor — Building systems. Learning continuously. Living intentionally.",
+  metadataBase: new URL("https://tarikgungor.com"),
+  title: {
+    default: "Tarik Gungor — Building. Learning. Living.",
+    template: "%s | Tarik Gungor",
+  },
   description:
-    "The personal platform of Tarik Gungor — technology, systems, learning, and life in progress.",
+    "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
+  applicationName: "Tarik Gungor",
+  authors: [{ name: "Tarik Gungor", url: "https://tarikgungor.com" }],
+  creator: "Tarik Gungor",
+  publisher: "Tarik Gungor",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: "https://tarikgungor.com",
+    siteName: "Tarik Gungor",
+    title: "Tarik Gungor — Building. Learning. Living.",
+    description:
+      "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tarik Gungor — Building. Learning. Living.",
+    description:
+      "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -1,36 +1,6 @@
 import Image from "next/image";
 
 export function DarkFeatured() {
-  const recentNotes = [
-    {
-      date: "AUG 31",
-      title: "The power of compound learning",
-      href: "#notes",
-    },
-    {
-      date: "AUG 28",
-      title: "Notes on system design",
-      href: "#notes",
-    },
-    {
-      date: "AUG 24",
-      title: "Building in public",
-      href: "#notes",
-    },
-    {
-      date: "AUG 21",
-      title: "Toronto thoughts",
-      href: "#notes",
-    },
-  ];
-
-  const logEntries = [
-    { date: "2026-08-31", message: "Progress in motion." },
-    { date: "2026-08-28", message: "New ideas captured." },
-    { date: "2026-08-24", message: "Building, learning, living." },
-    { date: "2026-08-21", message: "Stay curious." },
-  ];
-
   return (
     <section id="work" className="w-full bg-[#141413] text-paper border-t border-paper-border py-10 sm:py-18 lg:py-20">
       <div className="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6">
@@ -56,7 +26,7 @@ export function DarkFeatured() {
                 >
                   <Image
                     src="/assets/projects/sonoma-dashboard.png"
-                    alt="Sonoma document and expense management dashboard"
+                    alt="Sonoma private expense and document management dashboard"
                     fill
                     className="object-cover object-[14%_8%]"
                     sizes="(max-width: 640px) 260px, (max-width: 1024px) 280px, 320px"
@@ -94,43 +64,30 @@ export function DarkFeatured() {
           {/* 2. RECENT NOTES (Center) */}
           <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between h-full lg:pr-8 xl:pr-10 lg:border-r lg:border-white/10">
             <div>
-              {/* Header Label + View All Link */}
-              <div className="flex items-center justify-between pb-3 mb-1 border-b border-white/10">
-                <span className="text-[10.5px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-white/50 uppercase">
+              {/* Header Label with Rule */}
+              <div className="flex items-center gap-3 mb-5 sm:mb-8">
+                <span className="text-[10.5px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-white/50 uppercase shrink-0">
                   Recent Notes
                 </span>
-                <a
-                  href="#notes"
-                  className="text-[11px] font-mono font-medium text-white/70 hover:text-white transition-colors flex items-center gap-1"
-                >
-                  View all <span aria-hidden="true">→</span>
-                </a>
+                <div className="flex-1 h-[1px] bg-white/10" />
               </div>
 
-              {/* Note Rows */}
-              <div className="divide-y divide-white/[0.07]">
-                {recentNotes.map((note) => (
-                  <a
-                    key={note.title}
-                    href={note.href}
-                    className="flex items-center justify-between py-3.5 sm:py-4 group hover:text-white transition-colors"
-                  >
-                    <div className="flex items-baseline gap-4 min-w-0 pr-2">
-                      <span className="text-[11px] font-mono text-white/40 shrink-0 tracking-wider">
-                        {note.date}
-                      </span>
-                      <span className="text-[13.5px] sm:text-[14px] text-white/85 group-hover:text-white transition-colors leading-snug truncate">
-                        {note.title}
-                      </span>
-                    </div>
-                    <span
-                      className="text-white/40 group-hover:text-white text-xs transition-transform group-hover:translate-x-0.5 shrink-0"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </a>
-                ))}
+              {/* Editorial State Content */}
+              <div className="flex flex-col justify-between pt-1">
+                <div>
+                  <p className="font-serif text-[20px] sm:text-[22px] text-white/90 font-normal leading-[1.35] tracking-tight">
+                    Notes are being documented.
+                  </p>
+                  <p className="text-[13.5px] sm:text-[14px] text-white/60 leading-[1.65] mt-3 whitespace-pre-line">
+                    Writing on technology, systems,{"\n"}projects, and lessons along the way.
+                  </p>
+                </div>
+
+                <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-white/[0.07]">
+                  <span className="text-[11px] font-mono text-white/40 tracking-wider">
+                    Archive opening soon.
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -149,18 +106,26 @@ export function DarkFeatured() {
                 />
               </div>
 
-              {/* Log Entries */}
-              <div className="space-y-2.5 text-[11px] text-white/70 leading-relaxed">
-                {logEntries.map((entry) => (
-                  <div key={entry.date} className="flex items-start gap-3">
-                    <span className="text-white/40 font-mono shrink-0">{entry.date}</span>
-                    <span className="text-white/85 font-mono leading-snug">{entry.message}</span>
-                  </div>
-                ))}
+              {/* Live Terminal System State */}
+              <div className="space-y-3 text-[11px] font-mono leading-relaxed">
+                <div>
+                  <span className="text-white/45 block text-[10px] tracking-tight">&gt; system</span>
+                  <p className="text-white/85 mt-0.5">Personal site rebuild in progress.</p>
+                </div>
+
+                <div>
+                  <span className="text-white/45 block text-[10px] tracking-tight">&gt; current</span>
+                  <p className="text-white/85 mt-0.5">Building the foundation.</p>
+                </div>
+
+                <div>
+                  <span className="text-white/45 block text-[10px] tracking-tight">&gt; next</span>
+                  <p className="text-white/85 mt-0.5">Document real work as it happens.</p>
+                </div>
               </div>
 
               {/* Terminal Cursor Line */}
-              <div className="mt-4 text-white/40 font-mono text-xs">
+              <div className="mt-4 text-white/40 font-mono text-xs select-none">
                 &gt;
               </div>
             </div>
