@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function DarkFeatured() {
   const recentNotes = [
     {
@@ -30,7 +32,7 @@ export function DarkFeatured() {
   ];
 
   return (
-    <section className="w-full bg-[#141413] text-paper border-t border-paper-border py-10 sm:py-18 lg:py-20">
+    <section id="work" className="w-full bg-[#141413] text-paper border-t border-paper-border py-10 sm:py-18 lg:py-20">
       <div className="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 xl:gap-12 items-start">
           {/* 1. FEATURED PROJECT — SONOMA */}
@@ -46,23 +48,31 @@ export function DarkFeatured() {
 
               {/* Project Card: Screenshot Slot + Project Info */}
               <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6 xl:gap-8">
-                {/* Clean Neutral Screenshot Frame (Compact on mobile, 16:11 on desktop) */}
+                {/* Real Sonoma Screenshot Frame (Compact on mobile, 16:11 on desktop) */}
                 <div
-                  className="w-full max-w-[260px] sm:max-w-none sm:w-[280px] lg:w-[270px] xl:w-[320px] aspect-[16/9] sm:aspect-[16/11] rounded-xl bg-[#1e1e1c] border border-white/10 overflow-hidden shrink-0 select-none shadow-inner mx-auto sm:mx-0"
+                  className="relative w-full max-w-[260px] sm:max-w-none sm:w-[280px] lg:w-[270px] xl:w-[320px] aspect-[16/9] sm:aspect-[16/11] rounded-xl bg-[#1e1e1c] border border-white/10 overflow-hidden shrink-0 select-none shadow-inner mx-auto sm:mx-0"
                   role="region"
-                  aria-label="Sonoma Preview Frame"
-                />
+                  aria-label="Sonoma Application Screenshot"
+                >
+                  <Image
+                    src="/assets/projects/sonoma-dashboard.png"
+                    alt="Sonoma document and expense management dashboard"
+                    fill
+                    className="object-cover object-[14%_8%]"
+                    sizes="(max-width: 640px) 260px, (max-width: 1024px) 280px, 320px"
+                  />
+                </div>
 
                 {/* Project Details */}
                 <div className="flex-1 flex flex-col justify-between min-w-0">
                   <div>
-                    {/* Title + In Progress Badge */}
-                    <div className="flex items-center gap-3 flex-wrap">
+                    {/* Title + Private Status Badge */}
+                    <div className="flex items-center gap-2.5 flex-wrap">
                       <h3 className="font-serif text-[26px] sm:text-[28px] lg:text-[30px] text-white font-normal tracking-tight">
                         Sonoma
                       </h3>
                       <span className="inline-flex items-center text-[9.5px] font-mono font-medium px-2.5 py-0.5 rounded bg-[#242420] text-[#a3b18a] border border-white/5">
-                        In Progress
+                        Private · In Progress
                       </span>
                     </div>
 
@@ -72,19 +82,10 @@ export function DarkFeatured() {
                     </p>
                   </div>
 
-                  {/* CTA */}
-                  <a
-                    href="#work"
-                    className="inline-flex items-center gap-2 text-[13px] font-semibold text-white/90 hover:text-white mt-6 sm:mt-8 self-start group transition-colors"
-                  >
-                    <span>View project</span>
-                    <span
-                      className="text-xs transition-transform group-hover:translate-x-0.5"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
-                  </a>
+                  {/* Non-clickable Editorial Status */}
+                  <div className="inline-flex items-center text-[12px] font-mono text-white/40 mt-6 sm:mt-8 select-none">
+                    <span>Private project</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ export function Footer() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/tarikgungor"
+              href="https://www.linkedin.com/in/tarikgungor/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-ink transition-colors"
@@ -23,7 +23,7 @@ export function Footer() {
               LinkedIn
             </a>
             <a
-              href="mailto:contact@tarikgungor.com"
+              href="mailto:tarik.gungor.ca@gmail.com"
               className="hover:text-ink transition-colors"
             >
               Mail
