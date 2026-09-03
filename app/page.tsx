@@ -1,8 +1,10 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { DarkFeatured } from "@/components/sections/DarkFeatured";
-import { CurrentlyFocusing } from "@/components/sections/Focus";
+import { RightNow } from "@/components/sections/Focus";
 import { Hero } from "@/components/sections/Hero";
+import { LifeSignal } from "@/components/sections/LifeSignal";
+import { PathSoFar } from "@/components/sections/PathSoFar";
 
 export default function Home() {
   return (
@@ -10,8 +12,10 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         <Hero />
-        <CurrentlyFocusing />
+        <RightNow />
         <DarkFeatured />
+        <PathSoFar />
+        <LifeSignal />
       </main>
       <Footer />
     </div>

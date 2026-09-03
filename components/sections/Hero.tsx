@@ -50,9 +50,11 @@ export function Hero() {
             </div>
 
             {/* Subcopy */}
-            <p className="text-[14px] sm:text-[15.5px] text-ink-muted leading-[1.65] max-w-[450px] mt-3.5 sm:mt-4">
-              I work with technology to solve real problems, build useful products, and document
-              what I learn along the way.
+            <p className="text-[14px] sm:text-[15.5px] text-ink-muted leading-[1.65] max-w-[490px] mt-3.5 sm:mt-4">
+              I&apos;m Tarik Gungor. I study Computer Systems Technology in Toronto and build
+              practical tools while learning how systems work — from networks and Linux to
+              software and design. This site is where I document the work, the lessons, and the life
+              around them.
             </p>
 
             {/* CTA Group */}

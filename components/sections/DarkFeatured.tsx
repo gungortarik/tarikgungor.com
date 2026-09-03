@@ -8,22 +8,22 @@ export function DarkFeatured() {
     >
       <div className="max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-7 xl:gap-10 items-start">
-          {/* 1. FEATURED PROJECT — SONOMA */}
-          <div className="lg:col-span-5 xl:col-span-5 flex flex-col justify-between h-full lg:pr-7 xl:pr-9 lg:border-r lg:border-paper-border/50 dark:lg:border-white/[0.06]">
+          {/* 1. PROJECTS — TWO-PROJECT EDITORIAL LAYOUT */}
+          <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-between h-full lg:pr-7 xl:pr-9 lg:border-r lg:border-paper-border/50 dark:lg:border-white/[0.06]">
             <div>
               {/* Header Label with Rule */}
               <div className="flex items-center gap-3 mb-5 sm:mb-8">
                 <span className="text-[10.5px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-ink-muted dark:text-white/50 uppercase shrink-0">
-                  Featured Project
+                  Projects
                 </span>
                 <div className="flex-1 h-[1px] bg-paper-border dark:bg-white/10" />
               </div>
 
-              {/* Project Card: Screenshot Slot + Project Info (Enlarged ~18%, tighter gap) */}
-              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 xl:gap-5">
-                {/* Real Sonoma Screenshot Frame (Enlarged 15-20%) */}
+              {/* Project 1: Sonoma */}
+              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
+                {/* Real Sonoma Screenshot Frame */}
                 <div
-                  className="relative w-full max-w-[300px] sm:max-w-none sm:w-[330px] lg:w-[320px] xl:w-[380px] aspect-[16/9] sm:aspect-[16/11] rounded-xl bg-[#ded8cc] dark:bg-[#161614] border border-paper-border dark:border-white/10 overflow-hidden shrink-0 select-none shadow-xs dark:shadow-inner mx-auto sm:mx-0"
+                  className="relative w-full max-w-[280px] sm:max-w-none sm:w-[240px] lg:w-[230px] xl:w-[260px] aspect-[16/10] rounded-xl bg-[#ded8cc] dark:bg-[#161614] border border-paper-border dark:border-white/10 overflow-hidden shrink-0 select-none shadow-xs dark:shadow-inner mx-auto sm:mx-0"
                   role="region"
                   aria-label="Sonoma Application Screenshot"
                 >
@@ -32,7 +32,7 @@ export function DarkFeatured() {
                     alt="Sonoma private expense and document management dashboard"
                     fill
                     className="object-cover object-[14%_8%]"
-                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 330px, 380px"
+                    sizes="(max-width: 640px) 280px, (max-width: 1024px) 230px, 260px"
                   />
                 </div>
 
@@ -41,31 +41,58 @@ export function DarkFeatured() {
                   <div>
                     {/* Title + Private Status Badge */}
                     <div className="flex items-center gap-2.5 flex-wrap">
-                      <h3 className="font-serif text-[26px] sm:text-[28px] lg:text-[30px] text-ink dark:text-white font-normal tracking-tight">
+                      <h3 className="font-serif text-[24px] sm:text-[26px] text-ink dark:text-white font-normal tracking-tight">
                         Sonoma
                       </h3>
-                      <span className="inline-flex items-center text-[9.5px] font-mono font-medium px-2.5 py-0.5 rounded bg-paper-muted dark:bg-[#242420] text-olive-dark dark:text-[#a3b18a] border border-paper-border dark:border-white/5">
+                      <span className="inline-flex items-center text-[9.5px] font-mono font-medium px-2 py-0.5 rounded bg-paper-muted dark:bg-[#242420] text-olive-dark dark:text-[#a3b18a] border border-paper-border dark:border-white/5">
                         Private · In Progress
                       </span>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-[13.5px] sm:text-[14px] text-ink-muted dark:text-white/65 leading-[1.65] mt-2.5 sm:mt-3 whitespace-pre-line">
-                      Document management{"\n"}and expense tracking.{"\n"}Built with Next.js, TypeScript,{"\n"}and Tailwind CSS.
+                    {/* Copy */}
+                    <p className="text-[13px] sm:text-[13.5px] text-ink-muted dark:text-white/65 leading-[1.65] mt-2 sm:mt-2.5">
+                      A private expense and document management tool I built for personal use.
+                    </p>
+
+                    {/* Secondary */}
+                    <p className="text-[11.5px] sm:text-[12px] font-mono text-ink-subtle dark:text-white/45 mt-2.5">
+                      Next.js · TypeScript · Tailwind CSS
                     </p>
                   </div>
 
                   {/* Non-clickable Editorial Status */}
-                  <div className="inline-flex items-center text-[12px] font-mono text-ink-subtle dark:text-white/40 mt-5 sm:mt-7 select-none">
+                  <div className="inline-flex items-center text-[11.5px] font-mono text-ink-subtle dark:text-white/40 mt-3.5 sm:mt-4 select-none">
                     <span>Private project</span>
                   </div>
                 </div>
+              </div>
+
+              {/* Restrained Hairline Divider */}
+              <div className="w-full h-[1px] bg-paper-border/60 dark:bg-white/[0.07] my-6 sm:my-7" />
+
+              {/* Project 2: CertForge (Restrained text-led project block) */}
+              <div>
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <h3 className="font-serif text-[24px] sm:text-[26px] text-ink dark:text-white font-normal tracking-tight">
+                    CertForge
+                  </h3>
+                </div>
+
+                {/* Copy */}
+                <p className="text-[13px] sm:text-[13.5px] text-ink-muted dark:text-white/65 leading-[1.65] mt-2 sm:mt-2.5 max-w-[520px]">
+                  An exam-prep project I built around IT certification study.
+                </p>
+
+                {/* Secondary */}
+                <p className="text-[11.5px] sm:text-[12px] font-mono text-ink-subtle dark:text-white/45 mt-2.5">
+                  Network+ · CCNA · IT fundamentals
+                </p>
               </div>
             </div>
           </div>
 
           {/* 2. RECENT NOTES (Center) */}
-          <div className="lg:col-span-4 xl:col-span-4 flex flex-col justify-between h-full lg:px-7 xl:px-9 lg:border-r lg:border-paper-border/50 dark:lg:border-white/[0.06]">
+          <div id="notes" className="lg:col-span-3 xl:col-span-3 flex flex-col justify-between h-full lg:px-6 xl:px-8 lg:border-r lg:border-paper-border/50 dark:lg:border-white/[0.06]">
             <div>
               {/* Header Label with Rule */}
               <div className="flex items-center gap-3 mb-5 sm:mb-8">
@@ -81,14 +108,14 @@ export function DarkFeatured() {
                   <p className="font-serif text-[20px] sm:text-[22px] text-ink dark:text-white/90 font-normal leading-[1.35] tracking-tight">
                     Notes are being documented.
                   </p>
-                  <p className="text-[13.5px] sm:text-[14px] text-ink-muted dark:text-white/60 leading-[1.65] mt-3 whitespace-pre-line">
-                    Writing on technology, systems,{"\n"}projects, and lessons along the way.
+                  <p className="text-[13px] sm:text-[13.5px] text-ink-muted dark:text-white/60 leading-[1.65] mt-3">
+                    Networking, systems, software, projects, and lessons I want to remember.
                   </p>
                 </div>
 
                 <div className="pt-6 sm:pt-8 mt-6 sm:mt-8 border-t border-paper-border dark:border-white/[0.07]">
                   <span className="text-[11px] font-mono text-ink-subtle dark:text-white/40 tracking-wider">
-                    Archive opening soon.
+                    Archive opening as the collection grows.
                   </span>
                 </div>
               </div>
