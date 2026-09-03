@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, JetBrains_Mono, Manrope } from "next/font/google";
+import { GFS_Didot, JetBrains_Mono, Manrope } from "next/font/google";
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import "./globals.css";
 
 const sans = Manrope({
@@ -8,10 +9,9 @@ const sans = Manrope({
   display: "swap",
 });
 
-const serif = Instrument_Serif({
+const serif = GFS_Didot({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: "400",
   variable: "--font-serif",
   display: "swap",
 });
@@ -36,6 +36,10 @@ export const metadata: Metadata = {
   publisher: "Tarik Gungor",
   alternates: {
     canonical: "/",
+  },
+  icons: {
+    icon: "/assets/icons/tarik-gungor-favicon.png",
+    apple: "/assets/icons/tarik-gungor-favicon.png",
   },
   openGraph: {
     type: "website",
@@ -71,9 +75,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
-      <body className="bg-paper text-ink font-sans antialiased selection:bg-olive-light selection:text-ink min-h-screen">
-        {children}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=localStorage.getItem('tg_theme');var d=s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches);if(d){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="bg-paper text-ink font-sans antialiased selection:bg-olive-indicator/20 selection:text-ink min-h-screen">
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

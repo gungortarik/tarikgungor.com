@@ -1,35 +1,86 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --paper: #f4f0e8;
+  --paper-muted: #e8e2d5;
+  --paper-border: rgba(20, 20, 19, 0.12);
+  --paper-border-subtle: rgba(20, 20, 19, 0.06);
+
+  --ink: #141413;
+  --ink-muted: #5c5952;
+  --ink-subtle: #8a867c;
+
+  --charcoal: #141413;
+  --charcoal-card: #181816;
+  --charcoal-surface: #1e1e1c;
+  --charcoal-border: rgba(255, 255, 255, 0.1);
+  --charcoal-border-subtle: rgba(255, 255, 255, 0.05);
+
+  --olive: #7d7a54;
+  --olive-dark: #626040;
+  --olive-indicator: #5a6e4d;
+
+  --status-green: #34d399;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
+.dark {
+  /* Warm charcoal / near-black background, not pure #000 */
+  --paper: #161514;
+  --paper-muted: #201f1d;
+  --paper-border: rgba(244, 240, 232, 0.16);
+  --paper-border-subtle: rgba(244, 240, 232, 0.09);
+
+  /* Warm off-white / paper text instead of pure white */
+  --ink: #f4f0e8;
+  --ink-muted: #b8b3a7;
+  --ink-subtle: #8c877d;
+
+  --charcoal: #0e0e0d;
+  --charcoal-card: #141413;
+  --charcoal-surface: #1a1918;
+  --charcoal-border: rgba(244, 240, 232, 0.14);
+  --charcoal-border-subtle: rgba(244, 240, 232, 0.08);
+
+  --olive: #a8a478;
+  --olive-dark: #8c895c;
+  --olive-indicator: #6e845f;
+
+  --status-green: #4ade80;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+}
+
 @theme {
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  --color-paper: #f4f0e8;
-  --color-paper-muted: #e8e2d5;
-  --color-paper-border: rgba(20, 20, 19, 0.12);
-  --color-paper-border-subtle: rgba(20, 20, 19, 0.06);
+  --color-paper: var(--paper);
+  --color-paper-muted: var(--paper-muted);
+  --color-paper-border: var(--paper-border);
+  --color-paper-border-subtle: var(--paper-border-subtle);
 
-  --color-ink: #141413;
-  --color-ink-muted: #5c5952;
-  --color-ink-subtle: #8a867c;
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
 
-  --color-charcoal: #141413;
-  --color-charcoal-card: #181816;
-  --color-charcoal-surface: #1e1e1c;
-  --color-charcoal-border: rgba(255, 255, 255, 0.1);
-  --color-charcoal-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-card: var(--charcoal-card);
+  --color-charcoal-surface: var(--charcoal-surface);
+  --color-charcoal-border: var(--charcoal-border);
+  --color-charcoal-border-subtle: var(--charcoal-border-subtle);
 
-  --color-olive: #7d7a54;
-  --color-olive-dark: #626040;
-  --color-olive-indicator: #5a6e4d;
+  --color-olive: var(--olive);
+  --color-olive-dark: var(--olive-dark);
+  --color-olive-indicator: var(--olive-indicator);
 
-  --color-status-green: #34d399;
-}
-
-:root {
-  --background: #f4f0e8;
-  --foreground: #141413;
+  --color-status-green: var(--status-green);
 }
 
 * {
@@ -59,5 +110,9 @@ body {
 .bg-dot-pattern {
   background-image: radial-gradient(rgba(20, 20, 19, 0.18) 1.2px, transparent 1.2px);
   background-size: 14px 14px;
+}
+
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(rgba(244, 240, 232, 0.18) 1.2px, transparent 1.2px);
 }
 

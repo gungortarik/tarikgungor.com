@@ -93,9 +93,9 @@ export function CurrentlyFocusing() {
   ];
 
   return (
-    <section className="w-full max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6 pt-2 pb-8 sm:pb-10 lg:pb-12">
+    <section className="w-full max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 pt-4 sm:pt-6 pb-12 sm:pb-16 lg:pb-20">
       {/* Section Header with Rule and Far-Right Accent Dot */}
-      <div className="flex items-center gap-4 mb-6 sm:mb-10">
+      <div className="flex items-center gap-4 mb-6 sm:mb-8 lg:mb-10">
         <h2 className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-ink uppercase shrink-0">
           Currently Focusing On
         </h2>
@@ -111,7 +111,7 @@ export function CurrentlyFocusing() {
         {focusAreas.map((item, index) => (
           <div
             key={item.title}
-            className={`flex flex-col justify-between py-6 sm:py-0 ${
+            className={`flex flex-col justify-between py-6 sm:py-2 ${
               index === 0
                 ? "sm:pr-6 lg:pr-8"
                 : index === focusAreas.length - 1
@@ -123,13 +123,13 @@ export function CurrentlyFocusing() {
               {/* Header: Icon + Serif Title */}
               <div className="flex items-center gap-2.5">
                 {item.icon}
-                <h3 className="font-serif text-[19px] sm:text-[21px] text-ink font-normal tracking-tight">
+                <h3 className="font-serif text-[20px] sm:text-[22px] text-ink font-normal tracking-tight">
                   {item.title}
                 </h3>
               </div>
 
               {/* Short Descriptive Copy */}
-              <p className="text-[13px] text-ink-muted leading-[1.6] mt-3 mb-6 whitespace-pre-line">
+              <p className="text-[13px] sm:text-[13.5px] text-ink-muted leading-[1.65] mt-3 mb-6 whitespace-pre-line">
                 {item.description}
               </p>
             </div>
@@ -137,7 +137,7 @@ export function CurrentlyFocusing() {
             {/* Bottom Text Link with Arrow */}
             <a
               href={item.href}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:opacity-70 transition-opacity self-start group"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink hover:opacity-75 transition-opacity self-start group"
             >
               <span>{item.linkText}</span>
               <span

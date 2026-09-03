@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,25 +17,29 @@ export function Header() {
   ];
 
   return (
-    <header className="relative w-full bg-paper pt-5 sm:pt-8 pb-3 z-30">
-      <div className="max-w-[1480px] mx-auto px-5 sm:px-6 lg:px-6 flex items-center justify-between">
+    <header className="relative w-full bg-paper pt-5 sm:pt-7 pb-3 sm:pb-4 z-30">
+      <div className="max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 flex items-center justify-between">
         {/* Brand Group */}
         <div className="flex items-center">
           <Link
             href="/"
-            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-ink flex items-center justify-center text-[10px] sm:text-[11px] font-bold text-ink tracking-tight hover:opacity-80 transition-opacity"
+            className="flex items-center gap-1 sm:gap-1.5 hover:opacity-80 transition-opacity"
             aria-label="Tarik Gungor Home"
           >
-            TG
+            <Image
+              src="/assets/logos/tarik-gungor-monogram.svg"
+              alt=""
+              width={88}
+              height={74}
+              className="w-[78px] sm:w-[88px] h-auto shrink-0 dark:invert"
+              priority
+            />
+            <span className="text-[14px] sm:text-[15px] font-semibold text-ink tracking-tight">
+              Tarik Gungor
+            </span>
           </Link>
-          <Link
-            href="/"
-            className="text-[14px] sm:text-[15px] font-semibold text-ink ml-3 tracking-tight hover:opacity-80 transition-opacity"
-          >
-            Tarik Gungor
-          </Link>
-          <span className="hidden lg:inline text-[11px] text-ink-subtle ml-4 tracking-normal">
-            Building <span className="mx-1 text-ink-subtle/60">•</span> Learning <span className="mx-1 text-ink-subtle/60">•</span> Living
+          <span className="hidden lg:inline text-[11.5px] text-ink-muted/85 ml-3.5 tracking-normal">
+            Building <span className="mx-1 text-ink-subtle/70">•</span> Learning <span className="mx-1 text-ink-subtle/70">•</span> Living
           </span>
         </div>
 
@@ -60,7 +66,7 @@ export function Header() {
         </nav>
 
         {/* Right Actions (Desktop) & Mobile Toggle */}
-        <div className="flex items-center gap-3 sm:gap-4">
+        <div className="flex items-center gap-2.5 sm:gap-4">
           <a
             href="#explore"
             className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-ink hover:opacity-75 transition-opacity"
@@ -68,19 +74,7 @@ export function Header() {
             Explore <span aria-hidden="true">↓</span>
           </a>
 
-          <button
-            type="button"
-            className="hidden sm:flex w-6 h-6 rounded-full bg-ink text-paper items-center justify-center hover:opacity-85 transition-opacity cursor-pointer"
-            aria-label="Toggle theme or view mode"
-          >
-            <svg
-              className="w-3 h-3 fill-current"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d="M12 2l2.3 6.3 6.7 1.4-4.9 4.7 1.2 6.6-5.3-3.2-5.3 3.2 1.2-6.6-4.9-4.7 6.7-1.4L12 2z" />
-            </svg>
-          </button>
+          <ThemeToggle />
 
           {/* Mobile Hamburger / Close Button (44px min touch target) */}
           <button
