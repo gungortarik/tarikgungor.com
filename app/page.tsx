@@ -4,6 +4,7 @@ import { DarkFeatured } from "@/components/sections/DarkFeatured";
 import { RightNow } from "@/components/sections/Focus";
 import { Hero } from "@/components/sections/Hero";
 import { PathSoFar } from "@/components/sections/PathSoFar";
+import { ResumePreview } from "@/components/sections/ResumePreview";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
         <RightNow />
         <DarkFeatured />
+        <ResumePreview />
         <PathSoFar />
       </main>
       <Footer />
