@@ -10,9 +10,9 @@ const focusItems: FocusItem[] = [
   {
     number: "01",
     category: "BUILDING",
-    title: "Personal systems",
+    title: "Software projects",
     description:
-      "Working on practical software projects and small tools that solve problems I actually have.",
+      "Building Sonoma, CertForge, and small tools around problems I actually have.",
   },
   {
     number: "02",
@@ -39,7 +39,7 @@ const focusItems: FocusItem[] = [
 export function RightNow() {
   return (
     <section
-      id="now"
+      id="right-now"
       className="w-full max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 pt-4 sm:pt-6 pb-12 sm:pb-16 lg:pb-20"
     >
       {/* Section Header with Rule and Far-Right Accent Dot */}

@@ -1,0 +1,158 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Tarik Gungor",
+    "label": "IT Support Specialist | Infrastructure & Endpoint-Focused",
+    "email": "gungortarik@icloud.com",
+    "url": "https://tarikgungor.com",
+    "summary": "Infrastructure-focused IT support professional supporting 60+ endpoints across hybrid business environments. Experienced in Windows 10/11 administration, Active Directory user management, Microsoft 365 support, endpoint configuration, and network troubleshooting (TCP/IP, DNS, DHCP, VPN). Skilled in hardware support, device deployment, remote troubleshooting, and maintaining operational system reliability. Actively expanding into systems administration through virtualization and server-based lab environments.",
+    "location": {
+      "city": "Toronto",
+      "region": "ON",
+      "countryCode": "CA"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "tarikgungor",
+        "url": "https://linkedin.com/in/tarikgungor"
+      },
+      {
+        "network": "GitHub",
+        "username": "gungortarik",
+        "url": "https://github.com/gungortarik"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "BETA PREP",
+      "position": "IT Specialist",
+      "location": "Toronto, ON",
+      "startDate": "2024",
+      "endDate": "Present",
+      "summary": "Support and maintain endpoints in a hybrid business environment.",
+      "highlights": [
+        "Support and maintain 38 endpoints in a hybrid business environment",
+        "Manage and resolve user incidents ensuring minimal operational disruption",
+        "Configure and maintain Windows 10/11 devices",
+        "Assist with Microsoft 365 administration and user account management",
+        "Troubleshoot network connectivity issues (DNS, DHCP, IP configuration)",
+        "Deploy and configure new devices for staff use"
+      ]
+    },
+    {
+      "name": "Bestof Floor LTD",
+      "position": "IT Support Specialist",
+      "location": "Toronto, ON",
+      "startDate": "2023",
+      "endDate": "Present",
+      "summary": "Provide technical support across a 23-device environment.",
+      "highlights": [
+        "Provide technical support across a 23-device environment",
+        "Diagnose and resolve user-reported hardware and software issues",
+        "Perform Active Directory user account management",
+        "Support internal network infrastructure and connectivity",
+        "Maintain system reliability and ensure daily operational continuity"
+      ]
+    },
+    {
+      "name": "Payment Source",
+      "position": "IT Analyst — Internship",
+      "location": "Toronto, ON",
+      "startDate": "2023",
+      "endDate": "2023",
+      "summary": "Supported endpoint management and policy implementation.",
+      "highlights": [
+        "Worked with ManageEngine Endpoint Central for device configuration",
+        "Assisted in mobile device management (MDM) deployments",
+        "Contributed to 50+ endpoint configurations",
+        "Supported endpoint monitoring and structured policy implementation"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "George Brown College",
+      "area": "Computer Systems Technology",
+      "studyType": "Advanced Diploma",
+      "location": "Toronto, ON",
+      "startDate": "2026",
+      "endDate": "Ongoing"
+    },
+    {
+      "institution": "British Columbia Institute of Technology",
+      "area": "Technology Support Professional",
+      "startDate": "2022",
+      "endDate": "2023"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Operating Systems",
+      "keywords": ["Windows 10/11", "Ubuntu Linux"]
+    },
+    {
+      "name": "Directory Services",
+      "keywords": ["Active Directory — User & Group Management"]
+    },
+    {
+      "name": "Cloud & Productivity",
+      "keywords": ["Microsoft 365"]
+    },
+    {
+      "name": "Networking",
+      "keywords": ["TCP/IP", "DNS", "DHCP", "VPN", "Network Segmentation"]
+    },
+    {
+      "name": "Endpoint Management",
+      "keywords": ["Device configuration", "Policy deployment", "System updates"]
+    },
+    {
+      "name": "Virtualization",
+      "keywords": ["Hyper-V", "Ubuntu VM Lab Environment"]
+    },
+    {
+      "name": "Security",
+      "keywords": ["Endpoint monitoring", "Configuration hardening"]
+    },
+    {
+      "name": "Hardware",
+      "keywords": ["Desktop/laptop troubleshooting", "Device setup & deployment"]
+    },
+    {
+      "name": "Remote Support",
+      "keywords": ["Remote diagnostics", "Issue resolution"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Virtualized Enterprise Lab",
+      "description": "NAT/firewall routing, multi-DC design, Linux DHCP, DNS, SAN/iSCSI and failover testing using Hyper-V and VMware/ESXi."
+    },
+    {
+      "name": "Active Directory — Users, OUs & GPO",
+      "description": "Structured OU design, security groups, permissions and policy-based workstation/user settings."
+    },
+    {
+      "name": "DNS — Primary/Secondary + AD-Integrated Zones",
+      "description": "Service configuration, zone design and troubleshooting."
+    },
+    {
+      "name": "DHCP — Linux + Advanced DHCP Service",
+      "description": "Scope planning, options, reservations and validation in a segmented environment."
+    },
+    {
+      "name": "Storage — SAN + iSCSI + RAID",
+      "description": "iSCSI connectivity and redundancy testing, including multi-disk failure scenarios."
+    },
+    {
+      "name": "Failover Cluster — File Servers + Shared Storage",
+      "description": "Cluster design, shared storage using VHD Set, and availability testing."
+    },
+    {
+      "name": "VMware ESXi — Nested Build & Management",
+      "description": "Workstation and nested ESXi environment setup for repeatable lab workflows."
+    }
+  ]
+}

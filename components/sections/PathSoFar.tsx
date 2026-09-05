@@ -35,10 +35,10 @@ export function PathSoFar() {
   return (
     <section
       id="path"
-      className="w-full max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 py-12 sm:py-16 lg:py-20"
+      className="w-full max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-14 pb-12 sm:pb-14 lg:pb-16"
     >
       {/* Section Header with Rule and Far-Right Accent Dot */}
-      <div className="flex items-center gap-4 mb-6 sm:mb-8 lg:mb-10">
+      <div className="flex items-center gap-4 mb-5 sm:mb-6">
         <h2 className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-ink uppercase shrink-0">
           PATH SO FAR
         </h2>
@@ -50,16 +50,16 @@ export function PathSoFar() {
       </div>
 
       {/* Intro */}
-      <p className="font-serif text-[22px] sm:text-[26px] lg:text-[28px] text-ink font-normal leading-[1.3] tracking-tight max-w-[620px] mb-10 sm:mb-14">
+      <p className="font-serif text-[22px] sm:text-[26px] lg:text-[28px] text-ink font-normal leading-[1.3] tracking-tight max-w-[620px] mb-7 sm:mb-9">
         Not a perfect roadmap. Just the path that actually happened.
       </p>
 
       {/* Timeline Milestones Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-8">
         {milestones.map((milestone, idx) => (
           <div
             key={idx}
-            className="relative pt-6 border-t border-paper-border"
+            className="relative pt-4.5 sm:pt-5 border-t border-paper-border"
           >
             {/* Timeline node accent */}
             <span
@@ -73,12 +73,12 @@ export function PathSoFar() {
             </span>
 
             {/* Milestone Title */}
-            <h3 className="font-serif text-[18px] sm:text-[19px] text-ink font-normal tracking-tight mt-2.5">
+            <h3 className="font-serif text-[18px] sm:text-[19px] text-ink font-normal tracking-tight mt-2">
               {milestone.title}
             </h3>
 
             {/* Milestone Description */}
-            <p className="text-[13px] sm:text-[13.5px] text-ink-muted leading-[1.65] mt-3">
+            <p className="text-[13px] sm:text-[13.5px] text-ink-muted leading-[1.65] mt-2 sm:mt-2.5">
               {milestone.description}
             </p>
           </div>

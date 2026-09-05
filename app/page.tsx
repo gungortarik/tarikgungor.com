@@ -3,7 +3,6 @@ import { Header } from "@/components/layout/Header";
 import { DarkFeatured } from "@/components/sections/DarkFeatured";
 import { RightNow } from "@/components/sections/Focus";
 import { Hero } from "@/components/sections/Hero";
-import { LifeSignal } from "@/components/sections/LifeSignal";
 import { PathSoFar } from "@/components/sections/PathSoFar";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
         <RightNow />
         <DarkFeatured />
         <PathSoFar />
-        <LifeSignal />
       </main>
       <Footer />
     </div>

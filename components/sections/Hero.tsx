@@ -60,7 +60,7 @@ export function Hero() {
             {/* CTA Group */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 w-full sm:w-auto mt-7 sm:mt-9">
               <a
-                href="#work"
+                href="#projects"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#141413] text-[#f4f0e8] dark:bg-[#f4f0e8] dark:text-[#141413] dark:hover:bg-[#e8e2d5] font-semibold text-xs sm:text-[13px] tracking-tight hover:bg-ink active:scale-[0.99] transition-all text-center"
               >
                 <span>Explore my work</span>
@@ -124,38 +124,37 @@ export function Hero() {
                 </div>
 
                 {/* Content Sections */}
-                <div className="space-y-3.5 text-[10px]">
-                  {/* Focus */}
+                <div className="space-y-3 text-[10px]">
+                  {/* Building */}
                   <div>
-                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; focus</span>
-                    <p className="text-white/95 font-mono text-[11.5px] leading-[1.45] mt-1">
-                      Building things that solve problems.
+                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; building</span>
+                    <p className="text-white/95 font-mono text-[11.5px] leading-[1.45] mt-0.5">
+                      Sonoma · CertForge
                     </p>
                   </div>
 
-                  {/* Status */}
+                  {/* Studying */}
                   <div>
-                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; status</span>
-                    <div className="flex items-center gap-1 text-white/95 mt-1 text-[11.5px] font-mono">
-                      <span className="text-white/40">[</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] inline-block mx-0.5" />
-                      <span className="text-white/40">]</span>
-                      <span className="text-white/95 font-mono ml-1">In Progress</span>
-                    </div>
+                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; studying</span>
+                    <p className="text-white/95 font-mono text-[11.5px] leading-[1.45] mt-0.5">
+                      Computer Systems Technology
+                    </p>
                   </div>
 
-                  {/* Mindset */}
+                  {/* Learning */}
                   <div>
-                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; mindset</span>
-                    <div className="text-[10.5px] font-mono leading-[1.5] text-white/85 mt-1">
-                      <span className="text-white/40">&#123;</span>
-                      <div className="pl-3.5 space-y-0.5">
-                        <div>curious: <span className="text-[#e5c890]">true</span>,</div>
-                        <div>consistent: <span className="text-[#e5c890]">true</span>,</div>
-                        <div>impact: <span className="text-[#a6d189]">&apos;real&apos;</span></div>
-                      </div>
-                      <span className="text-white/40">&#125;</span>
-                    </div>
+                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; learning</span>
+                    <p className="text-white/95 font-mono text-[11.5px] leading-[1.45] mt-0.5">
+                      Network+ → Security+
+                    </p>
+                  </div>
+
+                  {/* Documenting */}
+                  <div>
+                    <span className="text-white/45 block text-[10px] font-mono tracking-tight">&gt; documenting</span>
+                    <p className="text-white/95 font-mono text-[11.5px] leading-[1.45] mt-0.5">
+                      Work as it happens
+                    </p>
                   </div>
 
                   {/* Dot Matrix World Map Silhouette */}

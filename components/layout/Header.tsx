@@ -5,15 +5,19 @@ import Link from "next/link";
 import { useState } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
+type NavItem =
+  | { label: string; href: string; active?: boolean; upcoming?: false }
+  | { label: string; href?: never; upcoming: true };
+
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const navItems = [
-    { label: "Now", href: "#now", active: true },
-    { label: "Work", href: "#work" },
+  const navItems: NavItem[] = [
+    { label: "Now", href: "#right-now", active: true },
+    { label: "Work", href: "#projects" },
     { label: "Notes", href: "#notes" },
-    { label: "Life", href: "#life" },
-    { label: "Archive", href: "#archive" },
+    { label: "Life", upcoming: true },
+    { label: "Archive", href: "#path" },
   ];
 
   return (
@@ -45,30 +49,43 @@ export function Header() {
 
         {/* Center Navigation (Desktop) */}
         <nav className="hidden md:flex items-center gap-7 lg:gap-8 text-xs text-ink-muted">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className={`relative py-1 transition-colors hover:text-ink ${
-                item.active ? "text-ink font-semibold" : "font-normal"
-              }`}
-            >
-              <span>{item.label}</span>
-              {item.active && (
-                <div className="flex items-center justify-center gap-0.5 mt-0.5" aria-hidden="true">
-                  <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-l-full" />
-                  <span className="w-1 h-1 rounded-full bg-olive-indicator" />
-                  <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-r-full" />
-                </div>
-              )}
-            </a>
-          ))}
+          {navItems.map((item) =>
+            item.upcoming ? (
+              <span
+                key={item.label}
+                className="inline-flex items-center gap-1.5 text-ink-muted/50 dark:text-white/35 cursor-default select-none py-1"
+                aria-disabled="true"
+              >
+                <span>{item.label}</span>
+                <span className="text-[8.5px] font-mono tracking-wider uppercase px-1.5 py-0.5 bg-paper-muted dark:bg-white/5 rounded border border-paper-border dark:border-white/5 text-ink-subtle dark:text-white/40 leading-none">
+                  soon
+                </span>
+              </span>
+            ) : (
+              <a
+                key={item.label}
+                href={item.href}
+                className={`relative py-1 transition-colors hover:text-ink ${
+                  item.active ? "text-ink font-semibold" : "font-normal"
+                }`}
+              >
+                <span>{item.label}</span>
+                {item.active && (
+                  <div className="flex items-center justify-center gap-0.5 mt-0.5" aria-hidden="true">
+                    <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-l-full" />
+                    <span className="w-1 h-1 rounded-full bg-olive-indicator" />
+                    <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-r-full" />
+                  </div>
+                )}
+              </a>
+            )
+          )}
         </nav>
 
         {/* Right Actions (Desktop) & Mobile Toggle */}
         <div className="flex items-center gap-2.5 sm:gap-4">
           <a
-            href="#explore"
+            href="#right-now"
             className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-ink hover:opacity-75 transition-opacity"
           >
             Explore <span aria-hidden="true">↓</span>
@@ -104,23 +121,36 @@ export function Header() {
       {isOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-paper border-b border-paper-border shadow-md px-5 py-4 z-40">
           <nav className="flex flex-col divide-y divide-paper-border/60">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`flex items-center justify-between py-3 text-[14px] transition-colors ${
-                  item.active ? "text-ink font-semibold" : "text-ink-muted hover:text-ink font-normal"
-                }`}
-              >
-                <span>{item.label}</span>
-                {item.active && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-olive-indicator" aria-hidden="true" />
-                )}
-              </a>
-            ))}
+            {navItems.map((item) =>
+              item.upcoming ? (
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between py-3 text-[14px] text-ink-muted/50 dark:text-white/35 select-none"
+                  aria-disabled="true"
+                >
+                  <span>{item.label}</span>
+                  <span className="text-[9.5px] font-mono tracking-wider uppercase px-1.5 py-0.5 bg-paper-muted dark:bg-white/5 rounded border border-paper-border dark:border-white/5 text-ink-subtle dark:text-white/40 leading-none">
+                    soon
+                  </span>
+                </div>
+              ) : (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center justify-between py-3 text-[14px] transition-colors ${
+                    item.active ? "text-ink font-semibold" : "text-ink-muted hover:text-ink font-normal"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  {item.active && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-olive-indicator" aria-hidden="true" />
+                  )}
+                </a>
+              )
+            )}
             <a
-              href="#explore"
+              href="#right-now"
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-between py-3 text-[14px] text-ink font-medium hover:opacity-75 transition-opacity"
             >
