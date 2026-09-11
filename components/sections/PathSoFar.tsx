@@ -1,87 +1,32 @@
-interface Milestone {
-  year: string;
-  title: string;
-  description: string;
-}
-
-const milestones: Milestone[] = [
-  {
-    year: "2023",
-    title: "BCIT — Technology Support Professional",
-    description:
-      "Completed hands-on training across Windows infrastructure, networking, virtualization, Linux, and IT support.",
-  },
-  {
-    year: "2023",
-    title: "Payment Source — Technology Support Intern",
-    description:
-      "Worked on endpoint management, migration, patching, inventory, and day-to-day technology support.",
-  },
-  {
-    year: "2026",
-    title: "George Brown College",
-    description:
-      "Started the Computer Systems Technology advanced diploma and returned deeper into networking, Linux, Windows systems, and infrastructure.",
-  },
-  {
-    year: "2026",
-    title: "Sonoma",
-    description:
-      "Began building a private software product around expenses, documents, and real personal workflows.",
-  },
-];
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { milestones } from "@/lib/content/timeline";
 
 export function PathSoFar() {
   return (
-    <section
-      id="path"
-      className="w-full max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-12 lg:pt-14 pb-12 sm:pb-14 lg:pb-16"
-    >
-      {/* Section Header with Rule and Far-Right Accent Dot */}
-      <div className="flex items-center gap-4 mb-5 sm:mb-6">
-        <h2 className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-ink uppercase shrink-0">
-          PATH SO FAR
-        </h2>
-        <div className="flex-1 h-[1px] bg-paper-border" />
-        <span
-          className="w-1.5 h-1.5 rounded-full bg-olive-indicator shrink-0"
-          aria-hidden="true"
+    <section id="path" className="w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
+      <RevealOnScroll>
+        <SectionHeader
+          label="Path So Far"
+          title="Not a perfect roadmap. Just the path that actually happened."
         />
-      </div>
+      </RevealOnScroll>
 
-      {/* Intro */}
-      <p className="font-serif text-[22px] sm:text-[26px] lg:text-[28px] text-ink font-normal leading-[1.3] tracking-tight max-w-[620px] mb-7 sm:mb-9">
-        Not a perfect roadmap. Just the path that actually happened.
-      </p>
-
-      {/* Timeline Milestones Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-6 lg:gap-8">
-        {milestones.map((milestone, idx) => (
-          <div
-            key={idx}
-            className="relative pt-4.5 sm:pt-5 border-t border-paper-border"
-          >
-            {/* Timeline node accent */}
-            <span
-              className="absolute -top-[4.5px] left-0 w-2 h-2 rounded-full bg-olive-indicator"
-              aria-hidden="true"
-            />
-
-            {/* Milestone Year */}
-            <span className="text-[11px] sm:text-[11.5px] font-mono font-medium tracking-wider text-ink-muted">
-              {milestone.year}
-            </span>
-
-            {/* Milestone Title */}
-            <h3 className="font-serif text-[18px] sm:text-[19px] text-ink font-normal tracking-tight mt-2">
-              {milestone.title}
-            </h3>
-
-            {/* Milestone Description */}
-            <p className="text-[13px] sm:text-[13.5px] text-ink-muted leading-[1.65] mt-2 sm:mt-2.5">
-              {milestone.description}
-            </p>
-          </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
+        {milestones.map((milestone, index) => (
+          <RevealOnScroll key={milestone.title} delay={index * 0.08}>
+            <div className="relative pt-5 border-t border-surface-border">
+              <span
+                className="absolute -top-[5px] left-0 w-2 h-2 rounded-full bg-accent"
+                aria-hidden="true"
+              />
+              <span className="text-[11px] font-mono text-foreground-muted">{milestone.year}</span>
+              <h3 className="font-serif text-[18px] text-foreground mt-2">{milestone.title}</h3>
+              <p className="text-[13px] text-foreground-muted leading-relaxed mt-2">
+                {milestone.description}
+              </p>
+            </div>
+          </RevealOnScroll>
         ))}
       </div>
     </section>

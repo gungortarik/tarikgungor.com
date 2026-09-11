@@ -2,163 +2,92 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { mainNav } from "@/lib/content/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-
-type NavItem =
-  | { label: string; href: string; active?: boolean; upcoming?: false }
-  | { label: string; href?: never; upcoming: true };
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navItems: NavItem[] = [
-    { label: "Now", href: "#right-now", active: true },
-    { label: "Work", href: "#projects" },
-    { label: "Notes", href: "#notes" },
-    { label: "Life", upcoming: true },
-    { label: "Archive", href: "#path" },
-  ];
+  const pathname = usePathname();
 
   return (
-    <header className="relative w-full bg-paper pt-5 sm:pt-7 pb-3 sm:pb-4 z-30">
-      <div className="max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 flex items-center justify-between">
-        {/* Brand Group */}
-        <div className="flex items-center">
-          <Link
-            href="/"
-            className="flex items-center gap-1 sm:gap-1.5 hover:opacity-80 transition-opacity"
-            aria-label="Tarik Gungor Home"
-          >
-            <Image
-              src="/assets/logos/tarik-gungor-monogram.svg"
-              alt=""
-              width={88}
-              height={74}
-              className="w-[78px] sm:w-[88px] h-auto shrink-0 dark:invert"
-              priority
-            />
-            <span className="text-[14px] sm:text-[15px] font-semibold text-ink tracking-tight">
-              Tarik Gungor
-            </span>
-          </Link>
-          <span className="hidden lg:inline text-[11.5px] text-ink-muted/85 ml-3.5 tracking-normal">
-            Building <span className="mx-1 text-ink-subtle/70">•</span> Learning <span className="mx-1 text-ink-subtle/70">•</span> Living
+    <header className="sticky top-0 z-40 w-full border-b border-surface-border/70 bg-surface/90 backdrop-blur-md">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 flex items-center justify-between h-16 sm:h-[72px]">
+        <Link
+          href="/"
+          className="flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0"
+          aria-label="Tarik Gungor Home"
+        >
+          <Image
+            src="/assets/logos/tarik-gungor-monogram.svg"
+            alt=""
+            width={36}
+            height={30}
+            className="w-8 h-auto dark:invert"
+            priority
+          />
+          <span className="hidden sm:inline text-sm font-semibold tracking-tight">
+            Tarik Gungor
           </span>
-        </div>
+        </Link>
 
-        {/* Center Navigation (Desktop) */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-8 text-xs text-ink-muted">
-          {navItems.map((item) =>
-            item.upcoming ? (
-              <span
-                key={item.label}
-                className="inline-flex items-center gap-1.5 text-ink-muted/50 dark:text-white/35 cursor-default select-none py-1"
-                aria-disabled="true"
-              >
-                <span>{item.label}</span>
-                <span className="text-[8.5px] font-mono tracking-wider uppercase px-1.5 py-0.5 bg-paper-muted dark:bg-white/5 rounded border border-paper-border dark:border-white/5 text-ink-subtle dark:text-white/40 leading-none">
-                  soon
-                </span>
-              </span>
-            ) : (
-              <a
-                key={item.label}
+        <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          {mainNav.map((item) => {
+            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
                 href={item.href}
-                className={`relative py-1 transition-colors hover:text-ink ${
-                  item.active ? "text-ink font-semibold" : "font-normal"
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "text-foreground bg-surface-muted"
+                    : "text-foreground-muted hover:text-foreground hover:bg-surface-muted/60"
                 }`}
               >
-                <span>{item.label}</span>
-                {item.active && (
-                  <div className="flex items-center justify-center gap-0.5 mt-0.5" aria-hidden="true">
-                    <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-l-full" />
-                    <span className="w-1 h-1 rounded-full bg-olive-indicator" />
-                    <span className="w-2.5 h-[1.5px] bg-olive-indicator rounded-r-full" />
-                  </div>
-                )}
-              </a>
-            )
-          )}
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
-        {/* Right Actions (Desktop) & Mobile Toggle */}
-        <div className="flex items-center gap-2.5 sm:gap-4">
-          <a
-            href="#right-now"
-            className="hidden sm:inline-flex items-center gap-1 text-xs font-medium text-ink hover:opacity-75 transition-opacity"
-          >
-            Explore <span aria-hidden="true">↓</span>
-          </a>
-
+        <div className="flex items-center gap-3">
           <ThemeToggle />
-
-          {/* Mobile Hamburger / Close Button (44px min touch target) */}
           <button
             type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-11 h-11 -mr-2.5 gap-1.5 text-ink focus:outline-hidden cursor-pointer"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg border border-surface-border text-foreground-muted hover:text-foreground transition-colors"
             aria-expanded={isOpen}
+            aria-label="Toggle menu"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? (
-              <div className="relative w-5 h-5 flex items-center justify-center">
-                <span className="absolute w-5 h-[1.5px] bg-ink rotate-45 rounded-full" />
-                <span className="absolute w-5 h-[1.5px] bg-ink -rotate-45 rounded-full" />
-              </div>
-            ) : (
-              <>
-                <span className="w-5 h-[1.5px] bg-ink rounded-full" />
-                <span className="w-5 h-[1.5px] bg-ink rounded-full" />
-                <span className="w-5 h-[1.5px] bg-ink rounded-full" />
-              </>
-            )}
+            <span className="text-lg leading-none">{isOpen ? "×" : "☰"}</span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown Panel */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-paper border-b border-paper-border shadow-md px-5 py-4 z-40">
-          <nav className="flex flex-col divide-y divide-paper-border/60">
-            {navItems.map((item) =>
-              item.upcoming ? (
-                <div
-                  key={item.label}
-                  className="flex items-center justify-between py-3 text-[14px] text-ink-muted/50 dark:text-white/35 select-none"
-                  aria-disabled="true"
-                >
-                  <span>{item.label}</span>
-                  <span className="text-[9.5px] font-mono tracking-wider uppercase px-1.5 py-0.5 bg-paper-muted dark:bg-white/5 rounded border border-paper-border dark:border-white/5 text-ink-subtle dark:text-white/40 leading-none">
-                    soon
-                  </span>
-                </div>
-              ) : (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between py-3 text-[14px] transition-colors ${
-                    item.active ? "text-ink font-semibold" : "text-ink-muted hover:text-ink font-normal"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  {item.active && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-olive-indicator" aria-hidden="true" />
-                  )}
-                </a>
-              )
-            )}
-            <a
-              href="#right-now"
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-between py-3 text-[14px] text-ink font-medium hover:opacity-75 transition-opacity"
-            >
-              <span>Explore</span>
-              <span aria-hidden="true">↓</span>
-            </a>
-          </nav>
-        </div>
+        <nav
+          className="md:hidden border-t border-surface-border bg-surface px-6 py-4 flex flex-col gap-1"
+          aria-label="Mobile navigation"
+        >
+          {mainNav.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className={`px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                  isActive
+                    ? "text-foreground bg-surface-muted"
+                    : "text-foreground-muted hover:text-foreground"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
       )}
     </header>
   );

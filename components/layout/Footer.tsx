@@ -1,61 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
+import { profile } from "@/lib/content/profile";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-paper border-t border-paper-border/60 py-12 sm:py-14">
-      <div className="max-w-[1480px] mx-auto px-6 sm:px-8 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-xs sm:text-[12.5px] text-ink-muted dark:text-white/70">
-        {/* Left: Wordmark, Copyright & Social Text Links */}
-        <div className="flex items-center gap-4 sm:gap-5 flex-wrap justify-center sm:justify-start">
-          <Link
-            href="/"
-            className="hover:opacity-80 transition-opacity flex items-center shrink-0"
-            aria-label="Tarik Gungor Home"
-          >
-            <Image
-              src="/assets/logos/tarik-gungor-wordmark.png"
-              alt="Tarik Gungor"
-              width={168}
-              height={45}
-              className="w-[150px] sm:w-[168px] h-auto object-contain dark:invert"
-            />
-          </Link>
-          <span className="hidden sm:inline text-paper-border select-none" aria-hidden="true">|</span>
-          <span>© 2026 Tarik Gungor</span>
-          <div className="flex items-center gap-4 text-ink/80 dark:text-white/80 font-medium">
+    <footer className="w-full border-t border-surface-border bg-surface-muted/30 py-12 sm:py-14">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+          <div className="flex flex-col gap-4">
+            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="Tarik Gungor Home">
+              <Image
+                src="/assets/logos/tarik-gungor-wordmark.png"
+                alt="Tarik Gungor"
+                width={150}
+                height={40}
+                className="w-[140px] h-auto object-contain dark:invert"
+              />
+            </Link>
+            <p className="text-sm text-foreground-muted max-w-[320px] leading-relaxed">
+              {profile.tagline}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-medium">
             <a
-              href="https://github.com/gungortarik"
+              href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink dark:hover:text-white transition-colors"
+              className="text-foreground-muted hover:text-foreground transition-colors"
             >
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/tarikgungor/"
+              href={profile.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-ink dark:hover:text-white transition-colors"
+              className="text-foreground-muted hover:text-foreground transition-colors"
             >
               LinkedIn
             </a>
             <a
-              href="mailto:tarik.gungor.ca@gmail.com"
-              className="hover:text-ink dark:hover:text-white transition-colors"
+              href={`mailto:${profile.contact.email}`}
+              className="text-foreground-muted hover:text-foreground transition-colors"
             >
-              Mail
+              {profile.contact.email}
             </a>
           </div>
-        </div>
 
-        {/* Center: Tech Stack Meta */}
-        <div className="text-center">
-          <span>Built with Next.js, TypeScript &amp; Tailwind CSS</span>
-        </div>
-
-        {/* Right: Location */}
-        <div className="text-center sm:text-right">
-          <span>Toronto, Canada</span>
+          <div className="text-sm text-foreground-subtle text-left lg:text-right">
+            <p>© 2026 {profile.name}</p>
+            <p className="mt-1">{profile.location}</p>
+          </div>
         </div>
       </div>
     </footer>

@@ -146,28 +146,23 @@ If a requested design decision is unclear and would materially change the visual
 
 Current direction:
 
-**Editorial + Personal + Timeless + Technically Credible + Quietly Impressive**
+**Crafted Systems — Technical + Personal + Premium + Motion-Enhanced**
 
 Important characteristics:
-- warm cream / paper-like base rather than stark white
-- restrained charcoal/dark sections for rhythm
-- subtle muted olive/green accents where appropriate
-- strong typography
-- generous whitespace
-- clear editorial grid
-- thin rules and restrained borders
-- deliberate information hierarchy
-- subtle technical/terminal details only when they add meaning
-- premium rather than template-like
+- warm neutral surfaces (`#f7f5f0`) with depth-elevated dark sections for rhythm
+- teal accent (`#0d9488`) as the single strong color
+- Instrument Serif (display) + DM Sans (body) + JetBrains Mono (technical)
+- generous whitespace and asymmetric editorial grid
+- Lenis smooth scroll + GSAP scroll reveals
+- ThreeUI `EmeraldHorizonBackground` in hero (lazy-loaded, reduced-motion safe)
+- strong typography hierarchy without oversized name dominance
 - excellent responsive behavior
-
-Tarik's name should be visible and recognizable, but it should not dominate the page in enormous typography.
 
 Current conceptual theme:
 
-**Building. Learning. Living.**
+**Crafted systems. Continuous learning.**
 
-This is a direction, not an untouchable final slogan.
+Co-op availability is surfaced via badge on hero and contact pages.
 
 ## Asset situation
 
@@ -307,13 +302,13 @@ The site should feel intentionally art-directed at both desktop and mobile sizes
 
 ## Animation
 
-Do not add GSAP, Lenis, Framer Motion, or similar animation libraries yet.
+The redesign uses **Lenis** (smooth scroll), **GSAP + ScrollTrigger** (section reveals), and **ThreeUI** (selective 3D hero ambient via `EmeraldHorizonBackground`).
 
-Static art direction comes first.
-
-Motion should only be considered after the static page is strong and explicitly approved.
-
-Never use animation to compensate for weak content or weak composition.
+Rules:
+- Respect `prefers-reduced-motion` — disable Lenis, GSAP reveals, and ThreeUI when set.
+- Three.js components must use `dynamic import` with `ssr: false` for static export compatibility.
+- Use ThreeUI sparingly (1–2 moments max); do not blanket the site with 3D.
+- Never use animation to compensate for weak content or weak composition.
 
 ## Validation
 

@@ -1,24 +1,26 @@
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
-import { DarkFeatured } from "@/components/sections/DarkFeatured";
-import { RightNow } from "@/components/sections/Focus";
+import { PageShell } from "@/components/ui/PageShell";
+import { ContactCTA } from "@/components/sections/ContactCTA";
+import { ExperienceSnapshot } from "@/components/sections/ExperienceSnapshot";
 import { Hero } from "@/components/sections/Hero";
+import { NotesTeaser } from "@/components/sections/NotesTeaser";
 import { PathSoFar } from "@/components/sections/PathSoFar";
 import { ResumePreview } from "@/components/sections/ResumePreview";
+import { RightNow } from "@/components/sections/RightNow";
+import { SelectedWork } from "@/components/sections/SelectedWork";
+import { WhoIAm } from "@/components/sections/WhoIAm";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-paper text-ink selection:bg-olive-indicator/20 selection:text-ink">
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <RightNow />
-        <DarkFeatured />
-        <ResumePreview />
-        <PathSoFar />
-      </main>
-      <Footer />
-    </div>
+    <PageShell>
+      <Hero />
+      <WhoIAm />
+      <RightNow />
+      <SelectedWork />
+      <ExperienceSnapshot />
+      <ResumePreview />
+      <PathSoFar />
+      <NotesTeaser />
+      <ContactCTA />
+    </PageShell>
   );
 }
-

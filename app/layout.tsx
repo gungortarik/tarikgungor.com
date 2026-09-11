@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { GFS_Didot, JetBrains_Mono, Manrope } from "next/font/google";
+import { DM_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { profile } from "@/lib/content/profile";
 import "./globals.css";
 
-const sans = Manrope({
+const sans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const serif = GFS_Didot({
+const serif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-serif",
@@ -23,17 +25,16 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tarikgungor.com"),
+  metadataBase: new URL(profile.contact.website),
   title: {
-    default: "Tarik Gungor — Building. Learning. Living.",
-    template: "%s | Tarik Gungor",
+    default: `${profile.name} — ${profile.tagline}`,
+    template: `%s | ${profile.name}`,
   },
-  description:
-    "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
-  applicationName: "Tarik Gungor",
-  authors: [{ name: "Tarik Gungor", url: "https://tarikgungor.com" }],
-  creator: "Tarik Gungor",
-  publisher: "Tarik Gungor",
+  description: profile.positioning,
+  applicationName: profile.name,
+  authors: [{ name: profile.name, url: profile.contact.website }],
+  creator: profile.name,
+  publisher: profile.name,
   alternates: {
     canonical: "/",
   },
@@ -44,17 +45,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_CA",
-    url: "https://tarikgungor.com",
-    siteName: "Tarik Gungor",
-    title: "Tarik Gungor — Building. Learning. Living.",
-    description:
-      "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
+    url: profile.contact.website,
+    siteName: profile.name,
+    title: `${profile.name} — ${profile.tagline}`,
+    description: profile.positioning,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tarik Gungor — Building. Learning. Living.",
-    description:
-      "Tarik Gungor's personal platform for technology, projects, learning, systems, and life in progress.",
+    title: `${profile.name} — ${profile.tagline}`,
+    description: profile.positioning,
   },
   robots: {
     index: true,
@@ -87,8 +86,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-paper text-ink font-sans antialiased selection:bg-olive-indicator/20 selection:text-ink min-h-screen">
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="bg-surface text-foreground font-sans antialiased min-h-screen">
+        <ThemeProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
