@@ -4,7 +4,8 @@ Personal website and long-term public platform for Tarik Gungor.
 
 ## Current status
 
-The redesign is being developed on `redesign-v1`. The production website remains on `main` until the redesign is explicitly approved and merged.
+- Production site: `main`
+- Active redesign work: `redesign-v1` (not merged to production yet)
 
 ## Stack
 
@@ -12,6 +13,19 @@ The redesign is being developed on `redesign-v1`. The production website remains
 - React 19
 - TypeScript
 - Tailwind CSS v4
+
+## Local development
+
+```bash
+npm ci
+npm run dev
+```
+
+Other scripts: `npm run lint`, `npm run build`.
+
+## GitHub Pages
+
+Production on `main` deploys as a static export to GitHub Pages (`output: "export"`, artifact from `out/`). See `.github/workflows/deploy-pages.yml` on `main`.
 
 ## Repository structure
 

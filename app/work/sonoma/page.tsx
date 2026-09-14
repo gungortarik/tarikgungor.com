@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
+import { ProjectScreens } from "@/components/ui/ProjectScreens";
 import { sonomaCaseStudy } from "@/lib/content/sonoma";
 
 export const metadata: Metadata = {
@@ -14,136 +14,120 @@ export default function SonomaPage() {
   return (
     <PageShell>
       <article>
-        <header className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10">
-          <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-accent">
-            {sonomaCaseStudy.status}
-          </p>
-          <h1 className="font-serif text-[44px] sm:text-[60px] lg:text-[72px] text-foreground font-medium leading-[0.95] tracking-[-0.03em] mt-5 max-w-[16ch]">
-            {sonomaCaseStudy.name}
-          </h1>
-          <p className="text-[17px] sm:text-[19px] text-foreground-muted mt-5 max-w-[34rem] leading-relaxed">
-            {sonomaCaseStudy.tagline}
-          </p>
+        <header className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
+          <div className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 font-mono text-[11px] text-foreground-muted">
+            <p>01 / Selected work</p>
+            <p>{sonomaCaseStudy.status}</p>
+          </div>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
+            <div className="lg:col-span-8">
+              <p className="font-mono text-[12px] text-accent">Private finance archive</p>
+              <h1 className="font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4">
+                Sonoma
+              </h1>
+              <p className="font-serif text-[27px] sm:text-[34px] leading-[1.15] text-foreground mt-8 max-w-[22ch]">
+                {sonomaCaseStudy.tagline}.
+              </p>
+            </div>
+            <div className="lg:col-span-4 lg:pt-14">
+              <p className="text-[16px] leading-[1.75] text-foreground-muted max-w-[28rem]">
+                {sonomaCaseStudy.overview}
+              </p>
+              <dl className="mt-8 border-y border-surface-border py-5 grid grid-cols-2 gap-y-4 text-[12px]">
+                <div>
+                  <dt className="font-mono text-foreground-subtle">Scope</dt>
+                  <dd className="mt-1 text-foreground">Small trusted circle</dd>
+                </div>
+                <div>
+                  <dt className="font-mono text-foreground-subtle">State</dt>
+                  <dd className="mt-1 text-foreground">In progress</dd>
+                </div>
+                <div className="col-span-2">
+                  <dt className="font-mono text-foreground-subtle">Stack</dt>
+                  <dd className="mt-1 text-foreground leading-relaxed">{sonomaCaseStudy.stack.join(" / ")}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
         </header>
 
-        <div className="max-w-[1400px] mx-auto px-0 sm:px-6 lg:px-8">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-muted border-y sm:border border-surface-border sm:rounded-sm">
-            <Image
-              src={sonomaCaseStudy.images.landing}
-              alt="Sonoma public landing"
-              fill
-              className="object-cover object-top"
-              sizes="100vw"
-              priority
+        <section aria-label="Sonoma product surfaces" className="bg-depth text-on-depth py-12 sm:py-16 lg:py-20">
+          <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+            <ProjectScreens
+              name="Sonoma"
+              depth
+              screens={[
+                { label: "Dashboard", src: sonomaCaseStudy.images.dashboard, alt: "Sonoma dashboard showing expenses and spending trends" },
+                { label: "Landing", src: sonomaCaseStudy.images.landing, alt: "Sonoma public landing page" },
+              ]}
             />
-          </div>
-        </div>
-
-        <div className="max-w-[760px] mx-auto px-6 sm:px-8 lg:px-10 py-14 sm:py-16">
-          <section>
-            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-              Overview
-            </h2>
-            <p className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.8] mt-4">
-              {sonomaCaseStudy.overview}
+            <p className="max-w-[44rem] mt-8 text-[15px] sm:text-[17px] leading-[1.75] text-on-depth-muted">
+              A private product surface for expense review, document storage, and a long-term record that remains owned by its users.
             </p>
-          </section>
-
-          <section className="mt-12 pt-10 border-t border-surface-border">
-            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-              The problem
-            </h2>
-            <p className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.8] mt-4">
-              {sonomaCaseStudy.problem}
-            </p>
-          </section>
-
-          <section className="mt-12 pt-10 border-t border-surface-border">
-            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-              Approach
-            </h2>
-            <ul className="mt-5 space-y-4">
-              {sonomaCaseStudy.approach.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-[15px] sm:text-[16px] text-foreground-muted leading-relaxed"
-                >
-                  <span className="text-accent shrink-0 mt-0.5">→</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
-
-        <div className="max-w-[1400px] mx-auto px-0 sm:px-6 lg:px-8 py-4">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-muted border-y sm:border border-surface-border sm:rounded-sm">
-            <Image
-              src={sonomaCaseStudy.images.dashboard}
-              alt="Sonoma dashboard"
-              fill
-              className="object-cover object-[14%_8%]"
-              sizes="100vw"
-            />
           </div>
-          <p className="text-[12px] font-mono text-foreground-muted mt-3 px-6 sm:px-0">
-            Authenticated product surface — expenses, archive, and vault workflows.
-          </p>
-        </div>
+        </section>
 
-        <div className="max-w-[980px] mx-auto px-6 sm:px-8 lg:px-10 py-14 sm:py-16">
-          <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-            System
-          </h2>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-10">
-            {sonomaCaseStudy.system.map((item) => (
-              <div
-                key={item.title}
-                className="py-6 md:py-0 border-t md:border-t-0 border-surface-border first:border-t-0"
-              >
-                <h3 className="font-serif text-[22px] text-foreground">{item.title}</h3>
-                <p className="text-[14px] text-foreground-muted leading-relaxed mt-3">
-                  {item.body}
-                </p>
+        <section className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-3">
+              <p className="font-mono text-[11px] text-foreground-muted">The problem</p>
+            </div>
+            <div className="lg:col-span-7">
+              <p className="font-serif text-[30px] sm:text-[42px] leading-[1.18] text-foreground">
+                {sonomaCaseStudy.problem}
+              </p>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-14 border-t border-surface-border">
+            {sonomaCaseStudy.approach.map((item, index) => (
+              <div key={item} className="border-b md:border-r md:last:border-r-0 border-surface-border p-5 sm:p-6 min-h-40">
+                <p className="font-mono text-[11px] text-accent">0{index + 1}</p>
+                <p className="text-[15px] leading-[1.6] text-foreground mt-7">{item}</p>
               </div>
             ))}
           </div>
+        </section>
 
-          <section className="mt-14 pt-10 border-t border-surface-border">
-            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-              Stack
-            </h2>
-            <p className="text-[13px] font-mono text-foreground-muted mt-4 leading-relaxed">
-              {sonomaCaseStudy.stack.join(" · ")}
-            </p>
-          </section>
-
-          <section className="mt-12 pt-10 border-t border-surface-border">
-            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
-              What I learned
-            </h2>
-            <ul className="mt-5 space-y-3">
-              {sonomaCaseStudy.learnings.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-3 text-[15px] text-foreground-muted leading-relaxed"
-                >
-                  <span className="text-accent shrink-0">·</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <div className="mt-14 pt-8 border-t border-surface-border flex flex-col sm:flex-row gap-4">
-            <Button href="/work" variant="secondary">
-              ← All work
-            </Button>
-            <Button href="/contact" variant="ghost">
-              Contact →
-            </Button>
+        <section className="bg-surface-muted/50 border-y border-surface-border py-16 sm:py-20 lg:py-24">
+          <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+            <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+              <div className="lg:col-span-3">
+                <p className="font-mono text-[11px] text-foreground-muted">The system</p>
+              </div>
+              <div className="lg:col-span-9 grid md:grid-cols-3 gap-0 border-t border-surface-border">
+                {sonomaCaseStudy.system.map((item, index) => (
+                  <section key={item.title} className="py-8 md:px-7 md:first:pl-0 border-b md:border-b-0 md:border-r md:last:border-r-0 border-surface-border">
+                    <p className="font-mono text-[11px] text-accent">0{index + 1}</p>
+                    <h2 className="font-serif text-[28px] leading-tight text-foreground mt-6">{item.title}</h2>
+                    <p className="text-[15px] leading-[1.75] text-foreground-muted mt-4">{item.body}</p>
+                  </section>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <section className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20">
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
+            <div className="lg:col-span-3">
+              <p className="font-mono text-[11px] text-foreground-muted">What I learned</p>
+            </div>
+            <div className="lg:col-span-7">
+              <ul className="border-t border-surface-border">
+                {sonomaCaseStudy.learnings.map((item, index) => (
+                  <li key={item} className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-surface-border py-5 text-[16px] sm:text-[18px] leading-[1.55]">
+                    <span className="font-mono text-[11px] text-accent pt-1">0{index + 1}</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+                <Button href="/work" variant="secondary">All work</Button>
+                <Button href="/contact" variant="ghost">Contact <span aria-hidden="true">↗</span></Button>
+              </div>
+            </div>
+          </div>
+        </section>
       </article>
     </PageShell>
   );

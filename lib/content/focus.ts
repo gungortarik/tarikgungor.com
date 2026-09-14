@@ -24,8 +24,8 @@ export const focusItems: FocusItem[] = [
   {
     number: "03",
     category: "LEARNING",
-    title: "Network+ → Security+",
-    description: "Networking fundamentals first, then the next layer of systems knowledge.",
+    title: "Network+ · CCNA · Security+",
+    description: "Network+ and CCNA in progress; Security+ planned.",
   },
   {
     number: "04",
