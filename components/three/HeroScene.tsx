@@ -9,7 +9,11 @@ const DataField = dynamic(
   { ssr: false }
 );
 
-const emptySubscribe = () => () => {};
+function subscribeMotion(callback: () => void) {
+  const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
 
 function getMotionEnabled() {
   return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -29,7 +33,7 @@ function getIsDark() {
 }
 
 export function HeroScene() {
-  const enabled = useSyncExternalStore(emptySubscribe, getMotionEnabled, () => false);
+  const enabled = useSyncExternalStore(subscribeMotion, getMotionEnabled, () => false);
   const isDark = useSyncExternalStore(subscribeDark, getIsDark, () => false);
 
   if (!enabled) {
@@ -43,7 +47,7 @@ export function HeroScene() {
 
   return (
     <div
-      className="pointer-events-none absolute inset-y-0 right-0 w-[42%] max-w-[680px] overflow-hidden opacity-35 dark:opacity-25"
+      className="pointer-events-none absolute inset-y-0 right-0 w-[42%] max-w-[680px] overflow-hidden opacity-15 sm:opacity-25 dark:opacity-25"
       aria-hidden="true"
     >
       <div className="absolute inset-0 scale-[1.06] origin-right translate-x-[10%]">

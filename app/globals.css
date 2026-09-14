@@ -171,3 +171,22 @@ body {
   height: 1px;
   background: var(--surface-border);
 }
+
+.home-hero *,
+.selected-work * {
+  letter-spacing: 0;
+}
+
+.hero-title {
+  font-size: 44px;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .hero-title { font-size: 68px; }
+}
+
+@media (min-width: 1024px) {
+  .hero-title { font-size: 88px; }
+}
