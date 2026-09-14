@@ -146,23 +146,24 @@ If a requested design decision is unclear and would materially change the visual
 
 Current direction:
 
-**Crafted Systems — Technical + Personal + Premium + Motion-Enhanced**
+**Systems, documented — Hybrid Editorial + Selective Technical Craft**
 
 Important characteristics:
-- warm neutral surfaces (`#f7f5f0`) with depth-elevated dark sections for rhythm
-- teal accent (`#0d9488`) as the single strong color
-- Instrument Serif (display) + DM Sans (body) + JetBrains Mono (technical)
-- generous whitespace and asymmetric editorial grid
-- Lenis smooth scroll + GSAP scroll reveals
-- ThreeUI `EmeraldHorizonBackground` in hero (lazy-loaded, reduced-motion safe)
-- strong typography hierarchy without oversized name dominance
-- excellent responsive behavior
+- warm paper surfaces (`#f3f1ec`) with rare depth band (`#0e0e0d`)
+- steel blue accent (`#3d5a80`) used sparingly — not teal kit, not badge flood
+- Newsreader (display) + Inter Tight (body) + IBM Plex Mono (meta)
+- type-led hero with ThreeUI as edge ambient (DataField), not washed wallpaper
+- homepage as ~6 editorial beats (not 9 identical card sections)
+- Lenis + intentional GSAP moments (hero timeline, Sonoma clip reveal, Path scrub)
+- Contact and Footer stay clean — no availability begging or co-op pills
+- Depth bands must use theme-stable `on-depth*` tokens — never `text-surface` / `bg-surface` for ink on depth (dark mode collapses those)
+- strong typography scale extremes; generous whitespace
 
 Current conceptual theme:
 
 **Crafted systems. Continuous learning.**
 
-Co-op availability is surfaced via badge on hero and contact pages.
+Figma art direction reference: `tarikgungor.com — Premium Pass`
 
 ## Asset situation
 
@@ -200,7 +201,7 @@ Sonoma is currently the strongest real project and should eventually become the 
 Currently paused / effectively cancelled. Do not present it as an active flagship project.
 
 ### CertForge
-May later be rebuilt under a new name, brand, and broader concept. Do not present the current concept as a finished product.
+Active development continues. Live preview: `https://certforge-chi.vercel.app`. Present as in-progress study platform for CCNA and Network+ — not as a finished product. Real screenshots from the live app are preferred over fabricated imagery.
 
 ### Monetization
 Not a current priority. Do not turn the site into a SaaS sales funnel or business-growth website.
@@ -302,12 +303,13 @@ The site should feel intentionally art-directed at both desktop and mobile sizes
 
 ## Animation
 
-The redesign uses **Lenis** (smooth scroll), **GSAP + ScrollTrigger** (section reveals), and **ThreeUI** (selective 3D hero ambient via `EmeraldHorizonBackground`).
+The redesign uses **Lenis** (smooth scroll), **GSAP + ScrollTrigger** (hero timeline, Sonoma clip reveal, Path scrub), and **ThreeUI** (selective edge ambient via `DataField`).
 
 Rules:
-- Respect `prefers-reduced-motion` — disable Lenis, GSAP reveals, and ThreeUI when set.
+- Respect `prefers-reduced-motion` — disable Lenis, GSAP moments, and ThreeUI when set.
 - Three.js components must use `dynamic import` with `ssr: false` for static export compatibility.
-- Use ThreeUI sparingly (1–2 moments max); do not blanket the site with 3D.
+- Use ThreeUI sparingly (1 moment max on homepage); do not wash full-bleed 3D behind all hero content.
+- Do not wrap every section in generic fade-up reveals — motion must be editorial.
 - Never use animation to compensate for weak content or weak composition.
 
 ## Validation

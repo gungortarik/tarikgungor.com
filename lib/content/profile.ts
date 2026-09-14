@@ -1,24 +1,19 @@
 export const profile = {
   name: "Tarik Gungor",
-  location: "Toronto, Canada",
+  location: "Vaughan, Canada",
   tagline: "Crafted systems. Continuous learning.",
   positioning:
-    "Computer Systems Technology student in Toronto with hands-on IT infrastructure experience — supporting endpoints, networks, and systems while building software on the side. Open to co-op opportunities.",
+    "I work in IT, study Computer Systems Technology in Toronto, and build software for problems I actually have.",
   shortBio:
-    "I study Computer Systems Technology at George Brown College and work in IT support across hybrid business environments. I build practical software like Sonoma alongside my studies, and I document what I learn as I go.",
+    "Day to day I support endpoints, networks, and business systems. Alongside school and work I build tools like Sonoma and CertForge — then document the path as it happens.",
   aboutIntro:
-    "I'm not trying to be a generic portfolio template. I'm an IT student and practitioner who builds things, breaks things, learns from both, and shares the honest version of that journey.",
+    "This site is a record of craft: systems work, software I build, and what I'm learning along the way.",
   aboutBody: [
-    "My day-to-day work sits in IT support — endpoints, Active Directory, Microsoft 365, network troubleshooting, and keeping systems reliable for real businesses. That's the foundation.",
-    "Outside of work and school, I build software for problems I actually have. Sonoma is the main project right now — a private tool for expenses and document management. I also study toward CompTIA Network+ and Security+.",
-    "This site is where those threads come together: the work, the learning, the building, and the life around them.",
+    "The foundation is IT support — endpoints, Active Directory, Microsoft 365, networking, and keeping real environments reliable.",
+    "Outside of that I build software for myself. Sonoma is a private vault for expenses and documents. CertForge is a live study platform for CCNA and Network+, still under active development.",
+    "School at George Brown College keeps the systems side deep. This site is where those threads meet — without inventing a persona around them.",
   ],
-  coop: {
-    status: "open",
-    label: "Open to co-op",
-    message:
-      "I'm open to co-op and internship opportunities in IT, systems, or software-adjacent roles. Timing is flexible — reach out if there's a fit.",
-  },
+  contactIntro: "If something here resonates, write me.",
   contact: {
     email: "gungortarik@icloud.com",
     linkedin: "https://www.linkedin.com/in/tarikgungor/",

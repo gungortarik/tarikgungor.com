@@ -25,10 +25,10 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f7f5f0",
+          backgroundColor: "#f3f1ec",
           padding: "64px 72px",
           fontFamily: "system-ui, -apple-system, sans-serif",
-          color: "#1a1917",
+          color: "#141312",
         }}
       >
         <div
@@ -46,26 +46,23 @@ export default function Image() {
           />
           <div
             style={{
-              fontSize: "14px",
+              fontSize: "13px",
               fontWeight: 500,
-              letterSpacing: "0.08em",
+              letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "#5c5850",
+              color: "#6b6560",
             }}
           >
-            Toronto, Canada
+            Vaughan · Systems · Software
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <div style={{ fontSize: "48px", fontWeight: 400, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div style={{ fontSize: "56px", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
             Crafted systems.
           </div>
-          <div style={{ fontSize: "48px", fontWeight: 400, lineHeight: 1.15, letterSpacing: "-0.03em" }}>
+          <div style={{ fontSize: "56px", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
             Continuous learning.
-          </div>
-          <div style={{ fontSize: "20px", color: "#0d9488", marginTop: "8px" }}>
-            Open to co-op opportunities
           </div>
         </div>
 
@@ -75,14 +72,14 @@ export default function Image() {
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            borderTop: "1px solid rgba(26, 25, 23, 0.1)",
+            borderTop: "1px solid rgba(20, 19, 18, 0.1)",
             paddingTop: "24px",
             fontSize: "14px",
-            color: "#5c5850",
+            color: "#6b6560",
           }}
         >
-          <span>IT · Systems · Software</span>
-          <span style={{ fontFamily: "monospace", fontSize: "13px", color: "#8a857c" }}>
+          <span>IT · systems · software</span>
+          <span style={{ fontFamily: "monospace", fontSize: "13px", color: "#8f8880" }}>
             tarikgungor.com
           </span>
         </div>

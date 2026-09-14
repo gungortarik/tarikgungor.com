@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { projects } from "@/lib/content/projects";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Software projects and experiments by Tarik Gungor.",
+  description: "Software projects by Tarik Gungor — Sonoma, CertForge, and the systems around them.",
   alternates: { canonical: "/work" },
 };
 
@@ -24,57 +22,72 @@ export default function WorkPage() {
   return (
     <PageShell>
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
-        <RevealOnScroll>
-          <SectionHeader
-            label="Work"
-            title="Projects built from real problems."
-            description="Software I build alongside school and IT work — honest scope, real workflows."
-          />
-        </RevealOnScroll>
+        <SectionHeader
+          label="Work"
+          title="Built for real problems."
+          description="Software I make alongside school and IT work — private systems and public experiments, kept honest about scope."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-          {projects.map((project, index) => (
-            <RevealOnScroll key={project.slug} delay={index * 0.08}>
-              <Card href={project.href ?? undefined}>
-                {project.image && (
-                  <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-surface-border bg-surface-muted mb-5 -mx-1 -mt-1">
+        <div className="mt-14 space-y-16">
+          {projects.map((project) => (
+            <article
+              key={project.slug}
+              className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-surface-border last:border-b-0 last:pb-0"
+            >
+              {project.image && (
+                <div className="lg:col-span-7">
+                  <div className="relative aspect-[16/10] overflow-hidden border border-surface-border bg-surface-muted">
                     <Image
                       src={project.image}
                       alt={`${project.name} preview`}
                       fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover object-top"
+                      sizes="(max-width: 1024px) 100vw, 60vw"
                     />
                   </div>
-                )}
-
-                <div className="flex items-center gap-3 flex-wrap">
-                  <h2 className="font-serif text-[24px] text-foreground">{project.name}</h2>
-                  <Badge variant={project.status === "paused" ? "default" : "accent"}>
-                    {statusLabels[project.status]}
-                  </Badge>
                 </div>
+              )}
 
-                <p className="text-[14px] text-foreground-muted leading-relaxed mt-2">
+              <div className="lg:col-span-5 flex flex-col justify-center">
+                <p className="text-[11px] font-mono text-foreground-subtle uppercase tracking-wider">
+                  {statusLabels[project.status]}
+                  {project.external ? " · Live preview" : project.slug === "sonoma" ? " · Private" : ""}
+                </p>
+                <h2 className="font-serif text-[32px] sm:text-[36px] text-foreground font-medium mt-3">
+                  {project.name}
+                </h2>
+                <p className="text-[14px] text-foreground-muted mt-1">{project.tagline}</p>
+                <p className="text-[15px] text-foreground-muted leading-[1.7] mt-4">
                   {project.description}
                 </p>
-
-                <p className="text-[12px] font-mono text-foreground-subtle mt-3">
+                <p className="text-[12px] font-mono text-foreground-subtle mt-4">
                   {project.stack.join(" · ")}
                 </p>
 
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[12px] font-mono text-foreground-muted hover:text-foreground mt-4 transition-colors"
-                  >
-                    GitHub ↗
-                  </a>
-                )}
-              </Card>
-            </RevealOnScroll>
+                <div className="flex flex-wrap items-center gap-4 mt-7">
+                  {project.href && (
+                    <Button
+                      href={project.href}
+                      external={project.external}
+                      size="sm"
+                      variant={project.external ? "primary" : "secondary"}
+                    >
+                      {project.external ? "Open live preview ↗" : "Case study →"}
+                    </Button>
+                  )}
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[13px] font-mono text-foreground-muted hover:text-foreground transition-colors"
+                    >
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </div>

@@ -3,28 +3,34 @@ export function SectionHeader({
   title,
   description,
   className = "",
+  quiet = false,
 }: {
-  label: string;
+  label?: string;
   title?: string;
   description?: string;
   className?: string;
+  quiet?: boolean;
 }) {
   return (
     <div className={className}>
-      <div className="flex items-center gap-4 mb-4">
-        <span className="text-[10px] sm:text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase shrink-0">
+      {label && (
+        <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-foreground-muted mb-4">
           {label}
-        </span>
-        <div className="flex-1 h-px bg-surface-border" />
-        <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" aria-hidden="true" />
-      </div>
+        </p>
+      )}
       {title && (
-        <h2 className="font-serif text-[28px] sm:text-[34px] lg:text-[38px] text-foreground font-normal leading-[1.15] tracking-tight text-balance">
+        <h2
+          className={`font-serif text-foreground font-medium leading-[1.15] tracking-tight text-balance ${
+            quiet
+              ? "text-[24px] sm:text-[28px]"
+              : "text-[32px] sm:text-[40px] lg:text-[48px]"
+          }`}
+        >
           {title}
         </h2>
       )}
       {description && (
-        <p className="text-[15px] sm:text-[16px] text-foreground-muted leading-[1.65] mt-3 max-w-[640px]">
+        <p className="text-[15px] sm:text-[16px] text-foreground-muted leading-[1.65] mt-4 max-w-[640px]">
           {description}
         </p>
       )}

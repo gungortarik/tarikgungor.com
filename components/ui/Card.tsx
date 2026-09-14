@@ -3,17 +3,32 @@ import Link from "next/link";
 export function Card({
   children,
   href,
+  external = false,
   className = "",
 }: {
   children: React.ReactNode;
   href?: string;
+  external?: boolean;
   className?: string;
 }) {
-  const classes = `rounded-2xl border border-surface-border bg-surface-elevated p-6 sm:p-7 transition-colors ${className}`;
+  const classes = `block ${className}`;
 
   if (href) {
+    if (external) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`hover:opacity-90 transition-opacity ${classes}`}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <Link href={href} className={`block hover:border-accent/30 hover:bg-surface-muted/50 ${classes}`}>
+      <Link href={href} className={`hover:opacity-90 transition-opacity ${classes}`}>
         {children}
       </Link>
     );

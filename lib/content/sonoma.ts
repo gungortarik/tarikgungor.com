@@ -2,22 +2,46 @@ export const sonomaCaseStudy = {
   slug: "sonoma",
   name: "Sonoma",
   status: "Private · In Progress",
-  tagline: "Personal expense and document management",
+  tagline: "Personal finance archive and private document vault",
   overview:
-    "Sonoma is a private web application I built to manage personal expenses and documents in one place. It started from a real need — scattered receipts, inconsistent tracking, and no single system that matched how I actually work.",
+    "Sonoma is a privacy-first system for personal expenses and documents. It is built for a small trusted circle — not as a mass-market SaaS product. The work started from a real need: scattered receipts, disconnected files, and no single place that matched how I actually keep records.",
   problem:
-    "Personal finance tools felt either too simple or too bloated. Document storage was separate from spending context. I wanted something tailored to my own workflows without pretending it was a product for everyone.",
+    "Consumer finance apps were either too thin or too noisy. Document storage lived apart from spending context. I needed one private system where expenses, receipts, and longer-term documents could stay together — with human review still in control.",
   approach: [
-    "Built with Next.js and TypeScript for a fast, type-safe foundation",
-    "Designed a dashboard-first interface for at-a-glance financial overview",
-    "Structured document storage alongside expense records for context",
-    "Kept the scope honest — personal use, not a startup pitch",
+    "Treat privacy and ownership as product requirements, not marketing copy",
+    "Keep AI assistance reviewable — extraction helps, the user confirms the record",
+    "Unite expenses and documents instead of splitting them across tools",
+    "Design for a small invitation-based audience, not public self-serve growth",
   ],
-  stack: ["Next.js", "TypeScript", "Tailwind CSS", "App Router"],
+  system: [
+    {
+      title: "Expenses & review",
+      body: "Track spending with categories and a dashboard overview. Receipt extraction can prepare amounts and details, but nothing becomes canonical until I review and confirm it.",
+    },
+    {
+      title: "Private document vault",
+      body: "Store important documents with ownership controls, expiry tracking, renewal history, and reminders — the longer-term records that outlast a single transaction.",
+    },
+    {
+      title: "Export on your terms",
+      body: "Local archive and optional user-initiated Google Drive export. Nothing leaves automatically.",
+    },
+  ],
+  stack: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Supabase Auth + Postgres",
+    "Cloudflare R2",
+  ],
   learnings: [
     "Shipping for yourself forces clarity about what actually matters",
-    "Dashboard design benefits from restraint — fewer metrics, better hierarchy",
-    "Private projects still deserve the same engineering discipline as public ones",
+    "Private tools still deserve production-grade engineering discipline",
+    "Restraint beats feature lists when the product has to stay usable",
+    "Invitation-based scope keeps the product honest about who it is for",
   ],
-  image: "/assets/projects/sonoma-dashboard.png",
+  images: {
+    landing: "/assets/projects/sonoma-landing.png",
+    dashboard: "/assets/projects/sonoma-dashboard.png",
+  },
 } as const;

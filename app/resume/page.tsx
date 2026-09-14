@@ -27,7 +27,7 @@ const jsonLd = {
   email: profile.contact.email,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Toronto",
+    addressLocality: "Vaughan",
     addressRegion: "ON",
     addressCountry: "CA",
   },
@@ -74,7 +74,7 @@ export default function ResumePage() {
             <a
               href="/resume/tarik-gungor-resume.pdf"
               download="tarik-gungor-resume.pdf"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-foreground text-surface dark:bg-surface dark:text-foreground font-semibold text-xs hover:opacity-90 transition-all"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm bg-foreground text-surface dark:bg-on-depth-fill dark:text-on-depth-fill-fg font-medium text-xs hover:opacity-90 transition-colors"
             >
               Download PDF ↓
             </a>
@@ -99,7 +99,7 @@ export default function ResumePage() {
             </div>
 
             <div className="pt-3 border-t border-surface-border text-sm text-foreground-muted flex flex-wrap gap-x-4 gap-y-1">
-              <span className="font-mono text-foreground font-medium">Toronto, ON</span>
+              <span className="font-mono text-foreground font-medium">Vaughan, ON</span>
               <a href={`mailto:${profile.contact.email}`} className="hover:text-foreground underline-offset-2 hover:underline">
                 {profile.contact.email}
               </a>

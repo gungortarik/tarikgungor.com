@@ -3,54 +3,73 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --surface: #f7f5f0;
-  --surface-elevated: #ffffff;
-  --surface-muted: #ece8e0;
-  --surface-border: rgba(26, 25, 23, 0.1);
-  --surface-border-subtle: rgba(26, 25, 23, 0.06);
+  --surface: #f3f1ec;
+  --surface-elevated: #faf9f6;
+  --surface-muted: #e8e5de;
+  --surface-border: rgba(20, 19, 18, 0.1);
+  --surface-border-subtle: rgba(20, 19, 18, 0.06);
 
-  --foreground: #1a1917;
-  --foreground-muted: #5c5850;
-  --foreground-subtle: #8a857c;
+  --foreground: #141312;
+  --foreground-muted: #6b6560;
+  --foreground-subtle: #8f8880;
 
-  --depth: #111110;
-  --depth-elevated: #1c1b19;
-  --depth-surface: #242320;
-  --depth-border: rgba(255, 255, 255, 0.1);
-  --depth-border-subtle: rgba(255, 255, 255, 0.05);
+  --depth: #0e0e0d;
+  --depth-elevated: #171716;
+  --depth-surface: #1f1e1c;
+  --depth-border: rgba(243, 241, 236, 0.12);
+  --depth-border-subtle: rgba(243, 241, 236, 0.06);
 
-  --accent: #0d9488;
-  --accent-muted: #0f766e;
-  --accent-subtle: rgba(13, 148, 136, 0.12);
+  /* Theme-stable ink for depth bands — never remap to --surface */
+  --on-depth: #f3f1ec;
+  --on-depth-muted: rgba(243, 241, 236, 0.72);
+  --on-depth-subtle: rgba(243, 241, 236, 0.48);
+  --on-depth-border: rgba(243, 241, 236, 0.2);
+  --on-depth-fill: #f3f1ec;
+  --on-depth-fill-fg: #0e0e0d;
 
-  --status-green: #22c55e;
+  --accent: #3d5a80;
+  --accent-muted: #2f4663;
+  --accent-subtle: rgba(61, 90, 128, 0.12);
+
+  --status-green: #3d5a80;
 
   --background: var(--surface);
   --color-foreground: var(--foreground);
+
+  --measure: 38rem;
+  --page: 1280px;
 }
 
 .dark {
-  --surface: #111110;
-  --surface-elevated: #1a1918;
+  --surface: #0e0e0d;
+  --surface-elevated: #171716;
   --surface-muted: #1f1e1c;
-  --surface-border: rgba(247, 245, 240, 0.12);
-  --surface-border-subtle: rgba(247, 245, 240, 0.06);
+  --surface-border: rgba(243, 241, 236, 0.12);
+  --surface-border-subtle: rgba(243, 241, 236, 0.06);
 
-  --foreground: #f7f5f0;
-  --foreground-muted: #b5b0a6;
-  --foreground-subtle: #7a756c;
+  --foreground: #f3f1ec;
+  --foreground-muted: #c4bdb4;
+  --foreground-subtle: #958e85;
 
-  --depth: #0a0a09;
-  --depth-elevated: #141413;
-  --depth-surface: #1c1b19;
-  --depth-border: rgba(247, 245, 240, 0.12);
-  --depth-border-subtle: rgba(247, 245, 240, 0.06);
+  --depth: #050505;
+  --depth-elevated: #121211;
+  --depth-surface: #1a1918;
+  --depth-border: rgba(243, 241, 236, 0.16);
+  --depth-border-subtle: rgba(243, 241, 236, 0.1);
 
-  --accent: #2dd4bf;
-  --accent-muted: #14b8a6;
-  --accent-subtle: rgba(45, 212, 191, 0.1);
+  /* Keep on-depth ink cream in dark mode — do not inherit --surface */
+  --on-depth: #f3f1ec;
+  --on-depth-muted: rgba(243, 241, 236, 0.74);
+  --on-depth-subtle: rgba(243, 241, 236, 0.5);
+  --on-depth-border: rgba(243, 241, 236, 0.22);
+  --on-depth-fill: #f3f1ec;
+  --on-depth-fill-fg: #0e0e0d;
 
-  --status-green: #4ade80;
+  --accent: #7a9cc4;
+  --accent-muted: #5c7ea6;
+  --accent-subtle: rgba(122, 156, 196, 0.14);
+
+  --status-green: #7a9cc4;
 
   --background: var(--surface);
   --color-foreground: var(--foreground);
@@ -76,6 +95,13 @@
   --color-depth-surface: var(--depth-surface);
   --color-depth-border: var(--depth-border);
   --color-depth-border-subtle: var(--depth-border-subtle);
+
+  --color-on-depth: var(--on-depth);
+  --color-on-depth-muted: var(--on-depth-muted);
+  --color-on-depth-subtle: var(--on-depth-subtle);
+  --color-on-depth-border: var(--on-depth-border);
+  --color-on-depth-fill: var(--on-depth-fill);
+  --color-on-depth-fill-fg: var(--on-depth-fill-fg);
 
   --color-accent: var(--accent);
   --color-accent-muted: var(--accent-muted);
@@ -115,13 +141,17 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html.lenis,
-  html.lenis body {
-    height: auto;
-  }
+::selection {
+  background: var(--accent-subtle);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .writing-mode-vertical {
@@ -129,18 +159,15 @@ body {
   transform: rotate(180deg);
 }
 
-.bg-grid-pattern {
-  background-image:
-    linear-gradient(var(--surface-border-subtle) 1px, transparent 1px),
-    linear-gradient(90deg, var(--surface-border-subtle) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
 .text-balance {
   text-wrap: balance;
 }
 
-.reveal-hidden {
-  opacity: 0;
-  transform: translateY(24px);
+.clip-reveal {
+  clip-path: inset(0 0 100% 0);
+}
+
+.editorial-rule {
+  height: 1px;
+  background: var(--surface-border);
 }

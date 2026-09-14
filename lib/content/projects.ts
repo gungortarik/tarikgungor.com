@@ -11,30 +11,34 @@ export interface Project {
   href?: string;
   image?: string;
   github?: string;
+  external?: boolean;
 }
 
 export const projects: Project[] = [
   {
     slug: "sonoma",
     name: "Sonoma",
-    tagline: "Private expense and document management",
+    tagline: "Private expense and document vault",
     description:
-      "A private expense and document management tool I built for personal use — tracking spending, organizing documents, and keeping real workflows in one place.",
+      "A privacy-first archive for expenses and documents — built for personal workflows and a small trusted circle, not public self-serve growth.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     status: "in-progress",
     featured: true,
     href: "/work/sonoma",
-    image: "/assets/projects/sonoma-dashboard.png",
+    image: "/assets/projects/sonoma-landing.png",
   },
   {
     slug: "certforge",
     name: "CertForge",
-    tagline: "IT certification study platform",
+    tagline: "CCNA & Network+ study platform",
     description:
-      "An IT certification study platform built around Network+ and CCNA preparation. Currently paused while I refocus on school and Sonoma.",
+      "Objective-aligned practice, explanations, and review loops for Cisco CCNA and CompTIA Network+. Live preview while it keeps evolving.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
-    status: "paused",
-    featured: false,
+    status: "in-progress",
+    featured: true,
+    href: "https://certforge-chi.vercel.app",
+    external: true,
+    image: "/assets/projects/certforge-landing.png",
     github: "https://github.com/gungortarik/certforge",
   },
 ];

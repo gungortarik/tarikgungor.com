@@ -1,60 +1,80 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { HeroScene } from "@/components/three/HeroScene";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { profile } from "@/lib/content/profile";
 
 export function Hero() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const parts = root.querySelectorAll<HTMLElement>("[data-hero-part]");
+
+    if (prefersReducedMotion) {
+      gsap.set(parts, { opacity: 1, y: 0 });
+      return;
+    }
+
+    gsap.set(parts, { opacity: 0, y: 24 });
+
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    tl.to(parts, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      stagger: 0.1,
+    });
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <section className="relative w-full overflow-hidden">
+    <section
+      ref={rootRef}
+      className="relative w-full overflow-hidden min-h-[88vh] flex flex-col justify-center"
+    >
       <HeroScene />
 
-      <div className="relative max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20 lg:pb-24">
-        <RevealOnScroll>
-          <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            <div className="flex-1 max-w-[600px]">
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <Badge variant="status">{profile.coop.label}</Badge>
-                <span className="text-[11px] font-mono text-foreground-muted tracking-wider uppercase">
-                  {profile.location}
-                </span>
-              </div>
+      <div className="relative z-10 max-w-[1280px] w-full mx-auto px-6 sm:px-8 lg:px-10 pt-24 sm:pt-28 lg:pt-32 pb-20 sm:pb-24">
+        <div className="max-w-[720px]">
+          <p
+            data-hero-part
+            className="text-[11px] font-mono font-medium tracking-[0.24em] uppercase text-foreground-muted mb-10"
+          >
+            {profile.location} · Systems · Software
+          </p>
 
-              <h1 className="font-serif text-[42px] sm:text-[52px] lg:text-[60px] text-foreground font-normal leading-[1.05] tracking-tight">
-                {profile.name}
-              </h1>
+          <h1
+            data-hero-part
+            className="font-serif text-[52px] sm:text-[72px] lg:text-[92px] text-foreground font-medium leading-[0.92] tracking-[-0.035em]"
+          >
+            Crafted systems.
+            <br />
+            Continuous learning.
+          </h1>
 
-              <p className="font-serif text-[22px] sm:text-[26px] text-foreground/80 mt-3 leading-snug">
-                {profile.tagline}
-              </p>
+          <p
+            data-hero-part
+            className="text-[15px] sm:text-[17px] text-foreground-muted leading-[1.75] mt-9 max-w-[34rem]"
+          >
+            {profile.positioning}
+          </p>
 
-              <p className="text-[15px] sm:text-[16px] text-foreground-muted leading-[1.7] mt-5 max-w-[520px]">
-                {profile.positioning}
-              </p>
-
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-8">
-                <Button href="/work">View my work</Button>
-                <Button href="/resume" variant="secondary">Resume</Button>
-                <Button href="/contact" variant="ghost">Get in touch →</Button>
-              </div>
-            </div>
-
-            <div className="relative w-full max-w-[360px] lg:max-w-[400px] shrink-0">
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-surface-border bg-surface-elevated shadow-2xl">
-                <Image
-                  src={profile.heroImage}
-                  alt={`Portrait of ${profile.name}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 360px, 400px"
-                  priority
-                />
-              </div>
-              <div className="absolute -bottom-3 -right-3 w-full h-full rounded-2xl border border-accent/20 -z-10" aria-hidden="true" />
-            </div>
+          <div data-hero-part className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-12">
+            <Button href="/work">See the work</Button>
+            <Button href="/about" variant="ghost">
+              About →
+            </Button>
           </div>
-        </RevealOnScroll>
+        </div>
       </div>
     </section>
   );

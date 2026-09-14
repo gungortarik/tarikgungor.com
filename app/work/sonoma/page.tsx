@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
 import { sonomaCaseStudy } from "@/lib/content/sonoma";
@@ -15,99 +13,137 @@ export const metadata: Metadata = {
 export default function SonomaPage() {
   return (
     <PageShell>
-      <article className="max-w-[900px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
-        <RevealOnScroll>
-          <Badge variant="accent" className="mb-6">{sonomaCaseStudy.status}</Badge>
-          <h1 className="font-serif text-[40px] sm:text-[48px] text-foreground leading-tight">
+      <article>
+        <header className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-16 sm:pt-20 lg:pt-24 pb-10">
+          <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-accent">
+            {sonomaCaseStudy.status}
+          </p>
+          <h1 className="font-serif text-[44px] sm:text-[60px] lg:text-[72px] text-foreground font-medium leading-[0.95] tracking-[-0.03em] mt-5 max-w-[16ch]">
             {sonomaCaseStudy.name}
           </h1>
-          <p className="text-[18px] text-foreground-muted mt-3">{sonomaCaseStudy.tagline}</p>
-        </RevealOnScroll>
+          <p className="text-[17px] sm:text-[19px] text-foreground-muted mt-5 max-w-[34rem] leading-relaxed">
+            {sonomaCaseStudy.tagline}
+          </p>
+        </header>
 
-        <RevealOnScroll delay={0.1}>
-          <div className="relative aspect-[16/10] rounded-2xl overflow-hidden border border-surface-border bg-surface-muted mt-10">
+        <div className="max-w-[1400px] mx-auto px-0 sm:px-6 lg:px-8">
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-muted border-y sm:border border-surface-border sm:rounded-sm">
             <Image
-              src={sonomaCaseStudy.image}
-              alt="Sonoma dashboard screenshot"
+              src={sonomaCaseStudy.images.landing}
+              alt="Sonoma public landing"
               fill
-              className="object-cover object-[14%_8%]"
-              sizes="(max-width: 900px) 100vw, 900px"
+              className="object-cover object-top"
+              sizes="100vw"
               priority
             />
           </div>
-        </RevealOnScroll>
+        </div>
 
-        <RevealOnScroll delay={0.15}>
-          <section className="mt-12">
-            <h2 className="text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase">
+        <div className="max-w-[760px] mx-auto px-6 sm:px-8 lg:px-10 py-14 sm:py-16">
+          <section>
+            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
               Overview
             </h2>
-            <p className="text-[16px] text-foreground-muted leading-[1.75] mt-4">
+            <p className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.8] mt-4">
               {sonomaCaseStudy.overview}
             </p>
           </section>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay={0.2}>
-          <section className="mt-10">
-            <h2 className="text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase">
-              The Problem
+          <section className="mt-12 pt-10 border-t border-surface-border">
+            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
+              The problem
             </h2>
-            <p className="text-[16px] text-foreground-muted leading-[1.75] mt-4">
+            <p className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.8] mt-4">
               {sonomaCaseStudy.problem}
             </p>
           </section>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay={0.25}>
-          <section className="mt-10">
-            <h2 className="text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase">
+          <section className="mt-12 pt-10 border-t border-surface-border">
+            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
               Approach
             </h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-5 space-y-4">
               {sonomaCaseStudy.approach.map((item) => (
-                <li key={item} className="flex gap-3 text-[15px] text-foreground-muted leading-relaxed">
-                  <span className="text-accent shrink-0">→</span>
+                <li
+                  key={item}
+                  className="flex gap-3 text-[15px] sm:text-[16px] text-foreground-muted leading-relaxed"
+                >
+                  <span className="text-accent shrink-0 mt-0.5">→</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </section>
-        </RevealOnScroll>
+        </div>
 
-        <RevealOnScroll delay={0.3}>
-          <section className="mt-10">
-            <h2 className="text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase">
+        <div className="max-w-[1400px] mx-auto px-0 sm:px-6 lg:px-8 py-4">
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-muted border-y sm:border border-surface-border sm:rounded-sm">
+            <Image
+              src={sonomaCaseStudy.images.dashboard}
+              alt="Sonoma dashboard"
+              fill
+              className="object-cover object-[14%_8%]"
+              sizes="100vw"
+            />
+          </div>
+          <p className="text-[12px] font-mono text-foreground-muted mt-3 px-6 sm:px-0">
+            Authenticated product surface — expenses, archive, and vault workflows.
+          </p>
+        </div>
+
+        <div className="max-w-[980px] mx-auto px-6 sm:px-8 lg:px-10 py-14 sm:py-16">
+          <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
+            System
+          </h2>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-10">
+            {sonomaCaseStudy.system.map((item) => (
+              <div
+                key={item.title}
+                className="py-6 md:py-0 border-t md:border-t-0 border-surface-border first:border-t-0"
+              >
+                <h3 className="font-serif text-[22px] text-foreground">{item.title}</h3>
+                <p className="text-[14px] text-foreground-muted leading-relaxed mt-3">
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <section className="mt-14 pt-10 border-t border-surface-border">
+            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
               Stack
             </h2>
-            <p className="text-[14px] font-mono text-foreground-muted mt-4">
+            <p className="text-[13px] font-mono text-foreground-muted mt-4 leading-relaxed">
               {sonomaCaseStudy.stack.join(" · ")}
             </p>
           </section>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay={0.35}>
-          <section className="mt-10">
-            <h2 className="text-[11px] font-mono font-bold tracking-[0.2em] text-foreground-muted uppercase">
-              What I Learned
+          <section className="mt-12 pt-10 border-t border-surface-border">
+            <h2 className="text-[11px] font-mono font-medium tracking-[0.2em] text-foreground-muted uppercase">
+              What I learned
             </h2>
-            <ul className="mt-4 space-y-3">
+            <ul className="mt-5 space-y-3">
               {sonomaCaseStudy.learnings.map((item) => (
-                <li key={item} className="flex gap-3 text-[15px] text-foreground-muted leading-relaxed">
+                <li
+                  key={item}
+                  className="flex gap-3 text-[15px] text-foreground-muted leading-relaxed"
+                >
                   <span className="text-accent shrink-0">·</span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </section>
-        </RevealOnScroll>
 
-        <RevealOnScroll delay={0.4}>
-          <div className="mt-12 pt-8 border-t border-surface-border flex gap-4">
-            <Button href="/work" variant="secondary">← All work</Button>
-            <Button href="/contact" variant="ghost">Get in touch →</Button>
+          <div className="mt-14 pt-8 border-t border-surface-border flex flex-col sm:flex-row gap-4">
+            <Button href="/work" variant="secondary">
+              ← All work
+            </Button>
+            <Button href="/contact" variant="ghost">
+              Contact →
+            </Button>
           </div>
-        </RevealOnScroll>
+        </div>
       </article>
     </PageShell>
   );

@@ -1,25 +1,26 @@
 import type { Metadata } from "next";
-import { DM_Sans, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Inter_Tight, Newsreader } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { profile } from "@/lib/content/profile";
 import "./globals.css";
 
-const sans = DM_Sans({
+const sans = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const serif = Instrument_Serif({
+const serif = Newsreader({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "500", "600"],
   variable: "--font-serif",
   display: "swap",
 });
 
-const mono = JetBrains_Mono({
+const mono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });

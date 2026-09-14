@@ -10,29 +10,27 @@ export const focusItems: FocusItem[] = [
   {
     number: "01",
     category: "BUILDING",
-    title: "Sonoma",
+    title: "Sonoma & CertForge",
     description:
-      "Building a private expense and document management tool around real personal workflows.",
+      "Sonoma for private expense and document workflows. CertForge as a live CCNA / Network+ study platform.",
     status: "In Progress",
   },
   {
     number: "02",
     category: "STUDYING",
     title: "Computer Systems Technology",
-    description: "Currently studying at George Brown College in Toronto.",
+    description: "George Brown College, Toronto — started January 2026.",
   },
   {
     number: "03",
     category: "LEARNING",
     title: "Network+ → Security+",
-    description:
-      "Strengthening networking fundamentals and working toward the next layer of IT systems knowledge.",
+    description: "Networking fundamentals first, then the next layer of systems knowledge.",
   },
   {
     number: "04",
     category: "DOCUMENTING",
-    title: "Work as it happens",
-    description:
-      "Projects, technical lessons, decisions, mistakes, and progress — documented honestly over time.",
+    title: "The path as it happens",
+    description: "Projects, lessons, decisions, and mistakes — recorded honestly over time.",
   },
 ];

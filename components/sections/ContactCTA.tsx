@@ -1,24 +1,37 @@
-import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { Button } from "@/components/ui/Button";
 import { profile } from "@/lib/content/profile";
 
 export function ContactCTA() {
   return (
-    <section id="contact" className="w-full max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
-      <RevealOnScroll>
-        <div className="rounded-3xl border border-surface-border bg-surface-elevated p-8 sm:p-12 lg:p-16 text-center">
-          <h2 className="font-serif text-[32px] sm:text-[40px] text-foreground leading-tight">
-            Let&apos;s connect.
-          </h2>
-          <p className="text-[15px] sm:text-[16px] text-foreground-muted leading-relaxed mt-4 max-w-[520px] mx-auto">
-            {profile.coop.message}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <Button href="/contact">Contact me</Button>
-            <Button href="/resume" variant="secondary">View resume</Button>
+    <section id="contact" className="w-full bg-depth text-on-depth py-24 sm:py-28 lg:py-32">
+      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-3">
+            <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-on-depth-subtle">
+              Contact
+            </p>
+          </div>
+          <div className="lg:col-span-8">
+            <h2 className="font-serif text-[40px] sm:text-[52px] lg:text-[56px] text-on-depth font-medium leading-[1.05] tracking-[-0.02em] max-w-[16ch]">
+              {profile.contactIntro}
+            </h2>
+            <a
+              href={`mailto:${profile.contact.email}`}
+              className="inline-block text-[18px] sm:text-[20px] text-on-depth-muted mt-8 hover:text-on-depth transition-colors"
+            >
+              {profile.contact.email}
+            </a>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12">
+              <Button href={`mailto:${profile.contact.email}`} external tone="depth">
+                Email
+              </Button>
+              <Button href="/resume" variant="ghost" tone="depth">
+                Resume →
+              </Button>
+            </div>
           </div>
         </div>
-      </RevealOnScroll>
+      </div>
     </section>
   );
 }

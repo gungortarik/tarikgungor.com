@@ -6,27 +6,27 @@ export interface Milestone {
 
 export const milestones: Milestone[] = [
   {
-    year: "2023",
-    title: "BCIT — Technology Support Professional",
+    year: "2022",
+    title: "BCIT",
     description:
-      "Completed hands-on training across Windows infrastructure, networking, virtualization, Linux, and IT support.",
+      "Technology Support Professional — Windows, networking, virtualization, Linux, and hands-on IT support.",
   },
   {
     year: "2023",
-    title: "Payment Source — Technology Support Intern",
+    title: "Payment Source",
     description:
-      "Worked on endpoint management, migration, patching, inventory, and day-to-day technology support.",
+      "Technology Support Intern (Co-op) — endpoint management, onboarding, inventory, and day-to-day support.",
+  },
+  {
+    year: "2023–",
+    title: "IT support work",
+    description:
+      "Supporting hybrid business environments across endpoints, Active Directory, Microsoft 365, and networking.",
   },
   {
     year: "2026",
-    title: "George Brown College",
+    title: "GBC · building",
     description:
-      "Started the Computer Systems Technology advanced diploma and returned deeper into networking, Linux, Windows systems, and infrastructure.",
-  },
-  {
-    year: "2026",
-    title: "Sonoma",
-    description:
-      "Began building a private software product around expenses, documents, and real personal workflows.",
+      "Computer Systems Technology at George Brown College. Building Sonoma privately and developing CertForge in public.",
   },
 ];
