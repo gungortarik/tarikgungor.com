@@ -178,15 +178,15 @@ body {
 }
 
 .hero-title {
-  font-size: 44px;
+  font-size: 40px;
   line-height: 1.05;
   overflow-wrap: anywhere;
 }
 
 @media (min-width: 640px) {
-  .hero-title { font-size: 68px; }
+  .hero-title { font-size: 52px; }
 }
 
 @media (min-width: 1024px) {
-  .hero-title { font-size: 88px; }
+  .hero-title { font-size: 64px; }
 }

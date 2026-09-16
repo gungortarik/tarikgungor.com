@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Signature } from "@/components/ui/Signature";
 import { profile } from "@/lib/content/profile";
 
 export function Footer() {
@@ -7,7 +8,7 @@ export function Footer() {
     <footer className="w-full border-t border-surface-border bg-surface py-14 sm:py-16">
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5">
             <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="Tarik Gungor Home">
               <Image
                 src="/assets/logos/tarik-gungor-wordmark.png"
@@ -17,6 +18,7 @@ export function Footer() {
                 className="w-[156px] h-auto object-contain dark:invert"
               />
             </Link>
+            <Signature />
             <p className="text-sm text-foreground-muted max-w-[320px] leading-relaxed">
               {profile.tagline}
             </p>

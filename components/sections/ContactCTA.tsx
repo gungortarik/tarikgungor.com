@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { Signature } from "@/components/ui/Signature";
 import { profile } from "@/lib/content/profile";
 
 export function ContactCTA() {
@@ -8,7 +9,7 @@ export function ContactCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-3">
             <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-on-depth-subtle">
-              Contact
+              06 / Contact
             </p>
           </div>
           <div className="lg:col-span-8">
@@ -21,6 +22,9 @@ export function ContactCTA() {
             >
               {profile.contact.email}
             </a>
+            <div className="mt-10">
+              <Signature depth />
+            </div>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12">
               <Button href={`mailto:${profile.contact.email}`} external tone="depth">
                 Email

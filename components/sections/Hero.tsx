@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { gsap } from "gsap";
-import { HeroScene } from "@/components/three/HeroScene";
 import { Button } from "@/components/ui/Button";
 import { profile } from "@/lib/content/profile";
 
@@ -16,21 +16,35 @@ export function Hero() {
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const parts = root.querySelectorAll<HTMLElement>("[data-hero-part]");
+    const media = root.querySelector<HTMLElement>("[data-hero-media]");
 
     if (prefersReducedMotion) {
       gsap.set(parts, { opacity: 1, y: 0 });
+      if (media) gsap.set(media, { clipPath: "inset(0% 0% 0% 0%)" });
       return;
     }
 
     gsap.set(parts, { opacity: 0, y: 24 });
+    if (media) gsap.set(media, { clipPath: "inset(10% 12% 0% 0%)" });
 
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
     tl.to(parts, {
       opacity: 1,
       y: 0,
-      duration: 0.9,
-      stagger: 0.1,
+      duration: 0.85,
+      stagger: 0.08,
     });
+    if (media) {
+      tl.to(
+        media,
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 1.15,
+          ease: "power3.out",
+        },
+        "-=0.55"
+      );
+    }
 
     return () => {
       tl.kill();
@@ -38,29 +52,22 @@ export function Hero() {
   }, []);
 
   return (
-    <section
-      ref={rootRef}
-      className="home-hero relative w-full overflow-hidden"
-    >
-      <HeroScene />
-
-      <div className="relative z-10 max-w-[1280px] w-full mx-auto px-6 sm:px-8 lg:px-10 pt-8 sm:pt-12 pb-8">
-        <div className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 mb-8 font-mono text-[11px] text-foreground-muted">
-          <span>01 / A life in progress</span>
-          <span>{profile.location}</span>
-        </div>
-        <div className="max-w-[1040px]">
-          <p
+    <section ref={rootRef} className="home-hero relative w-full overflow-hidden">
+      <div className="grid lg:grid-cols-12 lg:min-h-[calc(100svh-76px)]">
+        <div className="lg:col-span-5 flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
+          <div
             data-hero-part
-            className="text-[14px] font-mono text-accent mb-6"
+            className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 mb-8 font-mono text-[11px] text-foreground-muted"
           >
+            <span>01 / A life in progress</span>
+            <span>{profile.location}</span>
+          </div>
+
+          <p data-hero-part className="text-[14px] font-mono text-accent mb-5">
             {profile.name}
           </p>
 
-          <h1
-            data-hero-part
-            className="hero-title font-serif text-foreground font-medium"
-          >
+          <h1 data-hero-part className="hero-title font-serif text-foreground font-medium">
             Crafted systems.
             <br />
             <span className="text-accent italic">Continuous learning.</span>
@@ -68,36 +75,52 @@ export function Hero() {
 
           <p
             data-hero-part
-            className="text-[16px] sm:text-[18px] text-foreground-muted leading-[1.7] mt-7 max-w-[34rem]"
+            className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.7] mt-6 max-w-[32rem]"
           >
             {profile.positioning}
           </p>
 
           <div data-hero-part className="flex flex-wrap items-center gap-5 mt-7">
-            <Button href="#work">Explore the work <span aria-hidden="true">↘</span></Button>
+            <Button href="#work">
+              Explore the work <span aria-hidden="true">↘</span>
+            </Button>
             <Button href="/about" variant="ghost">
               About →
             </Button>
           </div>
+
+          <p
+            data-hero-part
+            className="font-mono text-[11px] text-foreground-muted mt-10 pt-5 border-t border-surface-border"
+          >
+            Building Sonoma &amp; CertForge · Learning at George Brown · Documenting the path
+          </p>
         </div>
-        <div data-hero-part className="mt-8 sm:mt-12 border-t border-surface-border pt-5">
-          <p className="font-mono text-[11px] text-foreground-muted mb-5">Currently, in practice</p>
-          <div className="grid sm:grid-cols-3 gap-3 sm:gap-8">
-            {[
-              { number: "01", title: "Building", detail: "Sonoma & CertForge", href: "/work" },
-              { number: "02", title: "Learning", detail: "Computer Systems Technology", href: "/about" },
-              { number: "03", title: "Documenting", detail: "Notes from the process", href: "/notes" },
-            ].map((item) => (
-              <Link key={item.number} href={item.href} className="group flex items-start gap-4 border-b border-surface-border pb-3 sm:pb-5 hover:text-accent transition-colors">
-                <span className="font-mono text-[11px] text-foreground-muted pt-2">{item.number}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="font-serif text-[22px] sm:text-[25px] leading-tight">{item.title}</p>
-                  <p className="text-[12px] sm:text-[13px] text-foreground-muted mt-1 sm:mt-2">{item.detail}</p>
-                </div>
-                <span aria-hidden="true" className="pt-2">↗</span>
-              </Link>
-            ))}
-          </div>
+
+        <div className="lg:col-span-7 bg-depth text-on-depth relative min-h-[52svh] sm:min-h-[58svh] lg:min-h-full">
+          <Link
+            href="/work/certforge"
+            className="absolute inset-0 flex flex-col p-5 sm:p-8 lg:p-10"
+            aria-label="CertForge OSPF topology — open the case study"
+          >
+            <div
+              data-hero-media
+              className="relative flex-1 min-h-[280px] overflow-hidden border border-on-depth-border"
+            >
+              <Image
+                src="/assets/projects/certforge-ospf.png"
+                alt="CertForge live OSPF topology: two routers stuck in EXSTART from an MTU mismatch"
+                fill
+                priority
+                sizes="(max-width: 1023px) 100vw, 58vw"
+                className="object-contain object-center bg-depth-elevated"
+              />
+            </div>
+            <div className="flex items-start justify-between gap-4 mt-4 font-mono text-[11px] text-on-depth-muted">
+              <p>CertForge · OSPF topology · In progress · Live</p>
+              <span aria-hidden="true" className="text-on-depth">↗</span>
+            </div>
+          </Link>
         </div>
       </div>
     </section>

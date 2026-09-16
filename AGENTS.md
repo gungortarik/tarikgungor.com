@@ -152,9 +152,9 @@ Important characteristics:
 - warm paper surfaces (`#f3f1ec`) with rare depth band (`#0e0e0d`)
 - steel blue accent (`#3d5a80`) used sparingly — not teal kit, not badge flood
 - Newsreader (display) + Inter Tight (body) + IBM Plex Mono (meta)
-- type-led hero with ThreeUI as edge ambient (DataField), not washed wallpaper
+- evidence-led hero: magazine-cover split — type as masthead, real product UI as the first visual (not ThreeUI wallpaper)
 - homepage as ~6 editorial beats (not 9 identical card sections)
-- Lenis + intentional GSAP moments (hero timeline, Sonoma clip reveal, Path scrub)
+- Lenis + intentional GSAP moments (hero clip, Sonoma clip reveal, Path scrub); ThreeUI is not used on the homepage
 - Contact and Footer stay clean — no availability begging or co-op pills
 - Depth bands must use theme-stable `on-depth*` tokens — never `text-surface` / `bg-surface` for ink on depth (dark mode collapses those)
 - strong typography scale extremes; generous whitespace
@@ -303,12 +303,12 @@ The site should feel intentionally art-directed at both desktop and mobile sizes
 
 ## Animation
 
-The redesign uses **Lenis** (smooth scroll), **GSAP + ScrollTrigger** (hero timeline, Sonoma clip reveal, Path scrub), and **ThreeUI** (selective edge ambient via `DataField`).
+The redesign uses **Lenis** (smooth scroll) and **GSAP + ScrollTrigger** (hero clip, Sonoma clip reveal, Path scrub). ThreeUI is not used on the homepage.
 
 Rules:
-- Respect `prefers-reduced-motion` — disable Lenis, GSAP moments, and ThreeUI when set.
+- Respect `prefers-reduced-motion` — disable Lenis and GSAP moments when set.
 - Three.js components must use `dynamic import` with `ssr: false` for static export compatibility.
-- Use ThreeUI sparingly (1 moment max on homepage); do not wash full-bleed 3D behind all hero content.
+- Do not wash full-bleed 3D behind hero content. The homepage cover is a real artifact, not ambient WebGL.
 - Do not wrap every section in generic fade-up reveals — motion must be editorial.
 - Never use animation to compensate for weak content or weak composition.
 

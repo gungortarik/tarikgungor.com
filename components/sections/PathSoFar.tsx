@@ -66,10 +66,10 @@ export function PathSoFar() {
     >
       <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
         <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-foreground-muted">
-          Path
+          05 / Path
         </p>
         <h2 className="font-serif text-[28px] sm:text-[34px] lg:text-[40px] text-foreground font-medium leading-[1.2] tracking-tight mt-4 max-w-[620px]">
-          A continuous line — school, work, and building in sequence.
+          Not a perfect roadmap. Just the path that actually happened.
         </h2>
 
         <div className="relative mt-12 pt-1">

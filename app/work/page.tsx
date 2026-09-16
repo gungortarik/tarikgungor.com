@@ -41,7 +41,7 @@ export default function WorkPage() {
                       src={project.image}
                       alt={`${project.name} preview`}
                       fill
-                      className="object-cover object-top"
+                      className="object-contain object-center"
                       sizes="(max-width: 1024px) 100vw, 60vw"
                     />
                   </div>
@@ -51,7 +51,7 @@ export default function WorkPage() {
               <div className="lg:col-span-5 flex flex-col justify-center">
                 <p className="text-[11px] font-mono text-foreground-subtle uppercase tracking-wider">
                   {statusLabels[project.status]}
-                  {project.external ? " · Live preview" : project.slug === "sonoma" ? " · Private" : ""}
+                  {project.liveUrl ? " · Live preview" : project.slug === "sonoma" ? " · Private" : ""}
                 </p>
                 <h2 className="font-serif text-[32px] sm:text-[36px] text-foreground font-medium mt-3">
                   {project.name}
@@ -66,13 +66,13 @@ export default function WorkPage() {
 
                 <div className="flex flex-wrap items-center gap-4 mt-7">
                   {project.href && (
-                    <Button
-                      href={project.href}
-                      external={project.external}
-                      size="sm"
-                      variant={project.external ? "primary" : "secondary"}
-                    >
-                      {project.external ? "Open live preview ↗" : "Case study →"}
+                    <Button href={project.href} size="sm" variant="secondary">
+                      Case study →
+                    </Button>
+                  )}
+                  {project.liveUrl && (
+                    <Button href={project.liveUrl} external size="sm">
+                      Open live preview ↗
                     </Button>
                   )}
                   {project.github && (
