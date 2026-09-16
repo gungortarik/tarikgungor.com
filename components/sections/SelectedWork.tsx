@@ -62,18 +62,9 @@ export function SelectedWork() {
             <ProjectScreens
               name="Sonoma"
               depth
-              bleed
               screens={[
-                {
-                  label: "Dashboard",
-                  src: "/assets/projects/sonoma-dashboard.png",
-                  alt: "Sonoma dashboard showing expenses and spending trends",
-                },
-                {
-                  label: "Overview",
-                  src: "/assets/projects/sonoma-landing.png",
-                  alt: "Sonoma public landing page",
-                },
+                { label: "Dashboard", ...screenshots.sonomaDashboard },
+                { label: "Overview", ...screenshots.sonomaLanding },
               ]}
             />
             <div className="lg:pt-2 pb-2">
