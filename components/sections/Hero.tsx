@@ -2,13 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/Button";
 import { profile } from "@/lib/content/profile";
-import { screenshots } from "@/lib/content/screenshots";
-
-const cover = screenshots.sonomaLanding;
 
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -57,7 +53,7 @@ export function Hero() {
   return (
     <section ref={rootRef} className="home-hero relative w-full overflow-hidden">
       <div className="grid lg:grid-cols-12 lg:min-h-[calc(100svh-76px)]">
-        <div className="lg:col-span-7 flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
+        <div className="lg:col-span-7 bg-surface text-foreground flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
           <div
             data-hero-part
             className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 mb-8 font-mono text-[11px] text-foreground-muted"
@@ -100,31 +96,25 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="lg:col-span-5 bg-depth text-on-depth flex items-center py-8 sm:px-8 sm:py-10 lg:px-10 lg:min-h-full">
-          <Link
-            href="/work/sonoma"
-            className="block w-full mx-auto sm:max-w-[520px] lg:max-w-[460px]"
-            aria-label="Sonoma landing — open the case study"
+        <div className="lg:col-span-5 bg-depth text-on-depth flex items-center justify-center border-t lg:border-t-0 lg:border-l border-on-depth-border py-14 sm:py-16 lg:py-10 lg:min-h-full px-6 sm:px-8 lg:px-10">
+          {/* Portrait slot: cream mat stays theme-stable; swap brand for a real photo later */}
+          <div
+            data-hero-media
+            className="relative w-full max-w-[360px] sm:max-w-[400px] aspect-[4/5] overflow-hidden bg-on-depth text-on-depth-fill-fg flex flex-col items-center justify-center gap-8 px-8"
+            aria-label={`${profile.name} brand mark — portrait placeholder`}
           >
-            <div
-              data-hero-media
-              style={{ aspectRatio: `${cover.width} / ${cover.height}` }}
-              className="relative w-full overflow-hidden border-y sm:border border-on-depth-border bg-depth-elevated"
-            >
-              <Image
-                src={cover.src}
-                alt={cover.alt}
-                fill
-                priority
-                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 520px, 460px"
-                className="object-cover"
-              />
-            </div>
-            <div className="flex items-start justify-between gap-4 mt-4 px-5 sm:px-0 font-mono text-[11px] text-on-depth-muted">
-              <p>Sonoma · landing · Private · In progress</p>
-              <span aria-hidden="true" className="text-on-depth">↗</span>
-            </div>
-          </Link>
+            <Image
+              src="/assets/logos/tarik-gungor-monogram.svg"
+              alt=""
+              width={160}
+              height={134}
+              priority
+              className="w-[7.5rem] sm:w-[9rem] h-auto"
+            />
+            <p className="font-serif text-[20px] sm:text-[24px] tracking-[0.16em] uppercase text-on-depth-fill-fg text-center">
+              {profile.name}
+            </p>
+          </div>
         </div>
       </div>
     </section>
