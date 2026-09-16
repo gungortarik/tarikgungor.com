@@ -9,14 +9,12 @@ export function PageShell({
   className?: string;
 }) {
   return (
-    <div className={`site-stage ${className}`}>
-      <aside className="site-rail-left" aria-hidden="true" />
-      <div className="site-sheet selection:bg-accent-subtle selection:text-foreground">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </div>
-      <aside className="site-rail-right" aria-hidden="true" />
+    <div
+      className={`min-h-svh flex flex-col bg-surface text-foreground selection:bg-accent-subtle selection:text-foreground ${className}`}
+    >
+      <Header />
+      <main className="flex-1 w-full">{children}</main>
+      <Footer />
     </div>
   );
 }

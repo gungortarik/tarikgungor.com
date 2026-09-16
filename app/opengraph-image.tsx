@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import fs from "node:fs";
 import path from "node:path";
 
-export const alt = "Tarik Gungor — Crafted systems. Continuous learning.";
+export const alt = "Tarik Gungor — Systems, tools, and the path between them.";
 export const size = {
   width: 1200,
   height: 630,
@@ -25,10 +25,10 @@ export default function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f3f1ec",
+          backgroundColor: "#141413",
           padding: "64px 72px",
           fontFamily: "system-ui, -apple-system, sans-serif",
-          color: "#141312",
+          color: "#f3f1ec",
         }}
       >
         <div
@@ -42,27 +42,43 @@ export default function Image() {
           <img
             src={wordmarkBase64}
             alt="Tarik Gungor"
-            style={{ height: "44px", width: "166px", objectFit: "contain" }}
+            style={{
+              height: "44px",
+              width: "166px",
+              objectFit: "contain",
+              filter: "invert(1)",
+            }}
           />
           <div
             style={{
-              fontSize: "13px",
+              fontSize: "12px",
               fontWeight: 500,
-              letterSpacing: "0.12em",
+              letterSpacing: "0.14em",
               textTransform: "uppercase",
-              color: "#6b6560",
+              color: "#9a968e",
             }}
           >
-            Vaughan · Systems · Software
+            Public field system
           </div>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <div style={{ fontSize: "56px", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
-            Crafted systems.
+        <div style={{ display: "flex", flexDirection: "column", gap: "14px", maxWidth: "900px" }}>
+          <div style={{ fontSize: "48px", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.035em" }}>
+            Building systems by day.
           </div>
-          <div style={{ fontSize: "56px", fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.03em" }}>
-            Continuous learning.
+          <div style={{ fontSize: "48px", fontWeight: 600, lineHeight: 1.1, letterSpacing: "-0.035em" }}>
+            Building tools for real problems.
+          </div>
+          <div
+            style={{
+              fontSize: "48px",
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: "-0.035em",
+              color: "#d4652f",
+            }}
+          >
+            Documenting the path.
           </div>
         </div>
 
@@ -72,16 +88,14 @@ export default function Image() {
             alignItems: "center",
             justifyContent: "space-between",
             width: "100%",
-            borderTop: "1px solid rgba(20, 19, 18, 0.1)",
+            borderTop: "1px solid rgba(243, 241, 236, 0.16)",
             paddingTop: "24px",
             fontSize: "14px",
-            color: "#6b6560",
+            color: "#9a968e",
           }}
         >
-          <span>IT · systems · software</span>
-          <span style={{ fontFamily: "monospace", fontSize: "13px", color: "#8f8880" }}>
-            tarikgungor.com
-          </span>
+          <div>Vaughan · IT · Systems study · Building</div>
+          <div style={{ color: "#d4652f" }}>tarikgungor.com</div>
         </div>
       </div>
     ),

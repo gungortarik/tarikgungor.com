@@ -4,30 +4,31 @@ import { profile } from "@/lib/content/profile";
 
 export function Footer() {
   return (
-    <footer className="w-full border-t border-surface-border bg-surface py-14 sm:py-16">
-      <div className="px-5 sm:px-7 lg:px-8">
+    <footer className="w-full border-t border-surface-border bg-surface py-12 sm:py-16">
+      <div className="page-pad page-width">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
-          <div className="flex flex-col gap-5">
-            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="Tarik Gungor Home">
+          <div className="flex flex-col gap-4 max-w-[28rem]">
+            <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="Tarik Gungor — Index">
               <Image
                 src="/assets/logos/tarik-gungor-wordmark.png"
                 alt="Tarik Gungor"
                 width={168}
                 height={44}
-                className="w-[156px] h-auto object-contain dark:invert"
+                className="w-[148px] h-auto object-contain dark:invert"
               />
             </Link>
-            <p className="text-sm text-foreground-muted max-w-[320px] leading-relaxed">
+            <p className="field-meta text-foreground-subtle">Public field system</p>
+            <p className="text-sm text-foreground-muted leading-relaxed">
               {profile.tagline}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] font-medium">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] font-medium">
             <a
               href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-foreground transition-colors"
+              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
             >
               GitHub
             </a>
@@ -35,13 +36,13 @@ export function Footer() {
               href={profile.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-foreground transition-colors"
+              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
             >
               LinkedIn
             </a>
             <a
               href={`mailto:${profile.contact.email}`}
-              className="text-foreground-muted hover:text-foreground transition-colors"
+              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
             >
               {profile.contact.email}
             </a>

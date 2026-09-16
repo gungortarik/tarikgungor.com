@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -21,13 +22,17 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+
     html.classList.add("lenis", "lenis-smooth");
 
     const lenis = new Lenis({
-      duration: 1.22,
+      duration: isFinePointer ? 1.2 : 0.95,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 0.86,
+      wheelMultiplier: isFinePointer ? 0.86 : 1,
+      touchMultiplier: 1.15,
+      syncTouch: false,
     });
 
     lenisRef.current = lenis;
@@ -50,7 +55,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       const el = document.getElementById(id);
       if (!el) return;
       event.preventDefault();
-      lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+      lenis.scrollTo(el, { offset: -72, duration: 1.15 });
     };
 
     document.addEventListener("click", onAnchorClick);
@@ -76,16 +81,19 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     });
 
     const refresh = () => ScrollTrigger.refresh();
-    const refreshTimer = window.setTimeout(refresh, 350);
+    const refreshTimer = window.setTimeout(refresh, 400);
+    window.addEventListener("load", refresh);
 
     return () => {
       window.clearTimeout(refreshTimer);
+      window.removeEventListener("load", refresh);
       document.removeEventListener("click", onAnchorClick);
       gsap.ticker.remove(raf);
       motion.revert();
       html.classList.remove("lenis", "lenis-smooth");
       lenis.destroy();
       lenisRef.current = null;
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 

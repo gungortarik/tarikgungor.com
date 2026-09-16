@@ -1,13 +1,16 @@
 export const profile = {
   name: "Tarik Gungor",
   location: "Vaughan, Canada",
-  tagline: "Crafted systems. Continuous learning.",
+  tagline: "Systems, tools, and the path between them.",
   positioning:
-    "I work in IT, study Computer Systems Technology in Toronto, and build software for problems I actually have.",
+    "I support systems by day, study Computer Systems Technology in Toronto, and build software for problems I actually have.",
+  identityLine:
+    "Building systems by day. Building tools for real problems. Documenting the path.",
+  practiceFrame: "IT · systems study · building",
   shortBio:
     "Day to day I support endpoints, networks, and business systems. Alongside school and work I build tools like Sonoma and CertForge — then document the path as it happens.",
   aboutIntro:
-    "This site is a record of craft: systems work, software I build, and what I'm learning along the way.",
+    "A public field surface for craft in progress — not a finished persona.",
   aboutBody: [
     "The foundation is IT support — endpoints, Active Directory, Microsoft 365, networking, and keeping real environments reliable.",
     "Outside of that I build software for myself. Sonoma is a private vault for expenses and documents. CertForge is a live study platform for CCNA and Network+, still under active development.",

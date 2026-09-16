@@ -15,9 +15,9 @@ export default function SonomaPage() {
   return (
     <PageShell>
       <article>
-        <header className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
-          <div className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 font-mono text-[11px] text-foreground-muted">
-            <p>01 / Selected work</p>
+        <header className="page-pad page-width pt-12 sm:pt-16 lg:pt-20 pb-12 sm:pb-16">
+          <div className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 field-meta text-foreground-muted">
+            <p>01 / Work</p>
             <p>{sonomaCaseStudy.status}</p>
           </div>
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
@@ -53,7 +53,7 @@ export default function SonomaPage() {
         </header>
 
         <section aria-label="Sonoma product surfaces" className="bg-depth text-on-depth py-12 sm:py-16 lg:py-20">
-          <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="page-pad page-width">
             <ProjectScreens
               name="Sonoma"
               depth
@@ -68,10 +68,10 @@ export default function SonomaPage() {
           </div>
         </section>
 
-        <section className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20 lg:py-24">
+        <section className="page-pad page-width py-16 sm:py-20 lg:py-24">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-3">
-              <p className="font-mono text-[11px] text-foreground-muted">The problem</p>
+              <p className="field-meta text-foreground-subtle">The problem</p>
             </div>
             <div className="lg:col-span-7">
               <p className="font-serif text-[30px] sm:text-[42px] leading-[1.18] text-foreground">
@@ -90,10 +90,10 @@ export default function SonomaPage() {
         </section>
 
         <section className="bg-surface-muted/50 border-y border-surface-border py-16 sm:py-20 lg:py-24">
-          <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="page-pad page-width">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
               <div className="lg:col-span-3">
-                <p className="font-mono text-[11px] text-foreground-muted">The system</p>
+                <p className="field-meta text-foreground-subtle">The system</p>
               </div>
               <div className="lg:col-span-9 grid md:grid-cols-3 gap-0 border-t border-surface-border">
                 {sonomaCaseStudy.system.map((item, index) => (
@@ -108,10 +108,10 @@ export default function SonomaPage() {
           </div>
         </section>
 
-        <section className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 py-16 sm:py-20">
+        <section className="page-pad page-width py-16 sm:py-20">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
             <div className="lg:col-span-3">
-              <p className="font-mono text-[11px] text-foreground-muted">What I learned</p>
+              <p className="field-meta text-foreground-subtle">What I learned</p>
             </div>
             <div className="lg:col-span-7">
               <ul className="border-t border-surface-border">

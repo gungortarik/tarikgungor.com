@@ -6,12 +6,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: base, lastModified: now, changeFrequency: "monthly", priority: 1 },
-    { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/work`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/work/sonoma`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${base}/work/certforge`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${base}/resume`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${base}/notes`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/lab`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${base}/path`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/resume`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${base}/notes`, lastModified: now, changeFrequency: "monthly", priority: 0.55 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.7 },
   ];
 }

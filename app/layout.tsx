@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter_Tight, Newsreader } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono, Source_Sans_3 } from "next/font/google";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { profile } from "@/lib/content/profile";
 import "./globals.css";
 
-const sans = Inter_Tight({
+const sans = Source_Sans_3({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const serif = Newsreader({
+const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-serif",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-mono",
@@ -78,7 +78,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${sans.variable} ${serif.variable} ${mono.variable}`}
+      className={`${sans.variable} ${display.variable} ${mono.variable}`}
     >
       <head>
         <script

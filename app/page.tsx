@@ -1,20 +1,23 @@
 import { PageShell } from "@/components/ui/PageShell";
-import { ContactCTA } from "@/components/sections/ContactCTA";
-import { ExperienceSnapshot } from "@/components/sections/ExperienceSnapshot";
-import { Hero } from "@/components/sections/Hero";
-import { PathSoFar } from "@/components/sections/PathSoFar";
-import { SelectedWork } from "@/components/sections/SelectedWork";
-import { WhoIAm } from "@/components/sections/WhoIAm";
+import { HomeMotion } from "@/components/motion/HomeMotion";
+import { Connect } from "@/components/sections/Connect";
+import { FieldMasthead } from "@/components/sections/FieldMasthead";
+import { LabPlate } from "@/components/sections/LabPlate";
+import { NowSignal } from "@/components/sections/NowSignal";
+import { PathContinuum } from "@/components/sections/PathContinuum";
+import { SelectedArtifacts } from "@/components/sections/SelectedArtifacts";
 
 export default function Home() {
   return (
     <PageShell>
-      <Hero />
-      <SelectedWork />
-      <WhoIAm />
-      <ExperienceSnapshot />
-      <PathSoFar />
-      <ContactCTA />
+      <HomeMotion>
+        <FieldMasthead />
+        <NowSignal />
+        <SelectedArtifacts />
+        <LabPlate />
+        <PathContinuum />
+        <Connect />
+      </HomeMotion>
     </PageShell>
   );
 }

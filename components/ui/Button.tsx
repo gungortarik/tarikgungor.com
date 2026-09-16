@@ -39,7 +39,7 @@ function baseClasses(
   className: string
 ) {
   const variants = tone === "depth" ? depthVariantClasses : surfaceVariantClasses;
-  return `inline-flex items-center justify-center gap-2 rounded-sm font-medium transition-colors active:scale-[0.99] ${variants[variant]} ${sizeClasses[size]} ${className}`;
+  return `inline-flex items-center justify-center gap-2 font-medium transition-colors active:scale-[0.99] min-h-11 ${variants[variant]} ${sizeClasses[size]} ${className}`;
 }
 
 export function Button({

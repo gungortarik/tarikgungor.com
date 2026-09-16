@@ -146,24 +146,26 @@ If a requested design decision is unclear and would materially change the visual
 
 Current direction:
 
-**Systems, documented — Hybrid Editorial + Selective Technical Craft**
+**Public Field System — Index-led personal platform**
+
+Premium Pass (cream paper `#f3f1ec`, steel `#3d5a80`, Newsreader / Inter Tight, magazine-cover hero) is superseded. Do not restore it.
 
 Important characteristics:
-- warm paper surfaces (`#f3f1ec`) with rare depth band (`#0e0e0d`)
-- steel blue accent (`#3d5a80`) used sparingly — not teal kit, not badge flood
-- Newsreader (display) + Inter Tight (body) + IBM Plex Mono (meta)
-- evidence-led hero: magazine-cover split — type as masthead, real product UI as the first visual (not ThreeUI wallpaper)
-- homepage as ~6 editorial beats (not 9 identical card sections)
-- Lenis + intentional GSAP moments (hero clip, Sonoma clip reveal, Path scrub); ThreeUI is not used on the homepage
+- dual surfaces: cool graphite **field** (`#141413`) for orientation/index; cool stone **paper** (`#ebe8e2`) for reading
+- oxide accent (`#d4652f`) used sparingly — CTAs, active signals, focus rings
+- Bricolage Grotesque (display) + Source Sans 3 (body) + JetBrains Mono (meta/registry)
+- homepage IA: Masthead → Now → Work → Lab → Path → Connect (no résumé dump, no “Hi, I’m”)
+- Lab is first-class (IT / systems / experiments) beside software Work
+- navigation vocabulary: Index / Work / Lab / Path / Notes / Resume / Contact
+- evidence-led artifacts (real screenshots); default no cards; registry hairlines over rounded tiles
+- restrained motion only (orientation + evidence); respect `prefers-reduced-motion`; no ThreeUI wallpaper
 - Contact and Footer stay clean — no availability begging or co-op pills
-- Depth bands must use theme-stable `on-depth*` tokens — never `text-surface` / `bg-surface` for ink on depth (dark mode collapses those)
-- strong typography scale extremes; generous whitespace
+- Field/depth bands must use theme-stable `on-depth*` / on-field ink tokens — never `text-surface` / `bg-surface` for ink on field (theme collapse)
+- strong typography scale extremes; intentional sparsity on the homepage
 
 Current conceptual theme:
 
-**Crafted systems. Continuous learning.**
-
-Figma art direction reference: `tarikgungor.com — Premium Pass`
+**Building systems by day. Building tools for real problems. Documenting the path.**
 
 ## Asset situation
 
@@ -303,12 +305,12 @@ The site should feel intentionally art-directed at both desktop and mobile sizes
 
 ## Animation
 
-The redesign uses **Lenis** (smooth scroll) and **GSAP + ScrollTrigger** (hero clip, Sonoma clip reveal, Path scrub). ThreeUI is not used on the homepage.
+The redesign uses **Lenis** (smooth scroll, desktop only) and **GSAP + ScrollTrigger** (masthead reveal, Path continuum scrub, scroll progress). ThreeUI is not used on the homepage.
 
 Rules:
 - Respect `prefers-reduced-motion` — disable Lenis and GSAP moments when set.
 - Three.js components must use `dynamic import` with `ssr: false` for static export compatibility.
-- Do not wash full-bleed 3D behind hero content. The homepage cover is a real artifact, not ambient WebGL.
+- Do not wash full-bleed 3D behind hero content. The homepage opens on a field masthead, then evidence — not ambient WebGL.
 - Do not wrap every section in generic fade-up reveals — motion must be editorial.
 - Never use animation to compensate for weak content or weak composition.
 
