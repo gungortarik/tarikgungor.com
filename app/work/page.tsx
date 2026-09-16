@@ -34,14 +34,17 @@ export default function WorkPage() {
               key={project.slug}
               className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pb-16 border-b border-surface-border last:border-b-0 last:pb-0"
             >
-              {project.image && (
+              {project.cover && (
                 <div className="lg:col-span-7">
-                  <div className="relative aspect-[16/10] overflow-hidden border border-surface-border bg-surface-muted">
+                  <div
+                    style={{ aspectRatio: `${project.cover.width} / ${project.cover.height}` }}
+                    className="relative overflow-hidden border border-surface-border bg-surface-muted"
+                  >
                     <Image
-                      src={project.image}
-                      alt={`${project.name} preview`}
+                      src={project.cover.src}
+                      alt={project.cover.alt}
                       fill
-                      className="object-contain object-center"
+                      className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 60vw"
                     />
                   </div>

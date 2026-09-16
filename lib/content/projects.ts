@@ -1,3 +1,5 @@
+import { screenshots, type Screenshot } from "@/lib/content/screenshots";
+
 export type ProjectStatus = "in-progress" | "paused" | "completed" | "private";
 
 export interface Project {
@@ -9,7 +11,7 @@ export interface Project {
   status: ProjectStatus;
   featured: boolean;
   href?: string;
-  image?: string;
+  cover?: Screenshot;
   github?: string;
   liveUrl?: string;
   external?: boolean;
@@ -26,20 +28,20 @@ export const projects: Project[] = [
     status: "in-progress",
     featured: true,
     href: "/work/sonoma",
-    image: "/assets/projects/sonoma-dashboard.png",
+    cover: screenshots.sonomaLanding,
   },
   {
     slug: "certforge",
     name: "CertForge",
     tagline: "CCNA & Network+ study platform",
     description:
-      "Objective-aligned practice, live network simulations, and review loops for Cisco CCNA and CompTIA Network+. Live preview while it keeps evolving.",
+      "Objective-aligned practice with real device output, a subnet and CIDR lab, and review loops for Cisco CCNA and CompTIA Network+. Live preview while it keeps evolving.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     status: "in-progress",
     featured: true,
     href: "/work/certforge",
     liveUrl: "https://certforge-chi.vercel.app",
-    image: "/assets/projects/certforge-ospf.png",
+    cover: screenshots.certforgeLanding,
     github: "https://github.com/gungortarik/certforge",
   },
 ];

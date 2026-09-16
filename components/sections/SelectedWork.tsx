@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/Button";
 import { ProjectScreens } from "@/components/ui/ProjectScreens";
 import { projects } from "@/lib/content/projects";
+import { screenshots } from "@/lib/content/screenshots";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -63,8 +64,8 @@ export function SelectedWork() {
               name="Sonoma"
               depth
               screens={[
+                { label: "Landing", ...screenshots.sonomaLanding },
                 { label: "Dashboard", ...screenshots.sonomaDashboard },
-                { label: "Overview", ...screenshots.sonomaLanding },
               ]}
             />
             <div className="lg:pt-2 pb-2">
@@ -92,7 +93,7 @@ export function SelectedWork() {
             <h3 className="font-serif text-[38px] leading-tight">{certforge.name}</h3>
             <p className="mt-3 text-[18px]">{certforge.tagline}</p>
             <p className="mt-5 text-[15px] text-foreground-muted leading-[1.8] max-w-[30rem]">
-              I use it while I study. OSPF topology, a subnet dojo, and domain-mapped practice — public because the work is happening, not because it is finished.
+              I use it while I study. Questions carry real device output, the subnet lab does the bit math with you, and practice is mapped to exam domains — public because the work is happening, not because it is finished.
             </p>
             <div className="flex flex-wrap items-center gap-5 mt-7">
               <Button href={certforge.href!}>Read the study <span aria-hidden="true">↗</span></Button>
@@ -105,23 +106,10 @@ export function SelectedWork() {
           </div>
           <ProjectScreens
             name="CertForge"
-            bleed
             screens={[
-              {
-                label: "OSPF",
-                src: "/assets/projects/certforge-ospf.png",
-                alt: "CertForge live OSPF topology showing an MTU mismatch in EXSTART",
-              },
-              {
-                label: "Subnet lab",
-                src: "/assets/projects/certforge-subnet-lab.png",
-                alt: "CertForge subnet and CIDR mastery lab with binary deconstruction",
-              },
-              {
-                label: "Practice",
-                src: "/assets/projects/certforge-practice.png",
-                alt: "CertForge practice session setup for CCNA and Network+",
-              },
+              { label: "Landing", ...screenshots.certforgeLanding },
+              { label: "Subnet lab", ...screenshots.certforgeSubnetLab },
+              { label: "Practice", ...screenshots.certforgePractice },
             ]}
           />
         </div>

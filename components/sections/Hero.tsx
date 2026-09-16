@@ -6,6 +6,9 @@ import Link from "next/link";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/Button";
 import { profile } from "@/lib/content/profile";
+import { screenshots } from "@/lib/content/screenshots";
+
+const cover = screenshots.sonomaLanding;
 
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -54,7 +57,7 @@ export function Hero() {
   return (
     <section ref={rootRef} className="home-hero relative w-full overflow-hidden">
       <div className="grid lg:grid-cols-12 lg:min-h-[calc(100svh-76px)]">
-        <div className="lg:col-span-5 flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
+        <div className="lg:col-span-7 flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
           <div
             data-hero-part
             className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 mb-8 font-mono text-[11px] text-foreground-muted"
@@ -97,27 +100,28 @@ export function Hero() {
           </p>
         </div>
 
-        <div className="lg:col-span-7 bg-depth text-on-depth relative min-h-[52svh] sm:min-h-[58svh] lg:min-h-full">
+        <div className="lg:col-span-5 bg-depth text-on-depth flex items-center py-8 sm:px-8 sm:py-10 lg:px-10 lg:min-h-full">
           <Link
-            href="/work/certforge"
-            className="absolute inset-0 flex flex-col p-5 sm:p-8 lg:p-10"
-            aria-label="CertForge OSPF topology — open the case study"
+            href="/work/sonoma"
+            className="block w-full mx-auto sm:max-w-[520px] lg:max-w-[460px]"
+            aria-label="Sonoma landing — open the case study"
           >
             <div
               data-hero-media
-              className="relative flex-1 min-h-[280px] overflow-hidden border border-on-depth-border"
+              style={{ aspectRatio: `${cover.width} / ${cover.height}` }}
+              className="relative w-full overflow-hidden border-y sm:border border-on-depth-border bg-depth-elevated"
             >
               <Image
-                src="/assets/projects/certforge-ospf.png"
-                alt="CertForge live OSPF topology: two routers stuck in EXSTART from an MTU mismatch"
+                src={cover.src}
+                alt={cover.alt}
                 fill
                 priority
-                sizes="(max-width: 1023px) 100vw, 58vw"
-                className="object-contain object-center bg-depth-elevated"
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 520px, 460px"
+                className="object-cover"
               />
             </div>
-            <div className="flex items-start justify-between gap-4 mt-4 font-mono text-[11px] text-on-depth-muted">
-              <p>CertForge · OSPF topology · In progress · Live</p>
+            <div className="flex items-start justify-between gap-4 mt-4 px-5 sm:px-0 font-mono text-[11px] text-on-depth-muted">
+              <p>Sonoma · landing · Private · In progress</p>
               <span aria-hidden="true" className="text-on-depth">↗</span>
             </div>
           </Link>

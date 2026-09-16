@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
 import { ProjectScreens } from "@/components/ui/ProjectScreens";
+import { screenshots } from "@/lib/content/screenshots";
 import { sonomaCaseStudy } from "@/lib/content/sonoma";
 
 export const metadata: Metadata = {
@@ -56,10 +57,9 @@ export default function SonomaPage() {
             <ProjectScreens
               name="Sonoma"
               depth
-              bleed
               screens={[
-                { label: "Dashboard", src: sonomaCaseStudy.images.dashboard, alt: "Sonoma dashboard showing expenses and spending trends" },
-                { label: "Landing", src: sonomaCaseStudy.images.landing, alt: "Sonoma public landing page" },
+                { label: "Landing", ...screenshots.sonomaLanding },
+                { label: "Dashboard", ...screenshots.sonomaDashboard },
               ]}
             />
             <p className="max-w-[44rem] mt-8 text-[15px] sm:text-[17px] leading-[1.75] text-on-depth-muted">

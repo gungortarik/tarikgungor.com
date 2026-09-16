@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Signature } from "@/components/ui/Signature";
 import { profile } from "@/lib/content/profile";
 
 export function WhoIAm() {
@@ -12,7 +11,7 @@ export function WhoIAm() {
               03 / About
             </p>
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-9">
             <p className="font-serif text-[30px] sm:text-[38px] lg:text-[44px] text-foreground font-medium leading-[1.2] tracking-tight max-w-[820px] text-balance">
               {profile.aboutIntro}
             </p>
@@ -25,9 +24,6 @@ export function WhoIAm() {
             >
               Continue on About →
             </Link>
-          </div>
-          <div className="lg:col-span-2 lg:justify-self-end">
-            <Signature />
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
-import { Signature } from "@/components/ui/Signature";
 import { profile } from "@/lib/content/profile";
 
 export const metadata: Metadata = {
@@ -27,9 +26,6 @@ export default function ContactPage() {
             <p className="text-[16px] text-foreground-muted leading-[1.75] mt-6 max-w-[36rem]">
               Email is the cleanest way. LinkedIn and GitHub are there if you prefer.
             </p>
-            <div className="mt-8">
-              <Signature />
-            </div>
 
             <div className="mt-10 space-y-6">
               <div className="pt-6 border-t border-surface-border">

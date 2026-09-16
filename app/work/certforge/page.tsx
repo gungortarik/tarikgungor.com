@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
 import { ProjectScreens } from "@/components/ui/ProjectScreens";
 import { certforgeCaseStudy } from "@/lib/content/certforge";
+import { screenshots } from "@/lib/content/screenshots";
 
 export const metadata: Metadata = {
   title: "CertForge",
@@ -56,28 +57,10 @@ export default function CertForgePage() {
             <ProjectScreens
               name="CertForge"
               depth
-              bleed
               screens={[
-                {
-                  label: "OSPF",
-                  src: certforgeCaseStudy.images.ospf,
-                  alt: "CertForge live OSPF topology showing an MTU mismatch stuck in EXSTART",
-                },
-                {
-                  label: "Subnet lab",
-                  src: certforgeCaseStudy.images.subnetLab,
-                  alt: "CertForge subnet and CIDR mastery lab",
-                },
-                {
-                  label: "CIDR matrix",
-                  src: certforgeCaseStudy.images.subnetMatrix,
-                  alt: "CertForge interactive CIDR IPv4 partition",
-                },
-                {
-                  label: "Practice",
-                  src: certforgeCaseStudy.images.practice,
-                  alt: "CertForge practice session setup for CCNA and Network+",
-                },
+                { label: "Landing", ...screenshots.certforgeLanding },
+                { label: "Subnet lab", ...screenshots.certforgeSubnetLab },
+                { label: "Practice", ...screenshots.certforgePractice },
               ]}
             />
             <p className="max-w-[44rem] mt-8 text-[15px] sm:text-[17px] leading-[1.75] text-on-depth-muted">

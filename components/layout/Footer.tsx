@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Signature } from "@/components/ui/Signature";
 import { profile } from "@/lib/content/profile";
 
 export function Footer() {
@@ -18,7 +17,6 @@ export function Footer() {
                 className="w-[156px] h-auto object-contain dark:invert"
               />
             </Link>
-            <Signature />
             <p className="text-sm text-foreground-muted max-w-[320px] leading-relaxed">
               {profile.tagline}
             </p>

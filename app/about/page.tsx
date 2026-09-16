@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { PageShell } from "@/components/ui/PageShell";
-import { Signature } from "@/components/ui/Signature";
 import { educationList, labProjects } from "@/lib/content/experience";
 import { profile } from "@/lib/content/profile";
 
@@ -32,9 +31,7 @@ export default function AboutPage() {
         </div>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 mt-12">
-          <div className="lg:col-span-3">
-            <Signature />
-          </div>
+          <div className="lg:col-span-3" aria-hidden="true" />
           <div className="lg:col-span-7 space-y-6">
             {profile.aboutBody.map((paragraph) => (
               <p key={paragraph} className="text-[16px] text-foreground-muted leading-[1.75]">
