@@ -1,35 +1,25 @@
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 import { profile } from "@/lib/content/profile";
 
 export function ContactCTA() {
   return (
-    <section id="contact" className="w-full bg-depth text-on-depth py-24 sm:py-28 lg:py-32">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-3">
-            <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-on-depth-subtle">
-              06 / Contact
-            </p>
-          </div>
-          <div className="lg:col-span-8">
-            <h2 className="font-serif text-[40px] sm:text-[52px] lg:text-[56px] text-on-depth font-medium leading-[1.05] tracking-[-0.02em] max-w-[16ch]">
-              {profile.contactIntro}
-            </h2>
-            <a
-              href={`mailto:${profile.contact.email}`}
-              className="inline-block text-[18px] sm:text-[20px] text-on-depth-muted mt-8 hover:text-on-depth transition-colors"
-            >
-              {profile.contact.email}
-            </a>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-12">
-              <Button href={`mailto:${profile.contact.email}`} external tone="depth">
-                Email
-              </Button>
-              <Button href="/resume" variant="ghost" tone="depth">
-                Resume →
-              </Button>
-            </div>
-          </div>
+    <section id="contact" className="bg-depth text-on-depth">
+      <div className="px-5 sm:px-7 lg:px-8 py-14 sm:py-16">
+        <p className="home-folio text-on-depth-subtle">Contact</p>
+        <h2 className="home-quote text-on-depth mt-5 max-w-[20rem]">{profile.contactIntro}</h2>
+        <a
+          href={`mailto:${profile.contact.email}`}
+          className="home-email mt-6 inline-block text-on-depth hover:text-on-depth-muted transition-colors break-all"
+        >
+          {profile.contact.email}
+        </a>
+        <div className="mt-8 home-folio flex flex-wrap gap-x-6 gap-y-2">
+          <a href={`mailto:${profile.contact.email}`} className="text-on-depth-muted hover:text-on-depth py-1">
+            Email
+          </a>
+          <Link href="/resume" className="text-on-depth-muted hover:text-on-depth py-1">
+            Resume ↗
+          </Link>
         </div>
       </div>
     </section>

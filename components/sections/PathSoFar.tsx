@@ -16,63 +16,41 @@ export function PathSoFar() {
     const progress = progressRef.current;
     if (!section || !progress) return;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
-      gsap.set(progress, { scaleX: 1 });
-      return;
-    }
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ctx = gsap.context(() => {
+      if (reduced) {
+        gsap.set(progress, { scaleX: 1 });
+        return;
+      }
+      gsap.set(progress, { scaleX: 0, transformOrigin: "left center" });
+      gsap.to(progress, {
+        scaleX: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          end: "bottom 50%",
+          scrub: 0.6,
+        },
+      });
+    }, section);
 
-    gsap.set(progress, { scaleX: 0, transformOrigin: "left center" });
-
-    const tween = gsap.to(progress, {
-      scaleX: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 70%",
-        end: "bottom 40%",
-        scrub: 0.6,
-      },
-    });
-
-    const items = section.querySelectorAll<HTMLElement>("[data-path-item]");
-    gsap.set(items, { opacity: 0.35 });
-
-    const itemTween = gsap.to(items, {
-      opacity: 1,
-      stagger: 0.15,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 65%",
-        end: "center 40%",
-        scrub: 0.5,
-      },
-    });
-
-    return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
-      itemTween.scrollTrigger?.kill();
-      itemTween.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="path"
-      className="w-full bg-surface-muted/40 border-y border-surface-border py-24 sm:py-28 lg:py-32"
+      className="bg-surface-muted/40 border-y border-surface-border"
     >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
-        <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-foreground-muted">
-          05 / Path
-        </p>
-        <h2 className="font-serif text-[28px] sm:text-[34px] lg:text-[40px] text-foreground font-medium leading-[1.2] tracking-tight mt-4 max-w-[620px]">
+      <div className="px-5 sm:px-7 lg:px-8 py-12 sm:py-16">
+        <p className="home-folio text-foreground-muted">Path</p>
+        <h2 className="home-quote mt-5 max-w-[28rem]">
           Not a perfect roadmap. Just the path that actually happened.
         </h2>
 
-        <div className="relative mt-12 pt-1">
+        <div className="relative mt-10 pt-1">
           <div className="absolute top-0 left-0 right-0 h-px bg-surface-border" aria-hidden="true" />
           <div
             ref={progressRef}
@@ -82,13 +60,11 @@ export function PathSoFar() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
             {milestones.map((milestone) => (
-              <div key={`${milestone.year}-${milestone.title}`} data-path-item className="relative">
-                <span
-                  className="absolute -top-[37px] left-0 w-2 h-2 rounded-full bg-accent"
-                  aria-hidden="true"
-                />
-                <span className="text-[11px] font-mono text-foreground-muted">{milestone.year}</span>
-                <h3 className="font-serif text-[18px] text-foreground mt-2">{milestone.title}</h3>
+              <div key={`${milestone.year}-${milestone.title}`}>
+                <span className="font-serif text-[22px] leading-none tracking-[-0.03em]">
+                  {milestone.year}
+                </span>
+                <h3 className="text-[15px] mt-3 leading-snug">{milestone.title}</h3>
                 <p className="text-[13px] text-foreground-muted leading-relaxed mt-2">
                   {milestone.description}
                 </p>

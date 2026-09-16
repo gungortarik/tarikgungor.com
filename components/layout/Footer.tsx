@@ -5,7 +5,7 @@ import { profile } from "@/lib/content/profile";
 export function Footer() {
   return (
     <footer className="w-full border-t border-surface-border bg-surface py-14 sm:py-16">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
+      <div className="px-5 sm:px-7 lg:px-8">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           <div className="flex flex-col gap-5">
             <Link href="/" className="hover:opacity-80 transition-opacity" aria-label="Tarik Gungor Home">

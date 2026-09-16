@@ -1,81 +1,55 @@
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 import { educationList, experiences, labProjects } from "@/lib/content/experience";
 
 export function ExperienceSnapshot() {
   return (
-    <section
-      id="experience"
-      className="w-full border-t border-surface-border py-24 sm:py-28 lg:py-32"
-    >
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-12 lg:mb-14">
-          <div className="lg:col-span-3">
-            <p className="text-[11px] font-mono font-medium tracking-[0.2em] uppercase text-foreground-muted">
-              04 / Practice
-            </p>
-          </div>
-          <div className="lg:col-span-7">
-            <h2 className="font-serif text-[32px] sm:text-[40px] lg:text-[44px] text-foreground font-medium leading-[1.12] tracking-tight">
-              The day job under the craft.
-            </h2>
-            <p className="text-[15px] text-foreground-muted leading-[1.75] mt-4 max-w-[34rem]">
-              IT support across hybrid environments — the practical base under school and the software I build.
-            </p>
-          </div>
-          <div className="lg:col-span-2 lg:flex lg:justify-end lg:items-start">
-            <Button href="/resume" size="sm" variant="secondary">
-              Full resume →
-            </Button>
-          </div>
+    <section id="experience" className="border-t border-surface-border">
+      <div className="px-5 sm:px-7 lg:px-8 py-12 sm:py-16">
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="home-folio text-foreground-muted">Practice</p>
+          <Link href="/resume" className="home-folio text-foreground-muted hover:text-foreground py-1">
+            Full resume ↗
+          </Link>
         </div>
 
-        <ol className="border-t border-surface-border">
-          {experiences.map((exp, index) => (
+        <ol className="mt-8">
+          {experiences.map((exp) => (
             <li
               key={exp.company}
-              className="grid grid-cols-[2.5rem_1fr] sm:grid-cols-[3rem_1fr_auto] gap-x-4 gap-y-1 border-b border-surface-border py-6"
+              className="grid grid-cols-1 sm:grid-cols-12 gap-x-6 gap-y-1 border-t border-surface-border py-5"
             >
-              <span className="font-mono text-[11px] text-foreground-muted pt-1">
-                0{index + 1}
-              </span>
-              <div>
-                <h3 className="font-serif text-[22px] sm:text-[24px] text-foreground leading-tight">
-                  {exp.company}
-                </h3>
-                <p className="text-sm text-foreground-muted mt-1 leading-relaxed">{exp.role}</p>
+              <h3 className="sm:col-span-5 font-serif text-[17px] sm:text-[18px] leading-snug font-medium tracking-[-0.02em]">
+                {exp.company}
+              </h3>
+              <div className="sm:col-span-5">
+                <p className="text-[14px] text-foreground-muted leading-snug">{exp.role}</p>
+                <p className="home-folio text-foreground-subtle mt-1">{exp.location}</p>
               </div>
-              <p className="font-mono text-[11px] text-foreground-subtle sm:text-right sm:pt-2 col-start-2 sm:col-start-auto">
+              <p className="sm:col-span-2 home-folio text-foreground-subtle sm:text-right sm:pt-1">
                 {exp.period}
               </p>
             </li>
           ))}
         </ol>
 
-        <div className="grid lg:grid-cols-12 gap-10 mt-14">
-          <div className="lg:col-span-5 border-t border-surface-border pt-6">
-            <p className="font-mono text-[11px] text-foreground-muted mb-4">Currently</p>
-            <ul className="space-y-4">
-              <li>
-                <p className="font-serif text-[20px] text-foreground">{educationList[0]?.program}</p>
-                <p className="text-[13px] text-foreground-muted mt-1">
-                  {educationList[0]?.institution} · {educationList[0]?.period}
-                </p>
-              </li>
-              <li>
-                <p className="font-serif text-[20px] text-foreground">Network+ · CCNA · Security+</p>
-                <p className="text-[13px] text-foreground-muted mt-1">
-                  Network+ and CCNA in progress; Security+ planned.
-                </p>
-              </li>
-            </ul>
+        <div className="grid lg:grid-cols-12 gap-10 mt-2 border-t border-surface-border pt-8">
+          <div className="lg:col-span-5">
+            <p className="home-folio text-foreground-muted mb-4">Currently</p>
+            <p className="font-serif text-[16px] leading-snug">{educationList[0]?.program}</p>
+            <p className="text-[13px] text-foreground-muted mt-2">
+              {educationList[0]?.institution} · {educationList[0]?.period}
+            </p>
+            <p className="font-serif text-[16px] leading-snug mt-6">Network+ · CCNA · Security+</p>
+            <p className="text-[13px] text-foreground-muted mt-2">
+              Network+ and CCNA in progress; Security+ planned.
+            </p>
           </div>
-          <div className="lg:col-span-7 border-t border-surface-border pt-6">
-            <p className="font-mono text-[11px] text-foreground-muted mb-4">Labs</p>
-            <ol className="grid sm:grid-cols-2 gap-x-8">
-              {labProjects.map((lab, index) => (
-                <li key={lab.title} className="border-b border-surface-border py-4">
-                  <span className="font-mono text-[11px] text-foreground-subtle">0{index + 1}</span>
-                  <h3 className="font-serif text-[17px] text-foreground mt-1 leading-snug">{lab.title}</h3>
+          <div className="lg:col-span-7">
+            <p className="home-folio text-foreground-muted mb-4">Labs</p>
+            <ol>
+              {labProjects.map((lab) => (
+                <li key={lab.title} className="border-t border-surface-border py-3">
+                  <h3 className="text-[14px] sm:text-[15px] leading-snug">{lab.title}</h3>
                 </li>
               ))}
             </ol>

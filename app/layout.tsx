@@ -87,7 +87,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-surface text-foreground font-sans antialiased min-h-screen">
+      <body className="font-sans antialiased min-h-screen">
         <ThemeProvider>
           <SmoothScroll>{children}</SmoothScroll>
         </ThemeProvider>

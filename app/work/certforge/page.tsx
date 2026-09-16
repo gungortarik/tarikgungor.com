@@ -59,6 +59,7 @@ export default function CertForgePage() {
               depth
               screens={[
                 { label: "Landing", ...screenshots.certforgeLanding },
+                { label: "Study desk", ...screenshots.certforgeDashboard },
                 { label: "Subnet lab", ...screenshots.certforgeSubnetLab },
                 { label: "Practice", ...screenshots.certforgePractice },
               ]}

@@ -23,22 +23,28 @@ export const screenshots = {
     width: 1664,
     height: 929,
   },
-  certforgeSubnetLab: {
-    src: "/assets/projects/certforge-subnet-lab.png",
-    alt: "CertForge Subnet & CIDR Mastery Lab showing 32-bit binary deconstruction and the computed subnet boundary",
+  certforgeLanding: {
+    src: "/assets/projects/certforge-landing.png",
+    alt: "CertForge landing page — exam-ready practice for CCNA and Network+",
+    width: 3328,
+    height: 2082,
+  },
+  certforgeDashboard: {
+    src: "/assets/projects/certforge-dashboard.png",
+    alt: "CertForge study desk dashboard with accuracy, review queue, and domain map",
     width: 3328,
     height: 2082,
   },
   certforgePractice: {
     src: "/assets/projects/certforge-practice.png",
-    alt: "CertForge practice session setup for CCNA and Network+ domains",
+    alt: "CertForge custom practice session builder for CCNA and Network+",
     width: 3328,
-    height: 1858,
+    height: 2082,
   },
-  certforgeLanding: {
-    src: "/assets/projects/certforge-landing.png",
-    alt: "CertForge landing page — exam-ready practice for CCNA and Network+",
-    width: 1664,
-    height: 929,
+  certforgeSubnetLab: {
+    src: "/assets/projects/certforge-subnet-lab.png",
+    alt: "CertForge Subnet & CIDR Mastery Lab showing 32-bit binary deconstruction",
+    width: 3328,
+    height: 2082,
   },
 } satisfies Record<string, Screenshot>;

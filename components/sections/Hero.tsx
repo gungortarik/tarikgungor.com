@@ -1,122 +1,81 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { gsap } from "gsap";
-import { Button } from "@/components/ui/Button";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { WorkPlate } from "@/components/ui/WorkPlate";
 import { profile } from "@/lib/content/profile";
+import { projects } from "@/lib/content/projects";
+import { screenshots } from "@/lib/content/screenshots";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Hero() {
   const rootRef = useRef<HTMLElement>(null);
+  const sonoma = projects.find((p) => p.slug === "sonoma");
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const parts = root.querySelectorAll<HTMLElement>("[data-hero-part]");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const media = root.querySelector<HTMLElement>("[data-hero-media]");
-
-    if (prefersReducedMotion) {
-      gsap.set(parts, { opacity: 1, y: 0 });
-      if (media) gsap.set(media, { clipPath: "inset(0% 0% 0% 0%)" });
-      return;
-    }
-
-    gsap.set(parts, { opacity: 0, y: 24 });
-    if (media) gsap.set(media, { clipPath: "inset(10% 12% 0% 0%)" });
-
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-    tl.to(parts, {
-      opacity: 1,
-      y: 0,
-      duration: 0.85,
-      stagger: 0.08,
-    });
-    if (media) {
-      tl.to(
+    const ctx = gsap.context(() => {
+      if (reduced || !media) return;
+      gsap.fromTo(
         media,
+        { clipPath: "inset(10% 0% 0% 0%)" },
         {
           clipPath: "inset(0% 0% 0% 0%)",
-          duration: 1.15,
-          ease: "power3.out",
-        },
-        "-=0.55"
+          ease: "none",
+          scrollTrigger: {
+            trigger: media,
+            start: "top 88%",
+            end: "top 48%",
+            scrub: 0.7,
+          },
+        }
       );
-    }
+    }, root);
 
-    return () => {
-      tl.kill();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={rootRef} className="home-hero relative w-full overflow-hidden">
-      <div className="grid lg:grid-cols-12 lg:min-h-[calc(100svh-76px)]">
-        <div className="lg:col-span-7 bg-surface text-foreground flex flex-col justify-center max-w-[1280px] lg:max-w-none w-full mx-auto px-6 sm:px-8 lg:px-10 pt-10 sm:pt-14 pb-10 lg:py-16">
-          <div
-            data-hero-part
-            className="flex items-center justify-between gap-6 border-b border-surface-border pb-5 mb-8 font-mono text-[11px] text-foreground-muted"
-          >
-            <span>01 / A life in progress</span>
-            <span>{profile.location}</span>
-          </div>
-
-          <p data-hero-part className="text-[14px] font-mono text-accent mb-5">
-            {profile.name}
-          </p>
-
-          <h1 data-hero-part className="hero-title font-serif text-foreground font-medium">
-            Crafted systems.
-            <br />
-            <span className="text-accent italic">Continuous learning.</span>
-          </h1>
-
-          <p
-            data-hero-part
-            className="text-[16px] sm:text-[17px] text-foreground-muted leading-[1.7] mt-6 max-w-[32rem]"
-          >
-            {profile.positioning}
-          </p>
-
-          <div data-hero-part className="flex flex-wrap items-center gap-5 mt-7">
-            <Button href="#work">
-              Explore the work <span aria-hidden="true">↘</span>
-            </Button>
-            <Button href="/about" variant="ghost">
-              About →
-            </Button>
-          </div>
-
-          <p
-            data-hero-part
-            className="font-mono text-[11px] text-foreground-muted mt-10 pt-5 border-t border-surface-border"
-          >
-            Building Sonoma &amp; CertForge · Learning at George Brown · Documenting the path
-          </p>
-        </div>
-
-        <div className="lg:col-span-5 bg-depth text-on-depth flex items-center justify-center border-t lg:border-t-0 lg:border-l border-on-depth-border py-14 sm:py-16 lg:py-10 lg:min-h-full px-6 sm:px-8 lg:px-10">
-          {/* Portrait slot: cream mat stays theme-stable; swap brand for a real photo later */}
-          <div
-            data-hero-media
-            className="relative w-full max-w-[360px] sm:max-w-[400px] aspect-[4/5] overflow-hidden bg-on-depth text-on-depth-fill-fg flex flex-col items-center justify-center gap-8 px-8"
-            aria-label={`${profile.name} brand mark — portrait placeholder`}
-          >
-            <Image
-              src="/assets/logos/tarik-gungor-monogram.svg"
-              alt=""
-              width={160}
-              height={134}
-              priority
-              className="w-[7.5rem] sm:w-[9rem] h-auto"
-            />
-            <p className="font-serif text-[20px] sm:text-[24px] tracking-[0.16em] uppercase text-on-depth-fill-fg text-center">
-              {profile.name}
-            </p>
-          </div>
-        </div>
+    <section ref={rootRef} className="px-5 sm:px-7 lg:px-8 pt-8 sm:pt-10 pb-10 sm:pb-12">
+      <div className="home-folio flex items-baseline justify-between gap-4 text-foreground-muted">
+        <span>{profile.location}</span>
+        <Link href="#work" className="hover:text-foreground py-1">
+          Work ↓
+        </Link>
       </div>
+
+      <h1 className="home-display mt-6">
+        Crafted systems.{" "}
+        <span className="home-display-sub">Continuous learning.</span>
+      </h1>
+
+      <p className="mt-4 text-[14px] sm:text-[15px] leading-[1.65] text-foreground-muted max-w-[34rem]">
+        {profile.positioning}
+      </p>
+
+      <div data-hero-media className="mt-8 border border-surface-border overflow-hidden">
+        <WorkPlate shot={screenshots.sonomaLanding} flush priority sizes="100vw" />
+      </div>
+
+      {sonoma ? (
+        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 text-[12px] text-foreground-muted">
+          <span>
+            {sonoma.name} — {sonoma.tagline}
+          </span>
+          {sonoma.href ? (
+            <Link href={sonoma.href} className="home-folio hover:text-foreground py-1">
+              Case study ↗
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
     </section>
   );
 }

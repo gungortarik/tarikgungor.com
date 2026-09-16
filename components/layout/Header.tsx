@@ -12,8 +12,8 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-surface-border/80 bg-surface/85 backdrop-blur-md">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 flex items-center justify-between h-[68px] sm:h-[76px]">
+    <header className="sticky top-0 z-40 w-full border-b border-surface-border/70 bg-surface/92 backdrop-blur-md">
+      <div className="px-5 sm:px-7 lg:px-8 flex items-center justify-between h-[var(--header-h)]">
         <Link
           href="/"
           className="flex items-center gap-3 hover:opacity-80 transition-opacity shrink-0"
@@ -24,10 +24,10 @@ export function Header() {
             alt=""
             width={44}
             height={37}
-            className="w-9 sm:w-10 h-auto dark:invert"
+            className="w-7 sm:w-8 h-auto dark:invert"
             priority
           />
-          <span className="text-[17px] sm:text-[19px] font-semibold tracking-[-0.02em]">
+          <span className="text-[14px] sm:text-[15px] font-semibold tracking-[-0.02em]">
             Tarik Gungor
           </span>
         </Link>
@@ -39,7 +39,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-3.5 py-2 text-[13px] font-medium tracking-tight transition-colors ${
+                className={`relative px-2.5 py-1.5 text-[12px] font-medium tracking-tight transition-colors ${
                   isActive
                     ? "text-foreground"
                     : "text-foreground-muted hover:text-foreground"
