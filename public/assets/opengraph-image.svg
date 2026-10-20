@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <style>
+      .bg { fill: #0a0a0a; }
+      .border { stroke: #262624; stroke-width: 1; fill: none; }
+      .text-title { fill: #f2f2ee; font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 700; }
+      .text-sub { fill: #a2a29a; font-family: 'Inter', -apple-system, sans-serif; font-size: 24px; }
+      .text-mono { fill: #8c8c85; font-family: 'IBM Plex Mono', monospace; font-size: 15px; }
+      .orange { fill: #ff3b00; }
+      .grid-line { stroke: #181816; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" class="bg" />
+
+  <!-- Blueprint Grid -->
+  <line x1="80" y1="0" x2="80" y2="630" class="grid-line" />
+  <line x1="1120" y1="0" x2="1120" y2="630" class="grid-line" />
+  <line x1="0" y1="80" x2="1200" y2="80" class="grid-line" />
+  <line x1="0" y1="550" x2="1200" y2="550" class="grid-line" />
+
+  <!-- Outer Border Frame -->
+  <rect x="80" y="80" width="1040" height="470" class="border" />
+
+  <!-- Header Specification Strip -->
+  <g transform="translate(120, 130)">
+    <circle cx="6" cy="6" r="6" class="orange" />
+    <text x="24" y="12" class="text-mono" font-weight="600" letter-spacing="2">FIELD SPECIFICATION // TARIK GUNGOR</text>
+    <text x="750" y="12" class="text-mono">TORONTO, ON [43.65°N, 79.38°W]</text>
+  </g>
+
+  <!-- Big Headline Statement -->
+  <g transform="translate(120, 240)">
+    <text x="0" y="0" class="text-title" font-size="64" letter-spacing="-1.5">BUILDING SYSTEMS.</text>
+    <text x="0" y="70" class="text-title" font-size="64" fill="#66665f" letter-spacing="-1.5">LEARNING CONTINUOUSLY.</text>
+    <text x="0" y="140" class="text-title" font-size="64" letter-spacing="-1.5">
+      <tspan fill="#ff3b00">LIVING</tspan> INTENTIONALLY.
+    </text>
+  </g>
+
+  <!-- Bottom Metric Ledger -->
+  <g transform="translate(120, 480)">
+    <text x="0" y="0" class="text-mono" font-size="14">SYSTEMS &amp; NETWORK INFRASTRUCTURE</text>
+    <text x="0" y="24" class="text-sub" font-size="18" fill="#f2f2ee">60+ Hybrid Endpoints · 07 Enterprise Labs · Sonoma &amp; CertForge</text>
+
+    <text x="750" y="0" class="text-mono" font-size="14">CANONICAL SITE</text>
+    <text x="750" y="24" class="text-mono" font-size="16" fill="#ff3b00" font-weight="600">tarikgungor.com →</text>
+  </g>
+
+  <!-- Crosshair Accent Marks -->
+  <text x="75" y="75" class="orange" font-family="'IBM Plex Mono', monospace" font-size="14">+</text>
+  <text x="1115" y="75" class="orange" font-family="'IBM Plex Mono', monospace" font-size="14">+</text>
+  <text x="75" y="555" class="orange" font-family="'IBM Plex Mono', monospace" font-size="14">+</text>
+  <text x="1115" y="555" class="orange" font-family="'IBM Plex Mono', monospace" font-size="14">+</text>
+</svg>

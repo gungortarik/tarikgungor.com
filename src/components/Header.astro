@@ -1,0 +1,224 @@
+---
+import { siteContent } from '../data/siteContent';
+
+interface Props {
+  variant?: 'home' | 'resume';
+}
+
+const { variant = 'home' } = Astro.props;
+---
+
+<header
+  class="sticky top-0 z-40 w-full border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)]/92 backdrop-blur-md print:hidden"
+>
+  <div class="max-w-[1600px] mx-auto grid grid-cols-12 items-stretch min-h-[54px] text-xs font-mono-spec">
+    <!-- Cell 1: Identity & Monogram (Cols 1-4 on mobile, 1-3 on desktop) -->
+    <div
+      class="col-span-7 sm:col-span-5 lg:col-span-3 flex items-center justify-between px-4 sm:px-6 border-r border-[var(--rule-hairline)]"
+    >
+      <a
+        href="/"
+        aria-label="Tarik Gungor Home"
+        class="flex items-center gap-3 hover:opacity-75 transition-opacity"
+      >
+        <img
+          src="/assets/logos/tarik-gungor-monogram.svg"
+          alt="Tarik Gungor monogram"
+          width="46"
+          height="38"
+          fetchpriority="high"
+          class="w-[40px] sm:w-[44px] h-auto shrink-0 dark:invert"
+        />
+        <div class="flex flex-col leading-none">
+          <span class="font-display font-bold text-[13px] tracking-tight text-[var(--text-primary)] uppercase">
+            Tarik Gungor
+          </span>
+          <span class="text-[9.5px] text-[var(--text-muted)] tracking-widest mt-0.5">
+            SYS.ENG // TORONTO
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Cell 2: Coordinates & Live Clock (Hidden on mobile, Cols 4-5 on xl) -->
+    <div
+      class="hidden xl:flex xl:col-span-2 items-center justify-between px-5 border-r border-[var(--rule-hairline)] text-[10.5px] text-[var(--text-muted)]"
+    >
+      <span>{siteContent.meta.coordinates.lat}</span>
+      <span class="text-[var(--text-primary)] font-medium" data-toronto-clock>--:--:-- TOR</span>
+    </div>
+
+    <!-- Cell 3: Numbered Index Navigation (Cols 6-10 on lg) -->
+    <nav
+      aria-label="Site Index"
+      class="hidden lg:flex lg:col-span-6 xl:col-span-5 items-center justify-between px-6 border-r border-[var(--rule-hairline)] text-[11px]"
+    >
+      {
+        variant === 'home' ? (
+          <>
+            <a
+              href="#right-now"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--text-muted)] mr-1">01/</span>NOW
+            </a>
+            <a
+              href="#projects"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--text-muted)] mr-1">02/</span>WORK
+            </a>
+            <a
+              href="#labs-showcase"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--text-muted)] mr-1">03/</span>LABS
+            </a>
+            <a
+              href="#notes"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--text-muted)] mr-1">04/</span>ESSAYS
+            </a>
+            <a
+              href="#path"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--text-muted)] mr-1">05/</span>LEDGER
+            </a>
+            <a
+              href="/resume"
+              class="py-1 font-semibold text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors"
+            >
+              <span class="text-[var(--signal)] mr-1">→</span>CV
+            </a>
+          </>
+        ) : (
+          <>
+            <a
+              href="/"
+              class="py-1 font-semibold text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors"
+            >
+              ← INDEX
+            </a>
+            <a
+              href="#summary"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              01/SUMMARY
+            </a>
+            <a
+              href="#skills"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              02/SKILLS
+            </a>
+            <a
+              href="#experience"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              03/EXPERIENCE
+            </a>
+            <a
+              href="#labs"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              04/LABS
+            </a>
+            <a
+              href="#education"
+              class="py-1 text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors"
+            >
+              05/EDUCATION
+            </a>
+          </>
+        )
+      }
+    </nav>
+
+    <!-- Cell 4: Controls (Command Shell, Theme Switch, Scroll Meter) -->
+    <div
+      class="col-span-5 sm:col-span-7 lg:col-span-3 xl:col-span-2 flex items-center justify-end divide-x divide-[var(--rule-hairline)]"
+    >
+      <button
+        type="button"
+        data-open-command
+        aria-label="Open command shell"
+        class="h-full px-3.5 sm:px-4 flex items-center gap-2 text-[10.5px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-panel)] transition-colors cursor-pointer"
+      >
+        <span>CMD</span>
+        <kbd class="text-[9.5px] text-[var(--signal)] font-semibold">⌘K</kbd>
+      </button>
+
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Switch color scheme"
+        class="h-full px-3.5 sm:px-4 flex items-center gap-1.5 text-[10.5px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-panel)] transition-colors cursor-pointer"
+      >
+        <span class="w-2 h-2 bg-[var(--signal)] inline-block"></span>
+        <span data-theme-label>LIGHT</span>
+      </button>
+
+      <div
+        class="hidden sm:flex h-full px-3.5 items-center justify-center text-[10.5px] text-[var(--text-muted)] select-none min-w-[54px]"
+        aria-hidden="true"
+      >
+        <span data-scroll-pct>000%</span>
+      </div>
+
+      <!-- Mobile Drawer Button -->
+      <button
+        type="button"
+        id="mobile-menu-trigger"
+        class="lg:hidden h-full px-4 flex items-center justify-center text-[10.5px] font-semibold uppercase text-[var(--text-primary)] cursor-pointer"
+        aria-label="Toggle navigation drawer"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+      >
+        MENU
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Architectural Drawer -->
+  <div
+    id="mobile-nav-drawer"
+    class="hidden lg:hidden border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] divide-y divide-[var(--rule-hairline)] font-mono-spec text-xs"
+  >
+    <div class="grid grid-cols-2 divide-x divide-[var(--rule-hairline)]">
+      <a href="/#right-now" class="p-4 hover:bg-[var(--bg-panel)]">01 / NOW</a>
+      <a href="/#projects" class="p-4 hover:bg-[var(--bg-panel)]">02 / WORK</a>
+    </div>
+    <div class="grid grid-cols-2 divide-x divide-[var(--rule-hairline)]">
+      <a href="/#labs-showcase" class="p-4 hover:bg-[var(--bg-panel)]">03 / LABS</a>
+      <a href="/#notes" class="p-4 hover:bg-[var(--bg-panel)]">04 / ESSAYS</a>
+    </div>
+    <div class="grid grid-cols-2 divide-x divide-[var(--rule-hairline)]">
+      <a href="/#path" class="p-4 hover:bg-[var(--bg-panel)]">05 / LEDGER</a>
+      <a href="/resume" class="p-4 font-semibold text-[var(--signal)] hover:bg-[var(--bg-panel)]">
+        06 / RESUME →
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileTrigger = document.getElementById('mobile-menu-trigger');
+  const mobileDrawer = document.getElementById('mobile-nav-drawer');
+
+  mobileTrigger?.addEventListener('click', () => {
+    if (!mobileDrawer) return;
+    const isHidden = mobileDrawer.classList.toggle('hidden');
+    mobileTrigger.setAttribute('aria-expanded', String(!isHidden));
+    mobileTrigger.textContent = isHidden ? 'MENU' : 'CLOSE';
+  });
+
+  mobileDrawer?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileDrawer.classList.add('hidden');
+      mobileTrigger?.setAttribute('aria-expanded', 'false');
+      if (mobileTrigger) mobileTrigger.textContent = 'MENU';
+    });
+  });
+</script>

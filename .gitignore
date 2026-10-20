@@ -1,22 +1,7 @@
-# Dependencies
 node_modules/
-
-# Next.js
+dist/
+.astro/
+.DS_Store
+*.log
 .next/
 out/
-
-# Environment
-.env
-.env.*
-!.env.example
-
-# Local tooling
-.vercel/
-.turbo/
-
-# Logs and coverage
-*.log
-coverage/
-
-# macOS
-.DS_Store

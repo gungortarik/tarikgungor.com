@@ -1,0 +1,247 @@
+@import "./fonts.css";
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+
+  /* Industrial Alabaster & Carbon Specification Palette */
+  --bg-surface: #f4f4f0;
+  --bg-panel: #eaeae4;
+  --bg-elevated: #ffffff;
+  --bg-inverse: #0c0c0b;
+
+  --text-primary: #0c0c0b;
+  --text-secondary: #454540;
+  --text-muted: #787870;
+  --text-inverse: #f4f4f0;
+
+  --rule-hairline: #d4d4cc;
+  --rule-strong: #0c0c0b;
+
+  /* Single Industrial Hardware Accent: International Signal Orange */
+  --signal: #ff3b00;
+  --signal-soft: rgba(255, 59, 0, 0.09);
+
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
+}
+
+html.dark,
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  --bg-surface: #090909;
+  --bg-panel: #111110;
+  --bg-elevated: #161615;
+  --bg-inverse: #f4f4f0;
+
+  --text-primary: #f2f2ee;
+  --text-secondary: #a2a29a;
+  --text-muted: #64645d;
+  --text-inverse: #090909;
+
+  --rule-hairline: #222220;
+  --rule-strong: #f2f2ee;
+
+  --signal: #ff4810;
+  --signal-soft: rgba(255, 72, 16, 0.14);
+}
+
+/* Lenis Smooth Scroll Foundation */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+  overflow-x: hidden;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Tactile Architectural Grain Overlay */
+.tactile-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Subtle Blueprint Grid Pattern for Schematics */
+.bg-blueprint-grid {
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(to right, var(--rule-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule-hairline) 1px, transparent 1px);
+}
+
+/* Typography Systems */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans-body {
+  font-family: var(--font-sans);
+}
+
+.font-mono-spec {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Structural Crosshair Marker */
+.crosshair-corner {
+  position: relative;
+}
+
+.crosshair-corner::before {
+  content: '+';
+  position: absolute;
+  top: -8px;
+  left: -5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  color: var(--signal);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* GSAP Reveal Clip Masks */
+.clip-line {
+  overflow: hidden;
+  display: block;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.clip-line-inner {
+  display: block;
+  will-change: transform;
+}
+
+/* Interactive Ledger Row */
+.ledger-row {
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ledger-row:hover {
+  background-color: var(--bg-panel);
+}
+
+.ledger-row[data-active='true'] {
+  background-color: var(--signal-soft);
+}
+
+/* Animated Packet Flow on SVG Schematics */
+@keyframes packet-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.svg-packet-line {
+  stroke-dasharray: 4 4;
+  animation: packet-dash 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg-packet-line {
+    animation: none;
+  }
+}
+
+/* Accessible Skip Link */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--signal);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Progressive enhancement scroll-driven entry */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes spec-fade-in {
+      from {
+        opacity: 0.85;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .css-scroll-entry {
+      animation: spec-fade-in linear backwards;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 30%;
+    }
+  }
+}
+
+/* Native Dialog Command Shell */
+dialog#command-dialog {
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: auto;
+}
+
+dialog#command-dialog::backdrop {
+  background: rgba(9, 9, 9, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+}

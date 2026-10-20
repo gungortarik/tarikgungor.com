@@ -1,0 +1,303 @@
+---
+import { siteContent } from '../data/siteContent';
+---
+
+<dialog
+  id="command-dialog"
+  aria-labelledby="command-dialog-title"
+  class="w-[94vw] max-w-[640px] border border-[var(--rule-strong)] bg-[var(--bg-surface)] text-[var(--text-primary)] shadow-[0_32px_90px_rgba(0,0,0,0.55)] overflow-hidden"
+>
+  <div class="flex flex-col font-mono-spec">
+    <!-- Top Specification Header -->
+    <div class="flex items-center justify-between px-4 py-3 border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)]">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2 h-2 bg-[var(--signal)] inline-block"></span>
+        <h2 id="command-dialog-title" class="text-[11px] font-semibold tracking-wider uppercase">
+          SYS.SHELL // TARIK GUNGOR
+        </h2>
+      </div>
+      <button
+        type="button"
+        id="close-command-dialog"
+        class="px-2 py-0.5 text-[10px] border border-[var(--rule-hairline)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--rule-strong)] transition-colors cursor-pointer"
+        aria-label="Close command palette"
+      >
+        [ESC]
+      </button>
+    </div>
+
+    <!-- Command Query Input -->
+    <div class="relative flex items-center px-4 py-3.5 border-b border-[var(--rule-hairline)]">
+      <span class="text-[var(--signal)] text-xs font-bold mr-2.5 select-none">&gt;</span>
+      <input
+        type="text"
+        id="command-input"
+        placeholder="Filter index or execute: whoami, stack, status, contact, theme, clear..."
+        autocomplete="off"
+        spellcheck="false"
+        aria-label="Command or navigation query"
+        class="w-full bg-transparent text-xs sm:text-[13px] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none"
+      />
+    </div>
+
+    <!-- Interactive Output Log -->
+    <div
+      id="command-terminal-output"
+      class="hidden px-4 py-3 border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)] text-[11.5px] space-y-2 max-h-[180px] overflow-y-auto"
+      aria-live="polite"
+    >
+    </div>
+
+    <!-- Index List -->
+    <div class="max-h-[340px] overflow-y-auto divide-y divide-[var(--rule-hairline)]" id="command-list">
+      <div class="p-2">
+        <div class="px-2.5 py-1 text-[9.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          INDEX SECTIONS
+        </div>
+        <ul class="mt-1 divide-y divide-[var(--rule-hairline)]/40" role="list">
+          <li>
+            <a
+              href="/#right-now"
+              data-cmd-item
+              data-keywords="now right now building studying learning documenting status"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">01</strong>RIGHT NOW — CURRENT FOCUS</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/#right-now</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#projects"
+              data-cmd-item
+              data-keywords="projects work sonoma certforge software code"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">02</strong>SELECTED WORK — SONOMA &amp; CERTFORGE</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/#projects</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#labs-showcase"
+              data-cmd-item
+              data-keywords="labs infrastructure active directory dns dhcp san iscsi esxi hyper-v cluster"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">03</strong>INFRASTRUCTURE LABS (07 SPECS)</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/#labs-showcase</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#notes"
+              data-cmd-item
+              data-keywords="notes writing newsletter flexible but not free toronto"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">04</strong>FIELD NOTES — "FLEXIBLE, BUT NOT FREE"</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/#notes</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/notes/flexible-but-not-free"
+              data-cmd-item
+              data-keywords="note essay monograph read flexible but not free article"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">→</strong>ARTICLE: "FLEXIBLE, BUT NOT FREE" (MONOGRAPH)</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/notes/...</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/#path"
+              data-cmd-item
+              data-keywords="path archive timeline bcit payment source george brown"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">05</strong>CHRONOLOGICAL LEDGER (PATH SO FAR)</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/#path</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="p-2">
+        <div class="px-2.5 py-1 text-[9.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+          RESUME &amp; ARTIFACTS
+        </div>
+        <ul class="mt-1 divide-y divide-[var(--rule-hairline)]/40" role="list">
+          <li>
+            <a
+              href="/resume"
+              data-cmd-item
+              data-keywords="resume cv experience skills education beta prep bestof floor"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">→</strong>FULL SPECIFICATION RESUME</span>
+              <span class="text-[10px] text-[var(--text-muted)]">/resume</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/resume/tarik-gungor-resume.pdf"
+              download="tarik-gungor-resume.pdf"
+              data-cmd-item
+              data-keywords="pdf download resume ats print"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">↓</strong>DOWNLOAD ATS RESUME (PDF)</span>
+              <span class="text-[10px] text-[var(--text-muted)]">43 KB</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/resume/tarik-gungor-resume.json"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cmd-item
+              data-keywords="json schema machine readable api resume"
+              class="flex items-center justify-between px-3 py-2.5 text-xs hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              <span><strong class="text-[var(--signal)] mr-2">{ }</strong>MACHINE-READABLE JSON SCHEMA</span>
+              <span class="text-[10px] text-[var(--text-muted)]">JSON ↗</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="px-4 py-2.5 border-t border-[var(--rule-hairline)] bg-[var(--bg-panel)] flex items-center justify-between text-[10px] text-[var(--text-muted)]">
+      <span>COMMANDS: <code class="text-[var(--text-primary)]">whoami</code> · <code class="text-[var(--text-primary)]">stack</code> · <code class="text-[var(--text-primary)]">status</code> · <code class="text-[var(--text-primary)]">theme</code></span>
+      <span>REV {siteContent.meta.systemVersion}</span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('command-dialog') as HTMLDialogElement | null;
+  const input = document.getElementById('command-input') as HTMLInputElement | null;
+  const closeBtn = document.getElementById('close-command-dialog');
+  const terminalOut = document.getElementById('command-terminal-output');
+  const cmdItems = document.querySelectorAll<HTMLElement>('[data-cmd-item]');
+
+  function openPalette() {
+    if (!dialog || dialog.open) return;
+    dialog.showModal();
+    if (input) {
+      input.value = '';
+      filterItems('');
+      input.focus();
+    }
+  }
+
+  function closePalette() {
+    if (!dialog || !dialog.open) return;
+    dialog.close();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-open-command]').forEach((trigger) => {
+    trigger.addEventListener('click', openPalette);
+  });
+
+  closeBtn?.addEventListener('click', closePalette);
+
+  dialog?.addEventListener('click', (e) => {
+    const rect = dialog.getBoundingClientRect();
+    const clickedOutside =
+      e.clientX < rect.left ||
+      e.clientX > rect.right ||
+      e.clientY < rect.top ||
+      e.clientY > rect.bottom;
+    if (clickedOutside) {
+      closePalette();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      if (dialog?.open) {
+        closePalette();
+      } else {
+        openPalette();
+      }
+    }
+  });
+
+  function filterItems(query: string) {
+    const q = query.trim().toLowerCase();
+    cmdItems.forEach((item) => {
+      const text = (item.textContent ?? '').toLowerCase();
+      const kw = (item.getAttribute('data-keywords') ?? '').toLowerCase();
+      const match = !q || text.includes(q) || kw.includes(q);
+      const li = item.closest('li');
+      if (li) {
+        li.style.display = match ? '' : 'none';
+      }
+    });
+  }
+
+  const commandResponses: Record<string, string> = {
+    help: 'AVAILABLE: whoami, stack, status, labs, projects, contact, mail, theme, clear',
+    whoami:
+      'Tarik Gungor — IT Support Specialist & Computer Systems Technology student in Toronto, ON. Supporting 60+ endpoints across BETA PREP & Bestof Floor. Building Sonoma & CertForge.',
+    stack:
+      'INFRASTRUCTURE: Windows 10/11, Ubuntu Linux, Windows Server, Active Directory DS/GPO, Hyper-V, VMware ESXi, TCP/IP, DNS, Linux DHCP, SAN/iSCSI, SMB Clustering. SOFTWARE: TypeScript, Next.js, Astro, Tailwind CSS, GSAP, Lenis.',
+    status:
+      'ACTIVE STATUS // Computer Systems Technology at George Brown College · BETA PREP (38 Endpoints, 99.8% uptime) · Bestof Floor (23 Devices, zero data loss) · Building Sonoma & CertForge.',
+    labs:
+      'LAB TOPOLOGIES: [01] Enterprise Virtualized Lab (192.168.10.0/24 & 20.0/24) · [02] Active Directory OU/GPO Hierarchy · [03] AD-Integrated Split-Brain DNS · [04] Linux DHCP Failover · [05] SAN/iSCSI Target & RAID 5/10 · [06] 2-Node SMB Failover Cluster · [07] VMware ESXi Nested Hypervisor.',
+    projects:
+      'PROJECTS: [1] Sonoma (Private Expense & Document Management Vault) · [2] CertForge (CompTIA Network+ & CCNA interactive drill platform: https://github.com/gungortarik/certforge).',
+    contact:
+      'CHANNELS: Email: gungortarik@icloud.com | GitHub: https://github.com/gungortarik | LinkedIn: https://linkedin.com/in/tarikgungor | Location: Toronto, ON, Canada.',
+    mail:
+      'EMAIL: gungortarik@icloud.com — Type "mailto" or click footer channels to compose directly.',
+    email:
+      'EMAIL: gungortarik@icloud.com (Direct inbox for technical inquiries and systems infrastructure opportunities).',
+  };
+
+  input?.addEventListener('input', () => {
+    filterItems(input.value);
+  });
+
+  input?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && input.value.trim()) {
+      const cmd = input.value.trim().toLowerCase();
+      if (cmd === 'clear') {
+        if (terminalOut) {
+          terminalOut.innerHTML = '';
+          terminalOut.classList.add('hidden');
+        }
+        input.value = '';
+        filterItems('');
+        return;
+      }
+      if (cmd === 'theme') {
+        const toggleBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+        toggleBtn?.click();
+        input.value = '';
+        filterItems('');
+        return;
+      }
+      if (cmd in commandResponses && terminalOut) {
+        terminalOut.classList.remove('hidden');
+        const entry = document.createElement('div');
+        entry.innerHTML = `<span class="text-[var(--signal)] font-semibold">&gt; ${cmd}</span><p class="text-[var(--text-primary)] mt-0.5">${commandResponses[cmd]}</p>`;
+        terminalOut.appendChild(entry);
+        terminalOut.scrollTop = terminalOut.scrollHeight;
+        input.value = '';
+        filterItems('');
+      }
+    }
+  });
+
+  cmdItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      closePalette();
+    });
+  });
+</script>

@@ -1,0 +1,168 @@
+---
+import { siteContent } from '../data/siteContent';
+---
+
+<footer class="w-full border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] print:hidden">
+  <div class="max-w-[1600px] mx-auto">
+    <!-- Upper Architectural Grid Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 border-b border-[var(--rule-hairline)]">
+      <!-- Left 6 cols: Wordmark & Statement -->
+      <div class="lg:col-span-6 p-6 sm:p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] flex flex-col justify-between gap-8">
+        <div class="flex items-center justify-between">
+          <a href="/" aria-label="Tarik Gungor Home" class="hover:opacity-75 transition-opacity">
+            <img
+              src="/assets/logos/tarik-gungor-wordmark.png"
+              alt="Tarik Gungor"
+              width="168"
+              height="45"
+              loading="lazy"
+              class="w-[140px] sm:w-[160px] h-auto object-contain dark:invert"
+            />
+          </a>
+          <span class="font-mono-spec text-[10.5px] text-[var(--text-muted)] uppercase tracking-widest">
+            DOC.REF // TG-{new Date().getFullYear()}
+          </span>
+        </div>
+
+        <div>
+          <p class="font-display text-xl sm:text-2xl font-medium tracking-tight text-[var(--text-primary)] max-w-[480px] leading-snug">
+            Building systems. Learning continuously. Living intentionally.
+          </p>
+          <p class="text-xs sm:text-[13px] text-[var(--text-secondary)] mt-2.5 max-w-[460px] leading-relaxed">
+            Computer Systems Technology student &amp; IT Support Specialist in Toronto, ON.
+            Documenting software, networks, Linux, and life in progress.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right 6 cols: Tabular Contact & Artifact Matrix -->
+      <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-[var(--rule-hairline)] font-mono-spec text-xs">
+        <div class="p-6 sm:p-10 flex flex-col justify-between gap-6">
+          <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            01 // DIRECT CHANNELS
+          </span>
+          <ul class="space-y-3">
+            <li>
+              <div class="flex items-center justify-between py-1 text-[var(--text-primary)] group">
+                <a
+                  href={`mailto:${siteContent.meta.email}`}
+                  class="hover:text-[var(--signal)] transition-colors"
+                >
+                  EMAIL: {siteContent.meta.email}
+                </a>
+                <button
+                  type="button"
+                  id="footer-copy-email-btn"
+                  class="text-[10.5px] px-2 py-0.5 border border-[var(--rule-hairline)] hover:border-[var(--signal)] text-[var(--text-muted)] hover:text-[var(--signal)] transition-colors cursor-pointer"
+                  title="Copy email to clipboard"
+                >
+                  [COPY]
+                </button>
+              </div>
+              <div id="footer-copy-email-feedback" class="hidden text-[10px] text-[var(--signal)] font-semibold mt-0.5">
+                ✓ EMAIL COPIED TO CLIPBOARD
+              </div>
+            </li>
+            <li>
+              <a
+                href={siteContent.meta.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>GITHUB (@GUNGORTARIK)</span>
+                <span class="text-[var(--text-muted)] group-hover:text-[var(--signal)]">↗</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={siteContent.meta.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>LINKEDIN</span>
+                <span class="text-[var(--text-muted)] group-hover:text-[var(--signal)]">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 sm:p-10 flex flex-col justify-between gap-6">
+          <span class="text-[10px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
+            02 // SYSTEM ARTIFACTS
+          </span>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="/resume"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>INTERACTIVE RESUME</span>
+                <span class="text-[var(--signal)]">→</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/notes/flexible-but-not-free"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>FIELD NOTE #01 (MONOGRAPH)</span>
+                <span class="text-[var(--text-muted)] group-hover:text-[var(--signal)]">→</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/resume/tarik-gungor-resume.pdf"
+                download="tarik-gungor-resume.pdf"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>ATS RESUME (PDF)</span>
+                <span class="text-[var(--text-muted)] group-hover:text-[var(--signal)]">↓</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/llms.txt"
+                target="_blank"
+                class="flex items-center justify-between py-1 text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors group"
+              >
+                <span>LLMS.TXT (AI DISCOVERY)</span>
+                <span class="text-[var(--text-muted)] group-hover:text-[var(--signal)]">TXT</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Specification Strip -->
+    <div class="px-6 sm:px-10 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono-spec text-[var(--text-muted)]">
+      <div>
+        © {new Date().getFullYear()} TARIK GUNGOR — ALL CONTENTS PRESERVED
+      </div>
+      <div class="flex items-center gap-4">
+        <span>{siteContent.meta.coordinates.lat}, {siteContent.meta.coordinates.lng}</span>
+        <span>//</span>
+        <span class="text-[var(--text-primary)]" data-toronto-clock>--:--:-- TOR</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script is:inline>
+  const footerCopyBtn = document.getElementById('footer-copy-email-btn');
+  const footerFeedback = document.getElementById('footer-copy-email-feedback');
+  if (footerCopyBtn && footerFeedback) {
+    footerCopyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('gungortarik@icloud.com');
+        footerFeedback.classList.remove('hidden');
+        setTimeout(() => footerFeedback.classList.add('hidden'), 2500);
+      } catch {
+        footerFeedback.textContent = 'gungortarik@icloud.com';
+        footerFeedback.classList.remove('hidden');
+      }
+    });
+  }
+</script>

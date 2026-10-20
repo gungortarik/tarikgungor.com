@@ -1,34 +1,28 @@
-# tarikgungor.com
+# tarikgungor.com (v2.0 — Engineered from Zero)
 
-Personal website and long-term public platform for Tarik Gungor.
+Personal platform, systems engineering lab log, and interactive resume for **Tarik Gungor** (`https://tarikgungor.com`).
 
-## Current status
+## Architecture & Stack
 
-The redesign is being developed on `redesign-v1`. The production website remains on `main` until the redesign is explicitly approved and merged.
+- **Framework:** [Astro 5](https://astro.build) (Zero unnecessary client framework overhead, instant static HTML delivery)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) + Custom Editorial Paper / Deep Ink / Olive design tokens
+- **Smooth Scroll:** [Lenis](https://lenis.darkroom.engineering/) coupled directly to the GSAP ticker
+- **Motion & Choreography:** [GSAP 3 + ScrollTrigger](https://gsap.com/) (Masked headline reveals, scroll-scrubbed progress & timeline tracks, staggered section reveals, magnetic buttons)
+- **Command Palette & Shell:** Native `<dialog>` (`⌘K` / `Ctrl+K`) with quick navigation and terminal commands (`whoami`, `stack`, `status`, `contact`, `theme`, `clear`)
+- **Single Source of Truth:** All content, projects, 7 infrastructure labs, work history, skills, and notes live in [`src/data/siteContent.ts`](./src/data/siteContent.ts)
 
-## Stack
+## Preserved Assets & Routes
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS v4
+- `/` — Main portfolio, live Systems & Telemetry Cockpit, Right Now, Software Projects (*Sonoma*, *CertForge*), Recent Notes (*Flexible, but Not Free*), Systems & Infrastructure Labs, and Path So Far
+- `/resume` — Full interactive & print-ready curriculum vitae
+- `/resume/tarik-gungor-resume.pdf` — Original ATS-friendly PDF resume
+- `/resume/tarik-gungor-resume.json` — Machine-readable JSON Resume schema
+- `/assets/logos/*`, `/assets/icons/*`, `/assets/projects/sonoma-dashboard.png` — All original brand & project media preserved
 
-## Repository structure
+## Commands
 
-- `app/` — Next.js routes, layout, and global styles
-- `components/layout/` — shared layout components
-- `components/sections/` — page-level sections
-- `components/ui/` — reusable UI primitives
-- `public/assets/` — production website assets only
-  - `images/`
-  - `logos/`
-  - `icons/`
-  - `projects/`
-  - `documents/`
-- `references/` — design references for humans and implementation agents; not production assets
-- `lib/` — helpers, utilities, and structured content/data when needed
-- `types/` — shared TypeScript types when needed
-
-## Asset rule
-
-Do not place random images, screenshots, documents, or SVG files in the repository root. Production assets belong under `public/assets/`. Design-only references belong under `references/`.
+```bash
+npm run dev       # Start local dev server
+npm run build     # Build production static bundle into dist/
+npm run preview   # Preview production build locally
+```
