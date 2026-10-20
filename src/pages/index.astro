@@ -15,1204 +15,761 @@ import { siteContent } from '../data/siteContent';
   <main
     id="main-content"
     tabindex="-1"
-    class="flex-1 w-full max-w-[1600px] mx-auto border-x border-[var(--rule-hairline)] focus:outline-none"
+    class="flex-1 w-full max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 focus:outline-none"
   >
     <!-- ==========================================================
-         SECTION 01 // HERO & RIGHT NOW SPECIFICATION LEDGER
+         HERO // INTRODUCTORY STATEMENT & HUMAN NARRATIVE
          ========================================================== -->
-    <section
-      data-section-title="SEC.01 // SYSTEMS & DIRECTION"
-      class="border-b border-[var(--rule-hairline)]"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Sticky Architectural Gutter (Cols 1-2) -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div class="lg:sticky lg:top-[74px] flex lg:flex-col justify-between gap-8">
-            <div>
-              <span class="text-[var(--signal)] font-semibold block">INDEX // 01</span>
-              <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-                OVERVIEW
-              </span>
-              <span class="hidden lg:block text-[10px] text-[var(--text-muted)] mt-3 leading-relaxed">
-                Systems engineering, networking, and software built in Toronto.
-              </span>
-            </div>
-
-            <div class="hidden lg:block pt-6 border-t border-[var(--rule-hairline)] space-y-1.5 text-[10px]">
-              <div class="text-[var(--text-primary)] font-semibold">TORONTO, CANADA</div>
-              <div>{siteContent.meta.coordinates.lat}</div>
-              <div>{siteContent.meta.coordinates.lng}</div>
-              <div class="pt-2 text-[var(--signal)] font-medium">A LIFE IN PROGRESS</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Main Poster & Bio Column (Cols 3-12) -->
-        <div class="lg:col-span-10 flex flex-col justify-between">
-          <!-- Upper Display Statement -->
-          <div class="p-6 sm:p-10 lg:p-14 xl:p-16 border-b border-[var(--rule-hairline)]">
-            <div
-              data-hero-spec
-              class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-            >
-              <span class="flex items-center gap-2">
-                <span class="w-2 h-2 bg-[var(--signal)] inline-block"></span>
-                <span>SPECIFICATION // PERSONAL PLATFORM &amp; LAB ARCHIVE</span>
-              </span>
-              <span>GEORGE BROWN COLLEGE (CST) · 60+ ENDPOINTS SUPPORTED</span>
-            </div>
-
-            <h1
-              class="font-display font-bold text-[42px] sm:text-[64px] lg:text-[78px] xl:text-[92px] leading-[0.93] tracking-[-0.045em] uppercase text-[var(--text-primary)]"
-            >
-              <span class="clip-line">
-                <span data-hero-line class="clip-line-inner">Building systems.</span>
-              </span>
-              <span class="clip-line">
-                <span data-hero-line class="clip-line-inner text-[var(--text-secondary)]">
-                  Learning continuously.
-                </span>
-              </span>
-              <span class="clip-line">
-                <span data-hero-line class="clip-line-inner">
-                  <span class="text-[var(--signal)]">Living</span> intentionally.
-                </span>
-              </span>
-            </h1>
-
-            <!-- Bio + ~/now Tabular & Coordinate Blueprint Split -->
-            <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12 pt-10 sm:pt-14 items-stretch">
-              <div data-hero-spec class="xl:col-span-7 flex flex-col justify-between gap-8">
-                <p class="text-[16px] sm:text-[18.5px] text-[var(--text-secondary)] leading-[1.68] max-w-[650px] font-normal">
-                  {siteContent.hero.bio}
-                </p>
-
-                <!-- Key Metrics Bar -->
-                <div class="grid grid-cols-3 border border-[var(--rule-hairline)] bg-[var(--bg-panel)]/50 divide-x divide-[var(--rule-hairline)] font-mono-spec">
-                  <div class="p-3.5 sm:p-4">
-                    <span class="text-[9.5px] text-[var(--text-muted)] block uppercase">
-                      ENDPOINT FLEET
-                    </span>
-                    <span class="font-display font-bold text-xl sm:text-2xl text-[var(--text-primary)] mt-0.5 block">
-                      60+ HOSTS
-                    </span>
-                  </div>
-                  <div class="p-3.5 sm:p-4">
-                    <span class="text-[9.5px] text-[var(--text-muted)] block uppercase">
-                      INFRA LABS
-                    </span>
-                    <span class="font-display font-bold text-xl sm:text-2xl text-[var(--text-primary)] mt-0.5 block">
-                      07 TOPOLOGIES
-                    </span>
-                  </div>
-                  <div class="p-3.5 sm:p-4">
-                    <span class="text-[9.5px] text-[var(--text-muted)] block uppercase">
-                      SOFTWARE
-                    </span>
-                    <span class="font-display font-bold text-xl sm:text-2xl text-[var(--signal)] mt-0.5 block">
-                      02 PRODUCTS
-                    </span>
-                  </div>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-0 border border-[var(--rule-strong)] w-fit font-mono-spec text-xs">
-                  <a
-                    href="#projects"
-                    class="px-6 py-3.5 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
-                  >
-                    01 / Explore Work ↓
-                  </a>
-                  <a
-                    href="#labs-showcase"
-                    class="px-6 py-3.5 bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors"
-                  >
-                    02 / Systems Labs ↓
-                  </a>
-                  <a
-                    href="/resume"
-                    class="px-6 py-3.5 bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors"
-                  >
-                    03 / Full CV →
-                  </a>
-                </div>
-              </div>
-
-              <!-- Right 5 Cols: Raw Tabular ~/now Readout + Original World Coordinate Map -->
-              <div
-                data-hero-spec
-                class="xl:col-span-5 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] font-mono-spec text-xs flex flex-col justify-between"
-              >
-                <div>
-                  <div class="px-4 py-3 border-b border-[var(--rule-hairline)] flex items-center justify-between text-[10.5px] uppercase tracking-wider">
-                    <span class="font-semibold text-[var(--text-primary)]">~/NOW — STATE READOUT</span>
-                    <span class="text-[var(--signal)] font-semibold">SYS.HUMAN // v{siteContent.meta.systemVersion}</span>
-                  </div>
-                  <dl class="divide-y divide-[var(--rule-hairline)] text-[11.5px]">
-                    {
-                      siteContent.hero.nowTerminal.map((row) => (
-                        <div class="grid grid-cols-12 px-4 py-2.5 items-baseline">
-                          <dt class="col-span-4 text-[var(--text-muted)] uppercase">&gt; {row.key}</dt>
-                          <dd class="col-span-8 text-[var(--text-primary)] font-medium">
-                            {row.value}
-                          </dd>
-                        </div>
-                      ))
-                    }
-                  </dl>
-                </div>
-
-                <!-- Preserved Original World Dot-Matrix Constellation + Coordinate Reticle -->
-                <div class="p-4 border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)]/60 flex items-center justify-between gap-4">
-                  <div class="space-y-1 text-[10px]">
-                    <div class="text-[var(--text-muted)] uppercase">SECTOR // ORIGIN</div>
-                    <div class="text-[var(--text-primary)] font-semibold">TORONTO, ON [CA]</div>
-                    <div class="text-[var(--signal)]">
-                      {siteContent.meta.coordinates.lat} / {siteContent.meta.coordinates.lng}
-                    </div>
-                  </div>
-
-                  <svg
-                    viewBox="0 0 160 50"
-                    fill="currentColor"
-                    class="w-[140px] h-auto text-[var(--text-muted)] shrink-0"
-                    aria-label="World coordinate dot matrix highlighting Toronto"
-                  >
-                    <circle cx="20" cy="12" r="1.1"></circle>
-                    <circle cx="26" cy="10" r="1.1"></circle>
-                    <circle cx="32" cy="14" r="1.1"></circle>
-                    <circle cx="24" cy="18" r="1.1"></circle>
-                    <circle cx="30" cy="20" r="1.1"></circle>
-                    <circle cx="28" cy="26" r="1.1"></circle>
-                    <circle cx="34" cy="30" r="1.1"></circle>
-                    <circle cx="38" cy="36" r="1.1"></circle>
-                    <circle cx="36" cy="42" r="1.1"></circle>
-                    <!-- Toronto Target Reticle -->
-                    <circle cx="32" cy="18" r="3" class="text-[var(--signal)]"></circle>
-                    <line x1="25" y1="18" x2="39" y2="18" stroke="var(--signal)" stroke-width="0.6"></line>
-                    <line x1="32" y1="11" x2="32" y2="25" stroke="var(--signal)" stroke-width="0.6"></line>
-                    <circle cx="72" cy="12" r="1.1"></circle>
-                    <circle cx="78" cy="10" r="1.1"></circle>
-                    <circle cx="84" cy="14" r="1.1"></circle>
-                    <circle cx="76" cy="18" r="1.1"></circle>
-                    <circle cx="82" cy="22" r="1.1"></circle>
-                    <circle cx="78" cy="28" r="1.1"></circle>
-                    <circle cx="84" cy="32" r="1.1"></circle>
-                    <circle cx="86" cy="38" r="1.1"></circle>
-                    <circle cx="82" cy="42" r="1.1"></circle>
-                    <circle cx="102" cy="12" r="1.1"></circle>
-                    <circle cx="110" cy="10" r="1.1"></circle>
-                    <circle cx="118" cy="14" r="1.1"></circle>
-                    <circle cx="126" cy="16" r="1.1"></circle>
-                    <circle cx="108" cy="20" r="1.1"></circle>
-                    <circle cx="116" cy="22" r="1.1"></circle>
-                    <circle cx="124" cy="24" r="1.1"></circle>
-                    <circle cx="132" cy="26" r="1.1"></circle>
-                    <circle cx="114" cy="30" r="1.1"></circle>
-                    <circle cx="122" cy="32" r="1.1"></circle>
-                    <circle cx="132" cy="40" r="1.1"></circle>
-                    <circle cx="138" cy="42" r="1.1"></circle>
-                    <circle cx="134" cy="46" r="1.1"></circle>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Lower Band: RIGHT NOW 4-Column Structural Matrix (#right-now) -->
-          <div id="right-now" class="scroll-mt-14">
-            <div class="px-6 sm:px-10 py-3 border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)] flex items-center justify-between font-mono-spec text-[10.5px] uppercase tracking-[0.2em] text-[var(--text-muted)]">
-              <span>RIGHT NOW // ACTIVE OPERATIONAL PILLARS</span>
-              <span>01 — 04</span>
-            </div>
-
-            <div
-              data-stagger-group
-              class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[var(--rule-hairline)]"
-            >
-              {
-                siteContent.rightNow.map((item) => (
-                  <div
-                    data-stagger-item
-                    class="p-6 sm:p-8 flex flex-col justify-between min-h-[220px] hover:bg-[var(--bg-panel)] transition-colors group"
-                  >
-                    <div>
-                      <div class="flex items-center justify-between font-mono-spec text-[11px] text-[var(--text-muted)] mb-4">
-                        <span class="text-[var(--signal)] font-semibold">{item.index}</span>
-                        <span class="tracking-widest uppercase">{item.label}</span>
-                      </div>
-                      <h2 class="font-display text-xl sm:text-[22px] font-bold tracking-tight text-[var(--text-primary)]">
-                        {item.title}
-                      </h2>
-                      <p class="text-[13.5px] text-[var(--text-secondary)] leading-[1.62] mt-2.5">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div class="pt-5 mt-6 border-t border-[var(--rule-hairline)] flex items-center justify-between font-mono-spec text-[10.5px] text-[var(--text-muted)]">
-                      <span>OUTPUT</span>
-                      <span class="text-[var(--text-primary)] font-medium">{item.metric}</span>
-                    </div>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
-        </div>
+    <section class="pt-16 sm:pt-24 lg:pt-32 pb-16 sm:pb-20">
+      <!-- Status Pill -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-[var(--bg-panel)] border border-[var(--rule-hairline)] text-xs font-mono-spec text-[var(--text-secondary)] mb-8">
+        <span class="w-2 h-2 rounded-full bg-[var(--signal)]"></span>
+        <span>Toronto, ON · IT Support &amp; Systems Engineering</span>
       </div>
-    </section>
 
-    <!-- ==========================================================
-         SECTION 02 // SOFTWARE PROJECTS (#projects — SONOMA & CERTFORGE)
-         ========================================================== -->
-    <section
-      id="projects"
-      data-section-title="SEC.02 // SELECTED SOFTWARE WORK"
-      class="border-b border-[var(--rule-hairline)] scroll-mt-14"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Sticky Architectural Gutter -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div class="lg:sticky lg:top-[74px] flex lg:flex-col justify-between gap-8">
-            <div>
-              <span class="text-[var(--signal)] font-semibold block">INDEX // 02</span>
-              <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-                SELECTED WORK
-              </span>
-              <span class="hidden lg:block text-[10px] text-[var(--text-muted)] mt-3 leading-relaxed">
-                Full-stack TypeScript tools built around personal operations and network study.
-              </span>
-            </div>
-            <span class="hidden lg:block text-[10px] pt-6 border-t border-[var(--rule-hairline)]">
-              02.A SONOMA<br />02.B CERTFORGE
-            </span>
-          </div>
-        </div>
+      <!-- Main Headline -->
+      <h1 class="font-display font-bold text-4xl sm:text-6xl lg:text-7xl xl:text-8xl tracking-[-0.035em] text-[var(--text-primary)] leading-[1.04] max-w-5xl">
+        <span class="clip-line">
+          <span data-hero-line class="clip-line-inner">Building systems.</span>
+        </span>
+        <span class="clip-line">
+          <span data-hero-line class="clip-line-inner text-[var(--text-secondary)]">Learning continuously.</span>
+        </span>
+        <span class="clip-line">
+          <span data-hero-line class="clip-line-inner">
+            <span class="text-[var(--signal)]">Living</span> intentionally.
+          </span>
+        </span>
+      </h1>
 
-        <!-- Right 10 Cols: Case Study Rows -->
-        <div class="lg:col-span-10 divide-y divide-[var(--rule-hairline)]">
-          <!-- Section Header Bar -->
-          <div class="p-6 sm:p-10 lg:px-14 lg:py-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4 bg-[var(--bg-panel)]/50">
-            <div>
-              <span class="font-mono-spec text-[10.5px] uppercase tracking-[0.2em] text-[var(--signal)] block mb-2">
-                PRACTICAL SOFTWARE ENGINEERING
-              </span>
-              <h2 class="clip-line font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-[-0.03em] uppercase text-[var(--text-primary)] leading-none">
-                <span data-reveal-heading class="clip-line-inner">Built for real workflows.</span>
-              </h2>
-            </div>
-            <p class="font-mono-spec text-xs text-[var(--text-muted)]">
-              STACK // NEXT.JS · TYPESCRIPT · TAILWIND CSS
-            </p>
-          </div>
+      <!-- Bio Prose & Actions -->
+      <div class="mt-8 sm:mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+        <div data-hero-spec class="lg:col-span-8">
+          <p class="text-lg sm:text-xl text-[var(--text-secondary)] leading-[1.7] max-w-2xl font-normal">
+            {siteContent.hero.bio}
+          </p>
 
-          <!-- CASE STUDY 01: SONOMA (With Interactive Viewport & Lightbox Zoom) -->
-          <article class="grid grid-cols-1 xl:grid-cols-12">
-            <!-- Left 6 Cols: Specifications -->
-            <div class="xl:col-span-6 p-6 sm:p-10 lg:p-14 border-b xl:border-b-0 xl:border-r border-[var(--rule-hairline)] flex flex-col justify-between gap-8">
-              <div>
-                <div class="flex items-center justify-between font-mono-spec text-xs mb-6">
-                  <span class="text-[var(--signal)] font-semibold">PROJECT // 02.A</span>
-                  <span class="px-2 py-0.5 border border-[var(--rule-hairline)] text-[10.5px] uppercase">
-                    Private · In Progress
-                  </span>
-                </div>
-
-                <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-[var(--text-primary)]">
-                  Sonoma
-                </h3>
-                <p class="text-[15.5px] text-[var(--text-primary)] font-medium leading-[1.6] mt-3">
-                  {siteContent.projects[0].summary}
-                </p>
-                <p class="text-[14px] text-[var(--text-secondary)] leading-[1.65] mt-3">
-                  {siteContent.projects[0].architectureNote}
-                </p>
-
-                <ul class="mt-5 space-y-1.5 font-mono-spec text-xs text-[var(--text-secondary)]">
-                  {
-                    siteContent.projects[0].highlights.map((hl) => (
-                      <li class="flex items-start gap-2">
-                        <span class="text-[var(--signal)]">—</span>
-                        <span>{hl}</span>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-
-              <!-- Tabular Spec Sheet -->
-              <div class="border-t border-[var(--rule-hairline)] pt-5 font-mono-spec text-xs space-y-2.5">
-                <div class="grid grid-cols-12">
-                  <span class="col-span-4 text-[var(--text-muted)]">STACK</span>
-                  <span class="col-span-8 text-[var(--text-primary)]">
-                    Next.js · TypeScript · Tailwind CSS
-                  </span>
-                </div>
-                <div class="grid grid-cols-12">
-                  <span class="col-span-4 text-[var(--text-muted)]">MODULES</span>
-                  <span class="col-span-8 text-[var(--text-secondary)]">
-                    Expense Ledger · Document Vault · Cashflow
-                  </span>
-                </div>
-                <div class="grid grid-cols-12">
-                  <span class="col-span-4 text-[var(--text-muted)]">ACCESS</span>
-                  <span class="col-span-8 text-[var(--text-muted)]">
-                    Private project (Internal personal deployment)
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right 6 Cols: Interactive Dual-Mode Inspector for Sonoma -->
-            <div class="xl:col-span-6 p-6 sm:p-10 lg:p-12 bg-[var(--bg-panel)] flex flex-col justify-between">
-              <div class="w-full border border-[var(--rule-hairline)] bg-[var(--bg-surface)]">
-                <!-- Inspector Mode Tabs -->
-                <div
-                  class="flex items-center justify-between border-b border-[var(--rule-hairline)] font-mono-spec text-[10.5px]"
-                  role="tablist"
-                  aria-label="Sonoma view mode"
-                >
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="true"
-                    data-sonoma-tab="ui"
-                    class="flex-1 py-2.5 px-4 text-left font-semibold bg-[var(--text-primary)] text-[var(--bg-surface)] cursor-pointer transition-colors"
-                  >
-                    01 // UI VIEWPORT
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                    data-sonoma-tab="arch"
-                    class="flex-1 py-2.5 px-4 text-left text-[var(--text-muted)] hover:text-[var(--text-primary)] border-l border-[var(--rule-hairline)] cursor-pointer transition-colors"
-                  >
-                    02 // PRIVACY SCHEMATIC
-                  </button>
-                </div>
-
-                <!-- Panel 1: Screenshot Viewport with Lightbox Zoom Trigger -->
-                <div id="sonoma-panel-ui" class="p-2">
-                  <div
-                    data-lightbox
-                    data-lightbox-src="/assets/projects/sonoma-dashboard.png"
-                    data-lightbox-alt="Sonoma Expense & Document Management Dashboard"
-                    class="aspect-[16/10] overflow-hidden relative bg-[#141413] cursor-zoom-in group"
-                  >
-                    <img
-                      data-parallax-img
-                      src="/assets/projects/sonoma-dashboard.png"
-                      alt="Sonoma private expense and document management dashboard"
-                      width="720"
-                      height="450"
-                      loading="lazy"
-                      class="w-full h-full object-cover object-[14%_8%] group-hover:scale-[1.03] transition-transform duration-300"
-                    />
-                    <div class="absolute bottom-2.5 right-2.5 px-2 py-1 bg-black/80 text-white font-mono-spec text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">
-                      [CLICK TO ZOOM ⤢]
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Panel 2: Architecture Blueprint -->
-                <div
-                  id="sonoma-panel-arch"
-                  class="hidden p-5 aspect-[16/10] bg-blueprint-grid font-mono-spec text-xs flex flex-col justify-between"
-                >
-                  <div class="flex items-center justify-between text-[10px] text-[var(--text-muted)]">
-                    <span>DATA ISOLATION PIPELINE</span>
-                    <span class="text-[var(--signal)] font-semibold">ZERO 3RD-PARTY BANK SYNC</span>
-                  </div>
-
-                  <div class="grid grid-cols-3 gap-3 my-auto">
-                    <div class="border border-[var(--rule-strong)] bg-[var(--bg-surface)] p-3">
-                      <span class="text-[9.5px] text-[var(--signal)] block">INGEST // 01</span>
-                      <div class="font-display font-bold text-sm mt-1">Receipt &amp; PDF Vault</div>
-                      <p class="text-[10.5px] text-[var(--text-secondary)] mt-1">
-                        Structured document metadata &amp; local categorization.
-                      </p>
-                    </div>
-                    <div class="border border-[var(--rule-strong)] bg-[var(--bg-surface)] p-3">
-                      <span class="text-[9.5px] text-[var(--signal)] block">ENGINE // 02</span>
-                      <div class="font-display font-bold text-sm mt-1">Typed Ledger Core</div>
-                      <p class="text-[10.5px] text-[var(--text-secondary)] mt-1">
-                        Strict TypeScript schema for recurring &amp; fixed obligations.
-                      </p>
-                    </div>
-                    <div class="border border-[var(--rule-strong)] bg-[var(--bg-surface)] p-3">
-                      <span class="text-[9.5px] text-[var(--signal)] block">OUTPUT // 03</span>
-                      <div class="font-display font-bold text-sm mt-1">Monthly Telemetry</div>
-                      <p class="text-[10.5px] text-[var(--text-secondary)] mt-1">
-                        Instant burn-rate &amp; category variance readouts.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div class="text-[10px] text-[var(--text-muted)] flex justify-between border-t border-[var(--rule-hairline)] pt-2">
-                    <span>HOST: PRIVATE INSTANCE</span>
-                    <span>AUTH: SINGLE-TENANT</span>
-                  </div>
-                </div>
-
-                <div class="px-3 py-2 border-t border-[var(--rule-hairline)] flex items-center justify-between font-mono-spec text-[10px] text-[var(--text-muted)]">
-                  <span>FIG 01. SONOMA WORKSPACE</span>
-                  <span>CLICK IMAGE FOR FULLSCREEN VIEWPORT</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- CASE STUDY 02: CERTFORGE (With High-Res Platform Visual & Lightbox Zoom) -->
-          <article class="grid grid-cols-1 xl:grid-cols-12">
-            <!-- Left 6 Cols: Specifications -->
-            <div class="xl:col-span-6 p-6 sm:p-10 lg:p-14 border-b xl:border-b-0 xl:border-r border-[var(--rule-hairline)] flex flex-col justify-between gap-8">
-              <div>
-                <div class="flex items-center justify-between font-mono-spec text-xs mb-6">
-                  <span class="text-[var(--signal)] font-semibold">PROJECT // 02.B</span>
-                  <span class="px-2 py-0.5 border border-[var(--rule-hairline)] text-[10.5px] uppercase">
-                    Study Platform · Web App
-                  </span>
-                </div>
-
-                <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-[var(--text-primary)]">
-                  CertForge
-                </h3>
-                <p class="text-[15.5px] text-[var(--text-primary)] font-medium leading-[1.6] mt-3">
-                  {siteContent.projects[1].summary}
-                </p>
-                <p class="text-[14px] text-[var(--text-secondary)] leading-[1.65] mt-3">
-                  {siteContent.projects[1].architectureNote}
-                </p>
-
-                <ul class="mt-5 space-y-1.5 font-mono-spec text-xs text-[var(--text-secondary)]">
-                  {
-                    siteContent.projects[1].highlights.map((hl) => (
-                      <li class="flex items-start gap-2">
-                        <span class="text-[var(--signal)]">—</span>
-                        <span>{hl}</span>
-                      </li>
-                    ))
-                  }
-                </ul>
-              </div>
-
-              <!-- Tabular Spec Sheet + Repository Link -->
-              <div class="border-t border-[var(--rule-hairline)] pt-5 font-mono-spec text-xs space-y-2.5">
-                <div class="grid grid-cols-12">
-                  <span class="col-span-4 text-[var(--text-muted)]">STACK</span>
-                  <span class="col-span-8 text-[var(--text-primary)]">
-                    Next.js · TypeScript · Tailwind CSS
-                  </span>
-                </div>
-                <div class="grid grid-cols-12">
-                  <span class="col-span-4 text-[var(--text-muted)]">CURRICULUM</span>
-                  <span class="col-span-8 text-[var(--text-secondary)]">
-                    CompTIA Network+ · Cisco CCNA · Systems &amp; Routing
-                  </span>
-                </div>
-                <div class="grid grid-cols-12 pt-2">
-                  <span class="col-span-4 text-[var(--text-muted)]">SOURCE</span>
-                  <div class="col-span-8">
-                    <a
-                      href={siteContent.projects[1].githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 font-semibold text-[var(--signal)] hover:underline"
-                    >
-                      <span>GITHUB.COM/GUNGORTARIK/CERTFORGE</span>
-                      <span aria-hidden="true">↗</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right 6 Cols: CertForge Platform Interface Frame with Lightbox Zoom -->
-            <div class="xl:col-span-6 p-6 sm:p-10 lg:p-12 bg-[var(--bg-panel)] flex flex-col justify-between">
-              <div class="w-full border border-[var(--rule-hairline)] bg-[var(--bg-surface)]">
-                <!-- Inspector Mode Tabs -->
-                <div
-                  class="flex items-center justify-between border-b border-[var(--rule-hairline)] font-mono-spec text-[10.5px]"
-                  role="tablist"
-                  aria-label="CertForge view mode"
-                >
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="true"
-                    data-certforge-mode="visual"
-                    class="flex-1 py-2.5 px-4 text-left font-semibold bg-[var(--text-primary)] text-[var(--bg-surface)] cursor-pointer transition-colors"
-                  >
-                    01 // PLATFORM INTERFACE
-                  </button>
-                  <button
-                    type="button"
-                    role="tab"
-                    aria-selected="false"
-                    data-certforge-mode="drills"
-                    class="flex-1 py-2.5 px-4 text-left text-[var(--text-muted)] hover:text-[var(--text-primary)] border-l border-[var(--rule-hairline)] cursor-pointer transition-colors"
-                  >
-                    02 // CLI &amp; SUBNET ENGINE
-                  </button>
-                </div>
-
-                <!-- Panel 1: High-Res SVG Interface Viewport -->
-                <div id="certforge-panel-visual" class="p-2">
-                  <div
-                    data-lightbox
-                    data-lightbox-src="/assets/projects/certforge-platform.svg"
-                    data-lightbox-alt="CertForge Study Platform Interface and Routing Simulator"
-                    class="aspect-[16/10] overflow-hidden relative bg-[#0d0d0c] cursor-zoom-in group"
-                  >
-                    <img
-                      data-parallax-img
-                      src="/assets/projects/certforge-platform.svg"
-                      alt="CertForge Study Platform Interface and Routing Simulator"
-                      width="720"
-                      height="450"
-                      loading="lazy"
-                      class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-300"
-                    />
-                    <div class="absolute bottom-2.5 right-2.5 px-2 py-1 bg-black/80 text-white font-mono-spec text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">
-                      [CLICK TO ZOOM ⤢]
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Panel 2: Interactive Modules / CLI -->
-                <div id="certforge-panel-drills" class="hidden font-mono-spec">
-                  <div class="p-5 space-y-4 text-xs">
-                    <div class="flex items-center justify-between text-[10.5px] text-[var(--text-muted)]">
-                      <span>TRACK // CISCO CCNA (200-301) &amp; NETWORK+</span>
-                      <span class="text-[var(--signal)] font-semibold">IOS CLI &amp; OSPF</span>
-                    </div>
-                    <div class="p-3.5 border border-[var(--rule-hairline)] bg-[#0e0e0d] text-[#f4f4f0] text-[11px] space-y-1">
-                      <div class="text-[#ff4810]">Router(config)# router ospf 1</div>
-                      <div>Router(config-router)# network 10.10.20.0 0.0.0.255 area 0</div>
-                      <div>Switch(config-if)# switchport mode trunk</div>
-                      <div>Switch(config-if)# switchport trunk allowed vlan 10,20,99</div>
-                    </div>
-                    <div class="divide-y divide-[var(--rule-hairline)] border border-[var(--rule-hairline)] text-[11px]">
-                      <div class="grid grid-cols-4 px-3 py-1.5 bg-[var(--bg-panel)] text-[var(--text-muted)]">
-                        <span>CIDR</span>
-                        <span>NETMASK</span>
-                        <span>SUBNETS</span>
-                        <span class="text-right">USABLE HOSTS</span>
-                      </div>
-                      <div class="grid grid-cols-4 px-3 py-1.5">
-                        <span class="text-[var(--signal)] font-semibold">/25</span>
-                        <span>255.255.255.128</span>
-                        <span>2</span>
-                        <span class="text-right font-semibold">126</span>
-                      </div>
-                      <div class="grid grid-cols-4 px-3 py-1.5">
-                        <span class="text-[var(--signal)] font-semibold">/26</span>
-                        <span>255.255.255.192</span>
-                        <span>4</span>
-                        <span class="text-right font-semibold">62</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="px-3 py-2 border-t border-[var(--rule-hairline)] flex items-center justify-between font-mono-spec text-[10px] text-[var(--text-muted)]">
-                  <span>FIG 02. CERTFORGE PLATFORM</span>
-                  <span>CLICK IMAGE FOR FULLSCREEN VIEWPORT</span>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         SECTION 03 // INFRASTRUCTURE & SYSTEMS LABS LEDGER (#labs-showcase)
-         ========================================================== -->
-    <section
-      id="labs-showcase"
-      data-section-title="SEC.03 // INFRASTRUCTURE LABS"
-      class="border-b border-[var(--rule-hairline)] scroll-mt-14"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Sticky Gutter -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div class="lg:sticky lg:top-[74px] flex lg:flex-col justify-between gap-8">
-            <div>
-              <span class="text-[var(--signal)] font-semibold block">INDEX // 03</span>
-              <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-                SYSTEMS LABS
-              </span>
-              <span class="hidden lg:block text-[10px] text-[var(--text-muted)] mt-3 leading-relaxed">
-                Click any lab row to inspect its node in the enterprise topology diagram.
-              </span>
-            </div>
-            <span class="hidden lg:block text-[10px] pt-6 border-t border-[var(--rule-hairline)]">
-              07 VERIFIED BUILDS
-            </span>
-          </div>
-        </div>
-
-        <!-- Right 10 Cols: Live Interactive Topology Schematic + 7-Lab Ledger -->
-        <div class="lg:col-span-10">
-          <!-- Header -->
-          <div class="p-6 sm:p-10 lg:px-14 lg:py-10 border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)]/50 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <span class="font-mono-spec text-[10.5px] uppercase tracking-[0.2em] text-[var(--signal)] block mb-2">
-                TECHNICAL INFRASTRUCTURE &amp; VIRTUALIZATION
-              </span>
-              <h2 class="clip-line font-display text-3xl sm:text-4xl lg:text-[44px] font-bold tracking-[-0.03em] uppercase text-[var(--text-primary)] leading-none">
-                <span data-reveal-heading class="clip-line-inner">Systems Engineering Labs.</span>
-              </h2>
-            </div>
+          <div class="mt-8 flex flex-wrap items-center gap-3 text-xs font-mono-spec">
             <a
-              href="/resume#labs"
-              class="font-mono-spec text-xs text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors"
+              href="#projects"
+              class="px-4 py-2.5 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold hover:bg-[var(--signal)] hover:text-white transition-colors"
             >
-              OPEN IN FULL CV →
+              Explore Work ↓
             </a>
-          </div>
-
-          <!-- Interactive Enterprise Lab Topology Schematic (Responsive on Mobile) -->
-          <div class="p-6 sm:p-10 lg:px-14 border-b border-[var(--rule-hairline)] bg-blueprint-grid">
-            <div class="border border-[var(--rule-strong)] bg-[var(--bg-surface)] p-4 sm:p-6 font-mono-spec">
-              <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-5 border-b border-[var(--rule-hairline)] text-[10.5px]">
-                <span class="font-semibold text-[var(--text-primary)]">
-                  INTERACTIVE TOPOLOGY // SELECT ANY NODE OR ROW BELOW
-                </span>
-                <span id="active-lab-indicator" class="text-[var(--signal)] font-semibold">
-                  ACTIVE: LAB-01 — VIRTUALIZED ENTERPRISE LAB
-                </span>
-              </div>
-
-              <!-- 7 Interactive Hardware/Network Nodes Grid (Mobile Friendly: 2-col, 4-col, 7-col) -->
-              <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5">
-                {
-                  siteContent.resume.labs.map((lab, idx) => (
-                    <button
-                      type="button"
-                      data-lab-node={lab.id}
-                      data-lab-name={lab.name}
-                      data-lab-desc={lab.description}
-                      data-lab-cat={lab.category}
-                      data-lab-proto={lab.protocols.join(' · ')}
-                      class:list={[
-                        'p-3 text-left border transition-all cursor-pointer flex flex-col justify-between min-h-[88px]',
-                        idx === 6 ? 'col-span-2 sm:col-span-1' : '',
-                        idx === 0
-                          ? 'border-[var(--signal)] bg-[var(--signal-soft)]'
-                          : 'border-[var(--rule-hairline)] bg-[var(--bg-panel)]/50 hover:border-[var(--rule-strong)]',
-                      ]}
-                    >
-                      <span class="text-[10px] font-bold text-[var(--signal)]">{lab.id}</span>
-                      <span class="font-display font-bold text-xs text-[var(--text-primary)] leading-tight mt-2 line-clamp-2">
-                        {lab.category}
-                      </span>
-                    </button>
-                  ))
-                }
-              </div>
-
-              <!-- Live Diagnostic Inspector Readout -->
-              <div class="mt-4 pt-4 border-t border-[var(--rule-hairline)] grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline text-xs">
-                <div class="md:col-span-4">
-                  <span class="text-[10px] text-[var(--text-muted)] block">SELECTED TOPOLOGY</span>
-                  <div
-                    id="inspector-lab-title"
-                    class="font-display font-bold text-base text-[var(--text-primary)] mt-0.5"
-                  >
-                    {siteContent.resume.labs[0].name}
-                  </div>
-                </div>
-                <div class="md:col-span-5">
-                  <span class="text-[10px] text-[var(--text-muted)] block">VALIDATION SCOPE</span>
-                  <p id="inspector-lab-desc" class="text-[12px] text-[var(--text-secondary)] mt-0.5">
-                    {siteContent.resume.labs[0].description}
-                  </p>
-                </div>
-                <div class="md:col-span-3 md:text-right">
-                  <span class="text-[10px] text-[var(--text-muted)] block">PROTOCOLS &amp; STACK</span>
-                  <div
-                    id="inspector-lab-proto"
-                    class="text-[11px] font-semibold text-[var(--signal)] mt-0.5"
-                  >
-                    {siteContent.resume.labs[0].protocols.join(' · ')}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Column Headers -->
-          <div class="hidden md:grid grid-cols-12 px-6 sm:px-10 lg:px-14 py-3 border-b border-[var(--rule-hairline)] font-mono-spec text-[10px] uppercase tracking-[0.18em] text-[var(--text-muted)] bg-[var(--bg-panel)]">
-            <div class="col-span-2">REF ID</div>
-            <div class="col-span-4">SYSTEM / LAB SPECIFICATION</div>
-            <div class="col-span-4">ARCHITECTURE &amp; VALIDATION</div>
-            <div class="col-span-2 text-right">PROTOCOLS</div>
-          </div>
-
-          <!-- 7 Lab Ledger Rows -->
-          <div data-stagger-group class="divide-y divide-[var(--rule-hairline)]">
-            {
-              siteContent.resume.labs.map((lab, idx) => (
-                <div
-                  data-stagger-item
-                  data-lab-row={lab.id}
-                  data-active={idx === 0 ? 'true' : 'false'}
-                  class="ledger-row px-6 sm:px-10 lg:px-14 py-6 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 items-baseline cursor-pointer"
-                >
-                  <div class="md:col-span-2 font-mono-spec text-xs">
-                    <span class="text-[var(--signal)] font-semibold">{lab.id}</span>
-                    <span class="block text-[10px] text-[var(--text-muted)] mt-0.5">
-                      {lab.category}
-                    </span>
-                  </div>
-
-                  <div class="md:col-span-4">
-                    <h3 class="font-display text-lg sm:text-xl font-bold tracking-tight text-[var(--text-primary)]">
-                      {lab.name}
-                    </h3>
-                  </div>
-
-                  <div class="md:col-span-4">
-                    <p class="text-[13.5px] text-[var(--text-secondary)] leading-[1.6]">
-                      {lab.description}
-                    </p>
-                  </div>
-
-                  <div class="md:col-span-2 md:text-right font-mono-spec text-[11px] text-[var(--text-muted)]">
-                    {lab.protocols.join(' · ')}
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         SECTION 04 // RECENT NOTES & UPDATES LOG (#notes & #updates)
-         ========================================================== -->
-    <section
-      id="notes"
-      data-section-title="SEC.04 // WRITING & LOGS"
-      class="border-b border-[var(--rule-hairline)] scroll-mt-14"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Sticky Gutter -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div class="lg:sticky lg:top-[74px] flex lg:flex-col justify-between gap-8">
-            <div>
-              <span class="text-[var(--signal)] font-semibold block">INDEX // 04</span>
-              <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-                WRITING &amp; LOGS
-              </span>
-            </div>
-            <span class="hidden lg:block text-[10px] pt-6 border-t border-[var(--rule-hairline)]">
-              DISPATCHES
-            </span>
-          </div>
-        </div>
-
-        <!-- Right 10 Cols: Split Editorial Essay + Raw Log -->
-        <div class="lg:col-span-10 grid grid-cols-1 xl:grid-cols-12">
-          <!-- Left 7 Cols: Recent Notes Monograph + Interactive Briefing Drawer -->
-          <div class="xl:col-span-7 p-6 sm:p-10 lg:p-14 border-b xl:border-b-0 xl:border-r border-[var(--rule-hairline)] flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between font-mono-spec text-xs text-[var(--text-muted)] pb-4 mb-6 border-b border-[var(--rule-hairline)]">
-                <span>RECENT NOTES // ESSAY</span>
-                <span class="text-[var(--signal)] font-semibold">JULY 2026 · NEWSLETTER</span>
-              </div>
-
-              {
-                siteContent.notes.map((note) => (
-                  <article>
-                    <h2 class="font-display text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-[-0.03em] text-[var(--text-primary)] leading-[1.05]">
-                      {note.title}
-                    </h2>
-                    <p class="font-display text-lg sm:text-xl text-[var(--text-primary)] font-medium mt-3">
-                      {note.subtitle}
-                    </p>
-                    <p class="text-[15px] text-[var(--text-secondary)] leading-[1.7] mt-4 max-w-[580px]">
-                      {note.summary}
-                    </p>
-
-                    <div class="mt-6 flex flex-wrap items-center gap-3">
-                      <button
-                        type="button"
-                        id="toggle-essay-briefing"
-                        aria-expanded="false"
-                        class="px-4 py-2.5 border border-[var(--rule-strong)] font-mono-spec text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-surface)] transition-colors cursor-pointer"
-                      >
-                        [+ READ THESIS BREAKDOWN]
-                      </button>
-
-                      <a
-                        href="/notes/flexible-but-not-free"
-                        class="px-4 py-2.5 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] font-mono-spec text-xs font-semibold uppercase tracking-wider text-[var(--text-primary)] hover:border-[var(--signal)] hover:text-[var(--signal)] transition-colors inline-flex items-center gap-1.5"
-                      >
-                        [→ FULL ARTICLE & PERMALINK]
-                      </a>
-
-                      <div
-                        id="essay-briefing-panel"
-                        class="w-full hidden mt-5 p-5 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] space-y-4 text-[13.5px] text-[var(--text-secondary)]"
-                      >
-                        <div class="font-mono-spec text-[10.5px] text-[var(--signal)] uppercase tracking-wider">
-                          SYSTEMS ANALYSIS // KEY ARGUMENTS
-                        </div>
-                        <div class="space-y-3">
-                          <p>
-                            <strong class="text-[var(--text-primary)]">01. Context-Switching Overhead:</strong>{' '}
-                            On-demand gig shifts fragment deep cognitive blocks required for subnetting, Linux kernel labs, and systems programming.
-                          </p>
-                          <p>
-                            <strong class="text-[var(--text-primary)]">02. Hidden Depreciation:</strong>{' '}
-                            Nominal hourly payouts mask fuel, maintenance, insurance, and the opportunity cost of compounding technical credentials.
-                          </p>
-                          <p>
-                            <strong class="text-[var(--text-primary)]">03. Intentional Allocation:</strong>{' '}
-                            Treating study hours and infrastructure lab work as non-negotiable capital allocation in Toronto.
-                          </p>
-                        </div>
-                        <div class="pt-2 border-t border-[var(--rule-hairline)] text-right">
-                          <a
-                            href="/notes/flexible-but-not-free"
-                            class="text-[11.5px] font-mono-spec text-[var(--signal)] hover:underline font-semibold"
-                          >
-                            Read complete 6-min monograph with systems breakdown →
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </article>
-                ))
-              }
-            </div>
-
-            <div class="pt-8 mt-10 border-t border-[var(--rule-hairline)] flex items-center justify-between font-mono-spec text-xs text-[var(--text-muted)]">
-              <span>More notes will appear here as the archive grows.</span>
-              <span>ISSUE #01</span>
-            </div>
-          </div>
-
-          <!-- Right 5 Cols: ~/updates.log Raw Feed (#updates) -->
-          <div
-            id="updates"
-            class="xl:col-span-5 p-6 sm:p-10 lg:p-12 bg-[var(--bg-panel)] flex flex-col justify-between font-mono-spec scroll-mt-16"
-          >
-            <div>
-              <div class="flex items-center justify-between text-xs pb-4 mb-6 border-b border-[var(--rule-hairline)]">
-                <span class="font-semibold text-[var(--text-primary)]">~/UPDATES.LOG</span>
-                <span class="text-[var(--signal)]">LIVE STREAM</span>
-              </div>
-
-              <div class="space-y-5 text-xs">
-                {
-                  siteContent.updatesLog.map((entry, idx) => (
-                    <div class="border-l-2 border-[var(--signal)] pl-3.5 py-0.5">
-                      <div class="text-[10px] text-[var(--text-muted)] uppercase">
-                        0{idx + 1} // {entry.key}
-                      </div>
-                      <p class="text-[var(--text-primary)] font-medium mt-1 leading-relaxed">
-                        {entry.value}
-                      </p>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-
-            <div class="pt-6 mt-8 border-t border-[var(--rule-hairline)] flex items-center justify-between text-[11px]">
-              <span class="text-[var(--text-muted)]">INTERACTIVE CLI</span>
-              <button
-                type="button"
-                data-open-command
-                class="font-semibold text-[var(--signal)] hover:underline cursor-pointer"
-              >
-                LAUNCH SHELL [⌘K] →
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         SECTION 05 // PATH SO FAR — CHRONOLOGICAL LEDGER (#path)
-         ========================================================== -->
-    <section
-      id="path"
-      data-section-title="SEC.05 // CHRONOLOGICAL LEDGER"
-      class="border-b border-[var(--rule-hairline)] scroll-mt-14"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Sticky Gutter -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div class="lg:sticky lg:top-[74px] flex lg:flex-col justify-between gap-8">
-            <div>
-              <span class="text-[var(--signal)] font-semibold block">INDEX // 05</span>
-              <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-                PATH SO FAR
-              </span>
-            </div>
-            <span class="hidden lg:block text-[10px] pt-6 border-t border-[var(--rule-hairline)]">
-              2022 — 2026
-            </span>
-          </div>
-        </div>
-
-        <!-- Right 10 Cols: Swiss Timetable -->
-        <div class="lg:col-span-10">
-          <div class="p-6 sm:p-10 lg:px-14 lg:py-10 border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)]/50">
-            <span class="font-mono-spec text-[10.5px] uppercase tracking-[0.2em] text-[var(--signal)] block mb-2">
-              CHRONOLOGICAL ARCHIVE
-            </span>
-            <h2 class="clip-line font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-[-0.03em] text-[var(--text-primary)]">
-              <span data-reveal-heading class="clip-line-inner">
-                Not a perfect roadmap. Just the path that actually happened.
-              </span>
-            </h2>
-          </div>
-
-          <div data-stagger-group class="divide-y divide-[var(--rule-hairline)]">
-            {
-              siteContent.pathSoFar.map((milestone, index) => (
-                <div
-                  data-stagger-item
-                  class="ledger-row p-6 sm:p-10 lg:px-14 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
-                >
-                  <div class="md:col-span-3 flex items-baseline gap-3">
-                    <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold">
-                      0{index + 1}
-                    </span>
-                    <span class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-primary)]">
-                      {milestone.year}
-                    </span>
-                  </div>
-
-                  <div class="md:col-span-4">
-                    <span class="font-mono-spec text-[10px] uppercase tracking-widest text-[var(--text-muted)] block mb-1">
-                      {milestone.phase}
-                    </span>
-                    <h3 class="font-display text-xl font-bold tracking-tight text-[var(--text-primary)]">
-                      {milestone.title}
-                    </h3>
-                  </div>
-
-                  <div class="md:col-span-5">
-                    <p class="text-[14px] text-[var(--text-secondary)] leading-[1.65]">
-                      {milestone.description}
-                    </p>
-                    <div class="flex flex-wrap gap-2 mt-3 font-mono-spec text-[10.5px] text-[var(--text-muted)]">
-                      {milestone.tags.map((t) => (
-                        <span>[{t}]</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==========================================================
-         SECTION 06 // RESUME & EXPERIENCE DISPATCH (#resume)
-         ========================================================== -->
-    <section
-      id="resume"
-      data-section-title="SEC.06 // CURRICULUM VITAE"
-      class="scroll-mt-14"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-12">
-        <!-- Left Gutter -->
-        <div
-          class="lg:col-span-2 p-5 sm:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] flex lg:flex-col justify-between font-mono-spec text-[11px] text-[var(--text-muted)]"
-        >
-          <div>
-            <span class="text-[var(--signal)] font-semibold block">INDEX // 06</span>
-            <span class="uppercase tracking-widest mt-1 block text-[var(--text-primary)] font-medium">
-              CURRICULUM VITAE
-            </span>
-          </div>
-          <span class="hidden lg:block text-[10px]">ATS + JSON</span>
-        </div>
-
-        <!-- Right 10 Cols: Full Resume Dispatch -->
-        <div class="lg:col-span-10 p-6 sm:p-10 lg:p-14 bg-[var(--bg-panel)] flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-          <div class="max-w-[640px]">
-            <span class="font-mono-spec text-[10.5px] uppercase tracking-[0.2em] text-[var(--signal)] block mb-2">
-              TRADITIONAL DOCUMENTATION // 60+ ENDPOINTS SUPPORTED
-            </span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-[-0.03em] text-[var(--text-primary)]">
-              Experience, education, and technical work.
-            </h2>
-            <p class="text-[15px] text-[var(--text-secondary)] leading-[1.65] mt-3">
-              A concise version of my professional background — covering BETA PREP, Bestof Floor
-              LTD, Payment Source, George Brown College, and BCIT — for people who need the
-              traditional version.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-0 border border-[var(--rule-strong)] font-mono-spec text-xs shrink-0">
+            <a
+              href="#labs-showcase"
+              class="px-4 py-2.5 border border-[var(--rule-hairline)] text-[var(--text-primary)] hover:border-[var(--text-primary)] hover:bg-[var(--bg-panel)] transition-colors"
+            >
+              Systems Labs ↓
+            </a>
             <a
               href="/resume"
-              class="px-6 py-4 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
+              class="px-4 py-2.5 border border-[var(--rule-hairline)] text-[var(--text-primary)] hover:border-[var(--signal)] hover:text-[var(--signal)] transition-colors inline-flex items-center gap-1.5"
             >
-              VIEW RESUME →
-            </a>
-            <a
-              href="/resume/tarik-gungor-resume.pdf"
-              download="tarik-gungor-resume.pdf"
-              class="px-5 py-4 bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors"
-            >
-              PDF ↓
-            </a>
-            <a
-              href="/resume/tarik-gungor-resume.json"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-5 py-4 bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors"
-            >
-              JSON ↗
+              <span>View Resume</span>
+              <span>→</span>
             </a>
           </div>
+        </div>
+
+        <!-- Quiet Metric Highlights -->
+        <div data-hero-spec class="lg:col-span-4 grid grid-cols-3 lg:grid-cols-1 gap-4 pt-4 lg:pt-0 border-t lg:border-t-0 lg:border-l border-[var(--rule-hairline)] lg:pl-8 text-xs font-mono-spec">
+          <div>
+            <span class="text-[11px] text-[var(--text-muted)] block">Endpoints Managed</span>
+            <span class="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] mt-0.5 block">60+ Hosts</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[var(--text-muted)] block">Verified Labs</span>
+            <span class="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] mt-0.5 block">07 Topologies</span>
+          </div>
+          <div>
+            <span class="text-[11px] text-[var(--text-muted)] block">Software Products</span>
+            <span class="font-display text-xl sm:text-2xl font-bold text-[var(--signal)] mt-0.5 block">02 Built</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 01 // FOCUS (RIGHT NOW)
+         ========================================================== -->
+    <section id="right-now" class="pt-16 sm:pt-24 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-8 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          01 // CURRENT FOCUS
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          RIGHT NOW — 2026
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12" data-stagger-group>
+        {
+          siteContent.rightNow.map((item) => (
+            <div data-stagger-item class="group">
+              <div class="flex items-baseline gap-3 pb-2 border-b border-[var(--rule-hairline)]">
+                <span class="font-mono-spec text-xs text-[var(--signal)] font-bold">{item.index}</span>
+                <span class="font-mono-spec text-xs uppercase tracking-wider text-[var(--text-muted)] group-hover:text-[var(--text-primary)] transition-colors">
+                  {item.label}
+                </span>
+                <span class="ml-auto text-[11px] font-mono-spec text-[var(--text-muted)]">
+                  {item.metric}
+                </span>
+              </div>
+              <h2 class="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] mt-3">
+                {item.title}
+              </h2>
+              <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed mt-2">
+                {item.description}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 02 // SELECTED WORK (SONOMA & CERTFORGE)
+         ========================================================== -->
+    <section id="projects" class="pt-20 sm:pt-28 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-12 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          02 // SELECTED WORK
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          SOFTWARE PRODUCTS
+        </span>
+      </div>
+
+      <!-- Case Study 01: Sonoma -->
+      <article class="mb-24 lg:mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          <!-- Left 7 Cols: Image & Mode Toggle -->
+          <div class="lg:col-span-7">
+            <!-- Viewport Switcher -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--rule-hairline)] text-xs font-mono-spec">
+              <div class="flex items-center gap-1.5" role="tablist">
+                <button
+                  type="button"
+                  data-sonoma-tab="ui"
+                  role="tab"
+                  aria-selected="true"
+                  class="px-3 py-1 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold transition-colors cursor-pointer"
+                >
+                  Interface
+                </button>
+                <button
+                  type="button"
+                  data-sonoma-tab="arch"
+                  role="tab"
+                  aria-selected="false"
+                  class="px-3 py-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+                >
+                  Architecture &amp; Privacy
+                </button>
+              </div>
+
+              <button
+                type="button"
+                data-lightbox
+                data-lightbox-src="/assets/projects/sonoma-dashboard.png"
+                data-lightbox-alt="Sonoma Expense and Document Vault Dashboard"
+                class="hover:text-[var(--signal)] transition-colors cursor-pointer inline-flex items-center gap-1 text-[11px]"
+              >
+                <span>[⤢ Zoom]</span>
+              </button>
+            </div>
+
+            <!-- UI Viewport Panel -->
+            <div id="sonoma-panel-ui" class="relative border border-[var(--rule-hairline)] bg-[var(--bg-panel)] overflow-hidden shadow-sm">
+              <img
+                src="/assets/projects/sonoma-dashboard.png"
+                alt="Sonoma private expense and document management dashboard"
+                width="1440"
+                height="900"
+                loading="lazy"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+
+            <!-- Architecture Schematic Panel -->
+            <div id="sonoma-panel-arch" class="hidden border border-[var(--rule-hairline)] bg-[var(--bg-panel)] p-6 font-mono-spec text-xs space-y-4">
+              <div class="text-[var(--signal)] font-bold tracking-wider uppercase text-[11px]">
+                DATA ISOLATION ARCHITECTURE // PRIVATE VAULT
+              </div>
+              <p class="text-[var(--text-secondary)] leading-relaxed">
+                Sonoma is designed with strict boundaries to ensure personal financial records, receipts, and recurring expense profiles never transit public analytics or unencrypted aggregators.
+              </p>
+              <div class="p-4 bg-[var(--bg-surface)] border border-[var(--rule-hairline)] space-y-2 text-[11px]">
+                <div class="text-[var(--text-primary)] font-semibold">Security Principles:</div>
+                <div class="text-[var(--text-secondary)]">· Zero third-party telemetry or ad-tracker scripts</div>
+                <div class="text-[var(--text-secondary)]">· Client-side document encryption before storage staging</div>
+                <div class="text-[var(--text-secondary)]">· Isolated SQLite ledger with automated local backup routines</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Narrative & Specifications -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-mono-spec text-[var(--signal)] mb-2">
+                <span>01</span>
+                <span>·</span>
+                <span>PRIVATE TOOL</span>
+              </div>
+              <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-primary)]">
+                Sonoma
+              </h3>
+              <p class="text-base sm:text-lg text-[var(--text-secondary)] font-medium mt-2 leading-snug">
+                Private expense and document management tool built for daily personal operations.
+              </p>
+            </div>
+
+            <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+              Designed around zero-friction personal bookkeeping, receipt indexing, and structured monthly financial visibility without exposing sensitive records to third-party aggregators.
+            </p>
+
+            <!-- Key Capabilities -->
+            <div class="space-y-2 pt-2 border-t border-[var(--rule-hairline)]">
+              <div class="text-xs font-mono-spec text-[var(--text-muted)] uppercase">Capabilities</div>
+              <ul class="space-y-1.5 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>Private expense ledger with recurring cashflow tracking</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>Document vault with fast metadata tagging and receipt search</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>High-contrast interface tailored for daily financial control</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Tech Stack Tags -->
+            <div class="pt-4 border-t border-[var(--rule-hairline)] flex flex-wrap gap-2 font-mono-spec text-xs">
+              <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">Next.js</span>
+              <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">TypeScript</span>
+              <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">Tailwind CSS</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case Study 02: CertForge -->
+      <article>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+          <!-- Left 7 Cols: Image & Mode Toggle -->
+          <div class="lg:col-span-7">
+            <!-- Viewport Switcher -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-[var(--rule-hairline)] text-xs font-mono-spec">
+              <div class="flex items-center gap-1.5" role="tablist">
+                <button
+                  type="button"
+                  data-certforge-mode="visual"
+                  role="tab"
+                  aria-selected="true"
+                  class="px-3 py-1 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold transition-colors cursor-pointer"
+                >
+                  Platform View
+                </button>
+                <button
+                  type="button"
+                  data-certforge-mode="drills"
+                  role="tab"
+                  aria-selected="false"
+                  class="px-3 py-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+                >
+                  CLI &amp; Routing Drills
+                </button>
+              </div>
+
+              <button
+                type="button"
+                data-lightbox
+                data-lightbox-src="/assets/projects/certforge-platform.svg"
+                data-lightbox-alt="CertForge IT Certification Study Platform Interface"
+                class="hover:text-[var(--signal)] transition-colors cursor-pointer inline-flex items-center gap-1 text-[11px]"
+              >
+                <span>[⤢ Zoom]</span>
+              </button>
+            </div>
+
+            <!-- Visual Interface Panel -->
+            <div id="certforge-panel-visual" class="relative border border-[var(--rule-hairline)] bg-[var(--bg-panel)] overflow-hidden shadow-sm">
+              <img
+                src="/assets/projects/certforge-platform.svg"
+                alt="CertForge IT Certification Study Platform Interface"
+                width="1440"
+                height="900"
+                loading="lazy"
+                class="w-full h-auto object-cover"
+              />
+            </div>
+
+            <!-- CLI Drills Panel -->
+            <div id="certforge-panel-drills" class="hidden border border-[var(--rule-hairline)] bg-[var(--bg-inverse)] text-[var(--text-inverse)] p-6 font-mono-spec text-xs space-y-4">
+              <div class="text-[var(--signal)] font-bold tracking-wider uppercase text-[11px]">
+                CISCO IOS SIMULATION // PACKET TRACER SCENARIOS
+              </div>
+              <div class="p-3 bg-black/40 border border-white/10 space-y-1.5 text-[11.5px]">
+                <div class="text-white/60"># R1-CORE Configuration Drill</div>
+                <div class="text-white">Router&gt; enable</div>
+                <div class="text-white">Router# configure terminal</div>
+                <div class="text-white">Router(config)# interface GigabitEthernet0/0/0.10</div>
+                <div class="text-white">Router(config-subif)# encapsulation dot1Q 10</div>
+                <div class="text-white">Router(config-subif)# ip address 192.168.10.1 255.255.255.0</div>
+                <div class="text-emerald-400">✓ VLAN 10 Subinterface Active [STP: FORWARDING]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Narrative & Specifications -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <div class="inline-flex items-center gap-2 text-xs font-mono-spec text-[var(--signal)] mb-2">
+                <span>02</span>
+                <span>·</span>
+                <span>OPEN SOURCE</span>
+              </div>
+              <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-primary)]">
+                CertForge
+              </h3>
+              <p class="text-base sm:text-lg text-[var(--text-secondary)] font-medium mt-2 leading-snug">
+                IT certification study platform built around CompTIA Network+ and Cisco CCNA preparation.
+              </p>
+            </div>
+
+            <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed">
+              Built to turn passive textbook reading into active recall across OSI layers, subnetting math, routing protocols, and hands-on infrastructure troubleshooting scenarios.
+            </p>
+
+            <!-- Key Capabilities -->
+            <div class="space-y-2 pt-2 border-t border-[var(--rule-hairline)]">
+              <div class="text-xs font-mono-spec text-[var(--text-muted)] uppercase">Capabilities</div>
+              <ul class="space-y-1.5 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>CompTIA Network+ objective mapping &amp; timed active drills</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>Cisco CCNA routing, switching &amp; VLAN topology simulations</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-[var(--signal)] mt-1 text-xs">▪</span>
+                  <span>Subnet calculation calculator and packet inspection drill engine</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Links & Tags -->
+            <div class="pt-4 border-t border-[var(--rule-hairline)] flex items-center justify-between">
+              <div class="flex flex-wrap gap-2 font-mono-spec text-xs">
+                <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">Next.js</span>
+                <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">TypeScript</span>
+                <span class="px-2.5 py-1 bg-[var(--bg-panel)] text-[var(--text-secondary)]">Tailwind</span>
+              </div>
+
+              <a
+                href="https://github.com/gungortarik/certforge"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-mono-spec font-semibold text-[var(--signal)] hover:underline inline-flex items-center gap-1"
+              >
+                <span>GitHub Repository</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 03 // INFRASTRUCTURE & SYSTEMS LABS
+         ========================================================== -->
+    <section id="labs-showcase" class="pt-20 sm:pt-28 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-8 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          03 // SYSTEMS LABS
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          07 VERIFIED ENVIRONMENTS
+        </span>
+      </div>
+
+      <div class="max-w-2xl mb-10">
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">
+          Enterprise Infrastructure &amp; Systems Environments
+        </h2>
+        <p class="text-[15px] text-[var(--text-secondary)] mt-2 leading-relaxed">
+          Hands-on enterprise systems built across routing, identity federation, split-brain DNS, clustered storage, and hypervisor virtualization.
+        </p>
+      </div>
+
+      <!-- Two Column Lab Inspector -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Left 5 Cols: Lab Selector List -->
+        <div class="lg:col-span-5 space-y-2" role="tablist">
+          {
+            siteContent.resume.labs.map((lab, idx) => (
+              <button
+                type="button"
+                data-lab-node={lab.id}
+                data-lab-name={lab.name}
+                data-lab-desc={lab.description}
+                data-lab-proto={lab.protocols.join(' · ')}
+                class={`w-full p-4 border text-left font-mono-spec transition-all cursor-pointer ${
+                  idx === 0
+                    ? 'border-[var(--signal)] bg-[var(--signal-soft)]'
+                    : 'border-[var(--rule-hairline)] hover:border-[var(--text-primary)] bg-[var(--bg-panel)]/40'
+                }`}
+              >
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-[var(--signal)] font-bold">{lab.id}</span>
+                  <span class="text-[10px] text-[var(--text-muted)]">{lab.category}</span>
+                </div>
+                <div class="font-display font-semibold text-base text-[var(--text-primary)] mt-1">
+                  {lab.name}
+                </div>
+              </button>
+            ))
+          }
+        </div>
+
+        <!-- Right 7 Cols: Active Lab Detail Card -->
+        <div class="lg:col-span-7 p-6 sm:p-8 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] space-y-6">
+          <div>
+            <div class="text-xs font-mono-spec text-[var(--signal)] font-semibold uppercase" id="active-lab-indicator">
+              ACTIVE // {siteContent.resume.labs[0].id} — {siteContent.resume.labs[0].name.toUpperCase()}
+            </div>
+            <h3 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mt-2" id="inspector-lab-title">
+              {siteContent.resume.labs[0].name}
+            </h3>
+            <p class="text-sm font-mono-spec text-[var(--text-muted)] mt-1" id="inspector-lab-proto">
+              {siteContent.resume.labs[0].protocols.join(' · ')}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-[var(--rule-hairline)]">
+            <div class="text-xs font-mono-spec text-[var(--text-muted)] uppercase mb-2">Architectural Description</div>
+            <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed" id="inspector-lab-desc">
+              {siteContent.resume.labs[0].description}
+            </p>
+          </div>
+
+          <!-- Enterprise Skills & Verifications -->
+          <div class="pt-4 border-t border-[var(--rule-hairline)] space-y-3 font-mono-spec text-xs">
+            <div class="text-[var(--text-muted)] uppercase">Key Implementation Principles</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-[var(--text-secondary)]">
+              <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--rule-hairline)]">
+                · Strict subnet isolation &amp; routing table validation
+              </div>
+              <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--rule-hairline)]">
+                · High availability failover &amp; redundant links
+              </div>
+              <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--rule-hairline)]">
+                · Centralized access controls (RBAC &amp; Least Privilege)
+              </div>
+              <div class="p-2.5 bg-[var(--bg-surface)] border border-[var(--rule-hairline)]">
+                · Live health checks &amp; synthetic failover testing
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 04 // WRITING & FIELD NOTES
+         ========================================================== -->
+    <section id="notes" class="pt-20 sm:pt-28 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-12 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          04 // WRITING
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          DISPATCHES &amp; FIELD NOTES
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <!-- Left 8 Cols: Feature Article -->
+        <article class="lg:col-span-8 p-6 sm:p-10 border border-[var(--rule-hairline)] bg-[var(--bg-panel)]/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs font-mono-spec text-[var(--text-muted)] pb-4 border-b border-[var(--rule-hairline)]">
+              <span>{siteContent.notes[0].category.toUpperCase()}</span>
+              <span class="text-[var(--signal)] font-semibold">{siteContent.notes[0].date.toUpperCase()} · {siteContent.notes[0].readTime.toUpperCase()}</span>
+            </div>
+
+            <h3 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text-primary)] mt-6 leading-tight">
+              {siteContent.notes[0].title}
+            </h3>
+            <p class="font-display text-lg sm:text-xl text-[var(--text-primary)] font-medium mt-2 leading-snug">
+              {siteContent.notes[0].subtitle}
+            </p>
+            <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed mt-4 max-w-xl">
+              {siteContent.notes[0].summary}
+            </p>
+
+            <!-- Actions -->
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href="/notes/flexible-but-not-free"
+                class="px-5 py-2.5 bg-[var(--text-primary)] text-[var(--bg-surface)] font-mono-spec text-xs font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
+              >
+                Read Full Monograph →
+              </a>
+              <button
+                type="button"
+                id="toggle-essay-briefing"
+                aria-expanded="false"
+                class="px-4 py-2.5 border border-[var(--rule-hairline)] font-mono-spec text-xs font-medium uppercase tracking-wider text-[var(--text-primary)] hover:border-[var(--text-primary)] transition-colors cursor-pointer"
+              >
+                [+ View Key Points]
+              </button>
+            </div>
+
+            <!-- Expandable Thesis Panel -->
+            <div
+              id="essay-briefing-panel"
+              class="hidden mt-6 p-5 border border-[var(--rule-hairline)] bg-[var(--bg-surface)] space-y-3 font-mono-spec text-xs text-[var(--text-secondary)]"
+            >
+              <div class="text-[var(--signal)] font-bold uppercase tracking-wider text-[11px]">
+                KEY SYSTEMS DEDUCTIONS
+              </div>
+              <p>
+                <strong class="text-[var(--text-primary)]">01. Cognitive Latency:</strong> On-demand gig shifts fragment continuous mental blocks needed for deep networking labs and systems programming.
+              </p>
+              <p>
+                <strong class="text-[var(--text-primary)]">02. Asset Depreciation:</strong> Nominal payouts mask vehicle wear, insurance, and the opportunity cost of delayed technical certifications.
+              </p>
+              <p>
+                <strong class="text-[var(--text-primary)]">03. Intentional Allocation:</strong> Treating study hours as non-negotiable capital allocation in a high-cost environment like Toronto.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Right 4 Cols: Updates Log -->
+        <aside class="lg:col-span-4 p-6 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] font-mono-spec text-xs space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-[var(--rule-hairline)]">
+            <span class="font-bold text-[var(--text-primary)]">~/UPDATES.LOG</span>
+            <span class="text-[var(--signal)]">RECENT</span>
+          </div>
+
+          <div class="space-y-4">
+            {
+              siteContent.updatesLog.map((entry, idx) => (
+                <div class="border-l-2 border-[var(--signal)] pl-3 py-0.5">
+                  <div class="text-[10px] text-[var(--text-muted)] uppercase">
+                    0{idx + 1} // {entry.key}
+                  </div>
+                  <div class="text-[12px] text-[var(--text-primary)] font-medium mt-0.5 leading-snug">
+                    {entry.value}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 05 // CHRONOLOGICAL LEDGER (PATH SO FAR)
+         ========================================================== -->
+    <section id="path" class="pt-20 sm:pt-28 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-12 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          05 // THE PATH SO FAR
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          CHRONOLOGICAL LEDGER
+        </span>
+      </div>
+
+      <div class="divide-y divide-[var(--rule-hairline)]">
+        {
+          siteContent.pathSoFar.map((milestone) => (
+            <div class="py-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-baseline">
+              <div class="md:col-span-2 font-mono-spec">
+                <span class="text-xl font-bold text-[var(--text-primary)]">{milestone.year}</span>
+                <span class="block text-[11px] text-[var(--signal)] uppercase mt-0.5">{milestone.phase}</span>
+              </div>
+              <div class="md:col-span-7">
+                <h3 class="font-display text-xl font-bold text-[var(--text-primary)]">
+                  {milestone.title}
+                </h3>
+                <div class="text-sm text-[var(--text-muted)] font-mono-spec mt-0.5">
+                  {milestone.organization}
+                </div>
+                <p class="text-[15px] text-[var(--text-secondary)] mt-2 leading-relaxed">
+                  {milestone.description}
+                </p>
+              </div>
+              <div class="md:col-span-3 flex flex-wrap gap-1.5 font-mono-spec text-xs">
+                {
+                  milestone.tags.map((tag) => (
+                    <span class="px-2 py-0.5 bg-[var(--bg-panel)] text-[var(--text-muted)] text-[11px]">
+                      {tag}
+                    </span>
+                  ))
+                }
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ==========================================================
+         SECTION 06 // RESUME & DIRECT DISPATCH
+         ========================================================== -->
+    <section id="resume" class="pt-20 sm:pt-28 pb-20 border-t border-[var(--rule-hairline)] scroll-mt-20">
+      <div class="flex items-center justify-between pb-6 mb-12 border-b border-[var(--rule-hairline)]">
+        <span class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase">
+          06 // RESUME &amp; CONTACT
+        </span>
+        <span class="font-mono-spec text-xs text-[var(--text-muted)]">
+          CURRICULUM VITAE
+        </span>
+      </div>
+
+      <div class="p-8 sm:p-12 border border-[var(--rule-hairline)] bg-[var(--bg-panel)] flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div class="max-w-xl">
+          <span class="text-xs font-mono-spec text-[var(--signal)] uppercase">CAREER OVERVIEW</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mt-2">
+            Ready to deploy across enterprise infrastructure.
+          </h2>
+          <p class="text-[15px] text-[var(--text-secondary)] mt-3 leading-relaxed">
+            Supporting 60+ endpoints, Windows 10/11, Active Directory DS/GPO, network routing, and virtualization. Available for infrastructure, systems support, and enterprise IT roles in Toronto.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 font-mono-spec text-xs">
+          <a
+            href="/resume"
+            class="px-5 py-3 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
+          >
+            Interactive Resume →
+          </a>
+          <a
+            href="/resume/tarik-gungor-resume.pdf"
+            download="tarik-gungor-resume.pdf"
+            class="px-5 py-3 border border-[var(--rule-hairline)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider hover:border-[var(--text-primary)] transition-colors"
+          >
+            ATS Resume (PDF) ↓
+          </a>
         </div>
       </div>
     </section>
   </main>
 
   <Footer />
-</BaseLayout>
 
-<script>
-  // 1. Sonoma Viewport vs. Privacy Schematic Switcher
-  const sonomaTabs = document.querySelectorAll<HTMLButtonElement>('[data-sonoma-tab]');
-  const sonomaUiPanel = document.getElementById('sonoma-panel-ui');
-  const sonomaArchPanel = document.getElementById('sonoma-panel-arch');
+  <script>
+    // 1. Sonoma Viewport vs. Privacy Schematic Switcher
+    const sonomaTabs = document.querySelectorAll<HTMLButtonElement>('[data-sonoma-tab]');
+    const sonomaUiPanel = document.getElementById('sonoma-panel-ui');
+    const sonomaArchPanel = document.getElementById('sonoma-panel-arch');
 
-  sonomaTabs.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const mode = btn.getAttribute('data-sonoma-tab');
-      sonomaTabs.forEach((b) => {
-        const active = b === btn;
-        b.setAttribute('aria-selected', String(active));
-        b.classList.toggle('bg-[var(--text-primary)]', active);
-        b.classList.toggle('text-[var(--bg-surface)]', active);
-        b.classList.toggle('font-semibold', active);
-        b.classList.toggle('text-[var(--text-muted)]', !active);
+    sonomaTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-sonoma-tab');
+        sonomaTabs.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-selected', String(active));
+          b.classList.toggle('bg-[var(--text-primary)]', active);
+          b.classList.toggle('text-[var(--bg-surface)]', active);
+          b.classList.toggle('font-semibold', active);
+          b.classList.toggle('text-[var(--text-muted)]', !active);
+        });
+        if (mode === 'ui') {
+          sonomaUiPanel?.classList.remove('hidden');
+          sonomaArchPanel?.classList.add('hidden');
+        } else {
+          sonomaUiPanel?.classList.add('hidden');
+          sonomaArchPanel?.classList.remove('hidden');
+        }
       });
-      if (mode === 'ui') {
-        sonomaUiPanel?.classList.remove('hidden');
-        sonomaArchPanel?.classList.add('hidden');
-      } else {
-        sonomaUiPanel?.classList.add('hidden');
-        sonomaArchPanel?.classList.remove('hidden');
-      }
     });
-  });
 
-  // 2. CertForge Visual vs CLI Drills Switcher
-  const certforgeModes = document.querySelectorAll<HTMLButtonElement>('[data-certforge-mode]');
-  const certforgeVisual = document.getElementById('certforge-panel-visual');
-  const certforgeDrills = document.getElementById('certforge-panel-drills');
+    // 2. CertForge Visual vs CLI Drills Switcher
+    const certforgeModes = document.querySelectorAll<HTMLButtonElement>('[data-certforge-mode]');
+    const certforgeVisual = document.getElementById('certforge-panel-visual');
+    const certforgeDrills = document.getElementById('certforge-panel-drills');
 
-  certforgeModes.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const mode = btn.getAttribute('data-certforge-mode');
-      certforgeModes.forEach((b) => {
-        const active = b === btn;
-        b.setAttribute('aria-selected', String(active));
-        b.classList.toggle('bg-[var(--text-primary)]', active);
-        b.classList.toggle('text-[var(--bg-surface)]', active);
-        b.classList.toggle('font-semibold', active);
-        b.classList.toggle('text-[var(--text-muted)]', !active);
+    certforgeModes.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const mode = btn.getAttribute('data-certforge-mode');
+        certforgeModes.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-selected', String(active));
+          b.classList.toggle('bg-[var(--text-primary)]', active);
+          b.classList.toggle('text-[var(--bg-surface)]', active);
+          b.classList.toggle('font-semibold', active);
+          b.classList.toggle('text-[var(--text-muted)]', !active);
+        });
+        if (mode === 'visual') {
+          certforgeVisual?.classList.remove('hidden');
+          certforgeDrills?.classList.add('hidden');
+        } else {
+          certforgeVisual?.classList.add('hidden');
+          certforgeDrills?.classList.remove('hidden');
+        }
       });
-      if (mode === 'visual') {
-        certforgeVisual?.classList.remove('hidden');
-        certforgeDrills?.classList.add('hidden');
-      } else {
-        certforgeVisual?.classList.add('hidden');
-        certforgeDrills?.classList.remove('hidden');
+    });
+
+    // 3. Interactive 7-Lab Topology Selector
+    const labNodes = document.querySelectorAll<HTMLButtonElement>('[data-lab-node]');
+    const activeLabIndicator = document.getElementById('active-lab-indicator');
+    const inspectorTitle = document.getElementById('inspector-lab-title');
+    const inspectorDesc = document.getElementById('inspector-lab-desc');
+    const inspectorProto = document.getElementById('inspector-lab-proto');
+
+    function selectLab(labId: string) {
+      let selectedBtn: HTMLButtonElement | null = null;
+      labNodes.forEach((btn) => {
+        const isMatch = btn.getAttribute('data-lab-node') === labId;
+        if (isMatch) selectedBtn = btn;
+        btn.classList.toggle('border-[var(--signal)]', isMatch);
+        btn.classList.toggle('bg-[var(--signal-soft)]', isMatch);
+        btn.classList.toggle('border-[var(--rule-hairline)]', !isMatch);
+        btn.classList.toggle('bg-[var(--bg-panel)]/40', !isMatch);
+      });
+
+      if (selectedBtn) {
+        const name = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-name') || '';
+        const desc = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-desc') || '';
+        const proto = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-proto') || '';
+        if (activeLabIndicator)
+          activeLabIndicator.textContent = `ACTIVE // ${labId} — ${name.toUpperCase()}`;
+        if (inspectorTitle) inspectorTitle.textContent = name;
+        if (inspectorDesc) inspectorDesc.textContent = desc;
+        if (inspectorProto) inspectorProto.textContent = proto;
       }
-    });
-  });
-
-  // 3. Interactive 7-Lab Topology Blueprint Selector
-  const labNodes = document.querySelectorAll<HTMLButtonElement>('[data-lab-node]');
-  const labRows = document.querySelectorAll<HTMLElement>('[data-lab-row]');
-  const activeLabIndicator = document.getElementById('active-lab-indicator');
-  const inspectorTitle = document.getElementById('inspector-lab-title');
-  const inspectorDesc = document.getElementById('inspector-lab-desc');
-  const inspectorProto = document.getElementById('inspector-lab-proto');
-
-  function selectLab(labId: string) {
-    let selectedBtn: HTMLButtonElement | null = null;
-    labNodes.forEach((btn) => {
-      const isMatch = btn.getAttribute('data-lab-node') === labId;
-      if (isMatch) selectedBtn = btn;
-      btn.classList.toggle('border-[var(--signal)]', isMatch);
-      btn.classList.toggle('bg-[var(--signal-soft)]', isMatch);
-      btn.classList.toggle('border-[var(--rule-hairline)]', !isMatch);
-      btn.classList.toggle('bg-[var(--bg-panel)]/50', !isMatch);
-    });
-
-    labRows.forEach((row) => {
-      const isMatch = row.getAttribute('data-lab-row') === labId;
-      row.setAttribute('data-active', String(isMatch));
-    });
-
-    if (selectedBtn) {
-      const name = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-name') || '';
-      const desc = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-desc') || '';
-      const proto = (selectedBtn as HTMLButtonElement).getAttribute('data-lab-proto') || '';
-      if (activeLabIndicator)
-        activeLabIndicator.textContent = `ACTIVE: ${labId} — ${name.toUpperCase()}`;
-      if (inspectorTitle) inspectorTitle.textContent = name;
-      if (inspectorDesc) inspectorDesc.textContent = desc;
-      if (inspectorProto) inspectorProto.textContent = proto;
     }
-  }
 
-  labNodes.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-lab-node');
-      if (id) selectLab(id);
+    labNodes.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-lab-node');
+        if (id) selectLab(id);
+      });
     });
-  });
 
-  labRows.forEach((row) => {
-    row.addEventListener('click', () => {
-      const id = row.getAttribute('data-lab-row');
-      if (id) selectLab(id);
+    // 4. Essay Thesis Breakdown Drawer
+    const essayBtn = document.getElementById('toggle-essay-briefing');
+    const essayPanel = document.getElementById('essay-briefing-panel');
+
+    essayBtn?.addEventListener('click', () => {
+      if (!essayPanel) return;
+      const isHidden = essayPanel.classList.toggle('hidden');
+      essayBtn.setAttribute('aria-expanded', String(!isHidden));
+      essayBtn.textContent = isHidden ? '[+ View Key Points]' : '[— Hide Key Points]';
     });
-    row.addEventListener('mouseenter', () => {
-      const id = row.getAttribute('data-lab-row');
-      if (id) selectLab(id);
-    });
-  });
-
-  // 4. Essay Thesis Breakdown Drawer
-  const essayBtn = document.getElementById('toggle-essay-briefing');
-  const essayPanel = document.getElementById('essay-briefing-panel');
-
-  essayBtn?.addEventListener('click', () => {
-    if (!essayPanel) return;
-    const isHidden = essayPanel.classList.toggle('hidden');
-    essayBtn.setAttribute('aria-expanded', String(!isHidden));
-    essayBtn.textContent = isHidden ? '[+ READ THESIS BREAKDOWN]' : '[— COLLAPSE BREAKDOWN]';
-  });
-</script>
+  </script>
+</BaseLayout>

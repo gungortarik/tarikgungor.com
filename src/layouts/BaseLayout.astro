@@ -117,7 +117,7 @@ const personJsonLd = {
     }
   </head>
   <body
-    class="min-h-screen flex flex-col pb-[calc(2.25rem+env(safe-area-inset-bottom,0px))] selection:bg-[var(--signal)] selection:text-white antialiased"
+    class="min-h-screen flex flex-col selection:bg-[var(--signal)] selection:text-white antialiased"
   >
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -137,33 +137,6 @@ const personJsonLd = {
     </div>
 
     <slot />
-
-    <!-- Bottom Fixed Hardware Telemetry & Hotkey Bar with Mobile Safe-Area -->
-    <div
-      class="fixed bottom-0 left-0 right-0 z-40 min-h-9 pb-[env(safe-area-inset-bottom,0px)] border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)]/95 backdrop-blur-md print:hidden"
-    >
-      <div class="max-w-[1600px] mx-auto h-9 px-4 sm:px-6 flex items-center justify-between font-mono-spec text-[10.5px] text-[var(--text-muted)]">
-        <div class="flex items-center gap-3">
-          <span class="w-1.5 h-1.5 bg-[var(--signal)] inline-block"></span>
-          <span class="text-[var(--text-primary)] font-semibold" data-active-section>
-            SEC.01 // OVERVIEW
-          </span>
-        </div>
-
-        <div class="hidden md:flex items-center gap-5">
-          <span>HOTKEYS: <strong class="text-[var(--text-primary)]">[1–6]</strong> JUMP</span>
-          <span>·</span>
-          <span><strong class="text-[var(--text-primary)]">[T]</strong> THEME</span>
-          <span>·</span>
-          <span><strong class="text-[var(--text-primary)]">[⌘K]</strong> SHELL</span>
-        </div>
-
-        <div class="flex items-center gap-4">
-          <span class="hidden sm:inline" data-scroll-ypos>Y: 0000PX</span>
-          <span class="text-[var(--text-primary)] font-semibold" data-scroll-pct>000%</span>
-        </div>
-      </div>
-    </div>
 
     <!-- Fullscreen Interactive Image / Blueprint Lightbox Modal -->
     <dialog
@@ -272,25 +245,7 @@ const personJsonLd = {
         });
       }
 
-      // 3. Active Section Telemetry Tracker
-      const trackedSections = document.querySelectorAll<HTMLElement>('[data-section-title]');
-      const activeSectionLabel = document.querySelector<HTMLElement>('[data-active-section]');
-      trackedSections.forEach((sec) => {
-        const title = sec.getAttribute('data-section-title') || 'SEC // OVERVIEW';
-        ScrollTrigger.create({
-          trigger: sec,
-          start: 'top 45%',
-          end: 'bottom 45%',
-          onEnter: () => {
-            if (activeSectionLabel) activeSectionLabel.textContent = title;
-          },
-          onEnterBack: () => {
-            if (activeSectionLabel) activeSectionLabel.textContent = title;
-          },
-        });
-      });
-
-      // 4. GSAP Architectural Reveals & Scroll Choreography
+      // 3. GSAP Editorial Reveals & Scroll Choreography
       if (!reducedMotion) {
         const heroLines = gsap.utils.toArray<HTMLElement>('[data-hero-line]');
         const heroSpecs = gsap.utils.toArray<HTMLElement>('[data-hero-spec]');

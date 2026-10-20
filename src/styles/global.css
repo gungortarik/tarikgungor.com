@@ -111,24 +111,6 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Structural Crosshair Marker */
-.crosshair-corner {
-  position: relative;
-}
-
-.crosshair-corner::before {
-  content: '+';
-  position: absolute;
-  top: -8px;
-  left: -5px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1;
-  color: var(--signal);
-  pointer-events: none;
-  z-index: 10;
-}
-
 /* GSAP Reveal Clip Masks */
 .clip-line {
   overflow: hidden;
