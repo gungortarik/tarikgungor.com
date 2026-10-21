@@ -3,122 +3,94 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Footer from '../components/Footer.astro';
 import { siteContent } from '../data/siteContent';
 
-const labs = siteContent.resume.labs;
-
-const labDetails: Record<string, { map: string; verify: string; rationale: string }> = {
+const labTopologies: Record<string, { map: string; verify: string; rationale: string }> = {
   'LAB-01': {
-    map: `WAN / ISP Gateway (10.0.0.1)
- └─ pfSense — Dual-NIC NAT & State Table
-     ├─ VLAN 10 (192.168.10.0/24) ── Workstations & Clients
-     ├─ VLAN 20 (192.168.20.0/24) ── Domain Controllers (DC01, DC02)
-     └─ VLAN 30 (192.168.30.0/24) ── Isolated Storage & Hypervisors`,
+    map: `WAN / ISP gateway (10.0.0.1)
+ └─ pfSense — NAT & firewall
+     ├─ VLAN 10  192.168.10.0/24   workstations
+     ├─ VLAN 20  192.168.20.0/24   domain controllers, servers
+     └─ VLAN 30  192.168.30.0/24   isolated management & SAN`,
     verify: 'pfctl -sr | grep pass',
     rationale: 'Segregates untrusted client workstations from core domain infrastructure using strict 802.1Q sub-interfaces and firewall rules.',
   },
   'LAB-02': {
-    map: `corp.local (Forest Root)
- └─ OU: Toronto
-     ├─ OU: Workstations ── GPO: BitLocker, LAPS, Firewall Baseline
-     ├─ OU: Users        ── Tiered Security Groups, Role-Based Access
-     └─ OU: Servers      ── DC01 & DC02 DFSR Multi-Master Replication`,
+    map: `corp.local
+ └─ OU  Toronto
+     ├─ OU  Workstations   GPO: BitLocker, LAPS, firewall baseline
+     ├─ OU  Users          security groups, tiered access
+     └─ OU  Servers        DC01 + DC02 DFSR replication`,
     verify: 'Get-ADOrganizationalUnit -Filter * | select DistinguishedName',
-    rationale: 'Implements Microsoft Tiered Administration Model to mitigate lateral privilege escalation across the enterprise domain.',
+    rationale: 'Implements Microsoft Tiered Administration Model to mitigate lateral privilege escalation across the domain.',
   },
   'LAB-03': {
-    map: `Workstation Client ──> AD-Integrated DNS (192.168.20.10 / .11)
- ├─ Forward Zone: corp.local  ── Secure Dynamic Updates & SRV Records
- ├─ Reverse Zone: 20.168.192  ── PTR Records for Kerberos SPNs
- └─ Forwarders                ── 1.1.1.1 / 9.9.9.9 (Encrypted DNS)`,
+    map: `client ──> AD-integrated DNS (192.168.20.10 / .11)
+ ├─ zone   corp.local   secure dynamic updates + PTR
+ └─ forwarders          1.1.1.1 / 9.9.9.9`,
     verify: 'Resolve-DnsName dc01.corp.local -Server 192.168.20.10',
-    rationale: 'Crucial for Kerberos ticket issuance, domain controller locator discovery, and secure hostname resolution across VLANs.',
+    rationale: 'Crucial for Kerberos ticket issuance, domain controller discovery, and secure hostname resolution across VLANs.',
   },
   'LAB-04': {
-    map: `Ubuntu Server 22.04 LTS (isc-dhcp-server)
- ├─ Scope VLAN 10: 192.168.10.50 – .200 (24h Lease, Option 3 Router)
- ├─ Scope VLAN 20: 192.168.20.50 – .100 (Servers Static Reservations)
- └─ Relay Agent  : pfSense DHCP-Relay helper IP forwarding`,
+    map: `Ubuntu Server — isc-dhcp-server
+ ├─ scope VLAN 10   192.168.10.50 – .200   24h lease
+ ├─ scope VLAN 20   192.168.20.50 – .100
+ └─ reservations    printers, management interfaces`,
     verify: 'systemctl status isc-dhcp-server && dhcp-lease-list',
     rationale: 'Centralized Linux-based lease provisioning across trunked segments with lease expiration tracking and MAC reservations.',
   },
   'LAB-05': {
-    map: `TrueNAS Core Storage Target (ZFS RAID-Z2 Pool)
- └─ iSCSI Portal :3260 (Dedicated 192.168.30.0/24 Subnet)
-     ├─ Hyper-V Host 01 (MPIO Path A: 192.168.30.11)
-     └─ Hyper-V Host 02 (MPIO Path B: 192.168.30.12)`,
+    map: `TrueNAS target — RAID 10
+ └─ iSCSI portal :3260 (storage subnet)
+     ├─ Hyper-V host 01   MPIO path A
+     └─ Hyper-V host 02   MPIO path B`,
     verify: 'iscsicli ListTargets',
     rationale: 'Block storage presentation over TCP/IP with redundant multipathing (MPIO) to survive single NIC failures.',
   },
   'LAB-06': {
-    map: `Node 01 (WS2022) <── Heartbeat Network (10.1.1.0/30) ──> Node 02 (WS2022)
- └─ Shared Clustered Shared Volume (CSV) on TrueNAS iSCSI SAN
- └─ File Share Witness (Quorum Majority Arbitrator)`,
-    verify: 'Get-ClusterNode; Get-ClusterResource | Format-Table Name, State',
+    map: `node 01 (file server) <── heartbeat ──> node 02 (file server)
+ └─ shared VHD Set on iSCSI storage + file share witness`,
+    verify: 'Get-ClusterNode; Get-ClusterResource',
     rationale: 'Zero-downtime high-availability file cluster with automatic failover between nodes upon host failure.',
   },
   'LAB-07': {
-    map: `Physical Bare-Metal Host (Hyper-V Hypervisor)
- └─ Nested VMware ESXi 8.0 Virtual Host (Promiscuous Mode vSwitch)
-     ├─ vSwitch0 ── VMkernel Management (vmk0: 192.168.20.55)
-     └─ vSwitch1 ── 802.1Q VLAN Trunk Port Group (VLAN ID 4095)`,
+    map: `physical host
+ └─ nested VMware ESXi 8.0
+     ├─ vSwitch0   management (vmk0)
+     └─ vSwitch1   lab trunk, 802.1Q tagged`,
     verify: 'esxcli network vswitch standard list',
     rationale: 'Nested hypervisor testing environment enabling multi-tenant VMware vSphere validation inside a single physical workstation.',
   },
 };
 
-const experience = [
+const path = [
   {
-    years: '2026 — Present',
-    org: 'George Brown College',
-    role: 'Computer Systems Technology',
-    scale: 'Advanced Diploma · Toronto, ON',
-    points: [
-      'Advanced networking, multi-area OSPF routing, enterprise switching & VLAN trunking.',
-      'Linux systems administration, shell automation, kernel security & user management.',
-      'Windows Server directory services, Group Policy design, and enterprise storage architectures.',
-    ],
+    years: '2026 — now',
+    title: 'George Brown College',
+    sub: 'Computer Systems Technology, Advanced Diploma',
+    text: 'Networking, routing & switching, Linux, Windows Server and virtualization — while building Sonoma and CertForge on the side.',
   },
   {
-    years: '2024 — Present',
-    org: 'BETA PREP',
-    role: 'IT Specialist',
-    scale: '38 Endpoints · Hybrid Fleet',
-    points: [
-      'Direct administration of 38 Windows 10/11 endpoints across physical offices and remote staff.',
-      'Microsoft 365 tenant management: Exchange Online, multi-factor authentication (MFA) and SharePoint permissions.',
-      'Diagnosing day-to-day connectivity, TCP/IP lease renegotiations, and local DNS/DHCP issues.',
-    ],
+    years: '2024 — now',
+    title: 'BETA PREP',
+    sub: 'IT Specialist · 38 endpoints, hybrid',
+    text: 'Windows 10/11 devices, Microsoft 365 accounts, new staff device setups and day-to-day connectivity issues (DNS, DHCP, IP config).',
   },
   {
-    years: '2023 — Present',
-    org: 'Bestof Floor LTD',
-    role: 'IT Support Specialist',
-    scale: '23 Devices · On-Prem Active Directory',
-    points: [
-      'On-premise Active Directory domain support: user onboarding, security groups, and shared drive NTFS ACLs.',
-      'Hardware maintenance, desktop lifecycle provisioning, automated backup verification, and printer network routing.',
-      'Maintained 99.8% workstation uptime across internal sales and operational personnel.',
-    ],
+    years: '2023 — now',
+    title: 'Bestof Floor LTD',
+    sub: 'IT Support Specialist · 23 devices, on-prem & AD',
+    text: 'Hardware and software troubleshooting, Active Directory accounts, and keeping the internal network and daily operations running.',
   },
   {
     years: '2023',
-    org: 'Payment Source',
-    role: 'IT Analyst Intern',
-    scale: '50+ Corporate Endpoints',
-    points: [
-      'Fleet configuration using ManageEngine Endpoint Central, rolling out security patches and software packages.',
-      'Implemented automated compliance scripts and standardized Windows workstation images.',
-      'Collaborated with senior infrastructure engineers on enterprise MDM policies and remote wipe protocols.',
-    ],
+    title: 'Payment Source',
+    sub: 'IT Analyst, Internship · 50+ endpoints',
+    text: 'Device configuration with ManageEngine Endpoint Central, MDM rollouts and structured policy deployment.',
   },
   {
     years: '2022 — 2023',
-    org: 'BCIT',
-    role: 'Technology Support Professional',
-    scale: 'Comprehensive Technical Program · Vancouver, BC',
-    points: [
-      'Hands-on foundation across enterprise Windows administration, network topology design, and virtualization.',
-      'Built physical patch-panel cabling, configured managed Cisco switches, and learned structured IT service operations.',
-    ],
+    title: 'BCIT',
+    sub: 'Technology Support Professional',
+    text: 'Hands-on training across Windows infrastructure, networking, virtualization, Linux and IT support.',
   },
 ];
 
@@ -126,714 +98,482 @@ const note = siteContent.notes[0];
 ---
 
 <BaseLayout title={siteContent.meta.title} description={siteContent.meta.description} canonicalPath="/">
-  <main id="main-content" class="space-y-28 sm:space-y-36 pb-28 pt-8 sm:pt-14">
+  <main id="main-content">
+    <!-- HERO (Balanced, Proportional Dennis Snellenberg Editorial Layout) -->
+    <section class="relative h-[100svh] min-h-[640px] max-h-[1050px] bg-[var(--bg-soft)] overflow-hidden">
+      <!-- signature -->
+      <img
+        src="/assets/logos/tarik-gungor-signature.svg"
+        alt="Tarik Gungor signature"
+        width="1330"
+        height="420"
+        class="hero-sig absolute inset-x-0 mx-auto top-[18%] sm:top-[16%] w-[min(76vw,680px)] h-auto opacity-[0.92] select-none pointer-events-none"
+      />
 
-    <!-- HERO SECTION -->
-    <section class="wrap pt-6 sm:pt-12">
-      <div class="max-w-4xl space-y-8">
-        <!-- Live status pill -->
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--line)] text-xs font-mono text-[var(--ink-2)]">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>Computer Systems Technology · George Brown College</span>
-          <span class="text-[var(--muted)]">/</span>
-          <span class="text-[var(--accent)] font-medium">IT Specialist</span>
-        </div>
-
-        <!-- Headline -->
-        <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[var(--ink)] leading-[1.08]">
-          Building reliable systems. <br />
-          <span class="text-[var(--ink-2)]">Learning by breaking things in the lab.</span>
-        </h1>
-
-        <!-- Personal Narrative -->
-        <p class="text-lg sm:text-xl text-[var(--ink-2)] leading-relaxed max-w-3xl">
-          I'm Tarik Gungor. I study Computer Systems Technology in Toronto and work in IT support — managing Windows infrastructure,
-          hybrid networks, and Microsoft 365 for real business teams. On the side, I build practical software tools like
-          <strong class="text-[var(--ink)] font-semibold">Sonoma</strong> and <strong class="text-[var(--ink)] font-semibold">CertForge</strong>,
-          and engineer multi-hypervisor lab environments to understand how systems operate under the hood.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="pt-2 flex flex-wrap items-center gap-4">
-          <a href="#projects" class="btn-primary" data-magnetic="0.3">
-            <span data-magnetic-inner class="flex items-center gap-2">
-              <span>View Projects</span>
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"></path>
-              </svg>
-            </span>
-          </a>
-
-          <a href="#workbench" class="btn-secondary" data-magnetic="0.3">
-            <span data-magnetic-inner class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
-              <span>Open Lab Studio</span>
-            </span>
-          </a>
-
-          <a href="/resume" class="btn-secondary" data-magnetic="0.3">
-            <span data-magnetic-inner>Resume &amp; Credentials →</span>
-          </a>
-        </div>
+      <!-- location pill -->
+      <div class="absolute left-0 top-[48%] sm:top-[44%] hidden sm:flex items-center gap-6 bg-[var(--dark)] text-white rounded-r-full pl-[var(--pad)] pr-3 py-3 shadow-lg">
+        <span class="text-[14px] leading-tight">Located<br />in Toronto,<br />Canada</span>
+        <span class="w-[64px] h-[64px] rounded-full bg-white/10 grid place-items-center">
+          <svg class="spin-slow w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <circle cx="12" cy="12" r="9.5"></circle>
+            <ellipse cx="12" cy="12" rx="4.2" ry="9.5"></ellipse>
+            <path d="M2.5 12h19M4 7h16M4 17h16"></path>
+          </svg>
+        </span>
       </div>
 
-      <!-- Telemetry Strip (Josh Comeau / Engineer's Workbench feel) -->
-      <div class="mt-14 sm:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 pt-8 border-t border-[var(--line)]">
-        <div class="space-y-1">
-          <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider">Active Fleet</div>
-          <div class="font-heading text-2xl font-bold text-[var(--ink)]">60+ Hosts</div>
-          <div class="text-xs text-[var(--ink-2)]">BETA PREP &amp; Bestof Floor</div>
-        </div>
+      <!-- role -->
+      <div class="absolute right-[var(--pad)] top-[48%] sm:top-[44%] text-[clamp(1.25rem,2.2vw,2rem)] leading-[1.2] tracking-[-0.02em]">
+        <svg class="w-5 h-5 mb-4 sm:mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M5 5l14 14M19 8v11H8"></path>
+        </svg>
+        IT Support &amp; Systems<br />Student &amp; Builder
+      </div>
 
-        <div class="space-y-1">
-          <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider">Virtual Labs</div>
-          <div class="font-heading text-2xl font-bold text-[var(--ink)]">7 Environments</div>
-          <div class="text-xs text-[var(--ink-2)]">Hyper-V · ESXi 8.0 · TrueNAS</div>
-        </div>
-
-        <div class="space-y-1">
-          <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider">Focus Areas</div>
-          <div class="font-heading text-2xl font-bold text-[var(--ink)]">Network+ · CCNA</div>
-          <div class="text-xs text-[var(--ink-2)]">Subnetting · VLANs · Active Directory</div>
-        </div>
-
-        <div class="space-y-1">
-          <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider">Base of Operations</div>
-          <div class="font-heading text-2xl font-bold text-[var(--accent)]" data-toronto-clock>Toronto, ON</div>
-          <div class="text-xs text-[var(--ink-2)]">George Brown College (T147)</div>
+      <!-- marquee (clean, fully visible within viewport) -->
+      <div class="absolute bottom-6 sm:bottom-10 left-0 w-full overflow-hidden select-none" aria-hidden="true">
+        <div class="marquee-track display !leading-[1] text-[clamp(4.2rem,11.5vw,10.8rem)] text-[var(--ink)]" data-marquee>
+          <span>Tarik Gungor — Systems &amp; Support —</span>
+          <span>Tarik Gungor — Systems &amp; Support —</span>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT NOW (CURRENT FOCUS) -->
-    <section class="wrap">
-      <div class="flex items-baseline justify-between mb-8 pb-4 border-b border-[var(--line)]">
-        <div class="space-y-1">
-          <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Active Threads</span>
-          <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)]">What I'm focused on right now</h2>
+    <!-- INTRO -->
+    <section class="wrap pt-28 sm:pt-40 pb-24 sm:pb-36">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <p class="lg:col-span-8 text-[clamp(1.55rem,2.9vw,2.7rem)] leading-[1.28] tracking-[-0.022em]" data-reveal>
+          I study Computer Systems Technology in Toronto and work in IT support — keeping Windows machines, networks and
+          Microsoft 365 accounts running for real teams. On the side I build practical software and virtual lab environments
+          to understand how systems actually work.
+        </p>
+        <div class="lg:col-span-3 lg:col-start-10 flex flex-col justify-between gap-10" data-reveal>
+          <p class="text-[15px] leading-relaxed text-[var(--ink-2)]">
+            Building systems. Learning continuously. Living intentionally. This site is where I document the work, the
+            lessons, and the life around them.
+          </p>
+          <a href="/resume" data-magnetic="0.4" class="round-btn btn-fill self-start lg:self-end">
+            <span data-magnetic-inner>Resume</span>
+          </a>
         </div>
-        <span class="text-xs font-mono text-[var(--muted)] hidden sm:block">Spring 2026 Status</span>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {
-          siteContent.rightNow.map((item) => (
-            <div class="tactile-card p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between text-xs font-mono text-[var(--muted)] mb-4">
-                  <span class="text-[var(--accent)] font-semibold">{item.index}</span>
-                  <span>{item.label}</span>
-                </div>
-                <h3 class="font-heading text-lg font-bold text-[var(--ink)] leading-snug">{item.title}</h3>
-                <p class="mt-2.5 text-sm text-[var(--ink-2)] leading-relaxed">{item.description}</p>
-              </div>
-              <div class="mt-6 pt-4 border-t border-[var(--line)] text-xs font-mono text-[var(--muted)]">
-                {item.metric}
-              </div>
-            </div>
-          ))
-        }
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS SECTION -->
-    <section id="projects" class="wrap scroll-mt-24">
-      <div class="space-y-2 mb-12">
-        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Engineering &amp; Code</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[var(--ink)]">Featured Projects</h2>
-        <p class="text-[16px] text-[var(--ink-2)] max-w-2xl leading-relaxed">
-          I build practical tools around problems I actually encounter — from personal finance privacy to interactive network certification preparation.
-        </p>
-      </div>
+    <!-- WORK (Dennis Snellenberg Cursor-Follower Preview + Josh Comeau Interactive Touch) -->
+    <section id="work" class="wrap pb-28 sm:pb-40 scroll-mt-8">
+      <div class="text-[13px] text-[var(--muted)] mb-6">Recent work</div>
 
-      <div class="space-y-12">
-
-        <!-- PROJECT 1: SONOMA -->
-        <article class="tactile-card overflow-hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center p-6 sm:p-10">
-            <!-- Screenshot Preview in Browser Window Frame -->
-            <div class="lg:col-span-7 space-y-3">
-              <div class="rounded-xl overflow-hidden border border-[var(--line)] bg-[var(--bg-elevated)] shadow-xl group">
-                <!-- Browser Bar -->
-                <div class="flex items-center justify-between px-4 py-2.5 bg-[var(--bg-subtle)] border-b border-[var(--line)] text-xs text-[var(--muted)] font-mono">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
-                  </div>
-                  <div class="px-3 py-0.5 rounded bg-[var(--bg-card)] border border-[var(--line)] text-[11px] text-[var(--ink-2)]">
-                    https://sonoma.internal/dashboard
-                  </div>
-                  <span class="text-[11px]">Private Vault</span>
-                </div>
-                <!-- Image with Lightbox click -->
-                <a
-                  href="/assets/projects/sonoma-dashboard.png"
-                  data-lightbox
-                  data-lightbox-src="/assets/projects/sonoma-dashboard.png"
-                  data-lightbox-alt="Sonoma private expense and document management dashboard"
-                  class="block relative cursor-zoom-in overflow-hidden"
-                >
-                  <img
-                    src="/assets/projects/sonoma-dashboard.png"
-                    alt="Sonoma private expense and document management dashboard"
-                    loading="lazy"
-                    class="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                    <span class="opacity-0 group-hover:opacity-100 transition-opacity bg-black/75 text-white text-xs px-3.5 py-1.5 rounded-full font-mono backdrop-blur-sm">
-                      Click to inspect full image ↗
-                    </span>
-                  </div>
-                </a>
-              </div>
-            </div>
-
-            <!-- Content Details -->
-            <div class="lg:col-span-5 space-y-6">
-              <div class="space-y-2">
-                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-mono font-medium">
-                  <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                  <span>Private Product · Daily Production</span>
-                </div>
-                <h3 class="font-heading text-3xl font-bold text-[var(--ink)]">Sonoma</h3>
-                <p class="text-sm font-medium text-[var(--accent)] font-mono">Personal Expense &amp; Document Vault</p>
-              </div>
-
-              <p class="text-sm sm:text-[15px] text-[var(--ink-2)] leading-relaxed">
-                A private financial ledger and document management vault I built for myself. Tracks receipts, recurring cashflow,
-                and tax documents with complete local privacy — eliminating the need to expose sensitive banking credentials to third-party aggregators.
+      <div class="work-list border-b border-[var(--line)]">
+        <!-- Sonoma Row -->
+        <div
+          data-work-index="0"
+          class="work-row block border-t border-[var(--line)] py-10 sm:py-14 group"
+        >
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="work-title">
+              <h3 class="display text-[clamp(2.6rem,6.5vw,6.2rem)] pl-0 md:pl-4 group-hover:translate-x-2 transition-transform duration-500">Sonoma</h3>
+              <p class="md:pl-5 mt-3 text-[15px] text-[var(--ink-2)] max-w-xl">
+                A private expense and document tool I built for myself — receipts, recurring costs and a clear monthly picture,
+                without handing my records to a third-party aggregator.
               </p>
-
-              <!-- Feature Highlights -->
-              <ul class="space-y-2.5 text-xs sm:text-sm text-[var(--ink-2)]">
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-500 font-bold">✓</span>
-                  <span><strong>Zero-Aggregation Architecture:</strong> Financial records remain strictly on trusted devices.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-500 font-bold">✓</span>
-                  <span><strong>Receipt &amp; Tax Tagging:</strong> Fast metadata filtering by fiscal year and expense category.</span>
-                </li>
-                <li class="flex items-start gap-2.5">
-                  <span class="text-emerald-500 font-bold">✓</span>
-                  <span><strong>Operational High-Contrast UI:</strong> Tailored for rapid daily entry with keyboard shortcuts.</span>
-                </li>
-              </ul>
-
-              <!-- Tech Stack Pills -->
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span class="tech-pill">Next.js 15</span>
-                <span class="tech-pill">TypeScript</span>
-                <span class="tech-pill">Tailwind CSS</span>
-                <span class="tech-pill font-mono">Local-First Storage</span>
-              </div>
+            </div>
+            <div class="text-[15px] md:text-right shrink-0 md:pr-4">
+              <div>Private tool</div>
+              <div class="text-[var(--muted)]">Next.js · TypeScript · Tailwind</div>
+              <a
+                href="/assets/projects/sonoma-dashboard.png"
+                data-lightbox
+                data-lightbox-src="/assets/projects/sonoma-dashboard.png"
+                data-lightbox-alt="Sonoma dashboard"
+                class="mt-2 inline-block text-xs font-mono text-[var(--accent)] hover:underline cursor-zoom-in"
+              >
+                Inspect dashboard ↗
+              </a>
             </div>
           </div>
-        </article>
-
-        <!-- PROJECT 2: CERTFORGE WITH LIVE INTERACTIVE DRILL (JOSH COMEAU STYLE) -->
-        <article class="tactile-card overflow-hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch p-6 sm:p-10">
-
-            <!-- Content Details -->
-            <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
-              <div class="space-y-4">
-                <div class="space-y-2">
-                  <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono font-medium">
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
-                    <span>Open Source · Active Recall Platform</span>
-                  </div>
-                  <h3 class="font-heading text-3xl font-bold text-[var(--ink)]">CertForge</h3>
-                  <p class="text-sm font-medium text-[var(--accent)] font-mono">Network+ &amp; CCNA Certification Drills</p>
-                </div>
-
-                <p class="text-sm sm:text-[15px] text-[var(--ink-2)] leading-relaxed">
-                  An open-source technical training platform designed around active recall instead of passive reading.
-                  Drills students on subnetting calculations under time constraints, OSI packet tracing, and VLAN routing topologies.
-                </p>
-
-                <!-- Highlights -->
-                <ul class="space-y-2.5 text-xs sm:text-sm text-[var(--ink-2)]">
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[var(--accent)] font-bold">●</span>
-                    <span><strong>Subnetting &amp; CIDR Drills:</strong> Rapid calculation of usable hosts, masks, and network boundaries.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[var(--accent)] font-bold">●</span>
-                    <span><strong>OSI &amp; Packet Flow:</strong> Tracing encapsulation from Layer 7 Application down to Layer 1 Physical bits.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[var(--accent)] font-bold">●</span>
-                    <span><strong>CLI Verification Mode:</strong> Practicing live Cisco IOS and Linux ip-route commands.</span>
-                  </li>
-                </ul>
-
-                <!-- Tech Stack -->
-                <div class="flex flex-wrap gap-2 pt-2">
-                  <span class="tech-pill">Next.js 15</span>
-                  <span class="tech-pill">TypeScript</span>
-                  <span class="tech-pill">Network Engineering</span>
-                  <span class="tech-pill">Tailwind CSS</span>
-                </div>
+          <!-- Visible Dashboard Preview -->
+          <div class="mt-8 md:ml-4 rounded-xl overflow-hidden bg-[#e2e5e9] p-4 sm:p-6 max-w-2xl border border-[var(--line)] shadow-sm">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-black/10 text-xs font-mono text-[var(--ink-2)]">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-black/20"></span>
               </div>
-
-              <!-- Links -->
-              <div class="pt-6 border-t border-[var(--line)] flex flex-wrap gap-3">
-                <a
-                  href="https://github.com/gungortarik/certforge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary !py-2 !px-4 !text-xs"
-                >
-                  <span>View on GitHub ↗</span>
-                </a>
-                <a
-                  href="/assets/projects/certforge-platform.svg"
-                  data-lightbox
-                  data-lightbox-src="/assets/projects/certforge-platform.svg"
-                  data-lightbox-alt="CertForge Platform Architecture"
-                  class="btn-secondary !py-2 !px-4 !text-xs cursor-zoom-in"
-                >
-                  <span>Platform Architecture SVG ↗</span>
-                </a>
-              </div>
+              <span>sonoma.internal / private vault</span>
             </div>
-
-            <!-- Interactive Hands-on Drill Widget (PURE JOSH COMEAU INTERACTIVITY) -->
-            <div class="lg:col-span-7 flex flex-col">
-              <div class="rounded-xl border border-[var(--line)] bg-[var(--code-bg)] p-6 sm:p-7 flex-1 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-                <!-- Background subtle glow -->
-                <div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[var(--accent)] opacity-10 blur-3xl pointer-events-none"></div>
-
-                <!-- Drill Header -->
-                <div>
-                  <div class="flex items-center justify-between pb-4 border-b border-[var(--code-border)] text-xs font-mono">
-                    <div class="flex items-center gap-2 text-indigo-400">
-                      <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-                      <span id="drill-domain">CompTIA Network+ // Subnetting &amp; CIDR</span>
-                    </div>
-                    <div class="text-[var(--muted)]">
-                      <span id="drill-step">Drill 1 of 4</span>
-                      <span class="mx-1.5">·</span>
-                      <span id="drill-score" class="text-emerald-400 font-semibold">Score: 0</span>
-                    </div>
-                  </div>
-
-                  <!-- Question Box -->
-                  <div class="mt-6 mb-6">
-                    <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider mb-2">Practice Question:</div>
-                    <p id="drill-question" class="font-heading text-lg sm:text-xl font-bold text-slate-100 leading-snug">
-                      How many usable host IP addresses are available in a /27 IPv4 subnet?
-                    </p>
-                  </div>
-
-                  <!-- Options Container -->
-                  <div id="drill-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <!-- Populated via script below -->
-                  </div>
-
-                  <!-- Explanation Box (Appears after answer) -->
-                  <div id="drill-feedback" class="mt-5 p-4 rounded-lg bg-slate-900/90 border border-slate-700/60 hidden transition-all duration-300">
-                    <div class="flex items-start gap-3">
-                      <span id="feedback-icon" class="text-lg"></span>
-                      <div class="text-xs sm:text-sm leading-relaxed text-slate-300 space-y-1">
-                        <strong id="feedback-title" class="block font-semibold"></strong>
-                        <p id="feedback-text"></p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Next Drill Action -->
-                <div class="mt-6 pt-4 border-t border-[var(--code-border)] flex items-center justify-between text-xs font-mono">
-                  <span class="text-[var(--muted)]">Interactive CCNA &amp; Network+ Simulator</span>
-                  <button
-                    type="button"
-                    id="drill-next-btn"
-                    class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition-colors cursor-pointer flex items-center gap-1.5"
-                  >
-                    <span>Next Drill</span>
-                    <span>→</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
+            <img src="/assets/projects/sonoma-dashboard.png" alt="Sonoma dashboard" loading="lazy" class="w-full rounded shadow" />
           </div>
-        </article>
+        </div>
 
+        <!-- CertForge Row -->
+        <div
+          data-work-index="1"
+          class="work-row block border-t border-[var(--line)] py-10 sm:py-14 group"
+        >
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div class="work-title">
+              <h3 class="display text-[clamp(2.6rem,6.5vw,6.2rem)] md:pl-4 group-hover:translate-x-2 transition-transform duration-500">CertForge</h3>
+              <p class="md:pl-5 mt-3 text-[15px] text-[var(--ink-2)] max-w-xl">
+                An open-source study platform for CompTIA Network+ and Cisco CCNA — active recall for OSI layers, subnetting,
+                routing and VLANs instead of passive reading.
+              </p>
+            </div>
+            <div class="text-[15px] md:text-right shrink-0 md:pr-4">
+              <div>Open source</div>
+              <a href="https://github.com/gungortarik/certforge" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--ink)] underline">github.com/gungortarik ↗</a>
+            </div>
+          </div>
+
+          <!-- Josh Comeau Active Recall Drill Widget inside CertForge -->
+          <div class="mt-8 md:ml-4 p-6 sm:p-7 rounded-2xl bg-[var(--bg-soft)] border border-[var(--line)] max-w-3xl">
+            <div class="flex items-center justify-between pb-3 border-b border-[var(--line)] text-xs font-mono text-[var(--muted)]">
+              <span class="text-[var(--accent)] font-semibold flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse"></span>
+                <span id="drill-domain">CompTIA Network+ // Subnetting &amp; CIDR</span>
+              </span>
+              <span id="drill-step">Drill 1 of 4</span>
+            </div>
+            <div class="my-4">
+              <p id="drill-question" class="text-[16px] sm:text-[18px] font-medium text-[var(--ink)] leading-snug">
+                How many usable host IP addresses are available in a /27 IPv4 subnet?
+              </p>
+            </div>
+            <div id="drill-options" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Rendered via JS -->
+            </div>
+            <div id="drill-feedback" class="mt-4 p-3.5 rounded-lg bg-[var(--bg)] border border-[var(--line)] text-xs sm:text-sm text-[var(--ink-2)] hidden">
+              <div id="feedback-text"></div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[var(--line)] flex items-center justify-between text-xs font-mono">
+              <span class="text-[var(--muted)]">Interactive CCNA &amp; Network+ Simulator</span>
+              <button type="button" id="drill-next-btn" class="text-[var(--accent)] hover:underline font-semibold cursor-pointer">Next Drill →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 flex justify-center">
+        <a href={siteContent.meta.github} target="_blank" rel="noopener noreferrer" class="pill-btn btn-fill" data-magnetic="0.25">
+          <span data-magnetic-inner>More on GitHub</span>
+        </a>
+      </div>
+
+      <!-- Floating preview (Dennis Snellenberg cursor follower) -->
+      <div id="work-preview" class="hidden md:block fixed top-0 left-0 z-30 w-[420px] h-[300px] overflow-hidden pointer-events-none rounded-xl shadow-2xl" style="transform: scale(0)">
+        <div id="work-preview-track" class="transition-transform duration-700 ease-[cubic-bezier(.76,0,.24,1)]">
+          <div class="w-[420px] h-[300px] bg-[#d7dbe0] grid place-items-center p-6">
+            <img src="/assets/projects/sonoma-dashboard.png" alt="Sonoma" class="w-full rounded shadow-xl" />
+          </div>
+          <div class="w-[420px] h-[300px] bg-[#1a2030] text-white flex flex-col justify-between p-7">
+            <div class="text-[12px] font-mono text-white/50">github.com/gungortarik/certforge</div>
+            <div>
+              <div class="display text-[3.2rem]">CertForge</div>
+              <div class="mt-2 text-sm text-white/70">Network+ · CCNA · Subnetting · VLANs</div>
+            </div>
+            <div class="text-xs font-mono text-indigo-400">Interactive Active Recall Drills</div>
+          </div>
+        </div>
+      </div>
+      <div id="work-cursor" class="hidden md:grid fixed top-0 left-0 z-30 w-20 h-20 rounded-full bg-[var(--accent)] text-white text-sm place-items-center pointer-events-none shadow-lg" style="transform: scale(0)">
+        View
       </div>
     </section>
 
-    <!-- INTERACTIVE LAB WORKBENCH (THE SYSTEMS CORE) -->
-    <section id="workbench" class="wrap scroll-mt-24">
-      <div class="space-y-2 mb-10">
-        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Systems Infrastructure Studio</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[var(--ink)]">Virtual Lab Workbench</h2>
-        <p class="text-[16px] text-[var(--ink-2)] max-w-2xl leading-relaxed">
-          A lot of what I know comes from building, configuring, and breaking virtual environments in Hyper-V and nested VMware ESXi.
-          Select an environment to inspect its topology diagram and live verification syntax.
-        </p>
-      </div>
-
-      <!-- Workbench Container -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-
-        <!-- Lab Selector List (Left Column) -->
-        <div class="lg:col-span-5 space-y-2">
+    <!-- RIGHT NOW -->
+    <section id="now" class="bg-[var(--bg-soft)]">
+      <div class="wrap py-24 sm:py-32">
+        <div class="text-[13px] text-[var(--muted)] mb-10">Right now</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
           {
-            labs.map((lab, index) => (
-              <button
-                type="button"
-                data-lab-id={lab.id}
-                data-lab-index={index}
-                class={`lab-tab w-full text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-4 ${
-                  index === 0
-                    ? 'active bg-[var(--bg-elevated)] border-[var(--accent)] shadow-md'
-                    : 'bg-[var(--bg-subtle)] border-[var(--line)] hover:border-[var(--line-strong)]'
-                }`}
-              >
-                <div class="flex items-center gap-3.5 min-w-0">
-                  <span class="text-xs font-mono font-semibold text-[var(--accent)] shrink-0">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div class="min-w-0">
-                    <h3 class="font-heading text-sm font-bold text-[var(--ink)] truncate">
-                      {lab.name}
-                    </h3>
-                    <div class="text-xs text-[var(--muted)] font-mono truncate">
-                      {lab.category}
-                    </div>
-                  </div>
-                </div>
-                <span class="text-xs font-mono text-[var(--muted)] shrink-0">→</span>
-              </button>
+            siteContent.rightNow.map((item) => (
+              <div class="border-t border-[var(--line)] pt-6" data-reveal>
+                <div class="text-[13px] text-[var(--muted)] capitalize">{item.label.toLowerCase()}</div>
+                <h3 class="mt-3 text-[1.45rem] leading-tight tracking-[-0.02em]">{item.title}</h3>
+                <p class="mt-3 text-[15px] leading-relaxed text-[var(--ink-2)]">{item.description}</p>
+              </div>
             ))
           }
         </div>
-
-        <!-- Active Lab Studio Display (Right Column) -->
-        <div class="lg:col-span-7">
-          <div class="tactile-card p-6 sm:p-8 space-y-6">
-            <!-- Header -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-[var(--line)]">
-              <div>
-                <span id="active-lab-category" class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">
-                  {labs[0].category}
-                </span>
-                <h3 id="active-lab-name" class="font-heading text-2xl font-bold text-[var(--ink)] mt-1">
-                  {labs[0].name}
-                </h3>
-              </div>
-              <span id="active-lab-id" class="px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--line)] text-xs font-mono text-[var(--muted)] shrink-0">
-                {labs[0].id}
-              </span>
-            </div>
-
-            <!-- Objective / Rationale -->
-            <div class="space-y-1">
-              <div class="text-xs font-mono text-[var(--muted)] uppercase tracking-wider">Engineering Purpose:</div>
-              <p id="active-lab-rationale" class="text-sm sm:text-[15px] text-[var(--ink-2)] leading-relaxed">
-                {labDetails['LAB-01'].rationale}
-              </p>
-            </div>
-
-            <!-- ASCII Topology Diagram -->
-            <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs font-mono text-[var(--muted)]">
-                <span>Network Topology Diagram:</span>
-                <span class="text-emerald-400">● 802.1Q Segmented</span>
-              </div>
-              <div class="rounded-xl bg-[var(--code-bg)] border border-[var(--code-border)] p-5 overflow-x-auto">
-                <pre id="active-lab-map" class="font-mono text-xs sm:text-[13px] leading-[1.8] text-slate-200">{labDetails['LAB-01'].map}</pre>
-              </div>
-            </div>
-
-            <!-- Verification Command with 1-Click Copy -->
-            <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs font-mono text-[var(--muted)]">
-                <span>Verification &amp; Diagnostic Syntax:</span>
-                <button
-                  type="button"
-                  id="copy-cmd-btn"
-                  class="text-[var(--accent)] hover:underline flex items-center gap-1 cursor-pointer"
-                >
-                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
-                  </svg>
-                  <span id="copy-btn-text">Copy Command</span>
-                </button>
-              </div>
-              <div class="flex items-center justify-between p-3.5 rounded-lg bg-[var(--code-bg)] border border-[var(--code-border)] font-mono text-xs sm:text-sm text-emerald-400">
-                <div class="flex items-center gap-2 overflow-x-auto">
-                  <span class="text-[var(--muted)] select-none">$</span>
-                  <code id="active-lab-verify">{labDetails['LAB-01'].verify}</code>
-                </div>
-              </div>
-            </div>
-
-            <!-- Protocols -->
-            <div class="pt-4 border-t border-[var(--line)] flex flex-wrap items-center gap-2">
-              <span class="text-xs font-mono text-[var(--muted)] mr-2">Protocols:</span>
-              <div id="active-lab-protocols" class="flex flex-wrap gap-1.5">
-                {
-                  labs[0].protocols.map((proto) => (
-                    <span class="tech-pill font-mono">{proto}</span>
-                  ))
-                }
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- EXPERIENCE & PATH (TIMELINE) -->
-    <section id="experience" class="wrap scroll-mt-24">
-      <div class="space-y-2 mb-12">
-        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Career &amp; Foundations</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[var(--ink)]">Experience &amp; Education</h2>
-        <p class="text-[16px] text-[var(--ink-2)] max-w-2xl leading-relaxed">
-          Real endpoints under management, physical and virtual infrastructure deployments, and ongoing systems education.
+    <!-- LABS (Expandable Systems Workbench with 1-Click Copy) -->
+    <section id="labs" class="wrap py-28 sm:py-40 scroll-mt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 sm:mb-20">
+        <h2 class="lg:col-span-6 display text-[clamp(2.6rem,5.5vw,5.2rem)]" data-reveal>Lab work</h2>
+        <p class="lg:col-span-5 lg:col-start-8 text-[clamp(1.1rem,1.5vw,1.3rem)] leading-relaxed text-[var(--ink-2)] self-end" data-reveal>
+          A lot of what I know comes from breaking and rebuilding things in Hyper-V and nested ESXi. These are the environments
+          I've built so far — open one to see how it's wired.
         </p>
       </div>
 
-      <div class="space-y-6">
+      <div class="border-b border-[var(--line)]">
         {
-          experience.map((item) => (
-            <div class="tactile-card p-6 sm:p-8">
-              <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-2 pb-4 border-b border-[var(--line)]">
-                <div>
-                  <h3 class="font-heading text-xl sm:text-2xl font-bold text-[var(--ink)]">{item.org}</h3>
-                  <div class="text-sm font-medium text-[var(--accent)] mt-0.5">{item.role}</div>
+          siteContent.resume.labs.map((lab, i) => (
+            <details class="lab-row group border-t border-[var(--line)]">
+              <summary class="flex items-center justify-between gap-6 py-7 sm:py-9 cursor-pointer">
+                <div class="flex items-baseline gap-5 sm:gap-10 min-w-0">
+                  <span class="text-[13px] text-[var(--muted)] tabular-nums w-6 shrink-0">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 class="text-[clamp(1.3rem,2.4vw,2.2rem)] tracking-[-0.025em] leading-tight group-hover:translate-x-2 transition-transform duration-500">
+                    {lab.name}
+                  </h3>
                 </div>
-                <div class="flex flex-col md:items-end text-xs font-mono text-[var(--muted)]">
-                  <span class="text-[var(--ink)] font-semibold text-sm">{item.years}</span>
-                  <span>{item.scale}</span>
+                <div class="flex items-center gap-6 shrink-0">
+                  <span class="hidden md:block text-[15px] text-[var(--muted)]">{lab.category}</span>
+                  <span class="lab-plus text-2xl font-light leading-none">+</span>
                 </div>
+              </summary>
+              <div class="pb-10 grid grid-cols-1 lg:grid-cols-12 gap-8 sm:pl-[4.25rem]">
+                <div class="lg:col-span-4 space-y-4">
+                  <p class="text-[15px] leading-relaxed text-[var(--ink-2)]">{lab.description}</p>
+                  <p class="text-[13px] text-[var(--muted)]">{lab.protocols.join(' · ')}</p>
+                </div>
+                {labTopologies[lab.id] && (
+                  <div class="lg:col-span-8 rounded-lg bg-[var(--bg-soft)] p-6 overflow-x-auto">
+                    <pre class="font-mono text-[12.5px] leading-[1.75] text-[var(--ink)]">{labTopologies[lab.id].map}</pre>
+                    <div class="mt-5 pt-4 border-t border-[var(--line)] font-mono text-[12px] text-[var(--ink-2)] flex items-center justify-between">
+                      <div>
+                        <span class="text-[var(--muted)]">$ </span>{labTopologies[lab.id].verify}
+                      </div>
+                      <button
+                        type="button"
+                        class="copy-cmd-btn text-xs font-mono text-[var(--accent)] hover:underline cursor-pointer"
+                        data-cmd={labTopologies[lab.id].verify}
+                      >
+                        Copy Command
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
+            </details>
+          ))
+        }
+      </div>
+    </section>
 
-              <ul class="mt-5 space-y-2.5 text-sm sm:text-[15px] text-[var(--ink-2)] list-disc pl-5 marker:text-[var(--accent)]">
-                {item.points.map((pt) => <li>{pt}</li>)}
-              </ul>
+    <!-- PATH -->
+    <section id="path" class="wrap pb-28 sm:pb-40">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-14 sm:mb-20">
+        <h2 class="lg:col-span-7 display text-[clamp(2.2rem,4.6vw,4.4rem)] !leading-[1.04]" data-reveal>
+          Not a perfect roadmap. Just the path that actually happened.
+        </h2>
+      </div>
+
+      <div class="border-b border-[var(--line)]">
+        {
+          path.map((p) => (
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-8 border-t border-[var(--line)] py-8 sm:py-10" data-reveal>
+              <div class="md:col-span-2 text-[15px] text-[var(--muted)] tabular-nums">{p.years}</div>
+              <div class="md:col-span-4">
+                <h3 class="text-[1.5rem] tracking-[-0.02em] leading-tight">{p.title}</h3>
+                <div class="mt-1 text-[15px] text-[var(--muted)]">{p.sub}</div>
+              </div>
+              <p class="md:col-span-5 md:col-start-8 text-[15px] leading-relaxed text-[var(--ink-2)]">{p.text}</p>
             </div>
           ))
         }
       </div>
 
-      <div class="mt-10 flex flex-wrap gap-4">
-        <a href="/resume" class="btn-primary" data-magnetic="0.25">
-          <span data-magnetic-inner>Full Publication Resume →</span>
-        </a>
-        <a href="/resume/tarik-gungor-resume.pdf" download class="btn-secondary" data-magnetic="0.25">
-          <span data-magnetic-inner>Download Resume PDF ↓</span>
+      <div class="mt-14 flex flex-wrap gap-4">
+        <a href="/resume" class="pill-btn btn-fill" data-magnetic="0.25"><span data-magnetic-inner>Full resume</span></a>
+        <a href="/resume/tarik-gungor-resume.pdf" download class="pill-btn btn-fill" data-magnetic="0.25">
+          <span data-magnetic-inner>Download PDF</span>
         </a>
       </div>
     </section>
 
-    <!-- WRITING / FIELD NOTE -->
-    <section id="writing" class="wrap scroll-mt-24">
-      <div class="space-y-2 mb-8">
-        <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Thoughts &amp; Essays</span>
-        <h2 class="font-heading text-3xl sm:text-4xl font-bold tracking-tight text-[var(--ink)]">Writing</h2>
-      </div>
-
-      <a href="/notes/flexible-but-not-free" class="tactile-card block p-6 sm:p-10 group">
-        <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
-          <div class="space-y-3 max-w-2xl">
-            <div class="text-xs font-mono text-[var(--accent)] font-semibold uppercase tracking-wider">
-              {note.category} · {note.date}
-            </div>
-            <h3 class="font-heading text-2xl sm:text-3xl font-bold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
+    <!-- WRITING -->
+    <section id="writing" class="wrap pb-28 sm:pb-40 scroll-mt-8">
+      <div class="text-[13px] text-[var(--muted)] mb-6">Writing</div>
+      <a href="/notes/flexible-but-not-free" class="group block border-y border-[var(--line)] py-10 sm:py-14">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="max-w-3xl">
+            <h3 class="display text-[clamp(2.2rem,5vw,4.6rem)] group-hover:translate-x-2 transition-transform duration-500">
               {note.title}
             </h3>
-            <p class="text-[15px] text-[var(--ink-2)] leading-relaxed">
-              {note.subtitle}
-            </p>
-            <p class="text-sm text-[var(--muted)] leading-relaxed pt-2">
-              {note.summary}
-            </p>
+            <p class="mt-4 text-[clamp(1.05rem,1.4vw,1.25rem)] text-[var(--ink-2)]">{note.subtitle}</p>
           </div>
-
-          <div class="shrink-0 flex md:flex-col items-center md:items-end justify-between gap-3 text-xs font-mono text-[var(--muted)]">
-            <span>{note.readTime}</span>
-            <span class="text-[var(--accent)] font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              Read Essay →
-            </span>
+          <div class="text-[15px] md:text-right shrink-0">
+            <div>{note.date}</div>
+            <div class="text-[var(--muted)]">{note.readTime} · Read →</div>
           </div>
         </div>
       </a>
     </section>
-
   </main>
 
   <Footer />
 
-  <!-- Interactive Scripts (CertForge Drill & Lab Workbench) -->
-  <script is:inline define:vars={{ labDetails, labs }}>
-    // CERTFORGE INTERACTIVE DRILL ENGINE (JOSH COMEAU STYLE)
+  <script>
+    import gsap from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    gsap.registerPlugin(ScrollTrigger);
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Name marquee — direction follows scroll direction
+    const track = document.querySelector<HTMLElement>('[data-marquee]');
+    if (track && !reduced) {
+      const loop = gsap.to(track, { xPercent: -50, duration: 24, ease: 'none', repeat: -1 });
+      ScrollTrigger.create({
+        trigger: document.body,
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+          gsap.to(loop, { timeScale: self.direction === 1 ? 1 : -1, duration: 0.4, overwrite: true });
+        },
+      });
+      // gentle parallax on the signature
+      gsap.to('.hero-sig', {
+        yPercent: -35,
+        ease: 'none',
+        scrollTrigger: { trigger: '.hero-sig', start: 'top top', end: 'bottom top', scrub: true },
+      });
+    }
+
+    // Floating project preview following the cursor (Dennis Snellenberg)
+    const preview = document.getElementById('work-preview');
+    const previewTrack = document.getElementById('work-preview-track');
+    const cursor = document.getElementById('work-cursor');
+    if (preview && previewTrack && cursor && window.matchMedia('(pointer: fine)').matches) {
+      gsap.set([preview, cursor], { xPercent: -50, yPercent: -50, scale: 0 });
+      const px = gsap.quickTo(preview, 'x', { duration: 0.8, ease: 'power3' });
+      const py = gsap.quickTo(preview, 'y', { duration: 0.8, ease: 'power3' });
+      const cx = gsap.quickTo(cursor, 'x', { duration: 0.45, ease: 'power3' });
+      const cy = gsap.quickTo(cursor, 'y', { duration: 0.45, ease: 'power3' });
+
+      window.addEventListener('pointermove', (e) => {
+        px(e.clientX);
+        py(e.clientY);
+        cx(e.clientX);
+        cy(e.clientY);
+      });
+
+      const list = document.querySelector('.work-list');
+      document.querySelectorAll<HTMLElement>('[data-work-index]').forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+          const i = Number(row.dataset.workIndex || 0);
+          previewTrack.style.transform = `translateY(-${i * 300}px)`;
+        });
+      });
+      list?.addEventListener('mouseenter', () => {
+        gsap.to([preview, cursor], { scale: 1, duration: 0.5, ease: 'power3.out' });
+      });
+      list?.addEventListener('mouseleave', () => {
+        gsap.to([preview, cursor], { scale: 0, duration: 0.4, ease: 'power3.in' });
+      });
+    }
+
+    // Copy command buttons in Lab work
+    document.querySelectorAll<HTMLButtonElement>('.copy-cmd-btn').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const cmd = btn.getAttribute('data-cmd') || '';
+        try {
+          await navigator.clipboard.writeText(cmd);
+          const orig = btn.textContent;
+          btn.textContent = '✓ Copied!';
+          setTimeout(() => { btn.textContent = orig; }, 2000);
+        } catch (err) {}
+      });
+    });
+
+    // CertForge Interactive Drill Engine (Josh Comeau style)
     const drills = [
       {
         domain: 'CompTIA Network+ // Subnetting & CIDR',
         question: 'How many usable host IP addresses are available in a /27 IPv4 subnet?',
         options: [
-          { text: '30 hosts', correct: true, explain: 'Correct! Formula: 2^(32 - 27) - 2 = 32 - 2 = 30 usable hosts. The first address is reserved as the Network ID and the last as the Broadcast address.' },
-          { text: '32 hosts', correct: false, explain: '32 is the total count of addresses in the block (2^5), but 2 must be subtracted for the Network ID and Broadcast.' },
-          { text: '62 hosts', correct: false, explain: '62 usable hosts corresponds to a /26 subnet (2^6 - 2).' },
-          { text: '14 hosts', correct: false, explain: '14 usable hosts corresponds to a /28 subnet (2^4 - 2).' }
+          { text: '30 hosts', correct: true, explain: 'Correct! Formula: 2^(32 - 27) - 2 = 32 - 2 = 30 usable hosts. First is Network ID, last is Broadcast.' },
+          { text: '32 hosts', correct: false, explain: '32 is total addresses in block (2^5), but 2 are reserved for Network & Broadcast.' },
+          { text: '62 hosts', correct: false, explain: '62 usable hosts corresponds to a /26 block.' },
+          { text: '14 hosts', correct: false, explain: '14 usable hosts corresponds to a /28 block.' }
         ]
       },
       {
-        domain: 'Cisco CCNA // OSI Model & Switching',
-        question: 'At which OSI layer does a standard Layer 2 Network Switch inspect frames and make forwarding decisions?',
+        domain: 'Cisco CCNA // OSI Layer Switching',
+        question: 'At which OSI layer does a standard network switch inspect frames and make forwarding decisions?',
         options: [
-          { text: 'Layer 2 (Data Link)', correct: true, explain: 'Correct! Layer 2 switches read the destination hardware MAC address in the Ethernet frame header and consult their CAM table.' },
-          { text: 'Layer 3 (Network)', correct: false, explain: 'Layer 3 devices (routers) inspect IP packet headers. Standard switches operate strictly at Layer 2.' },
-          { text: 'Layer 1 (Physical)', correct: false, explain: 'Layer 1 legacy hubs simply repeat raw electrical bits on all ports without frame inspection.' },
-          { text: 'Layer 4 (Transport)', correct: false, explain: 'Layer 4 inspects TCP/UDP port numbers and segment sequencing.' }
+          { text: 'Layer 2 (Data Link)', correct: true, explain: 'Correct! Switches inspect Ethernet frame MAC headers and use the CAM table.' },
+          { text: 'Layer 3 (Network)', correct: false, explain: 'Layer 3 routers inspect IP packets. Standard switches operate at Layer 2.' },
+          { text: 'Layer 1 (Physical)', correct: false, explain: 'Layer 1 devices are hubs repeating electrical bits on the wire.' },
+          { text: 'Layer 4 (Transport)', correct: false, explain: 'Layer 4 handles TCP/UDP ports and segment reassembly.' }
         ]
       },
       {
         domain: 'CompTIA Network+ // Protocol Resolution',
-        question: 'Which protocol dynamically maps a known IPv4 address to a physical Ethernet MAC address on a local segment?',
+        question: 'Which protocol dynamically resolves an IPv4 address to a physical MAC address?',
         options: [
-          { text: 'ARP (Address Resolution Protocol)', correct: true, explain: 'Correct! ARP broadcasts a "Who has IP X? Tell my MAC" frame to obtain the hardware address for Layer 2 delivery.' },
-          { text: 'DNS (Domain Name System)', correct: false, explain: 'DNS resolves human-readable domain names to IP addresses, not IPs to physical MACs.' },
+          { text: 'ARP (Address Resolution Protocol)', correct: true, explain: 'Correct! ARP broadcasts "Who has IP X? Tell my MAC" across the local broadcast domain.' },
+          { text: 'DNS (Domain Name System)', correct: false, explain: 'DNS resolves domain names to IP addresses, not IPs to MACs.' },
           { text: 'DHCP (Dynamic Host Configuration)', correct: false, explain: 'DHCP issues IP lease configurations to network endpoints.' },
-          { text: 'ICMP (Control Message Protocol)', correct: false, explain: 'ICMP provides error reporting and diagnostic packets (such as ping echo requests).' }
+          { text: 'ICMP (Internet Control Message Protocol)', correct: false, explain: 'ICMP handles diagnostics and error reporting like ping.' }
         ]
       },
       {
         domain: 'Cisco CCNA // VLAN Trunking',
-        question: 'Which industry standard protocol inserts a 4-byte tag into an Ethernet frame to support multiple VLANs over a trunk link?',
+        question: 'Which industry standard protocol inserts a 4-byte tag into an Ethernet frame for VLAN trunking?',
         options: [
-          { text: 'IEEE 802.1Q', correct: true, explain: 'Correct! IEEE 802.1Q inserts a 4-byte tag (including a 12-bit VLAN ID allowing 4094 VLANs) directly into the frame header.' },
-          { text: 'Cisco ISL', correct: false, explain: 'ISL (Inter-Switch Link) was Cisco proprietary and fully encapsulated the frame; 802.1Q is the universal open standard.' },
-          { text: 'IEEE 802.1D', correct: false, explain: '802.1D defines Spanning Tree Protocol (STP) to eliminate switching loops.' },
-          { text: 'IEEE 802.1X', correct: false, explain: '802.1X defines port-based network authentication and access control.' }
+          { text: 'IEEE 802.1Q', correct: true, explain: 'Correct! IEEE 802.1Q inserts a 4-byte tag with a 12-bit VLAN ID directly into the frame header.' },
+          { text: 'Cisco ISL', correct: false, explain: 'ISL was Cisco proprietary; 802.1Q is the universal open standard.' },
+          { text: 'IEEE 802.1D', correct: false, explain: '802.1D defines Spanning Tree Protocol (STP).' },
+          { text: 'IEEE 802.1X', correct: false, explain: '802.1X defines port-based access control and enterprise authentication.' }
         ]
       }
     ];
 
-    let currentDrillIndex = 0;
-    let currentScore = 0;
-    let drillAnswered = false;
+    let currentDrill = 0;
+    let answered = false;
 
-    function renderDrill() {
-      const d = drills[currentDrillIndex];
-      drillAnswered = false;
+    function renderDrillUI() {
+      const d = drills[currentDrill];
+      answered = false;
 
-      document.getElementById('drill-domain').textContent = d.domain;
-      document.getElementById('drill-step').textContent = `Drill ${currentDrillIndex + 1} of ${drills.length}`;
-      document.getElementById('drill-question').textContent = d.question;
+      const domainEl = document.getElementById('drill-domain');
+      const stepEl = document.getElementById('drill-step');
+      const qEl = document.getElementById('drill-question');
+      const optContainer = document.getElementById('drill-options');
+      const fb = document.getElementById('drill-feedback');
+      const fbText = document.getElementById('feedback-text');
 
-      const feedback = document.getElementById('drill-feedback');
-      feedback.classList.add('hidden');
+      if (!domainEl || !stepEl || !qEl || !optContainer || !fb || !fbText) return;
 
-      const container = document.getElementById('drill-options');
-      container.innerHTML = '';
+      domainEl.textContent = d.domain;
+      stepEl.textContent = `Drill ${currentDrill + 1} of ${drills.length}`;
+      qEl.textContent = d.question;
+      fb.classList.add('hidden');
+      optContainer.innerHTML = '';
 
-      d.options.forEach((opt, idx) => {
+      d.options.forEach((opt) => {
         const btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'w-full text-left p-3.5 rounded-lg border border-slate-700/80 bg-slate-900/70 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer flex items-center justify-between';
-        btn.innerHTML = `<span>${opt.text}</span><span class="text-xs font-mono text-slate-500">[${String.fromCharCode(65 + idx)}]</span>`;
+        btn.className = 'w-full text-left p-3 rounded-lg border border-[var(--line)] bg-[var(--bg)] hover:bg-[var(--bg-soft)] text-sm text-[var(--ink)] font-medium transition-all duration-200 cursor-pointer';
+        btn.textContent = opt.text;
 
         btn.addEventListener('click', () => {
-          if (drillAnswered) return;
-          drillAnswered = true;
-
-          const fbIcon = document.getElementById('feedback-icon');
-          const fbTitle = document.getElementById('feedback-title');
-          const fbText = document.getElementById('feedback-text');
-
-          feedback.classList.remove('hidden');
+          if (answered) return;
+          answered = true;
+          fb.classList.remove('hidden');
 
           if (opt.correct) {
-            currentScore++;
-            document.getElementById('drill-score').textContent = `Score: ${currentScore}`;
-            btn.className = 'w-full text-left p-3.5 rounded-lg border border-emerald-500 bg-emerald-950/40 text-emerald-300 text-xs sm:text-sm font-medium flex items-center justify-between';
-            fbIcon.textContent = '✓';
-            fbTitle.className = 'block font-semibold text-emerald-400';
-            fbTitle.textContent = 'Correct Answer!';
+            btn.className = 'w-full text-left p-3 rounded-lg border border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-sm font-medium';
+            fbText.innerHTML = `<strong>✓ Correct!</strong> ${opt.explain}`;
           } else {
-            btn.className = 'w-full text-left p-3.5 rounded-lg border border-rose-500 bg-rose-950/40 text-rose-300 text-xs sm:text-sm font-medium flex items-center justify-between';
-            fbIcon.textContent = '✕';
-            fbTitle.className = 'block font-semibold text-rose-400';
-            fbTitle.textContent = 'Incorrect Choice';
+            btn.className = 'w-full text-left p-3 rounded-lg border border-rose-400 bg-rose-50 dark:bg-rose-950/30 text-rose-800 dark:text-rose-300 text-sm font-medium';
+            fbText.innerHTML = `<strong>✕ Incorrect.</strong> ${opt.explain}`;
           }
-          fbText.textContent = opt.explain;
         });
 
-        container.appendChild(btn);
+        optContainer.appendChild(btn);
       });
     }
 
     document.getElementById('drill-next-btn')?.addEventListener('click', () => {
-      currentDrillIndex = (currentDrillIndex + 1) % drills.length;
-      renderDrill();
+      currentDrill = (currentDrill + 1) % drills.length;
+      renderDrillUI();
     });
 
-    renderDrill();
-
-    // INTERACTIVE LAB WORKBENCH SWITCHER
-    const labTabs = document.querySelectorAll('.lab-tab');
-    labTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const labId = tab.dataset.labId;
-        const index = Number(tab.dataset.labIndex);
-        const lab = labs[index];
-        const detail = labDetails[labId];
-
-        // Update active class
-        labTabs.forEach((t) => {
-          t.classList.remove('active', 'bg-[var(--bg-elevated)]', 'border-[var(--accent)]', 'shadow-md');
-          t.classList.add('bg-[var(--bg-subtle)]', 'border-[var(--line)]');
-        });
-        tab.classList.add('active', 'bg-[var(--bg-elevated)]', 'border-[var(--accent)]', 'shadow-md');
-        tab.classList.remove('bg-[var(--bg-subtle)]', 'border-[var(--line)]');
-
-        // Update active lab display
-        document.getElementById('active-lab-category').textContent = lab.category;
-        document.getElementById('active-lab-name').textContent = lab.name;
-        document.getElementById('active-lab-id').textContent = lab.id;
-        document.getElementById('active-lab-rationale').textContent = detail ? detail.rationale : lab.description;
-        document.getElementById('active-lab-map').textContent = detail ? detail.map : 'Topology map loading...';
-        document.getElementById('active-lab-verify').textContent = detail ? detail.verify : '';
-
-        // Protocols
-        const protoContainer = document.getElementById('active-lab-protocols');
-        protoContainer.innerHTML = '';
-        lab.protocols.forEach((p) => {
-          const pill = document.createElement('span');
-          pill.className = 'tech-pill font-mono';
-          pill.textContent = p;
-          protoContainer.appendChild(pill);
-        });
-      });
-    });
-
-    // Copy command button
-    const copyBtn = document.getElementById('copy-cmd-btn');
-    copyBtn?.addEventListener('click', async () => {
-      const code = document.getElementById('active-lab-verify')?.textContent;
-      if (!code) return;
-      try {
-        await navigator.clipboard.writeText(code);
-        const textSpan = document.getElementById('copy-btn-text');
-        if (textSpan) {
-          textSpan.textContent = '✓ Copied!';
-          setTimeout(() => {
-            textSpan.textContent = 'Copy Command';
-          }, 2000);
-        }
-      } catch (e) {
-        console.error('Clipboard copy failed', e);
-      }
-    });
+    renderDrillUI();
   </script>
 </BaseLayout>

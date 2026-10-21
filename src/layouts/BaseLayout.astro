@@ -60,12 +60,12 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
 ---
 
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark light" />
-    <meta name="theme-color" content="#090d16" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#ececec" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -92,164 +92,105 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Instant Theme Init Script (Zero FOUT) -->
-    <script is:inline>
-      (() => {
-        try {
-          const saved = localStorage.getItem('tg_theme');
-          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (saved === 'light') {
-            document.documentElement.classList.remove('dark');
-          } else {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (e) {}
-      })();
-    </script>
-
     {includeStructuredPerson && <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />}
   </head>
-  <body class="min-h-screen flex flex-col relative selection:bg-indigo-500 selection:text-white">
+  <body class="min-h-screen flex flex-col">
     <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <!-- Brittany Chiang Spotlight overlay -->
-    <div class="spotlight-overlay" aria-hidden="true"></div>
-
-    <!-- Glassmorphic Sticky Header -->
-    <header class="sticky top-0 inset-x-0 z-40 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--line)] transition-colors duration-300 print:hidden">
-      <div class="wrap flex items-center justify-between h-20 text-[14.5px]">
-        <!-- Brand / Identity -->
-        <a href="/" class="group flex items-center gap-3" aria-label="Tarik Gungor — home">
-          <div class="w-9 h-9 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex items-center justify-center font-heading font-semibold text-sm tracking-tight text-[var(--ink)] group-hover:border-[var(--accent)] transition-colors">
-            TG
-          </div>
-          <div class="flex flex-col">
-            <span class="font-heading font-medium tracking-tight text-[var(--ink)] text-[15px] group-hover:text-[var(--accent)] transition-colors">
+    <!-- Header (sits on top of each page, not sticky) -->
+    <header class="absolute top-0 inset-x-0 z-40 print:hidden">
+      <div class="wrap flex items-center justify-between h-24 sm:h-28 text-[15px]">
+        <a href="/" class="group flex items-center gap-1.5" aria-label="Tarik Gungor — home">
+          <span class="inline-block transition-transform duration-700 group-hover:rotate-[360deg]">©</span>
+          <span class="relative block h-[1.3em] overflow-hidden">
+            <span class="block transition-transform duration-500 ease-[cubic-bezier(.19,1,.22,1)] group-hover:-translate-y-full">
               Tarik Gungor
             </span>
-            <div class="flex items-center gap-1.5 text-[11.5px] text-[var(--muted)]">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Toronto, Canada</span>
-            </div>
-          </div>
+            <span class="absolute left-0 top-full block whitespace-nowrap transition-transform duration-500 ease-[cubic-bezier(.19,1,.22,1)] group-hover:-translate-y-full">
+              Toronto, Canada
+            </span>
+          </span>
         </a>
 
-        <!-- Center Nav -->
-        <nav aria-label="Main" class="hidden md:flex items-center gap-8 font-medium">
-          <a href={h('#projects')} class="nav-item">Projects</a>
-          <a href={h('#workbench')} class="nav-item">Lab Studio</a>
-          <a href={h('#experience')} class="nav-item">Experience</a>
-          <a href={h('#writing')} class="nav-item">Writing</a>
-          <a href="/resume" class="nav-item" aria-current={canonicalPath === '/resume' ? 'page' : undefined}>Resume</a>
+        <nav aria-label="Main" class="hidden md:flex items-center gap-9">
+          <a href={h('#work')} class="nav-link" data-magnetic>Work</a>
+          <a href={h('#labs')} class="nav-link" data-magnetic>Labs</a>
+          <a href={h('#writing')} class="nav-link" data-magnetic>Writing</a>
+          <a href="/resume" class="nav-link" data-magnetic aria-current={canonicalPath === '/resume' ? 'page' : undefined}>Resume</a>
+          <a href={h('#contact')} class="nav-link" data-magnetic>Contact</a>
         </nav>
 
-        <!-- Right: Actions & Theme Toggle -->
-        <div class="flex items-center gap-3">
-          <!-- Theme Toggle Button -->
-          <button
-            type="button"
-            id="theme-toggle"
-            aria-label="Toggle theme"
-            class="w-10 h-10 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex items-center justify-center text-[var(--ink-2)] hover:text-[var(--ink)] hover:border-[var(--line-strong)] transition-all cursor-pointer"
-          >
-            <!-- Sun icon (for dark mode) -->
-            <svg class="w-4 h-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <!-- Moon icon (for light mode) -->
-            <svg class="w-4 h-4 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </button>
-
-          <!-- Contact pill -->
-          <a
-            href={h('#contact')}
-            data-magnetic="0.25"
-            class="hidden sm:inline-flex btn-primary !py-2 !px-4 !text-xs font-medium"
-          >
-            <span data-magnetic-inner>Get in touch</span>
-          </a>
-
-          <!-- Mobile Menu Open -->
-          <button
-            type="button"
-            data-menu-open
-            aria-label="Open mobile navigation"
-            class="md:hidden w-10 h-10 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex flex-col items-center justify-center gap-1.5 cursor-pointer text-[var(--ink)]"
-          >
-            <span class="w-4 h-0.5 bg-current rounded-full"></span>
-            <span class="w-4 h-0.5 bg-current rounded-full"></span>
-          </button>
-        </div>
+        <button type="button" data-menu-open class="md:hidden flex items-center gap-2 cursor-pointer">
+          <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+          Menu
+        </button>
       </div>
     </header>
 
-    <!-- Slide-out menu for mobile -->
-    <div id="menu-overlay" class="fixed inset-0 z-[55] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 print:hidden backdrop-blur-sm"></div>
+    <!-- Floating round menu button (appears after scrolling) -->
+    <button
+      type="button"
+      id="menu-fab"
+      data-menu-open
+      aria-label="Open menu"
+      class="!fixed top-5 right-5 sm:top-7 sm:right-7 z-50 w-16 h-16 sm:w-[76px] sm:h-[76px] rounded-full bg-[var(--dark)] text-white grid place-items-center scale-0 transition-transform duration-500 ease-[cubic-bezier(.19,1,.22,1)] cursor-pointer btn-fill print:hidden"
+    >
+      <span class="flex flex-col gap-[7px]">
+        <span class="block w-6 h-px bg-white"></span>
+        <span class="block w-6 h-px bg-white"></span>
+      </span>
+    </button>
+
+    <!-- Slide-out menu -->
+    <div id="menu-overlay" class="fixed inset-0 z-[55] bg-black/30 opacity-0 pointer-events-none transition-opacity duration-500 print:hidden"></div>
     <aside
       id="menu-panel"
-      aria-label="Mobile Menu"
-      class="fixed inset-y-0 right-0 z-[60] w-[min(85vw,360px)] bg-[var(--bg-elevated)] border-l border-[var(--line)] text-[var(--ink)] translate-x-full transition-transform duration-400 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col justify-between p-8 print:hidden"
+      aria-label="Menu"
+      class="fixed inset-y-0 right-0 z-[60] w-full sm:w-[480px] bg-[var(--dark)] text-white translate-x-full transition-transform duration-700 ease-[cubic-bezier(.76,0,.24,1)] flex flex-col justify-between p-10 sm:p-16 print:hidden"
     >
       <div>
-        <div class="flex items-center justify-between pb-6 border-b border-[var(--line)]">
-          <span class="font-heading font-semibold text-sm">Navigation</span>
-          <button type="button" data-menu-close class="w-8 h-8 rounded-lg flex items-center justify-center text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer text-sm">✕</button>
+        <div class="flex items-center justify-between text-xs text-white/50 pb-6 border-b border-[var(--line-dark)]">
+          <span>Navigation</span>
+          <button type="button" data-menu-close class="text-white/70 hover:text-white cursor-pointer text-sm">Close</button>
         </div>
-        <nav class="mt-8 flex flex-col gap-4 font-heading text-xl">
-          <a href="/" data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Home</a>
-          <a href={h('#projects')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Projects</a>
-          <a href={h('#workbench')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Lab Studio</a>
-          <a href={h('#experience')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Experience</a>
-          <a href={h('#writing')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Writing</a>
-          <a href="/resume" data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Resume</a>
-          <a href={h('#contact')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Contact</a>
+        <nav class="mt-10 flex flex-col gap-3 text-[2.6rem] sm:text-[3.4rem] leading-[1.15] tracking-[-0.03em]">
+          <a href="/" data-menu-link class="hover:translate-x-2 transition-transform">Home</a>
+          <a href={h('#work')} data-menu-link class="hover:translate-x-2 transition-transform">Work</a>
+          <a href={h('#labs')} data-menu-link class="hover:translate-x-2 transition-transform">Labs</a>
+          <a href={h('#writing')} data-menu-link class="hover:translate-x-2 transition-transform">Writing</a>
+          <a href="/resume" data-menu-link class="hover:translate-x-2 transition-transform">Resume</a>
+          <a href={h('#contact')} data-menu-link class="hover:translate-x-2 transition-transform">Contact</a>
         </nav>
       </div>
-      <div class="pt-6 border-t border-[var(--line)] text-xs text-[var(--muted)] space-y-3">
-        <div class="flex items-center justify-between">
-          <span>Theme</span>
-          <button type="button" id="theme-toggle-mobile" class="px-3 py-1.5 rounded-lg border border-[var(--line)] text-[var(--ink)]">
-            Toggle Light/Dark
-          </button>
-        </div>
-        <div class="flex gap-4 pt-2">
-          <a href={siteContent.meta.github} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)]">GitHub</a>
-          <a href={siteContent.meta.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)]">LinkedIn</a>
-          <a href={`mailto:${siteContent.meta.email}`} class="hover:text-[var(--ink)]">Email</a>
+      <div class="text-sm">
+        <div class="text-xs text-white/50 mb-3">Elsewhere</div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          <a href={siteContent.meta.github} target="_blank" rel="noopener noreferrer" class="hover:text-white/60">GitHub</a>
+          <a href={siteContent.meta.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-white/60">LinkedIn</a>
+          <a href={`mailto:${siteContent.meta.email}`} class="hover:text-white/60">Email</a>
         </div>
       </div>
     </aside>
 
-    <!-- Main Viewport Content -->
-    <div class="flex-1 flex flex-col relative z-10">
+    <div class="flex-1 flex flex-col">
       <slot />
     </div>
 
-    <!-- Image lightbox modal -->
+    <!-- Image lightbox -->
     <dialog
       id="lightbox-dialog"
-      class="m-auto p-0 max-w-[95vw] max-h-[92vh] bg-transparent backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+      class="m-auto p-0 max-w-[94vw] max-h-[92vh] bg-transparent backdrop:bg-black/80"
       aria-label="Image preview"
     >
-      <div class="relative bg-[var(--bg-elevated)] border border-[var(--line)] rounded-2xl p-3 shadow-2xl">
+      <div class="relative">
         <button
           type="button"
           id="close-lightbox"
-          class="absolute -top-10 right-0 text-white/80 hover:text-white text-sm cursor-pointer px-3 py-1 bg-black/60 rounded-full"
+          class="absolute -top-12 right-0 text-white/80 hover:text-white text-sm cursor-pointer"
         >
           Close ✕
         </button>
-        <img id="lightbox-img" src="" alt="" class="max-w-[92vw] max-h-[82vh] object-contain rounded-xl" />
+        <img id="lightbox-img" src="" alt="" class="max-w-[94vw] max-h-[86vh] object-contain rounded-md" />
       </div>
     </dialog>
 
@@ -261,33 +202,18 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
       gsap.registerPlugin(ScrollTrigger);
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Smooth scroll via Lenis
+      // Smooth scroll
       let lenis: Lenis | null = null;
       if (!reduced) {
-        lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+        lenis = new Lenis({ duration: 1.15, smoothWheel: true });
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((t) => lenis?.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
       }
       (window as unknown as { __lenis: Lenis | null }).__lenis = lenis;
 
-      // Mouse Spotlight tracker (Brittany Chiang style)
-      window.addEventListener('pointermove', (e) => {
-        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-      }, { passive: true });
-
-      // Theme Toggle Logic
-      const toggleTheme = () => {
-        const isDark = document.documentElement.classList.toggle('dark');
-        try {
-          localStorage.setItem('tg_theme', isDark ? 'dark' : 'light');
-        } catch (e) {}
-      };
-      document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
-      document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
-
-      // Mobile Menu Drawer
+      // Menu
+      const fab = document.getElementById('menu-fab');
       const panel = document.getElementById('menu-panel');
       const overlay = document.getElementById('menu-overlay');
       const setMenu = (open: boolean) => {
@@ -306,6 +232,14 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
         if (e.key === 'Escape') setMenu(false);
       });
 
+      const toggleFab = () => {
+        const show = window.scrollY > window.innerHeight * 0.35;
+        fab?.classList.toggle('scale-0', !show);
+        fab?.classList.toggle('scale-100', show);
+      };
+      toggleFab();
+      window.addEventListener('scroll', toggleFab, { passive: true });
+
       // Anchor links via Lenis
       document.querySelectorAll<HTMLAnchorElement>('a[href^="#"], a[href^="/#"]').forEach((a) => {
         a.addEventListener('click', (e) => {
@@ -315,32 +249,45 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
           const target = hash.length > 1 ? document.querySelector<HTMLElement>(hash) : null;
           if (!target) return;
           e.preventDefault();
-          if (lenis) lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+          if (lenis) lenis.scrollTo(target, { offset: -20, duration: 1.4 });
           else target.scrollIntoView({ behavior: 'smooth' });
           history.pushState(null, '', hash);
         });
       });
 
-      // Magnetic button physics (Dennis Snellenberg touch)
+      // Magnetic elements
       if (!reduced && window.matchMedia('(pointer: fine)').matches) {
         document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-          const strength = Number(el.dataset.magnetic) || 0.3;
+          const strength = Number(el.dataset.magnetic) || 0.35;
           const inner = el.querySelector<HTMLElement>('[data-magnetic-inner]');
           el.addEventListener('mousemove', (e) => {
             const r = el.getBoundingClientRect();
             const x = e.clientX - (r.left + r.width / 2);
             const y = e.clientY - (r.top + r.height / 2);
-            gsap.to(el, { x: x * strength, y: y * strength, duration: 0.5, ease: 'power2.out' });
-            if (inner) gsap.to(inner, { x: x * strength * 0.4, y: y * strength * 0.4, duration: 0.5, ease: 'power2.out' });
+            gsap.to(el, { x: x * strength, y: y * strength, duration: 0.6, ease: 'power3.out' });
+            if (inner) gsap.to(inner, { x: x * strength * 0.5, y: y * strength * 0.5, duration: 0.6, ease: 'power3.out' });
           });
           el.addEventListener('mouseleave', () => {
-            gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
-            if (inner) gsap.to(inner, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+            gsap.to(el, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.35)' });
+            if (inner) gsap.to(inner, { x: 0, y: 0, duration: 1, ease: 'elastic.out(1, 0.35)' });
           });
         });
       }
 
-      // Lightbox preview for screenshots
+      // Reveal on scroll
+      if (!reduced) {
+        gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+          gsap.from(el, {
+            y: 40,
+            opacity: 0,
+            duration: 1.1,
+            ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 88%' },
+          });
+        });
+      }
+
+      // Lightbox
       const lb = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
       const lbImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
       document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((t) =>
@@ -357,20 +304,20 @@ const h = (hash: string) => (isHome ? hash : `/${hash}`);
         if (e.target === lb) lb.close();
       });
 
-      // Toronto Live Clock
+      // Toronto local time
       const fmt = new Intl.DateTimeFormat('en-CA', {
         timeZone: 'America/Toronto',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
+        hour12: false,
+        timeZoneName: 'short',
       });
       const tick = () =>
         document.querySelectorAll<HTMLElement>('[data-toronto-clock]').forEach((el) => {
           el.textContent = fmt.format(new Date());
         });
       tick();
-      setInterval(tick, 1000);
+      setInterval(tick, 15000);
     </script>
   </body>
 </html>

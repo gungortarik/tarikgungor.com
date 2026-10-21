@@ -17,45 +17,21 @@ const noteArticleSchema = {
 ---
 
 <BaseLayout title={`${note.title} — ${siteContent.meta.name}`} description={note.summary} canonicalPath="/notes/flexible-but-not-free">
-  <main id="main-content" class="wrap pt-12 sm:pt-20 pb-28 sm:pb-40">
-    <div class="max-w-4xl mx-auto space-y-12">
+  <main id="main-content" class="wrap pt-40 sm:pt-52 pb-28 sm:pb-40">
+    <header class="max-w-[1100px]">
+      <div class="text-[15px] text-[var(--muted)]">{note.date} · {note.readTime}</div>
+      <h1 class="mt-6 display text-[clamp(3rem,8vw,7.5rem)]">{note.title}</h1>
+      <p class="mt-6 text-[clamp(1.2rem,2vw,1.7rem)] tracking-[-0.015em] text-[var(--ink-2)]">{note.subtitle}</p>
+    </header>
 
-      <!-- Back Link -->
-      <div>
-        <a href="/#writing" class="inline-flex items-center gap-2 text-xs font-mono text-[var(--accent)] hover:underline">
-          <span>←</span>
-          <span>Back to Home &amp; Writing</span>
-        </a>
-      </div>
+    <article class="mt-20 sm:mt-28 border-t border-[var(--line)] pt-14 grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <aside class="lg:col-span-3 text-[13px] text-[var(--muted)] space-y-1">
+        <div>Written in Toronto</div>
+        <div>{note.tags.join(', ')}</div>
+      </aside>
 
-      <!-- Article Header -->
-      <header class="tactile-card p-8 sm:p-12 space-y-6">
-        <div class="flex items-center gap-3 text-xs font-mono text-[var(--muted)]">
-          <span class="text-[var(--accent)] font-semibold">{note.category}</span>
-          <span>·</span>
-          <span>{note.date}</span>
-          <span>·</span>
-          <span>{note.readTime}</span>
-        </div>
-
-        <h1 class="font-heading text-3xl sm:text-5xl font-bold tracking-tight text-[var(--ink)] leading-[1.15]">
-          {note.title}
-        </h1>
-
-        <p class="text-lg sm:text-xl text-[var(--ink-2)] leading-relaxed">
-          {note.subtitle}
-        </p>
-
-        <div class="pt-4 border-t border-[var(--line)] flex flex-wrap gap-2">
-          {note.tags.map((t) => (
-            <span class="tech-pill font-mono">{t}</span>
-          ))}
-        </div>
-      </header>
-
-      <!-- Article Content -->
-      <article class="tactile-card p-8 sm:p-14 text-base sm:text-lg leading-[1.8] text-[var(--ink-2)] space-y-8">
-        <p class="text-xl sm:text-2xl leading-[1.5] text-[var(--ink)] font-heading font-medium">
+      <div class="lg:col-span-7 text-[1.13rem] leading-[1.8] text-[var(--ink-2)] space-y-7">
+        <p class="text-[1.4rem] leading-[1.5] tracking-[-0.01em] text-[var(--ink)]">
           Every gig platform promises the same bargain: work whenever you want, earn on your own schedule, keep complete
           freedom over your week. When you're studying full-time in a city as expensive as Toronto, that pitch sounds like
           the perfect arrangement.
@@ -70,7 +46,7 @@ const noteArticleSchema = {
           fragmented attention, physical wear, and the slow erosion of deep study time.
         </p>
 
-        <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)] pt-6">Three hours aren't three hours</h2>
+        <h2 class="pt-6 text-[1.8rem] tracking-[-0.025em] text-[var(--ink)]">Three hours aren't three hours</h2>
         <p>
           On paper, three separate one-hour gaps look the same as one three-hour block. In practice they aren't close.
           Studying subnetting, fixing a broken Linux DHCP config or building a multi-VM Active Directory lab needs
@@ -81,34 +57,35 @@ const noteArticleSchema = {
           sit back down, it takes a while before you're thinking clearly again.
         </p>
 
-        <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)] pt-6">The costs you don't see on payday</h2>
+        <h2 class="pt-6 text-[1.8rem] tracking-[-0.025em] text-[var(--ink)]">The costs you don't see on payday</h2>
         <p>
-          The financial math is equally deceptive. What shows up in your bank account is gross revenue, not net income.
-          Between commercial insurance considerations, frequent brake pad wear, Toronto winter pothole damage, and accelerating vehicle depreciation,
-          the real hourly margin is significantly thinner than the dashboard implies.
+          The money can be just as misleading if you only look at gross payouts. Fuel, maintenance, tires, insurance and
+          depreciation happen in the background, so you rarely feel them on the day you get paid.
         </p>
         <p>
-          More critically, the opportunity cost compound over time. An hour spent driving delivery is an hour not spent troubleshooting
-          OSPF neighbor adjacencies, writing automation scripts, or building systems that create lasting career leverage.
-        </p>
-
-        <h2 class="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-[var(--ink)] pt-6">Reframing the tradeoff</h2>
-        <p>
-          Gig platforms can serve as an emergency safety valve, but treating them as a sustainable operating model while pursuing an intensive
-          systems curriculum creates chronic cognitive debt. Recognizing that friction early is what pushed me to guard my calendar,
-          treat lab time as non-negotiable, and focus relentlessly on acquiring technical depth.
+          The bigger cost is opportunity: every tired evening spent recovering from scattered shifts is an evening not spent
+          on lab work, on finishing Network+, or on projects that move a career forward for good.
         </p>
 
-        <div class="pt-8 border-t border-[var(--line)] flex items-center justify-between text-xs font-mono text-[var(--muted)]">
-          <span>Written by Tarik Gungor · Toronto, ON</span>
-          <a href="/#writing" class="text-[var(--accent)] hover:underline">← Back to Home</a>
+        <h2 class="pt-6 text-[1.8rem] tracking-[-0.025em] text-[var(--ink)]">Protecting the work that compounds</h2>
+        <p>
+          Living and studying here means being practical — bills have to be paid. What changed things for me was treating
+          study blocks and lab time with the same seriousness as a scheduled job.
+        </p>
+        <p>
+          Batching work into predictable days instead of letting it leak into every free hour makes the difference. Real
+          flexibility doesn't come from an app letting you pick when to go online. It comes from building skills solid enough
+          to give you real options later.
+        </p>
+
+        <div class="pt-10 border-t border-[var(--line)] flex justify-between text-[15px]">
+          <span class="text-[var(--muted)]">— Tarik</span>
+          <a href="/#writing" class="nav-link text-[var(--ink)]">Back home</a>
         </div>
-      </article>
-
-    </div>
+      </div>
+    </article>
   </main>
 
   <Footer />
-
   <script type="application/ld+json" set:html={JSON.stringify(noteArticleSchema)} />
 </BaseLayout>
