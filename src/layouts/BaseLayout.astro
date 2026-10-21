@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import { siteContent } from '../data/siteContent';
-import CommandPalette from '../components/CommandPalette.astro';
 
 interface Props {
   title?: string;
@@ -55,36 +54,25 @@ const personJsonLd = {
     'Next.js',
   ],
 };
+
+const isHome = canonicalPath === '/';
+const h = (hash: string) => (isHome ? hash : `/${hash}`);
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="dark" />
-    <script is:inline>
-      try {
-        const stored = localStorage.getItem('color-scheme');
-        const meta = document.querySelector('meta[name="color-scheme"]');
-        const isLight = stored === 'light';
-        if (meta) {
-          meta.content = isLight ? 'light' : 'dark';
-        }
-        document.documentElement.classList.toggle('dark', !isLight);
-      } catch {}
-    </script>
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#090d16" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="application-name" content={siteContent.meta.name} />
     <meta name="author" content={siteContent.meta.name} />
-    <meta name="creator" content={siteContent.meta.name} />
-    <meta name="publisher" content={siteContent.meta.name} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Open Graph & Twitter Cards -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
@@ -94,8 +82,6 @@ const personJsonLd = {
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Tarik Gungor — Building systems. Learning continuously. Living intentionally." />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -103,71 +89,169 @@ const personJsonLd = {
 
     <link rel="icon" href="/assets/icons/tarik-gungor-favicon.png" />
     <link rel="apple-touch-icon" href="/assets/icons/tarik-gungor-favicon.png" />
-
-    <!-- Self-hosted High-Performance Font Preloads -->
-    <link rel="preload" href="/fonts/space-grotesk-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
 
-    {
-      includeStructuredPerson && (
-        <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
-      )
-    }
+    <!-- Instant Theme Init Script (Zero FOUT) -->
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem('tg_theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    {includeStructuredPerson && <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />}
   </head>
-  <body
-    class="relative min-h-screen flex flex-col selection:bg-[var(--signal)] selection:text-slate-950 antialiased"
-  >
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+  <body class="min-h-screen flex flex-col relative selection:bg-indigo-500 selection:text-white">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <!-- Brittany Chiang Style Interactive Cursor Spotlight -->
-    <div class="pointer-spotlight print:hidden" aria-hidden="true"></div>
+    <!-- Brittany Chiang Spotlight overlay -->
+    <div class="spotlight-overlay" aria-hidden="true"></div>
 
-    <!-- Top Reading Progress Line -->
-    <div
-      class="fixed top-0 left-0 right-0 h-[2px] z-50 pointer-events-none print:hidden"
-      aria-hidden="true"
-    >
-      <div
-        id="scroll-progress-bar"
-        class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[var(--signal)] via-[var(--signal-secondary)] to-[var(--signal-emerald)] transition-none"
-      >
+    <!-- Glassmorphic Sticky Header -->
+    <header class="sticky top-0 inset-x-0 z-40 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--line)] transition-colors duration-300 print:hidden">
+      <div class="wrap flex items-center justify-between h-20 text-[14.5px]">
+        <!-- Brand / Identity -->
+        <a href="/" class="group flex items-center gap-3" aria-label="Tarik Gungor — home">
+          <div class="w-9 h-9 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex items-center justify-center font-heading font-semibold text-sm tracking-tight text-[var(--ink)] group-hover:border-[var(--accent)] transition-colors">
+            TG
+          </div>
+          <div class="flex flex-col">
+            <span class="font-heading font-medium tracking-tight text-[var(--ink)] text-[15px] group-hover:text-[var(--accent)] transition-colors">
+              Tarik Gungor
+            </span>
+            <div class="flex items-center gap-1.5 text-[11.5px] text-[var(--muted)]">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Toronto, Canada</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Center Nav -->
+        <nav aria-label="Main" class="hidden md:flex items-center gap-8 font-medium">
+          <a href={h('#projects')} class="nav-item">Projects</a>
+          <a href={h('#workbench')} class="nav-item">Lab Studio</a>
+          <a href={h('#experience')} class="nav-item">Experience</a>
+          <a href={h('#writing')} class="nav-item">Writing</a>
+          <a href="/resume" class="nav-item" aria-current={canonicalPath === '/resume' ? 'page' : undefined}>Resume</a>
+        </nav>
+
+        <!-- Right: Actions & Theme Toggle -->
+        <div class="flex items-center gap-3">
+          <!-- Theme Toggle Button -->
+          <button
+            type="button"
+            id="theme-toggle"
+            aria-label="Toggle theme"
+            class="w-10 h-10 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex items-center justify-center text-[var(--ink-2)] hover:text-[var(--ink)] hover:border-[var(--line-strong)] transition-all cursor-pointer"
+          >
+            <!-- Sun icon (for dark mode) -->
+            <svg class="w-4 h-4 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon icon (for light mode) -->
+            <svg class="w-4 h-4 block dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Contact pill -->
+          <a
+            href={h('#contact')}
+            data-magnetic="0.25"
+            class="hidden sm:inline-flex btn-primary !py-2 !px-4 !text-xs font-medium"
+          >
+            <span data-magnetic-inner>Get in touch</span>
+          </a>
+
+          <!-- Mobile Menu Open -->
+          <button
+            type="button"
+            data-menu-open
+            aria-label="Open mobile navigation"
+            class="md:hidden w-10 h-10 rounded-xl bg-[var(--bg-subtle)] border border-[var(--line)] flex flex-col items-center justify-center gap-1.5 cursor-pointer text-[var(--ink)]"
+          >
+            <span class="w-4 h-0.5 bg-current rounded-full"></span>
+            <span class="w-4 h-0.5 bg-current rounded-full"></span>
+          </button>
+        </div>
       </div>
-    </div>
+    </header>
 
-    <div class="relative z-10 flex-1 flex flex-col">
+    <!-- Slide-out menu for mobile -->
+    <div id="menu-overlay" class="fixed inset-0 z-[55] bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 print:hidden backdrop-blur-sm"></div>
+    <aside
+      id="menu-panel"
+      aria-label="Mobile Menu"
+      class="fixed inset-y-0 right-0 z-[60] w-[min(85vw,360px)] bg-[var(--bg-elevated)] border-l border-[var(--line)] text-[var(--ink)] translate-x-full transition-transform duration-400 ease-[cubic-bezier(.16,1,.3,1)] flex flex-col justify-between p-8 print:hidden"
+    >
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-[var(--line)]">
+          <span class="font-heading font-semibold text-sm">Navigation</span>
+          <button type="button" data-menu-close class="w-8 h-8 rounded-lg flex items-center justify-center text-[var(--muted)] hover:text-[var(--ink)] cursor-pointer text-sm">✕</button>
+        </div>
+        <nav class="mt-8 flex flex-col gap-4 font-heading text-xl">
+          <a href="/" data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Home</a>
+          <a href={h('#projects')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Projects</a>
+          <a href={h('#workbench')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Lab Studio</a>
+          <a href={h('#experience')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Experience</a>
+          <a href={h('#writing')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Writing</a>
+          <a href="/resume" data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Resume</a>
+          <a href={h('#contact')} data-menu-link class="py-2 hover:text-[var(--accent)] transition-colors">Contact</a>
+        </nav>
+      </div>
+      <div class="pt-6 border-t border-[var(--line)] text-xs text-[var(--muted)] space-y-3">
+        <div class="flex items-center justify-between">
+          <span>Theme</span>
+          <button type="button" id="theme-toggle-mobile" class="px-3 py-1.5 rounded-lg border border-[var(--line)] text-[var(--ink)]">
+            Toggle Light/Dark
+          </button>
+        </div>
+        <div class="flex gap-4 pt-2">
+          <a href={siteContent.meta.github} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)]">GitHub</a>
+          <a href={siteContent.meta.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-[var(--ink)]">LinkedIn</a>
+          <a href={`mailto:${siteContent.meta.email}`} class="hover:text-[var(--ink)]">Email</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Viewport Content -->
+    <div class="flex-1 flex flex-col relative z-10">
       <slot />
     </div>
 
-    <!-- Fullscreen Interactive Image Lightbox Modal -->
+    <!-- Image lightbox modal -->
     <dialog
       id="lightbox-dialog"
-      class="fixed inset-0 m-auto p-4 max-w-[94vw] max-h-[92vh] bg-transparent border-none outline-none z-50 backdrop:bg-slate-950/85 backdrop:backdrop-blur-md"
-      aria-label="Image Zoom Viewport"
+      class="m-auto p-0 max-w-[95vw] max-h-[92vh] bg-transparent backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+      aria-label="Image preview"
     >
-      <div class="tactile-card p-3 max-w-[1100px] mx-auto shadow-2xl">
-        <div class="flex items-center justify-between px-3 py-2 border-b border-[var(--rule-hairline)] text-xs font-mono-spec">
-          <span id="lightbox-caption" class="text-[var(--text-primary)] font-medium">Preview</span>
-          <button
-            type="button"
-            id="close-lightbox"
-            class="px-2.5 py-1 rounded-md border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer transition-colors"
-          >
-            Esc / Close
-          </button>
-        </div>
-        <div class="p-2 overflow-auto max-h-[80vh] flex items-center justify-center">
-          <img
-            id="lightbox-img"
-            src=""
-            alt=""
-            class="max-w-full max-h-[76vh] object-contain rounded-lg"
-          />
-        </div>
+      <div class="relative bg-[var(--bg-elevated)] border border-[var(--line)] rounded-2xl p-3 shadow-2xl">
+        <button
+          type="button"
+          id="close-lightbox"
+          class="absolute -top-10 right-0 text-white/80 hover:text-white text-sm cursor-pointer px-3 py-1 bg-black/60 rounded-full"
+        >
+          Close ✕
+        </button>
+        <img id="lightbox-img" src="" alt="" class="max-w-[92vw] max-h-[82vh] object-contain rounded-xl" />
       </div>
     </dialog>
-
-    <CommandPalette />
 
     <script>
       import Lenis from 'lenis';
@@ -175,363 +259,118 @@ const personJsonLd = {
       import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
       gsap.registerPlugin(ScrollTrigger);
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      // 1. Josh Comeau Style Web Audio Tactile Sound Engine (Zero external audio files)
-      let soundEnabled = true;
-      try {
-        const storedSound = localStorage.getItem('tactile-sound');
-        if (storedSound !== null) {
-          soundEnabled = storedSound === 'true';
-        }
-      } catch {}
-
-      let audioCtx: AudioContext | null = null;
-
-      function playTactileSound(type: 'click' | 'switch' | 'pop' = 'click') {
-        if (!soundEnabled) return;
-        try {
-          if (!audioCtx) {
-            const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-            audioCtx = new AudioContextClass();
-          }
-          if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-          }
-          const now = audioCtx.currentTime;
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-
-          if (type === 'switch') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(320, now);
-            osc.frequency.exponentialRampToValueAtTime(640, now + 0.045);
-            gain.gain.setValueAtTime(0.06, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
-            osc.start(now);
-            osc.stop(now + 0.055);
-          } else if (type === 'pop') {
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(240, now);
-            osc.frequency.exponentialRampToValueAtTime(520, now + 0.035);
-            gain.gain.setValueAtTime(0.05, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
-            osc.start(now);
-            osc.stop(now + 0.045);
-          } else {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(480, now);
-            osc.frequency.exponentialRampToValueAtTime(180, now + 0.025);
-            gain.gain.setValueAtTime(0.04, now);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-            osc.start(now);
-            osc.stop(now + 0.032);
-          }
-        } catch {}
-      }
-
-      (window as unknown as { playTactileSound: typeof playTactileSound }).playTactileSound = playTactileSound;
-
-      function updateSoundUI() {
-        document.querySelectorAll<HTMLElement>('[data-sound-toggle]').forEach((btn) => {
-          btn.setAttribute('aria-pressed', String(soundEnabled));
-          const onIcon = btn.querySelector('[data-sound-on]');
-          const offIcon = btn.querySelector('[data-sound-off]');
-          if (onIcon && offIcon) {
-            onIcon.classList.toggle('hidden', !soundEnabled);
-            offIcon.classList.toggle('hidden', soundEnabled);
-          }
-        });
-      }
-
-      updateSoundUI();
-
-      document.querySelectorAll<HTMLButtonElement>('[data-sound-toggle]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          soundEnabled = !soundEnabled;
-          try {
-            localStorage.setItem('tactile-sound', String(soundEnabled));
-          } catch {}
-          updateSoundUI();
-          if (soundEnabled) playTactileSound('switch');
-        });
-      });
-
-      // 2. Brittany Chiang Pointer Spotlight Tracking
-      if (!reducedMotion) {
-        window.addEventListener(
-          'pointermove',
-          (e) => {
-            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-          },
-          { passive: true }
-        );
-      }
-
-      // 3. Dennis Snellenberg Style Magnetic Elements
-      if (!reducedMotion) {
-        document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-          el.addEventListener('mousemove', (e) => {
-            const rect = el.getBoundingClientRect();
-            const relX = e.clientX - (rect.left + rect.width / 2);
-            const relY = e.clientY - (rect.top + rect.height / 2);
-            gsap.to(el, {
-              x: relX * 0.22,
-              y: relY * 0.22,
-              duration: 0.35,
-              ease: 'power2.out',
-            });
-          });
-          el.addEventListener('mouseleave', () => {
-            gsap.to(el, {
-              x: 0,
-              y: 0,
-              duration: 0.65,
-              ease: 'elastic.out(1, 0.4)',
-            });
-          });
-        });
-      }
-
-      // 4. Lenis Smooth Scroll + GSAP Ticker Sync
+      // Smooth scroll via Lenis
       let lenis: Lenis | null = null;
-      if (!reducedMotion) {
-        lenis = new Lenis({
-          duration: 1.1,
-          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-          smoothWheel: true,
-          wheelMultiplier: 0.95,
-          touchMultiplier: 1.5,
-        });
-
-        lenis.on('scroll', () => {
-          ScrollTrigger.update();
-        });
-
-        gsap.ticker.add((time) => {
-          lenis?.raf(time * 1000);
-        });
+      if (!reduced) {
+        lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((t) => lenis?.raf(t * 1000));
         gsap.ticker.lagSmoothing(0);
       }
+      (window as unknown as { __lenis: Lenis | null }).__lenis = lenis;
 
-      // Smooth Anchor Navigation
-      function scrollToTarget(targetSelector: string) {
-        const targetEl = document.querySelector<HTMLElement>(targetSelector);
-        if (!targetEl) return;
-        playTactileSound('pop');
-        if (lenis) {
-          lenis.scrollTo(targetEl, { offset: -72, duration: 1.1 });
-        } else {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
+      // Mouse Spotlight tracker (Brittany Chiang style)
+      window.addEventListener('pointermove', (e) => {
+        document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+      }, { passive: true });
 
-      document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener('click', (e) => {
-          const targetId = anchor.getAttribute('href');
-          if (!targetId || targetId === '#') return;
-          const targetEl = document.querySelector<HTMLElement>(targetId);
-          if (!targetEl) return;
-
-          e.preventDefault();
-          scrollToTarget(targetId);
-          history.pushState(null, '', targetId);
-        });
-      });
-
-      // 5. Top Progress Rail
-      const progressBar = document.getElementById('scroll-progress-bar');
-      if (progressBar && !reducedMotion) {
-        gsap.to(progressBar, {
-          scaleX: 1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: document.documentElement,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.1,
-          },
-        });
-      }
-
-      // 6. GSAP Editorial Reveals & Scroll Choreography
-      if (!reducedMotion) {
-        const heroLines = gsap.utils.toArray<HTMLElement>('[data-hero-line]');
-        const heroSpecs = gsap.utils.toArray<HTMLElement>('[data-hero-spec]');
-
-        if (heroLines.length > 0 || heroSpecs.length > 0) {
-          const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
-
-          if (heroLines.length > 0) {
-            tl.fromTo(
-              heroLines,
-              { yPercent: 105 },
-              { yPercent: 0, duration: 1.0, stagger: 0.08 },
-              0.05
-            );
-          }
-
-          if (heroSpecs.length > 0) {
-            tl.fromTo(
-              heroSpecs,
-              { y: 18, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.75, stagger: 0.06, ease: 'power3.out' },
-              0.2
-            );
-          }
-        }
-
-        gsap.utils.toArray<HTMLElement>('[data-stagger-group]').forEach((group) => {
-          const items = group.querySelectorAll<HTMLElement>('[data-stagger-item]');
-          if (items.length === 0) return;
-
-          gsap.fromTo(
-            items,
-            { y: 24, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.65,
-              stagger: 0.07,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: group,
-                start: 'top 86%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        });
-      }
-
-      // 7. Theme Toggle Synchronization with Animated Sun/Moon Icons
-      function applyColorScheme(scheme: 'light' | 'dark') {
-        const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
-        const isDark = scheme === 'dark';
-        if (meta) {
-          meta.content = scheme;
-        }
-        document.documentElement.classList.toggle('dark', isDark);
-
-        document.querySelectorAll<HTMLElement>('[data-theme-sun]').forEach((el) => {
-          el.classList.toggle('hidden', !isDark);
-        });
-        document.querySelectorAll<HTMLElement>('[data-theme-moon]').forEach((el) => {
-          el.classList.toggle('hidden', isDark);
-        });
-      }
-
-      const initialDark = document.documentElement.classList.contains('dark');
-      applyColorScheme(initialDark ? 'dark' : 'light');
-
-      function toggleTheme() {
-        const isCurrentlyDark = document.documentElement.classList.contains('dark');
-        const nextScheme = isCurrentlyDark ? 'light' : 'dark';
+      // Theme Toggle Logic
+      const toggleTheme = () => {
+        const isDark = document.documentElement.classList.toggle('dark');
         try {
-          localStorage.setItem('color-scheme', nextScheme);
-        } catch {}
-        playTactileSound('switch');
-        applyColorScheme(nextScheme);
-      }
-
-      document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((btn) => {
-        btn.addEventListener('click', toggleTheme);
-      });
-
-      // 8. Keyboard Shortcuts with Dialog Protection
-      const sectionKeyMap: Record<string, string> = {
-        '1': '#right-now',
-        '2': '#projects',
-        '3': '#labs-showcase',
-        '4': '#notes',
-        '5': '#path',
-        '6': '#resume',
+          localStorage.setItem('tg_theme', isDark ? 'dark' : 'light');
+        } catch (e) {}
       };
+      document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+      document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
 
+      // Mobile Menu Drawer
+      const panel = document.getElementById('menu-panel');
+      const overlay = document.getElementById('menu-overlay');
+      const setMenu = (open: boolean) => {
+        panel?.classList.toggle('translate-x-full', !open);
+        overlay?.classList.toggle('opacity-0', !open);
+        overlay?.classList.toggle('pointer-events-none', !open);
+        if (open) lenis?.stop();
+        else lenis?.start();
+      };
+      document.querySelectorAll('[data-menu-open]').forEach((b) => b.addEventListener('click', () => setMenu(true)));
+      document.querySelectorAll('[data-menu-close], [data-menu-link]').forEach((b) =>
+        b.addEventListener('click', () => setMenu(false))
+      );
+      overlay?.addEventListener('click', () => setMenu(false));
       window.addEventListener('keydown', (e) => {
-        const tag = (e.target as HTMLElement | null)?.tagName?.toLowerCase();
-        const cmdDialog = document.getElementById('command-dialog') as HTMLDialogElement | null;
-        const lightboxDialog = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
-
-        if (
-          tag === 'input' ||
-          tag === 'textarea' ||
-          cmdDialog?.open ||
-          lightboxDialog?.open ||
-          e.metaKey ||
-          e.ctrlKey ||
-          e.altKey
-        ) {
-          return;
-        }
-
-        if (e.key.toLowerCase() === 't') {
-          e.preventDefault();
-          toggleTheme();
-        } else if (e.key in sectionKeyMap) {
-          const target = sectionKeyMap[e.key];
-          if (document.querySelector(target)) {
-            e.preventDefault();
-            scrollToTarget(target);
-          }
-        }
+        if (e.key === 'Escape') setMenu(false);
       });
 
-      // 9. Lightbox Zoom Handler
-      const lightbox = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
-      const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
-      const lightboxCaption = document.getElementById('lightbox-caption');
-      const closeLightboxBtn = document.getElementById('close-lightbox');
-
-      document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((trigger) => {
-        trigger.addEventListener('click', () => {
-          const src = trigger.getAttribute('data-lightbox-src');
-          const alt = trigger.getAttribute('data-lightbox-alt') || 'Preview';
-          if (!src || !lightbox || !lightboxImg) return;
-          playTactileSound('pop');
-          lightboxImg.src = src;
-          lightboxImg.alt = alt;
-          if (lightboxCaption) lightboxCaption.textContent = alt;
-          lightbox.showModal();
+      // Anchor links via Lenis
+      document.querySelectorAll<HTMLAnchorElement>('a[href^="#"], a[href^="/#"]').forEach((a) => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href') || '';
+          const hash = href.replace(/^\//, '');
+          if (href.startsWith('/#') && location.pathname !== '/') return;
+          const target = hash.length > 1 ? document.querySelector<HTMLElement>(hash) : null;
+          if (!target) return;
+          e.preventDefault();
+          if (lenis) lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+          else target.scrollIntoView({ behavior: 'smooth' });
+          history.pushState(null, '', hash);
         });
       });
 
-      closeLightboxBtn?.addEventListener('click', () => {
-        lightbox?.close();
-      });
-
-      lightbox?.addEventListener('click', (e) => {
-        const rect = lightbox.getBoundingClientRect();
-        const outside =
-          e.clientX < rect.left ||
-          e.clientX > rect.right ||
-          e.clientY < rect.top ||
-          e.clientY > rect.bottom;
-        if (outside) lightbox.close();
-      });
-
-      // 10. Live Toronto Clock
-      function updateTorontoTime() {
-        try {
-          const formatter = new Intl.DateTimeFormat('en-CA', {
-            timeZone: 'America/Toronto',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            hour12: false,
+      // Magnetic button physics (Dennis Snellenberg touch)
+      if (!reduced && window.matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+          const strength = Number(el.dataset.magnetic) || 0.3;
+          const inner = el.querySelector<HTMLElement>('[data-magnetic-inner]');
+          el.addEventListener('mousemove', (e) => {
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - (r.left + r.width / 2);
+            const y = e.clientY - (r.top + r.height / 2);
+            gsap.to(el, { x: x * strength, y: y * strength, duration: 0.5, ease: 'power2.out' });
+            if (inner) gsap.to(inner, { x: x * strength * 0.4, y: y * strength * 0.4, duration: 0.5, ease: 'power2.out' });
           });
-          const formatted = formatter.format(new Date());
-          document.querySelectorAll<HTMLElement>('[data-toronto-clock]').forEach((el) => {
-            el.textContent = `${formatted} EDT`;
+          el.addEventListener('mouseleave', () => {
+            gsap.to(el, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
+            if (inner) gsap.to(inner, { x: 0, y: 0, duration: 0.8, ease: 'elastic.out(1, 0.4)' });
           });
-        } catch {}
+        });
       }
-      updateTorontoTime();
-      setInterval(updateTorontoTime, 1000);
+
+      // Lightbox preview for screenshots
+      const lb = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
+      const lbImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+      document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((t) =>
+        t.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (!lb || !lbImg) return;
+          lbImg.src = t.dataset.lightboxSrc || '';
+          lbImg.alt = t.dataset.lightboxAlt || '';
+          lb.showModal();
+        })
+      );
+      document.getElementById('close-lightbox')?.addEventListener('click', () => lb?.close());
+      lb?.addEventListener('click', (e) => {
+        if (e.target === lb) lb.close();
+      });
+
+      // Toronto Live Clock
+      const fmt = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'America/Toronto',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+      const tick = () =>
+        document.querySelectorAll<HTMLElement>('[data-toronto-clock]').forEach((el) => {
+          el.textContent = fmt.format(new Date());
+        });
+      tick();
+      setInterval(tick, 1000);
     </script>
   </body>
 </html>

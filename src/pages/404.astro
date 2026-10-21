@@ -1,70 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout
-  title="404 // Route Not Found | Tarik Gungor"
-  description="The requested routing endpoint does not exist on this host."
-  canonicalPath="/404"
-  includeStructuredPerson={false}
->
-  <Header variant="home" />
-
-  <main
-    id="main-content"
-    tabindex="-1"
-    class="flex-1 w-full max-w-[1600px] mx-auto border-x border-[var(--rule-hairline)] flex items-center justify-center p-6 sm:p-14 lg:p-24"
-  >
-    <div class="max-w-[720px] w-full border border-[var(--rule-strong)] bg-[var(--bg-panel)] font-mono-spec">
-      <!-- Error Header -->
-      <div class="px-5 py-3.5 border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)] flex items-center justify-between text-xs">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-[var(--signal)] inline-block"></span>
-          <span class="font-semibold text-[var(--text-primary)]">SYS.ERR // 404 ROUTE_NOT_FOUND</span>
-        </div>
-        <span class="text-[var(--text-muted)]">ICMP UNREACHABLE</span>
-      </div>
-
-      <!-- Diagnostic Readout -->
-      <div class="p-6 sm:p-10 space-y-6">
-        <div>
-          <span class="text-xs text-[var(--signal)] font-semibold block mb-2">
-            DIAGNOSTIC STATUS: DISCONNECTED
-          </span>
-          <h1 class="font-display font-bold text-4xl sm:text-5xl text-[var(--text-primary)] uppercase tracking-tight">
-            Packet Dropped.
-          </h1>
-          <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">
-            The requested Uniform Resource Identifier does not map to any published route,
-            infrastructure lab, or project artifact on this host.
-          </p>
-        </div>
-
-        <div class="p-4 border border-[var(--rule-hairline)] bg-[var(--bg-surface)] text-xs space-y-1.5 text-[var(--text-muted)]">
-          <div>REQUEST_STATUS: 404 Not Found</div>
-          <div>SUGGESTED_ACTION: Fallback to root index (/) or inspect routing table via ⌘K</div>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-0 border border-[var(--rule-strong)] text-xs w-fit">
-          <a
-            href="/"
-            class="px-6 py-3.5 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
-          >
-            ← Return to Index (/)
-          </a>
-          <button
-            type="button"
-            data-open-command
-            class="px-5 py-3.5 bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors cursor-pointer"
-          >
-            Launch Command Shell (⌘K)
-          </button>
-        </div>
+<BaseLayout title="Page not found — Tarik Gungor" description="This page doesn't exist." canonicalPath="/404" includeStructuredPerson={false}>
+  <main id="main-content" class="flex-1 wrap flex items-center justify-center py-32">
+    <div class="tactile-card p-10 sm:p-16 max-w-lg text-center space-y-6">
+      <div class="font-mono text-xs text-[var(--accent)] uppercase tracking-wider font-semibold">Error 404 // Host Unreachable</div>
+      <div class="font-heading text-6xl sm:text-8xl font-bold text-[var(--ink)]">404</div>
+      <p class="text-base text-[var(--ink-2)] leading-relaxed">
+        The requested routing path does not exist on this gateway, or the resource has been relocated.
+      </p>
+      <div class="pt-2">
+        <a href="/" class="btn-primary" data-magnetic="0.3">
+          <span data-magnetic-inner>Return to Gateway Home →</span>
+        </a>
       </div>
     </div>
   </main>
-
   <Footer />
 </BaseLayout>

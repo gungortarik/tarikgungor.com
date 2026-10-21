@@ -1,283 +1,264 @@
 @import "./fonts.css";
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
-  color-scheme: light dark;
+  color-scheme: dark light;
 
-  /* Josh Comeau / Brittany Chiang Inspired Daylight Palette */
-  --bg-surface: #f8fafc;
-  --bg-panel: #f1f5f9;
-  --bg-elevated: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.78);
-  --bg-inverse: #0f172a;
+  /* Default Theme: Dark (Developer & Systems Workbench) */
+  --bg: #090d16;
+  --bg-elevated: #0f1523;
+  --bg-card: rgba(15, 21, 35, 0.85);
+  --bg-card-hover: rgba(22, 30, 50, 0.95);
+  --bg-soft: #141c2e;
+  --bg-subtle: rgba(255, 255, 255, 0.04);
+  
+  --ink: #f8fafc;
+  --ink-2: #cbd5e1;
+  --muted: #8492a6;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
 
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --text-inverse: #f8fafc;
+  --accent: #6366f1; /* Indigo */
+  --accent-light: #818cf8;
+  --accent-soft: rgba(99, 102, 241, 0.14);
+  --accent-glow: rgba(99, 102, 241, 0.35);
 
-  --rule-hairline: rgba(15, 23, 42, 0.08);
-  --rule-strong: rgba(15, 23, 42, 0.18);
-  --card-highlight: rgba(255, 255, 255, 0.9);
-  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.07), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --success: #10b981;
+  --success-soft: rgba(16, 185, 129, 0.15);
 
-  /* Signature Multi-Tone Accents (Cyan / Indigo / Warm Amber / Emerald) */
-  --signal: #0284c7;
-  --signal-secondary: #6366f1;
-  --signal-warm: #d97706;
-  --signal-emerald: #059669;
-  --signal-soft: rgba(2, 132, 199, 0.09);
-  --spotlight-color: rgba(2, 132, 199, 0.06);
+  --code-bg: #060911;
+  --code-border: rgba(255, 255, 255, 0.08);
+  --tag-bg: rgba(255, 255, 255, 0.06);
+  --tag-border: rgba(255, 255, 255, 0.08);
+  --tag-ink: #e2e8f0;
 
-  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --spotlight: rgba(99, 102, 241, 0.08);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --mouse-x: 50vw;
-  --mouse-y: 30vh;
-
-  &:has(> head > meta[name="color-scheme"][content="dark"]) {
-    color-scheme: dark;
-  }
-  &:has(> head > meta[name="color-scheme"][content="light"]) {
-    color-scheme: light;
-  }
+  --pad: clamp(1.25rem, 5vw, 4.5rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-html.dark,
-:root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  /* Deep Midnight Navy-Slate (Josh Comeau & Brittany Chiang Signature) */
-  --bg-surface: #0b1120;
-  --bg-panel: #111a2e;
-  --bg-elevated: #17233d;
-  --bg-glass: rgba(17, 26, 46, 0.72);
-  --bg-inverse: #f8fafc;
+/* Light Theme (Warm Tactile Paper / Stone, Josh Comeau style) */
+html:not(.dark) {
+  color-scheme: light;
 
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #0b1120;
+  --bg: #fbfaf7;
+  --bg-elevated: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-hover: #ffffff;
+  --bg-soft: #f1ede4;
+  --bg-subtle: rgba(0, 0, 0, 0.03);
 
-  --rule-hairline: rgba(148, 163, 184, 0.12);
-  --rule-strong: rgba(56, 189, 248, 0.35);
-  --card-highlight: rgba(255, 255, 255, 0.08);
-  --card-shadow: 0 20px 40px -15px rgba(2, 6, 23, 0.65);
+  --ink: #181a1f;
+  --ink-2: #484c56;
+  --muted: #797e8b;
+  --line: rgba(24, 26, 31, 0.09);
+  --line-strong: rgba(24, 26, 31, 0.18);
 
-  --signal: #38bdf8;
-  --signal-secondary: #818cf8;
-  --signal-warm: #fbbf24;
-  --signal-emerald: #34d399;
-  --signal-soft: rgba(56, 189, 248, 0.12);
-  --spotlight-color: rgba(56, 189, 248, 0.075);
+  --accent: #4f46e5;
+  --accent-light: #6366f1;
+  --accent-soft: rgba(79, 70, 229, 0.08);
+  --accent-glow: rgba(79, 70, 229, 0.22);
+
+  --success: #059669;
+  --success-soft: rgba(5, 150, 105, 0.12);
+
+  --code-bg: #1c1f26;
+  --code-border: rgba(24, 26, 31, 0.08);
+  --tag-bg: #f0ece3;
+  --tag-border: rgba(24, 26, 31, 0.08);
+  --tag-ink: #2d3139;
+
+  --spotlight: rgba(79, 70, 229, 0.04);
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
 }
 
-/* Lenis Smooth Scroll Foundation */
+/* Lenis Smooth Scroll */
 html.lenis,
 html.lenis body {
   height: auto;
 }
-
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
 }
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
 .lenis.lenis-stopped {
   overflow: hidden;
 }
 
 body {
-  background-color: var(--bg-surface);
-  color: var(--text-primary);
+  background-color: var(--bg);
+  color: var(--ink);
   font-family: var(--font-sans);
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   overflow-x: hidden;
-  transition:
-    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* Brittany Chiang Style Interactive Mouse Spotlight */
-.pointer-spotlight {
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Brittany Chiang Mouse Spotlight */
+.spotlight-overlay {
+  pointer-events: none;
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   background: radial-gradient(
-    650px circle at var(--mouse-x) var(--mouse-y),
-    var(--spotlight-color),
+    650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    var(--spotlight),
     transparent 80%
   );
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
-/* Josh Comeau Tactile Elevated Card */
+/* Tactile Card */
 .tactile-card {
-  background-color: var(--bg-glass);
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background-color 0.3s ease;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--rule-hairline);
-  box-shadow:
-    inset 0 1px 0 0 var(--card-highlight),
-    var(--card-shadow);
-  border-radius: 1rem;
-  transition:
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.25s ease,
-    box-shadow 0.35s ease,
-    background-color 0.25s ease;
 }
 
-.tactile-card-interactive:hover {
-  transform: translateY(-4px);
-  border-color: var(--rule-strong);
+.tactile-card:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
 }
 
-/* Josh Comeau Wavy / Gradient Text Accent */
-.gradient-headline-accent {
-  background: linear-gradient(135deg, var(--signal) 0%, var(--signal-secondary) 55%, var(--signal-emerald) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Tactile Badge */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-radius: 9999px;
+  background: var(--tag-bg);
+  border: 1px solid var(--tag-border);
+  color: var(--tag-ink);
+  transition: all 0.2s ease;
 }
 
-.wavy-underline {
-  text-decoration-line: underline;
-  text-decoration-style: wavy;
-  text-decoration-color: var(--signal-warm);
-  text-underline-offset: 6px;
-  text-decoration-thickness: 2px;
+.tech-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-/* Typography Systems */
-.font-display {
-  font-family: var(--font-display);
+/* Tactile Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: all 0.25s var(--ease-out);
+  box-shadow: 0 4px 14px var(--accent-glow);
 }
 
-.font-sans-body {
-  font-family: var(--font-sans);
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+  filter: brightness(1.08);
 }
 
-.font-mono-spec {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition: all 0.25s var(--ease-out);
 }
 
-/* GSAP Reveal Clip Masks */
-.clip-line {
-  overflow: hidden;
-  display: block;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
 }
 
-.clip-line-inner {
-  display: block;
-  will-change: transform;
+/* Underline-dot nav link */
+.nav-item {
+  position: relative;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  transition: color 0.2s ease;
+  padding: 0.4rem 0.2rem;
+}
+.nav-item:hover,
+.nav-item[aria-current='page'] {
+  color: var(--ink);
+}
+.nav-item::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -0.2rem;
+  width: 4px;
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--accent);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.25s var(--ease-spring);
+}
+.nav-item:hover::after,
+.nav-item[aria-current='page']::after {
+  transform: translateX(-50%) scale(1);
 }
 
-/* Animated Packet Flow on SVG Topology */
-@keyframes packet-flow {
-  to {
-    stroke-dashoffset: -32;
-  }
-}
-
-.topology-link-animated {
-  stroke-dasharray: 5 5;
-  animation: packet-flow 1.1s linear infinite;
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  70% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-.node-pulse {
-  transform-origin: center;
-  animation: pulse-ring 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-}
-
-@keyframes wave-hand {
-  0%, 100% { transform: rotate(0deg); }
-  20% { transform: rotate(16deg); }
-  40% { transform: rotate(-8deg); }
-  60% { transform: rotate(14deg); }
-  80% { transform: rotate(-4deg); }
-}
-
-.wave-on-hover:hover .wave-emoji {
-  display: inline-block;
-  transform-origin: 70% 70%;
-  animation: wave-hand 1s ease-in-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .topology-link-animated,
-  .node-pulse {
-    animation: none;
-  }
-}
-
-/* Accessible Skip Link */
+/* Skip link */
 .skip-link {
-  position: fixed;
-  top: -100%;
+  position: absolute;
+  top: -100px;
   left: 1rem;
   z-index: 100;
-  padding: 0.6rem 1rem;
-  background: var(--signal);
-  color: #ffffff;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  font-weight: 500;
+  transition: top 0.2s ease;
 }
-
 .skip-link:focus {
   top: 1rem;
-}
-
-/* Native Dialog Command Shell */
-dialog#command-dialog {
-  background: transparent;
-  border: none;
-  padding: 0;
-  max-width: 100vw;
-  max-height: 100vh;
-  margin: auto;
-}
-
-dialog#command-dialog::backdrop {
-  background: rgba(2, 6, 23, 0.75);
-  backdrop-filter: blur(6px);
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-surface);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--rule-strong);
-  border-radius: 3px;
 }
