@@ -309,19 +309,56 @@ import { siteContent } from '../data/siteContent';
               />
             </div>
 
-            <!-- CLI Drills Panel -->
+            <!-- Interactive Cisco CLI Drills Panel -->
             <div id="certforge-panel-drills" class="hidden border border-[var(--rule-hairline)] bg-[var(--bg-inverse)] text-[var(--text-inverse)] p-6 font-mono-spec text-xs space-y-4">
-              <div class="text-[var(--signal)] font-bold tracking-wider uppercase text-[11px]">
-                CISCO IOS SIMULATION // PACKET TRACER SCENARIOS
+              <div class="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
+                <span class="text-[var(--signal)] font-bold tracking-wider uppercase">
+                  CISCO IOS TERMINAL SIMULATOR
+                </span>
+                <span class="text-white/40">HOST: R1-CORE (CCNA LAB)</span>
               </div>
-              <div class="p-3 bg-black/40 border border-white/10 space-y-1.5 text-[11.5px]">
-                <div class="text-white/60"># R1-CORE Configuration Drill</div>
-                <div class="text-white">Router&gt; enable</div>
-                <div class="text-white">Router# configure terminal</div>
-                <div class="text-white">Router(config)# interface GigabitEthernet0/0/0.10</div>
-                <div class="text-white">Router(config-subif)# encapsulation dot1Q 10</div>
-                <div class="text-white">Router(config-subif)# ip address 192.168.10.1 255.255.255.0</div>
-                <div class="text-emerald-400">✓ VLAN 10 Subinterface Active [STP: FORWARDING]</div>
+
+              <!-- Quick Command Pills -->
+              <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+                <span class="text-white/40 mr-1">RUN:</span>
+                <button
+                  type="button"
+                  data-cisco-cmd="route"
+                  class="px-2 py-0.5 bg-white/10 hover:bg-white/20 text-white rounded cursor-pointer transition-colors"
+                >
+                  show ip route
+                </button>
+                <button
+                  type="button"
+                  data-cisco-cmd="vlan"
+                  class="px-2 py-0.5 bg-white/10 hover:bg-white/20 text-white rounded cursor-pointer transition-colors"
+                >
+                  show vlan brief
+                </button>
+                <button
+                  type="button"
+                  data-cisco-cmd="ping"
+                  class="px-2 py-0.5 bg-white/10 hover:bg-white/20 text-white rounded cursor-pointer transition-colors"
+                >
+                  ping 192.168.10.1
+                </button>
+                <button
+                  type="button"
+                  data-cisco-cmd="trace"
+                  class="px-2 py-0.5 bg-white/10 hover:bg-white/20 text-white rounded cursor-pointer transition-colors"
+                >
+                  traceroute 8.8.8.8
+                </button>
+              </div>
+
+              <!-- Terminal Screen -->
+              <div
+                id="cisco-terminal-screen"
+                class="p-4 bg-black/60 border border-white/10 rounded min-h-[170px] max-h-[220px] overflow-y-auto space-y-2 text-[11px] leading-relaxed select-text"
+              >
+                <div class="text-white/50">Cisco IOS Software, C2900 Software (C2900-UNIVERSALK9-M), Version 15.7(4)M</div>
+                <div class="text-emerald-400">R1-CORE# interface GigabitEthernet0/0/0.10 UP · Line protocol is UP</div>
+                <div class="text-white/60">Ready. Click a command above to inspect real routing tables.</div>
               </div>
             </div>
           </div>
@@ -459,6 +496,31 @@ import { siteContent } from '../data/siteContent';
             <p class="text-[15px] text-[var(--text-secondary)] leading-relaxed" id="inspector-lab-desc">
               {siteContent.resume.labs[0].description}
             </p>
+          </div>
+
+          <!-- Network Topology Schematic Visual -->
+          <div class="pt-4 border-t border-[var(--rule-hairline)] space-y-2">
+            <div class="flex items-center justify-between text-xs font-mono-spec">
+              <span class="text-[var(--text-muted)] uppercase">Verified Network Topology &amp; Subnets</span>
+              <span class="text-[var(--signal)] text-[11px] font-semibold">HYPER-V / ESXi</span>
+            </div>
+            <pre
+              id="inspector-lab-diagram"
+              class="p-4 bg-[var(--bg-surface)] border border-[var(--rule-hairline)] font-mono-spec text-[11px] sm:text-[11.5px] leading-relaxed text-[var(--text-primary)] overflow-x-auto select-text"
+            >{`[ WAN / ISP Gateway: 10.0.0.1 ]
+          │
+[ pfSense NAT / Firewall Appliance ]
+   ├── Gi0/0.10 (192.168.10.1/24) ─── [ VLAN 10: Workstations ]
+   └── Gi0/0.20 (192.168.20.1/24) ─── [ VLAN 20: Servers & DC01 ]`}</pre>
+          </div>
+
+          <!-- Synthetic Verification Shell Command -->
+          <div class="pt-4 border-t border-[var(--rule-hairline)] space-y-2">
+            <div class="text-xs font-mono-spec text-[var(--text-muted)] uppercase">Verification &amp; Diagnostic Command</div>
+            <div
+              id="inspector-lab-cmd"
+              class="p-3 bg-[var(--bg-inverse)] text-[var(--text-inverse)] font-mono-spec text-[11px] overflow-x-auto select-all"
+            >ip route show table main && pfctl -sr | grep -i pass</div>
           </div>
 
           <!-- Enterprise Skills & Verifications -->
@@ -698,10 +760,12 @@ import { siteContent } from '../data/siteContent';
       });
     });
 
-    // 2. CertForge Visual vs CLI Drills Switcher
+    // 2. CertForge Visual vs CLI Drills Switcher & Interactive Cisco Terminal
     const certforgeModes = document.querySelectorAll<HTMLButtonElement>('[data-certforge-mode]');
     const certforgeVisual = document.getElementById('certforge-panel-visual');
     const certforgeDrills = document.getElementById('certforge-panel-drills');
+    const ciscoScreen = document.getElementById('cisco-terminal-screen');
+    const ciscoCmdBtns = document.querySelectorAll<HTMLButtonElement>('[data-cisco-cmd]');
 
     certforgeModes.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -724,12 +788,119 @@ import { siteContent } from '../data/siteContent';
       });
     });
 
-    // 3. Interactive 7-Lab Topology Selector
+    const ciscoOutputs: Record<string, string> = {
+      route: `R1-CORE# show ip route
+Codes: C - connected, S - static, R - RIP, B - BGP, O - OSPF
+Gateway of last resort is 10.0.0.1 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 10.0.0.1, GigabitEthernet0/0/0
+C     192.168.10.0/24 is directly connected, Gi0/0/0.10 [VLAN 10]
+C     192.168.20.0/24 is directly connected, Gi0/0/0.20 [VLAN 20]
+C     10.10.50.0/24 is directly connected, Gi0/0/1 [STORAGE_SAN]`,
+      vlan: `R1-CORE# show vlan brief
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi0/5, Gi0/6, Gi0/7
+10   STUDENT_CLIENTS                  active    Gi0/1, Gi0/2 (Access)
+20   INFRA_SERVERS                    active    Gi0/3, Gi0/4 (Access)
+99   MANAGEMENT_NATIVE                active    Gi0/24 (Trunk dot1Q)`,
+      ping: `PC-STUDENT-01> ping 192.168.10.1
+Pinging 192.168.10.1 with 32 bytes of data:
+Reply from 192.168.10.1: bytes=32 time=1ms TTL=64
+Reply from 192.168.10.1: bytes=32 time=2ms TTL=64
+Reply from 192.168.10.1: bytes=32 time=1ms TTL=64
+Reply from 192.168.10.1: bytes=32 time=1ms TTL=64
+
+Ping statistics: Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
+Approximate round trip times: Minimum = 1ms, Maximum = 2ms, Average = 1ms`,
+      trace: `R1-CORE# traceroute 8.8.8.8
+Type escape sequence to abort.
+Tracing the route to 8.8.8.8
+  1 10.0.0.1 (ISP Gateway) 2 msec 1 msec 2 msec
+  2 142.250.160.1 (Toronto IXP) 8 msec 6 msec 7 msec
+  3 8.8.8.8 (dns.google) 11 msec 9 msec 10 msec
+Done. Route verified.`
+    };
+
+    ciscoCmdBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cmdKey = btn.getAttribute('data-cisco-cmd');
+        if (!cmdKey || !ciscoOutputs[cmdKey] || !ciscoScreen) return;
+        const entry = document.createElement('div');
+        entry.className = 'pt-2 border-t border-white/10 text-white font-mono whitespace-pre-wrap';
+        entry.textContent = ciscoOutputs[cmdKey];
+        ciscoScreen.appendChild(entry);
+        ciscoScreen.scrollTop = ciscoScreen.scrollHeight;
+      });
+    });
+
+    // 3. Interactive 7-Lab Topology Schematics & Diagnostic Engine
     const labNodes = document.querySelectorAll<HTMLButtonElement>('[data-lab-node]');
     const activeLabIndicator = document.getElementById('active-lab-indicator');
     const inspectorTitle = document.getElementById('inspector-lab-title');
     const inspectorDesc = document.getElementById('inspector-lab-desc');
     const inspectorProto = document.getElementById('inspector-lab-proto');
+    const inspectorDiagram = document.getElementById('inspector-lab-diagram');
+    const inspectorCmd = document.getElementById('inspector-lab-cmd');
+
+    const labDiagrams: Record<string, { topology: string; command: string }> = {
+      'LAB-01': {
+        topology: `[ WAN / ISP Gateway: 10.0.0.1 ]
+          │
+[ pfSense NAT / Firewall Appliance ]
+   ├── Gi0/0.10 (192.168.10.1/24) ─── [ VLAN 10: Workstations ]
+   └── Gi0/0.20 (192.168.20.1/24) ─── [ VLAN 20: Servers & DC01 ]`,
+        command: 'ip route show table main && pfctl -sr | grep -i pass',
+      },
+      'LAB-02': {
+        topology: `[ Forest Root: CORP.LOCAL ]
+   └── [ OU: Toronto Operations ]
+          ├── [ OU: Workstations ] ── (GPO: BitLocker + LAPS Enforced)
+          ├── [ OU: User Accounts ] ── (RBAC Tiered Access)
+          └── [ OU: Servers ] ─────── (DC01 + DC02 Replication)`,
+        command: 'Get-ADOrganizationalUnit -Filter * | Select-Object DistinguishedName',
+      },
+      'LAB-03': {
+        topology: `[ Client Query: host.corp.local ]
+          │
+[ AD-Integrated DNS (192.168.20.10) ]
+   ├── Internal Zone: corp.local (Authoritative / Dynamic Sync)
+   └── Forwarders ───────> [ Cloudflare / Quad9: 1.1.1.1 / 9.9.9.9 ]`,
+        command: 'Resolve-DnsName -Name dc01.corp.local -Server 192.168.20.10',
+      },
+      'LAB-04': {
+        topology: `[ ISC-DHCP Server on Ubuntu 24.04 ]
+   ├── Scope 10: 192.168.10.50 - 192.168.10.200 (Lease: 24h)
+   ├── Scope 20: 192.168.20.50 - 192.168.20.100 (Servers)
+   └── Static Reservations: [ Printer-01: 192.168.10.25 (MAC bound) ]`,
+        command: 'sudo systemctl status isc-dhcp-server && dhcp-lease-list',
+      },
+      'LAB-05': {
+        topology: `[ TrueNAS Core iSCSI Target ] ── (RAID 10: 4x 1TB SSD Striped Mirror)
+   │ Target IQN: iqn.2026.local.san:storage.lun0 (Port 3260)
+[ 10GbE Storage vSwitch Fabric ]
+   ├── [ Hyper-V Node 1 ] ── (MPIO Active / Optimized Path 1)
+   └── [ Hyper-V Node 2 ] ── (MPIO Active / Optimized Path 2)`,
+        command: 'iscsicli ListTargets && mpclaim -v "C:\\ClusterStorage\\Volume1"',
+      },
+      'LAB-06': {
+        topology: `[ Hyper-V Node 01 ] <── Heartbeat (10.10.99.1) ──> [ Hyper-V Node 02 ]
+          │                                                │
+          └──────── [ Clustered Shared Volume ] ───────────┘
+                               │
+          [ Cloud / File Share Quorum Witness (SMB 3.0) ]`,
+        command: 'Get-ClusterNode && Get-ClusterResource | Format-Table -AutoSize',
+      },
+      'LAB-07': {
+        topology: `[ Physical Bare Metal / Hyper-V Host ]
+   └── [ Nested VMware ESXi 8.0 Hypervisor (192.168.20.5) ]
+          ├── [ vSwitch0: Standard Virtual Switch ]
+          │      ├── Port Group: Management (vmk0)
+          │      └── Port Group: VM Network (Trunk dot1Q)
+          └── [ Hosted Linux Guest Instances ]`,
+        command: 'esxcli network vswitch standard list && esxcli system version get',
+      },
+    };
 
     function selectLab(labId: string) {
       let selectedBtn: HTMLButtonElement | null = null;
@@ -751,6 +922,11 @@ import { siteContent } from '../data/siteContent';
         if (inspectorTitle) inspectorTitle.textContent = name;
         if (inspectorDesc) inspectorDesc.textContent = desc;
         if (inspectorProto) inspectorProto.textContent = proto;
+
+        if (labDiagrams[labId]) {
+          if (inspectorDiagram) inspectorDiagram.textContent = labDiagrams[labId].topology;
+          if (inspectorCmd) inspectorCmd.textContent = labDiagrams[labId].command;
+        }
       }
     }
 

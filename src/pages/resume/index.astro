@@ -15,220 +15,151 @@ import { siteContent } from '../../data/siteContent';
   <main
     id="main-content"
     tabindex="-1"
-    class="flex-1 w-full max-w-[1280px] mx-auto border-x border-[var(--rule-hairline)] print:border-none focus:outline-none"
+    class="flex-1 w-full max-w-[960px] mx-auto px-6 sm:px-10 py-12 sm:py-20 focus:outline-none"
   >
-    <article class="divide-y divide-[var(--rule-hairline)] print:divide-black/20">
-      <!-- ==========================================
-           RESUME HEADER SPECIFICATION BLOCK
-           ========================================== -->
-      <header
-        data-section-title="CV.00 // HEADER SPECIFICATION"
-        class="grid grid-cols-1 lg:grid-cols-12"
+    <!-- Document Actions Bar -->
+    <div class="flex items-center justify-between pb-8 mb-10 border-b border-[var(--rule-hairline)] text-xs font-mono-spec print:hidden">
+      <a
+        href="/"
+        class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1.5"
       >
-        <div
-          class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] flex flex-col justify-between font-mono-spec text-xs text-[var(--text-muted)] print:hidden"
-        >
-          <div>
-            <span class="text-[var(--signal)] font-semibold block">DOC // CURRICULUM VITAE</span>
-            <span class="block mt-1 text-[var(--text-primary)] font-medium">
-              INFRASTRUCTURE &amp; ENDPOINT OPS
-            </span>
-          </div>
+        <span>← Return to Index</span>
+      </a>
 
-          <div class="pt-6 space-y-2 text-[11px] border-t border-[var(--rule-hairline)]">
-            <div>LOC: {siteContent.meta.region}</div>
-            <div>SCALE: 60+ ENDPOINTS</div>
-            <div>LABS: 07 VERIFIED TOPOLOGIES</div>
-          </div>
+      <div class="flex items-center gap-2">
+        <a
+          href="/resume/tarik-gungor-resume.pdf"
+          download="tarik-gungor-resume.pdf"
+          class="px-3 py-1.5 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold hover:bg-[var(--signal)] hover:text-white transition-colors"
+        >
+          Download PDF ↓
+        </a>
+        <button
+          type="button"
+          onclick="window.print()"
+          class="px-3 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+        >
+          Print ⎙
+        </button>
+        <a
+          href="/resume/tarik-gungor-resume.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-3 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
+          JSON Schema ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Resume Article -->
+    <article class="space-y-16 print:space-y-8">
+      <!-- Header / Identity -->
+      <header class="space-y-4">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-primary)] print:text-black">
+          {siteContent.meta.name}
+        </h1>
+        <div class="text-base sm:text-lg text-[var(--signal)] font-medium font-sans print:text-black">
+          {siteContent.resume.headline} — {siteContent.resume.subheadline}
         </div>
 
-        <div class="lg:col-span-9 p-6 sm:p-10 lg:p-14 flex flex-col justify-between gap-8 print:p-0">
-          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div>
-              <h1
-                class="font-display font-bold text-[44px] sm:text-[60px] lg:text-[74px] leading-[0.94] tracking-[-0.045em] uppercase text-[var(--text-primary)] print:text-black"
-              >
-                <span class="clip-line">
-                  <span data-hero-line class="clip-line-inner">{siteContent.meta.name}</span>
-                </span>
-              </h1>
-              <div class="mt-3 flex flex-wrap items-center gap-3 font-mono-spec text-xs sm:text-sm">
-                <span class="font-semibold text-[var(--signal)] print:text-black">
-                  {siteContent.resume.headline}
-                </span>
-                <span class="text-[var(--text-muted)]">//</span>
-                <span class="text-[var(--text-secondary)] print:text-neutral-700">
-                  {siteContent.resume.subheadline}
-                </span>
-              </div>
-            </div>
-
-            <!-- Action Controls -->
-            <div class="flex flex-wrap items-center gap-0 border border-[var(--rule-strong)] font-mono-spec text-xs print:hidden shrink-0">
-              <a
-                href="/resume/tarik-gungor-resume.pdf"
-                download="tarik-gungor-resume.pdf"
-                class="px-5 py-3 bg-[var(--text-primary)] text-[var(--bg-surface)] font-semibold uppercase tracking-wider hover:bg-[var(--signal)] hover:text-white transition-colors"
-              >
-                DOWNLOAD PDF ↓
-              </a>
-              <button
-                type="button"
-                onclick="window.print()"
-                class="px-4 py-3 bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors cursor-pointer"
-              >
-                PRINT ⎙
-              </button>
-              <a
-                href="/resume/tarik-gungor-resume.json"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="px-4 py-3 bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)] font-medium uppercase tracking-wider border-l border-[var(--rule-strong)] hover:bg-[var(--bg-panel)] transition-colors"
-              >
-                JSON ↗
-              </a>
-            </div>
-          </div>
-
-          <!-- Tabular Contact Strip -->
-          <div class="pt-5 border-t border-[var(--rule-hairline)] flex flex-wrap items-center gap-x-6 gap-y-2 font-mono-spec text-xs text-[var(--text-secondary)] print:text-black">
-            <span class="font-semibold text-[var(--text-primary)]">{siteContent.meta.region}</span>
-            <div class="inline-flex items-center gap-2">
-              <a href={`mailto:${siteContent.meta.email}`} class="hover:text-[var(--signal)]">
-                {siteContent.meta.email}
-              </a>
-              <button
-                type="button"
-                id="copy-email-btn"
-                data-email={siteContent.meta.email}
-                class="px-1.5 py-0.5 border border-[var(--rule-hairline)] text-[10px] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--rule-strong)] cursor-pointer print:hidden"
-              >
-                [COPY]
-              </button>
-            </div>
-            <a href={siteContent.meta.url} class="hover:text-[var(--signal)]">
-              tarikgungor.com
+        <div class="pt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono-spec text-[var(--text-secondary)] print:text-black">
+          <span>{siteContent.meta.region}</span>
+          <span>·</span>
+          <div class="inline-flex items-center gap-1.5">
+            <a href={`mailto:${siteContent.meta.email}`} class="hover:text-[var(--signal)]">
+              {siteContent.meta.email}
             </a>
-            <a
-              href={siteContent.meta.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-[var(--signal)]"
+            <button
+              type="button"
+              id="copy-email-btn"
+              data-email={siteContent.meta.email}
+              class="px-1 py-0.2 border border-[var(--rule-hairline)] text-[10px] text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer print:hidden"
             >
-              linkedin.com/in/tarikgungor
-            </a>
-            <a
-              href={siteContent.meta.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="hover:text-[var(--signal)]"
-            >
-              github.com/gungortarik
-            </a>
+              [copy]
+            </button>
           </div>
+          <span>·</span>
+          <a
+            href={siteContent.meta.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--signal)]"
+          >
+            linkedin.com/in/tarikgungor
+          </a>
+          <span>·</span>
+          <a
+            href={siteContent.meta.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-[var(--signal)]"
+          >
+            github.com/gungortarik
+          </a>
         </div>
       </header>
 
-      <!-- ==========================================
-           01 // SUMMARY
-           ========================================== -->
-      <section
-        id="summary"
-        data-section-title="CV.01 // OPERATIONAL SUMMARY"
-        class="grid grid-cols-1 lg:grid-cols-12 scroll-mt-14"
-      >
-        <div class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-xs text-[var(--text-muted)]">
-          <div class="lg:sticky lg:top-[74px]">
-            <span class="text-[var(--signal)] font-semibold block">01 // SUMMARY</span>
-            <span class="block mt-1 text-[var(--text-primary)]">OPERATIONAL PROFILE</span>
-          </div>
-        </div>
-        <div class="lg:col-span-9 p-6 sm:p-10 lg:p-14">
-          <p class="text-[16px] sm:text-[18.5px] text-[var(--text-primary)] leading-[1.72] max-w-[840px] print:text-black">
-            {siteContent.resume.summary}
-          </p>
-        </div>
+      <!-- Section: Professional Summary -->
+      <section id="summary" class="space-y-4 scroll-mt-24">
+        <h2 class="text-xs font-mono-spec font-bold text-[var(--signal)] uppercase tracking-wider pb-2 border-b border-[var(--rule-hairline)]">
+          Summary
+        </h2>
+        <p class="text-base sm:text-[17px] text-[var(--text-secondary)] leading-[1.75] print:text-black">
+          {siteContent.resume.summary}
+        </p>
       </section>
 
-      <!-- ==========================================
-           02 // TECHNICAL SKILLS MATRIX
-           ========================================== -->
-      <section
-        id="skills"
-        data-section-title="CV.02 // TECHNICAL SKILLS"
-        class="grid grid-cols-1 lg:grid-cols-12 scroll-mt-14"
-      >
-        <div class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-xs text-[var(--text-muted)]">
-          <div class="lg:sticky lg:top-[74px]">
-            <span class="text-[var(--signal)] font-semibold block">02 // TECHNICAL SKILLS</span>
-            <span class="block mt-1 text-[var(--text-primary)]">09 DOMAIN CATEGORIES</span>
-          </div>
-        </div>
-
-        <div
-          data-stagger-group
-          class="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-[var(--rule-hairline)]"
-        >
+      <!-- Section: Technical Skills -->
+      <section id="skills" class="space-y-6 scroll-mt-24">
+        <h2 class="text-xs font-mono-spec font-bold text-[var(--signal)] uppercase tracking-wider pb-2 border-b border-[var(--rule-hairline)]">
+          Technical Skills &amp; Competencies
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 text-sm">
           {
-            siteContent.resume.skills.map((skill, idx) => (
-              <div
-                data-stagger-item
-                class="p-6 sm:p-7 border-b border-[var(--rule-hairline)] flex flex-col justify-between hover:bg-[var(--bg-panel)] transition-colors"
-              >
-                <div class="flex items-center justify-between font-mono-spec text-[10px] text-[var(--text-muted)] mb-3">
-                  <span class="text-[var(--signal)] font-semibold">0{idx + 1}</span>
-                  <span class="tracking-widest uppercase">{skill.category}</span>
+            siteContent.resume.skills.map((skill) => (
+              <div class="space-y-1.5">
+                <div class="text-[11px] font-mono-spec uppercase text-[var(--text-muted)]">
+                  {skill.category}
                 </div>
-                <p class="font-display text-base font-semibold text-[var(--text-primary)] leading-snug print:text-black">
+                <div class="font-medium text-[var(--text-primary)] leading-snug print:text-black">
                   {skill.items.join(' · ')}
-                </p>
+                </div>
               </div>
             ))
           }
         </div>
       </section>
 
-      <!-- ==========================================
-           03 // PROFESSIONAL EXPERIENCE
-           ========================================== -->
-      <section
-        id="experience"
-        data-section-title="CV.03 // PROFESSIONAL EXPERIENCE"
-        class="grid grid-cols-1 lg:grid-cols-12 scroll-mt-14"
-      >
-        <div class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-xs text-[var(--text-muted)]">
-          <div class="lg:sticky lg:top-[74px]">
-            <span class="text-[var(--signal)] font-semibold block">03 // EXPERIENCE</span>
-            <span class="block mt-1 text-[var(--text-primary)]">FIELD OPERATIONS</span>
-          </div>
-        </div>
-
-        <div data-stagger-group class="lg:col-span-9 divide-y divide-[var(--rule-hairline)]">
+      <!-- Section: Professional Experience -->
+      <section id="experience" class="space-y-8 scroll-mt-24">
+        <h2 class="text-xs font-mono-spec font-bold text-[var(--signal)] uppercase tracking-wider pb-2 border-b border-[var(--rule-hairline)]">
+          Professional Experience
+        </h2>
+        <div class="space-y-10 divide-y divide-[var(--rule-hairline)]">
           {
-            siteContent.resume.experience.map((job) => (
-              <div data-stagger-item class="p-6 sm:p-10 lg:p-12 print:break-inside-avoid">
-                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-4 border-b border-[var(--rule-hairline)]">
+            siteContent.resume.experience.map((job, idx) => (
+              <div class={idx > 0 ? 'pt-8' : ''}>
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                   <div>
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)] print:text-black">
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] print:text-black">
                       {job.company}
-                    </h2>
-                    <p class="font-mono-spec text-xs text-[var(--signal)] font-semibold mt-1 uppercase">
-                      {job.role} — {job.scaleBadge}
-                    </p>
+                    </h3>
+                    <div class="text-sm font-sans font-medium text-[var(--signal)] mt-0.5 print:text-black">
+                      {job.role} <span class="text-xs text-[var(--text-muted)] font-mono-spec font-normal">({job.scaleBadge})</span>
+                    </div>
                   </div>
-                  <div class="font-mono-spec text-xs text-[var(--text-muted)]">
+                  <div class="text-xs font-mono-spec text-[var(--text-muted)] mt-1 sm:mt-0">
                     <span>{job.location}</span>
-                    <span class="mx-1.5">//</span>
-                    <span class="text-[var(--text-primary)] font-semibold">{job.period}</span>
+                    <span class="mx-1.5">·</span>
+                    <span class="text-[var(--text-primary)] font-semibold print:text-black">{job.period}</span>
                   </div>
                 </div>
 
-                <ul class="mt-5 space-y-2.5 text-[14.5px] text-[var(--text-secondary)] leading-[1.65] print:text-black">
+                <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)] leading-relaxed print:text-black">
                   {job.highlights.map((bullet) => (
-                    <li class="flex items-start gap-3">
-                      <span class="font-mono-spec text-xs text-[var(--signal)] mt-1 shrink-0">
-                        —
-                      </span>
+                    <li class="flex items-start gap-2.5">
+                      <span class="text-[var(--signal)] text-xs mt-1 shrink-0">▪</span>
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -239,40 +170,24 @@ import { siteContent } from '../../data/siteContent';
         </div>
       </section>
 
-      <!-- ==========================================
-           04 // PROJECTS & INFRASTRUCTURE LABS
-           ========================================== -->
-      <section
-        id="labs"
-        data-section-title="CV.04 // INFRASTRUCTURE LABS"
-        class="grid grid-cols-1 lg:grid-cols-12 scroll-mt-14"
-      >
-        <div class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-xs text-[var(--text-muted)]">
-          <div class="lg:sticky lg:top-[74px]">
-            <span class="text-[var(--signal)] font-semibold block">04 // PROJECTS &amp; LABS</span>
-            <span class="block mt-1 text-[var(--text-primary)]">SYSTEM CONFIGURATIONS</span>
-          </div>
-        </div>
-
-        <div data-stagger-group class="lg:col-span-9 divide-y divide-[var(--rule-hairline)]">
+      <!-- Section: Verified Infrastructure Labs -->
+      <section id="labs" class="space-y-6 scroll-mt-24">
+        <h2 class="text-xs font-mono-spec font-bold text-[var(--signal)] uppercase tracking-wider pb-2 border-b border-[var(--rule-hairline)]">
+          Verified Infrastructure Labs &amp; Configurations
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono-spec">
           {
             siteContent.resume.labs.map((lab) => (
-              <div
-                data-stagger-item
-                class="ledger-row p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-4 items-baseline print:break-inside-avoid"
-              >
-                <div class="md:col-span-2 font-mono-spec text-xs text-[var(--signal)] font-semibold">
-                  {lab.id}
+              <div class="p-4 bg-[var(--bg-panel)]/50 border border-[var(--rule-hairline)] space-y-1.5">
+                <div class="flex items-center justify-between text-[11px]">
+                  <span class="font-bold text-[var(--signal)]">{lab.id}</span>
+                  <span class="text-[var(--text-muted)]">{lab.category}</span>
                 </div>
-                <div class="md:col-span-4">
-                  <h3 class="font-display text-lg font-bold text-[var(--text-primary)] print:text-black">
-                    {lab.name}
-                  </h3>
+                <div class="font-display font-semibold text-sm text-[var(--text-primary)] print:text-black">
+                  {lab.name}
                 </div>
-                <div class="md:col-span-6">
-                  <p class="text-[13.5px] text-[var(--text-secondary)] leading-[1.6] print:text-neutral-800">
-                    {lab.description}
-                  </p>
+                <div class="text-[12px] text-[var(--text-secondary)] font-sans leading-relaxed print:text-neutral-800">
+                  {lab.description}
                 </div>
               </div>
             ))
@@ -280,39 +195,28 @@ import { siteContent } from '../../data/siteContent';
         </div>
       </section>
 
-      <!-- ==========================================
-           05 // EDUCATION
-           ========================================== -->
-      <section
-        id="education"
-        data-section-title="CV.05 // EDUCATION"
-        class="grid grid-cols-1 lg:grid-cols-12 scroll-mt-14"
-      >
-        <div class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] font-mono-spec text-xs text-[var(--text-muted)]">
-          <div class="lg:sticky lg:top-[74px]">
-            <span class="text-[var(--signal)] font-semibold block">05 // EDUCATION</span>
-            <span class="block mt-1 text-[var(--text-primary)]">ACADEMIC CREDENTIALS</span>
-          </div>
-        </div>
-
-        <div data-stagger-group class="lg:col-span-9 divide-y divide-[var(--rule-hairline)]">
+      <!-- Section: Education & Credentials -->
+      <section id="education" class="space-y-6 scroll-mt-24">
+        <h2 class="text-xs font-mono-spec font-bold text-[var(--signal)] uppercase tracking-wider pb-2 border-b border-[var(--rule-hairline)]">
+          Education &amp; Polytechnic Training
+        </h2>
+        <div class="space-y-6 divide-y divide-[var(--rule-hairline)]">
           {
-            siteContent.resume.education.map((edu) => (
-              <div
-                data-stagger-item
-                class="p-6 sm:p-10 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 print:break-inside-avoid"
-              >
-                <div>
-                  <h3 class="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)] print:text-black">
-                    {edu.institution}
-                  </h3>
-                  <p class="text-[14.5px] text-[var(--text-secondary)] mt-1 print:text-neutral-700">
-                    {edu.credential}
-                  </p>
-                </div>
-                <div class="font-mono-spec text-xs text-[var(--text-muted)] shrink-0">
-                  {edu.location && <span>{edu.location} // </span>}
-                  <span class="text-[var(--text-primary)] font-semibold">{edu.period}</span>
+            siteContent.resume.education.map((edu, idx) => (
+              <div class={idx > 0 ? 'pt-6' : ''}>
+                <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div>
+                    <h3 class="font-display text-lg sm:text-xl font-bold text-[var(--text-primary)] print:text-black">
+                      {edu.institution}
+                    </h3>
+                    <div class="text-sm text-[var(--text-secondary)] font-medium mt-0.5 print:text-neutral-700">
+                      {edu.credential}
+                    </div>
+                  </div>
+                  <div class="text-xs font-mono-spec text-[var(--text-muted)] mt-1 sm:mt-0">
+                    {edu.location && <span>{edu.location} · </span>}
+                    <span class="text-[var(--text-primary)] font-semibold print:text-black">{edu.period}</span>
+                  </div>
                 </div>
               </div>
             ))
@@ -332,9 +236,9 @@ import { siteContent } from '../../data/siteContent';
     if (!email) return;
     try {
       await navigator.clipboard.writeText(email);
-      copyBtn.textContent = '[COPIED ✓]';
+      copyBtn.textContent = '[copied ✓]';
       setTimeout(() => {
-        copyBtn.textContent = '[COPY]';
+        copyBtn.textContent = '[copy]';
       }, 1800);
     } catch {}
   });

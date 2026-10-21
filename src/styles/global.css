@@ -6,23 +6,23 @@
 :root {
   color-scheme: light dark;
 
-  /* Industrial Alabaster & Carbon Specification Palette */
-  --bg-surface: #f4f4f0;
-  --bg-panel: #eaeae4;
+  /* Warm Architectural Paper & Bespoke Ink Palette */
+  --bg-surface: #faf9f5;
+  --bg-panel: #f2f0ea;
   --bg-elevated: #ffffff;
-  --bg-inverse: #0c0c0b;
+  --bg-inverse: #191816;
 
-  --text-primary: #0c0c0b;
-  --text-secondary: #454540;
-  --text-muted: #787870;
-  --text-inverse: #f4f4f0;
+  --text-primary: #191816;
+  --text-secondary: #575550;
+  --text-muted: #8c8983;
+  --text-inverse: #faf9f5;
 
-  --rule-hairline: #d4d4cc;
-  --rule-strong: #0c0c0b;
+  --rule-hairline: rgba(25, 24, 22, 0.09);
+  --rule-strong: #191816;
 
-  /* Single Industrial Hardware Accent: International Signal Orange */
-  --signal: #ff3b00;
-  --signal-soft: rgba(255, 59, 0, 0.09);
+  /* Handcrafted Vermilion / Terracotta Ink Accent */
+  --signal: #d94826;
+  --signal-soft: rgba(217, 72, 38, 0.08);
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,21 +38,21 @@
 
 html.dark,
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  --bg-surface: #090909;
-  --bg-panel: #111110;
-  --bg-elevated: #161615;
-  --bg-inverse: #f4f4f0;
+  --bg-surface: #141312;
+  --bg-panel: #1b1a18;
+  --bg-elevated: #22211e;
+  --bg-inverse: #faf9f5;
 
-  --text-primary: #f2f2ee;
-  --text-secondary: #a2a29a;
-  --text-muted: #64645d;
-  --text-inverse: #090909;
+  --text-primary: #edebe4;
+  --text-secondary: #a8a59d;
+  --text-muted: #6e6b64;
+  --text-inverse: #141312;
 
-  --rule-hairline: #222220;
-  --rule-strong: #f2f2ee;
+  --rule-hairline: rgba(237, 235, 228, 0.1);
+  --rule-strong: #edebe4;
 
-  --signal: #ff4810;
-  --signal-soft: rgba(255, 72, 16, 0.14);
+  --signal: #f05c38;
+  --signal-soft: rgba(240, 92, 56, 0.14);
 }
 
 /* Lenis Smooth Scroll Foundation */

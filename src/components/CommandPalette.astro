@@ -227,6 +227,32 @@ import { siteContent } from '../data/siteContent';
     }
   });
 
+  let selectedIndex = -1;
+
+  function getVisibleItems() {
+    return Array.from(cmdItems).filter((item) => {
+      const li = item.closest('li');
+      return li && li.style.display !== 'none';
+    });
+  }
+
+  function updateSelection(index: number) {
+    const visible = getVisibleItems();
+    if (visible.length === 0) {
+      selectedIndex = -1;
+      return;
+    }
+    selectedIndex = Math.max(0, Math.min(index, visible.length - 1));
+    visible.forEach((item, i) => {
+      const isActive = i === selectedIndex;
+      item.classList.toggle('bg-[var(--bg-panel)]', isActive);
+      item.classList.toggle('text-[var(--signal)]', isActive);
+      if (isActive) {
+        item.scrollIntoView({ block: 'nearest' });
+      }
+    });
+  }
+
   function filterItems(query: string) {
     const q = query.trim().toLowerCase();
     cmdItems.forEach((item) => {
@@ -238,6 +264,8 @@ import { siteContent } from '../data/siteContent';
         li.style.display = match ? '' : 'none';
       }
     });
+    selectedIndex = -1;
+    updateSelection(0);
   }
 
   const commandResponses: Record<string, string> = {
@@ -265,9 +293,23 @@ import { siteContent } from '../data/siteContent';
   });
 
   input?.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && input.value.trim()) {
-      const cmd = input.value.trim().toLowerCase();
-      if (cmd === 'clear') {
+    const visible = getVisibleItems();
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      updateSelection(selectedIndex + 1);
+      return;
+    }
+
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      updateSelection(selectedIndex - 1);
+      return;
+    }
+
+    if (e.key === 'Enter') {
+      const trimmed = input.value.trim().toLowerCase();
+      if (trimmed === 'clear') {
         if (terminalOut) {
           terminalOut.innerHTML = '';
           terminalOut.classList.add('hidden');
@@ -276,21 +318,31 @@ import { siteContent } from '../data/siteContent';
         filterItems('');
         return;
       }
-      if (cmd === 'theme') {
+      if (trimmed === 'theme') {
         const toggleBtn = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
         toggleBtn?.click();
         input.value = '';
         filterItems('');
         return;
       }
-      if (cmd in commandResponses && terminalOut) {
+      if (trimmed in commandResponses && terminalOut) {
         terminalOut.classList.remove('hidden');
         const entry = document.createElement('div');
-        entry.innerHTML = `<span class="text-[var(--signal)] font-semibold">&gt; ${cmd}</span><p class="text-[var(--text-primary)] mt-0.5">${commandResponses[cmd]}</p>`;
+        entry.innerHTML = `<span class="text-[var(--signal)] font-semibold">&gt; ${trimmed}</span><p class="text-[var(--text-primary)] mt-0.5">${commandResponses[trimmed]}</p>`;
         terminalOut.appendChild(entry);
         terminalOut.scrollTop = terminalOut.scrollHeight;
         input.value = '';
         filterItems('');
+        return;
+      }
+
+      // If user pressed enter on a highlighted list item
+      if (selectedIndex >= 0 && selectedIndex < visible.length) {
+        e.preventDefault();
+        visible[selectedIndex].click();
+      } else if (visible.length > 0) {
+        e.preventDefault();
+        visible[0].click();
       }
     }
   });
