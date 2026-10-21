@@ -1,4 +1,6 @@
 ---
+import { siteContent } from '../data/siteContent';
+
 interface Props {
   variant?: 'home' | 'resume';
 }
@@ -7,32 +9,37 @@ const { variant = 'home' } = Astro.props;
 ---
 
 <header
-  class="sticky top-0 z-40 w-full border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)]/92 backdrop-blur-md print:hidden"
+  class="sticky top-0 z-40 w-full border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)]/90 backdrop-blur-md print:hidden"
 >
-  <div class="max-w-[960px] mx-auto h-16 px-6 sm:px-8 flex items-center justify-between gap-6">
+  <div class="max-w-[1440px] mx-auto h-16 sm:h-[72px] px-6 sm:px-10 lg:px-12 flex items-center justify-between gap-6">
     <!-- Brand / Identity -->
     <a
       href="/"
       aria-label="Tarik Gungor Home"
-      class="flex items-center gap-3 group shrink-0"
+      class="flex items-center gap-3.5 group shrink-0"
     >
       <img
         src="/assets/logos/tarik-gungor-monogram.svg"
         alt="Tarik Gungor monogram"
-        width="30"
-        height="25"
+        width="38"
+        height="32"
         fetchpriority="high"
-        class="w-[28px] h-auto shrink-0 dark:invert opacity-85 group-hover:opacity-100 transition-opacity"
+        class="w-[34px] sm:w-[38px] h-auto shrink-0 dark:invert opacity-90 group-hover:opacity-100 transition-opacity"
       />
-      <span class="font-display font-semibold text-[15px] tracking-tight text-[var(--text-primary)]">
-        Tarik Gungor
-      </span>
+      <div class="flex flex-col">
+        <span class="font-display font-bold text-[15px] sm:text-[16px] tracking-tight text-[var(--text-primary)]">
+          Tarik Gungor
+        </span>
+        <span class="text-[11px] text-[var(--text-muted)] font-mono-spec tracking-normal">
+          Toronto · Systems &amp; Software
+        </span>
+      </div>
     </a>
 
     <!-- Desktop Navigation -->
     <nav
       aria-label="Site Navigation"
-      class="hidden md:flex items-center gap-6 text-[13.5px] font-sans"
+      class="hidden md:flex items-center gap-7 lg:gap-9 text-[13px] font-sans font-medium"
     >
       {
         variant === 'home' ? (
@@ -41,13 +48,13 @@ const { variant = 'home' } = Astro.props;
               href="#right-now"
               class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
-              Now
+              Focus
             </a>
             <a
               href="#projects"
               class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
-              Projects
+              Work
             </a>
             <a
               href="#labs-showcase"
@@ -65,34 +72,41 @@ const { variant = 'home' } = Astro.props;
               href="#path"
               class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
-              Path
+              Ledger
             </a>
             <a
               href="/resume"
-              class="text-[var(--text-primary)] hover:opacity-70 font-medium transition-opacity"
+              class="text-[var(--text-primary)] hover:text-[var(--signal)] font-semibold transition-colors inline-flex items-center gap-1"
             >
-              Resume
+              <span>Resume</span>
+              <span class="text-[var(--signal)] text-xs">→</span>
             </a>
           </>
         ) : (
           <>
             <a
               href="/"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              class="text-[var(--text-primary)] hover:text-[var(--signal)] font-semibold transition-colors"
             >
-              ← Home
+              ← Index
             </a>
             <a
-              href="#experience"
+              href="#summary"
               class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
-              Experience
+              Summary
             </a>
             <a
               href="#skills"
               class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
               Skills
+            </a>
+            <a
+              href="#experience"
+              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            >
+              Experience
             </a>
             <a
               href="#labs"
@@ -112,34 +126,39 @@ const { variant = 'home' } = Astro.props;
     </nav>
 
     <!-- Right Controls -->
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-3">
+      <!-- Search / Command Palette -->
       <button
         type="button"
         data-open-command
-        aria-label="Quick navigation"
-        class="hidden sm:inline-flex items-center gap-1.5 px-2 py-1 rounded border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+        aria-label="Open command palette"
+        class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[11px] font-mono-spec text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
       >
-        <kbd class="font-mono-spec text-[11px]">⌘K</kbd>
+        <span>Search</span>
+        <kbd class="px-1 py-0.2 bg-[var(--bg-panel)] text-[10px] text-[var(--signal)] font-semibold">⌘K</kbd>
       </button>
 
+      <!-- Theme Switcher -->
       <button
         type="button"
         data-theme-toggle
-        aria-label="Toggle light and dark theme"
-        class="inline-flex items-center px-2.5 py-1 rounded border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+        aria-label="Toggle light and dark color scheme"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[11px] font-mono-spec text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
       >
-        <span data-theme-label>Light</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[var(--signal)] inline-block"></span>
+        <span data-theme-label>LIGHT</span>
       </button>
 
+      <!-- Mobile Hamburger Menu Button -->
       <button
         type="button"
         id="mobile-menu-trigger"
-        class="md:hidden px-2.5 py-1 rounded border border-[var(--rule-hairline)] text-xs text-[var(--text-primary)] cursor-pointer"
-        aria-label="Toggle navigation menu"
+        class="md:hidden px-2.5 py-1.5 border border-[var(--rule-hairline)] text-[11px] font-mono-spec uppercase text-[var(--text-primary)] cursor-pointer"
+        aria-label="Toggle navigation drawer"
         aria-expanded="false"
         aria-controls="mobile-nav-drawer"
       >
-        Menu
+        MENU
       </button>
     </div>
   </div>
@@ -147,15 +166,17 @@ const { variant = 'home' } = Astro.props;
   <!-- Mobile Drawer -->
   <div
     id="mobile-nav-drawer"
-    class="hidden md:hidden border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] text-sm"
+    class="hidden md:hidden border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] font-mono-spec text-xs"
   >
-    <div class="max-w-[960px] mx-auto px-6 py-5 space-y-3">
-      <a href="/#right-now" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Now</a>
-      <a href="/#projects" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Projects</a>
-      <a href="/#labs-showcase" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Labs</a>
-      <a href="/#notes" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Writing</a>
-      <a href="/#path" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Path</a>
-      <a href="/resume" class="block py-1 font-medium text-[var(--text-primary)]">Resume →</a>
+    <div class="p-6 space-y-3.5">
+      <a href="/#right-now" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">01 / FOCUS</a>
+      <a href="/#projects" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">02 / WORK</a>
+      <a href="/#labs-showcase" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">03 / LABS</a>
+      <a href="/#notes" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">04 / WRITING</a>
+      <a href="/#path" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">05 / LEDGER</a>
+      <a href="/resume" class="block py-1 font-semibold text-[var(--signal)]">
+        06 / RESUME →
+      </a>
     </div>
   </div>
 </header>
@@ -168,14 +189,14 @@ const { variant = 'home' } = Astro.props;
     if (!mobileDrawer) return;
     const isHidden = mobileDrawer.classList.toggle('hidden');
     mobileTrigger.setAttribute('aria-expanded', String(!isHidden));
-    mobileTrigger.textContent = isHidden ? 'Menu' : 'Close';
+    mobileTrigger.textContent = isHidden ? 'MENU' : 'CLOSE';
   });
 
   mobileDrawer?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileDrawer.classList.add('hidden');
       mobileTrigger?.setAttribute('aria-expanded', 'false');
-      if (mobileTrigger) mobileTrigger.textContent = 'Menu';
+      if (mobileTrigger) mobileTrigger.textContent = 'MENU';
     });
   });
 </script>

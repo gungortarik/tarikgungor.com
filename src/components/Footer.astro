@@ -3,49 +3,56 @@ import { siteContent } from '../data/siteContent';
 ---
 
 <footer class="w-full border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] print:hidden">
-  <div class="max-w-[960px] mx-auto px-6 sm:px-8 py-14 sm:py-16">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[var(--rule-hairline)]">
-      <!-- Left 6 cols: Signature & Note -->
-      <div class="md:col-span-6 space-y-4">
-        <img
-          src="/assets/logos/tarik-gungor-signature.svg"
-          alt="Tarik Gungor signature"
-          width="120"
-          height="38"
-          loading="lazy"
-          class="w-[110px] h-auto object-contain dark:invert opacity-85"
-        />
-        <p class="text-sm text-[var(--text-secondary)] max-w-sm leading-relaxed">
-          Computer Systems Technology student and IT Support Specialist in Toronto. Working with networks, Linux, Windows infrastructure, and practical software.
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 py-16 sm:py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-12 border-b border-[var(--rule-hairline)]">
+      <!-- Left 6 cols: Wordmark & Statement -->
+      <div class="lg:col-span-6 space-y-4">
+        <a href="/" aria-label="Tarik Gungor Home" class="inline-block hover:opacity-80 transition-opacity">
+          <img
+            src="/assets/logos/tarik-gungor-wordmark.png"
+            alt="Tarik Gungor"
+            width="150"
+            height="40"
+            loading="lazy"
+            class="w-[130px] sm:w-[150px] h-auto object-contain dark:invert"
+          />
+        </a>
+
+        <p class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] max-w-md leading-snug">
+          Building systems. Learning continuously. Living intentionally.
+        </p>
+        <p class="text-sm text-[var(--text-secondary)] max-w-md leading-relaxed">
+          Computer Systems Technology student &amp; IT Support Specialist based in Toronto. Working on networks, Linux, enterprise environments, and deliberate software tools.
         </p>
       </div>
 
-      <!-- Right 6 cols: Direct Channels & Links -->
-      <div class="md:col-span-6 grid grid-cols-2 gap-8 text-sm">
+      <!-- Right 6 cols: Direct Channels & Resources -->
+      <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
+        <!-- Column 1: Connect -->
         <div>
-          <h4 class="text-xs font-medium text-[var(--text-muted)] mb-3">
-            Contact
+          <h4 class="font-mono-spec text-xs font-semibold text-[var(--signal)] uppercase tracking-wider mb-4">
+            Connect
           </h4>
-          <ul class="space-y-2">
+          <ul class="space-y-2.5">
             <li>
               <div class="flex items-center gap-2">
                 <a
                   href={`mailto:${siteContent.meta.email}`}
-                  class="text-[var(--text-primary)] hover:underline text-[13px]"
+                  class="text-[var(--text-primary)] hover:text-[var(--signal)] transition-colors text-xs font-mono-spec"
                 >
                   {siteContent.meta.email}
                 </a>
                 <button
                   type="button"
                   id="footer-copy-email-btn"
-                  class="text-[11px] px-1.5 py-0.5 rounded border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
-                  title="Copy email address"
+                  class="text-[10px] px-1.5 py-0.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+                  title="Copy email to clipboard"
                 >
                   copy
                 </button>
               </div>
-              <div id="footer-copy-email-feedback" class="hidden text-[11px] text-[var(--signal)] mt-1">
-                Copied to clipboard
+              <div id="footer-copy-email-feedback" class="hidden text-[10px] text-[var(--signal)] font-semibold mt-1">
+                ✓ Copied to clipboard
               </div>
             </li>
             <li>
@@ -53,9 +60,10 @@ import { siteContent } from '../data/siteContent';
                 href={siteContent.meta.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-[13px]"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                GitHub (@gungortarik) ↗
+                <span>GitHub (@gungortarik)</span>
+                <span class="text-xs text-[var(--text-muted)]">↗</span>
               </a>
             </li>
             <li>
@@ -63,42 +71,56 @@ import { siteContent } from '../data/siteContent';
                 href={siteContent.meta.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-[13px]"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                LinkedIn ↗
+                <span>LinkedIn</span>
+                <span class="text-xs text-[var(--text-muted)]">↗</span>
               </a>
             </li>
           </ul>
         </div>
 
+        <!-- Column 2: Resources -->
         <div>
-          <h4 class="text-xs font-medium text-[var(--text-muted)] mb-3">
-            Pages
+          <h4 class="font-mono-spec text-xs font-semibold text-[var(--signal)] uppercase tracking-wider mb-4">
+            Resources
           </h4>
-          <ul class="space-y-2 text-[13px]">
+          <ul class="space-y-2.5">
             <li>
               <a
                 href="/resume"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                Resume
+                <span>Interactive Resume</span>
+                <span class="text-xs text-[var(--signal)]">→</span>
               </a>
             </li>
             <li>
               <a
                 href="/notes/flexible-but-not-free"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                Flexible, but Not Free
+                <span>Field Note // "Flexible, But Not Free"</span>
+                <span class="text-xs text-[var(--text-muted)]">→</span>
               </a>
             </li>
             <li>
               <a
                 href="/resume/tarik-gungor-resume.pdf"
                 download="tarik-gungor-resume.pdf"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                Resume PDF ↓
+                <span>Download Resume (PDF)</span>
+                <span class="text-xs text-[var(--text-muted)]">↓</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/llms.txt"
+                target="_blank"
+                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1 font-mono-spec text-xs"
+              >
+                <span>llms.txt</span>
               </a>
             </li>
           </ul>
@@ -106,14 +128,15 @@ import { siteContent } from '../data/siteContent';
       </div>
     </div>
 
-    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
+    <!-- Bottom Strip -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-spec text-[var(--text-muted)]">
       <div>
-        © {new Date().getFullYear()} Tarik Gungor
+        © {new Date().getFullYear()} Tarik Gungor. All rights reserved.
       </div>
-      <div class="flex items-center gap-2 font-mono-spec text-[11.5px]">
+      <div class="flex items-center gap-4">
         <span>Toronto, ON</span>
         <span>·</span>
-        <span data-toronto-clock>--:--:-- TOR</span>
+        <span class="text-[var(--text-primary)]" data-toronto-clock>--:--:-- TOR</span>
       </div>
     </div>
   </div>

@@ -26,101 +26,244 @@ const noteArticleSchema = {
 ---
 
 <BaseLayout
-  title={`${note.title} — ${siteContent.meta.name}`}
+  title={`${note.title} — Notes // ${siteContent.meta.name}`}
   description={note.summary}
   canonicalPath="/notes/flexible-but-not-free"
 >
   <Header />
 
-  <main id="main-content" class="flex-1 w-full max-w-[960px] mx-auto px-6 sm:px-8 py-12 sm:py-20">
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
-      <!-- Left Column: Back link & Date -->
-      <aside class="md:col-span-3 md:sticky md:top-24 space-y-6 text-xs font-mono-spec text-[var(--text-muted)]">
-        <a
-          href="/#notes"
-          class="inline-flex items-center gap-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-        >
-          ← Back to home
-        </a>
+  <main id="main-content" class="flex-1 w-full max-w-[1280px] mx-auto border-x border-[var(--rule-hairline)] bg-[var(--bg-surface)]">
+    <!-- Top Breadcrumb & Metadata Spec Bar -->
+    <section class="border-b border-[var(--rule-hairline)] bg-[var(--bg-panel)] font-mono-spec text-xs">
+      <div class="px-6 sm:px-10 lg:px-14 py-3 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <a
+            href="/#notes"
+            class="inline-flex items-center gap-1.5 text-[var(--signal)] hover:underline font-semibold"
+          >
+            ← INDEX // 05. NOTES
+          </a>
+          <span class="text-[var(--rule-hairline)]">/</span>
+          <span class="text-[var(--text-muted)]">ENTRY-001</span>
+          <span class="text-[var(--rule-hairline)]">/</span>
+          <span class="text-[var(--text-primary)]">FLEXIBLE-BUT-NOT-FREE</span>
+        </div>
 
-        <div class="space-y-1 pt-2 border-t border-[var(--rule-hairline)]">
-          <div class="text-[var(--text-primary)] font-medium">{note.date}</div>
-          <div>{note.readTime}</div>
+        <div class="flex items-center gap-4 text-[var(--text-muted)]">
+          <span>DATE: {note.date.toUpperCase()}</span>
+          <span>EST: {note.readTime.toUpperCase()}</span>
+          <span class="inline-flex items-center gap-1 text-[var(--signal)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--signal)]"></span>
+            CANONICAL ARCHIVE
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Monograph Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 min-h-screen">
+      <!-- Left 3 Cols: Sticky Index & Specification Sidebar -->
+      <aside class="lg:col-span-3 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-[var(--rule-hairline)] bg-[var(--bg-panel)] font-mono-spec text-xs">
+        <div class="lg:sticky lg:top-24 space-y-8">
+          <div>
+            <div class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+              DISPATCH INDEX
+            </div>
+            <div class="font-bold text-[var(--text-primary)] text-sm">
+              MONOGRAPH #01
+            </div>
+            <div class="text-[var(--text-secondary)] mt-1">
+              Field Notes on Systems & Student Economics
+            </div>
+          </div>
+
+          <div class="border-t border-[var(--rule-hairline)] pt-4">
+            <div class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+              TAXONOMY
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              {
+                note.tags.map((tag) => (
+                  <span class="px-2 py-0.5 bg-[var(--bg-surface)] border border-[var(--rule-hairline)] text-[11px] text-[var(--text-secondary)]">
+                    #{tag}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="border-t border-[var(--rule-hairline)] pt-4 space-y-2">
+            <div class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-2">
+              OUTLINE
+            </div>
+            <nav class="space-y-1.5 text-[11.5px]">
+              <a href="#premise" class="block text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors">
+                01. The Illusion of Free Hours
+              </a>
+              <a href="#cognitive-load" class="block text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors">
+                02. Context-Switching & Latency
+              </a>
+              <a href="#depreciation" class="block text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors">
+                03. Hidden Asset Depreciation
+              </a>
+              <a href="#resolution" class="block text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors">
+                04. Intentional Capital Allocation
+              </a>
+            </nav>
+          </div>
+
+          <div class="border-t border-[var(--rule-hairline)] pt-4">
+            <button
+              type="button"
+              id="copy-article-link"
+              class="w-full py-2 px-3 border border-[var(--rule-strong)] text-center font-semibold text-[var(--text-primary)] hover:bg-[var(--text-primary)] hover:text-[var(--bg-surface)] transition-colors cursor-pointer"
+            >
+              [⎘ COPY PERMALINK]
+            </button>
+            <div id="copy-feedback" class="hidden text-center text-[10.5px] text-[var(--signal)] mt-2 font-semibold">
+              ✓ COPIED TO CLIPBOARD
+            </div>
+          </div>
         </div>
       </aside>
 
-      <!-- Right Column: Essay Content -->
-      <article class="md:col-span-9 max-w-[650px]">
-        <header class="pb-8 mb-8 border-b border-[var(--rule-hairline)]">
-          <h1 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-[var(--text-primary)] leading-tight">
+      <!-- Center 9 Cols: Main Text Monograph -->
+      <article class="lg:col-span-9 p-6 sm:p-12 lg:p-16 max-w-4xl">
+        <!-- Title Header -->
+        <header class="pb-10 mb-10 border-b border-[var(--rule-hairline)]">
+          <div class="font-mono-spec text-xs text-[var(--signal)] font-semibold tracking-wider uppercase mb-3">
+            TORONTO POLYTECHNIC FIELD NOTE // 2026-07
+          </div>
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-[-0.035em] text-[var(--text-primary)] leading-[1.08]">
             {note.title}
           </h1>
-          <p class="text-lg text-[var(--text-secondary)] mt-2.5 leading-snug">
+          <p class="font-display text-xl sm:text-2xl text-[var(--text-secondary)] font-medium mt-4 leading-snug">
             {note.subtitle}
           </p>
         </header>
 
-        <div class="space-y-6 text-base sm:text-[16.5px] text-[var(--text-secondary)] leading-[1.8] font-sans">
-          <p class="text-[var(--text-primary)] font-medium">
-            Every gig platform promises the same bargain: work whenever you want, earn on your own schedule, and keep complete freedom over your week. When you are studying full-time in a city as expensive as Toronto, that pitch sounds like the ideal arrangement.
+        <!-- Body Prose -->
+        <div class="space-y-8 text-[16px] sm:text-[17px] text-[var(--text-secondary)] leading-[1.8] font-sans">
+          <p class="text-xl sm:text-2xl text-[var(--text-primary)] font-medium leading-relaxed font-display">
+            Every platform promises the same fundamental bargain: <em>work whenever you want, earn on your own schedule, maintain total freedom</em>. For polytechnic engineering and IT students navigating the living costs of Toronto, this pitch sounds like an optimal engineering compromise.
           </p>
 
           <p>
-            If you have a networking lab at George Brown on Monday morning, a routing assignment due Tuesday night, and an exam on Friday, traditional shift work is hard to fit around classes. App-based delivery or gig work seems to solve the problem by letting you log on and off whenever you have a spare block of hours.
+            You have a difficult lab at George Brown College on Monday morning, a Cisco packet tracer assignment due Tuesday night, and an exam on subnetting by Friday. Traditional hourly employment with static scheduling clashes violently with this cadence. An app-based gig model appears to solve this by externalizing scheduling risk onto the worker.
           </p>
 
           <p>
-            Over time, though, you notice that this flexibility isn't actually free. The cost just shows up somewhere else — mostly in fragmented attention, physical wear, and the quiet erosion of deep study time.
+            However, when you analyze this through systems engineering principles, you quickly realize that flexibility is not free. It is merely financed with an invisible line of credit drawn against your deepest cognitive reserves and compounded technical competence.
           </p>
 
-          <h2 class="font-display text-xl sm:text-2xl font-semibold text-[var(--text-primary)] pt-4">
-            The illusion of interchangeable hours
-          </h2>
+          <!-- Section 01 -->
+          <div id="premise" class="pt-6 scroll-mt-20">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-[-0.02em] pb-3 border-b border-[var(--rule-hairline)] mb-4">
+              01. The Illusion of Free Hours
+            </h2>
+            <p>
+              The first deceptive assumption is that human time is a series of uniform, interchangeable slots — that three one-hour blocks scattered across an afternoon possess the same throughput as one uninterrupted three-hour block.
+            </p>
+            <p class="mt-4">
+              In reality, human cognition behaves like a distributed system with high context-switching latency. When you transition from studying BGP route selection and Active Directory group policy inheritance into navigating Toronto traffic during rush hour for an algorithm-dispatched task, the cognitive cache is completely flushed.
+            </p>
+          </div>
 
-          <p>
-            On paper, three separate one-hour gaps look the same as a single three-hour block. In practice, they aren't even close. Studying subnetting, troubleshooting a broken Linux DHCP config, or building a multi-VM Active Directory lab requires uninterrupted concentration just to load the context into your head.
-          </p>
+          <!-- Specification Callout 01 -->
+          <div class="my-8 p-5 sm:p-6 bg-[var(--bg-panel)] border-l-4 border-[var(--signal)] font-mono-spec text-xs space-y-2">
+            <div class="text-[var(--signal)] font-bold uppercase tracking-wider">
+              SYSTEMS OBSERVATION // COGNITIVE CACHE INVALIDATION
+            </div>
+            <p class="text-[var(--text-primary)] font-medium leading-relaxed">
+              Resuming deep analytical focus after an app-dispatched interruption requires an estimated 23 minutes of mental re-indexing. In a 4-hour fragmented shift, over 40% of the remaining discretionary study window is lost purely to context recovery.
+            </p>
+          </div>
 
-          <p>
-            When your day is split between traffic, notifications, and short shifts, your mind stays in a constant state of context-switching. Even after you park and sit back down at your desk, it takes half an hour before you're actually thinking clearly again.
-          </p>
+          <!-- Section 02 -->
+          <div id="cognitive-load" class="pt-6 scroll-mt-20">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-[-0.02em] pb-3 border-b border-[var(--rule-hairline)] mb-4">
+              02. Context-Switching & Latency
+            </h2>
+            <p>
+              In systems engineering, we measure thrashing — a state where a machine spends more time swapping virtual memory pages than executing instruction sets.
+            </p>
+            <p class="mt-4">
+              A student worker operating under perpetual algorithmic availability enters cognitive thrashing. Because tasks can arrive at any second, you remain in a persistent low-power standby state. You cannot commit to a 4-hour hands-on Hyper-V failover lab or write a custom automation script because your attention is leased to a push notification daemon.
+            </p>
+          </div>
 
-          <h2 class="font-display text-xl sm:text-2xl font-semibold text-[var(--text-primary)] pt-4">
-            Hidden operating costs
-          </h2>
+          <!-- Section 03 -->
+          <div id="depreciation" class="pt-6 scroll-mt-20">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-[-0.02em] pb-3 border-b border-[var(--rule-hairline)] mb-4">
+              03. Hidden Asset Depreciation
+            </h2>
+            <p>
+              Beyond mental attention, the physical economics are frequently miscalculated. Payouts are reported gross, while operating expenses compound silently:
+            </p>
+            <ul class="list-disc pl-6 space-y-2 mt-4 text-[var(--text-primary)]">
+              <li><strong>Vehicle & Equipment Wear:</strong> Tires, brakes, fuel, insurance rate differentials, and cycle degradation.</li>
+              <li><strong>Tax Liability:</strong> Self-employment remittance and absence of employer-matched benefits.</li>
+              <li><strong>Opportunity Cost:</strong> The compounding value of building portfolio artifacts like <a href="/#projects" class="text-[var(--signal)] underline">Sonoma</a> or studying for Network+ and CCNA credentials that permanently shift your career trajectory.</li>
+            </ul>
+          </div>
 
-          <p>
-            The financial math can be just as misleading if you only look at gross payouts. Fuel, maintenance, tires, insurance, and depreciation happen gradually in the background, so you rarely feel them on the same day you get paid.
-          </p>
-
-          <p>
-            More importantly, there is the opportunity cost: every exhausted evening spent recovering from fragmented shifts is an evening not spent building real lab experience, finishing a certification like Network+, or working on projects that move your career forward permanently.
-          </p>
-
-          <h2 class="font-display text-xl sm:text-2xl font-semibold text-[var(--text-primary)] pt-4">
-            Protecting time for the work that compounds
-          </h2>
-
-          <p>
-            Living and studying in Toronto requires being practical — bills have to be paid. But the biggest shift for me was realizing that study blocks and hands-on lab time need to be guarded with the same seriousness as a scheduled job.
-          </p>
-
-          <p>
-            Batching work into predictable days rather than letting it bleed into every free hour makes all the difference. Real flexibility doesn't come from an app letting you choose when to go online; it comes from building skills that are solid enough to give you real options over the long run.
-          </p>
+          <!-- Section 04 -->
+          <div id="resolution" class="pt-6 scroll-mt-20">
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tracking-[-0.02em] pb-3 border-b border-[var(--rule-hairline)] mb-4">
+              04. Intentional Capital Allocation
+            </h2>
+            <p>
+              The resolution is not to despise the hustle — in a major urban center like Toronto, survival requires pragmatism. The resolution is to treat your own capacity with the rigor of a systems architect:
+            </p>
+            <ol class="list-decimal pl-6 space-y-3 mt-4">
+              <li><strong>Batching Over Fragmenting:</strong> Consolidate earning hours into rigid, predictable blocks rather than sporadic intervals throughout the week.</li>
+              <li><strong>Guarded Deep Work Blocks:</strong> Treat hands-on virtualization, routing labs, and code architecture as non-negotiable scheduled jobs.</li>
+              <li><strong>Auditing Real Yield:</strong> Calculate net yield per hour after deducting physical depreciation and cognitive tax. If the net yield does not justify the delay in your technical milestones, adjust the architecture.</li>
+            </ol>
+            <p class="mt-6">
+              Autonomy isn't granted by an algorithm that lets you pick when to start a shift. Real autonomy is built when your skills, infrastructure knowledge, and engineering capabilities become rare and defensible enough that you command your own schedule.
+            </p>
+          </div>
         </div>
 
-        <footer class="mt-14 pt-8 border-t border-[var(--rule-hairline)] flex items-center justify-between text-xs font-mono-spec text-[var(--text-muted)]">
-          <span>Tarik Gungor · Toronto, ON</span>
-          <a href="/#notes" class="text-[var(--text-primary)] hover:underline">
-            ← All notes
-          </a>
+        <!-- Article Footer & Attribution -->
+        <footer class="mt-14 pt-8 border-t border-[var(--rule-hairline)] flex flex-wrap items-center justify-between gap-4 font-mono-spec text-xs text-[var(--text-muted)]">
+          <div>
+            <span>AUTHOR: <strong class="text-[var(--text-primary)]">{siteContent.meta.name}</strong></span>
+            <span class="mx-2">·</span>
+            <span>TORONTO, ON</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <a href="/#notes" class="text-[var(--signal)] hover:underline font-semibold">
+              ← BACK TO ALL NOTES
+            </a>
+            <span class="text-[var(--rule-hairline)]">/</span>
+            <a href="#premise" class="hover:text-[var(--text-primary)]">TOP ↑</a>
+          </div>
         </footer>
       </article>
     </div>
   </main>
 
   <Footer />
+
+  <script is:inline>
+    const copyBtn = document.getElementById('copy-article-link');
+    const feedback = document.getElementById('copy-feedback');
+    if (copyBtn && feedback) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          feedback.classList.remove('hidden');
+          setTimeout(() => feedback.classList.add('hidden'), 2500);
+        } catch {
+          feedback.textContent = 'LINK: ' + window.location.href;
+          feedback.classList.remove('hidden');
+        }
+      });
+    }
+  </script>
 
   <script type="application/ld+json" set:html={JSON.stringify(noteArticleSchema)} />
 </BaseLayout>

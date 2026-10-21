@@ -6,23 +6,24 @@
 :root {
   color-scheme: light dark;
 
-  /* Calm, Neutral Editorial Stone & Graphite Palette */
-  --bg-surface: #fbfbfa;
-  --bg-panel: #f3f3f1;
+  /* Modern Systems Engineering Slate & Infrastructure Palette */
+  --bg-surface: #f8fafc;
+  --bg-panel: #f1f5f9;
   --bg-elevated: #ffffff;
-  --bg-inverse: #141413;
+  --bg-inverse: #0f172a;
 
-  --text-primary: #141413;
-  --text-secondary: #52524e;
-  --text-muted: #82827c;
-  --text-inverse: #fbfbfa;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
 
-  --rule-hairline: rgba(20, 20, 19, 0.08);
-  --rule-strong: rgba(20, 20, 19, 0.2);
+  --rule-hairline: rgba(15, 23, 42, 0.08);
+  --rule-strong: rgba(15, 23, 42, 0.22);
 
-  /* Restrained Forest / Sage Accent (never loud neon) */
-  --signal: #2d6a4f;
-  --signal-soft: rgba(45, 106, 79, 0.07);
+  /* Engineering International Orange */
+  --signal: #f97316;
+  --signal-soft: rgba(249, 115, 22, 0.08);
+  --grid-dot-color: rgba(15, 23, 42, 0.12);
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,22 +39,23 @@
 
 html.dark,
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  /* Deep Matte Carbon / Obsidian (Zero blue SaaS tint, zero noise) */
-  --bg-surface: #0d0d0c;
-  --bg-panel: #151514;
-  --bg-elevated: #1c1c1a;
-  --bg-inverse: #f3f3f1;
+  /* Deep Technical Obsidian Slate */
+  --bg-surface: #0a0d14;
+  --bg-panel: #101522;
+  --bg-elevated: #161d2e;
+  --bg-inverse: #f8fafc;
 
-  --text-primary: #ecece9;
-  --text-secondary: #9e9e96;
-  --text-muted: #686862;
-  --text-inverse: #0d0d0c;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0a0d14;
 
   --rule-hairline: rgba(255, 255, 255, 0.08);
-  --rule-strong: rgba(255, 255, 255, 0.18);
+  --rule-strong: rgba(255, 255, 255, 0.2);
 
-  --signal: #74c69d;
-  --signal-soft: rgba(116, 198, 157, 0.09);
+  --signal: #f97316;
+  --signal-soft: rgba(249, 115, 22, 0.14);
+  --grid-dot-color: rgba(148, 163, 184, 0.15);
 }
 
 /* Lenis Smooth Scroll Foundation */
@@ -81,8 +83,41 @@ body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
   overflow-x: hidden;
   transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+/* Tailscale & Cloudflare Style Topological Network Grid */
+.topological-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
+}
+
+/* Hero Ambient Systems Glow */
+.hero-ambient-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 480px;
+  background: radial-gradient(circle, var(--signal-soft) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle Blueprint Grid Pattern for Schematics */
+.bg-blueprint-grid {
+  background-size: 24px 24px;
+  background-image:
+    linear-gradient(to right, var(--rule-hairline) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule-hairline) 1px, transparent 1px);
 }
 
 /* Typography Systems */
@@ -112,6 +147,40 @@ body {
   will-change: transform;
 }
 
+/* Interactive Ledger Row */
+.ledger-row {
+  position: relative;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.ledger-row:hover {
+  background-color: var(--bg-panel);
+}
+
+.ledger-row[data-active='true'] {
+  background-color: var(--signal-soft);
+}
+
+/* Animated Packet Flow on SVG Schematics */
+@keyframes packet-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.svg-packet-line {
+  stroke-dasharray: 4 4;
+  animation: packet-dash 1.2s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .svg-packet-line {
+    animation: none;
+  }
+}
+
 /* Accessible Skip Link */
 .skip-link {
   position: fixed;
@@ -119,15 +188,39 @@ body {
   left: 1rem;
   z-index: 100;
   padding: 0.6rem 1rem;
-  background: var(--text-primary);
-  color: var(--bg-surface);
+  background: var(--signal);
+  color: #ffffff;
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .skip-link:focus {
   top: 1rem;
+}
+
+/* Progressive enhancement scroll-driven entry */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes spec-fade-in {
+      from {
+        opacity: 0.85;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .css-scroll-entry {
+      animation: spec-fade-in linear backwards;
+      animation-timeline: view(block);
+      animation-range: entry 0% entry 30%;
+    }
+  }
 }
 
 /* Native Dialog Command Shell */
@@ -141,8 +234,8 @@ dialog#command-dialog {
 }
 
 dialog#command-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(3px);
+  background: rgba(9, 9, 9, 0.78);
+  backdrop-filter: blur(4px);
 }
 
 ::-webkit-scrollbar {
@@ -155,5 +248,5 @@ dialog#command-dialog::backdrop {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--rule-strong);
+  background: var(--text-muted);
 }
