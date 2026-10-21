@@ -3,18 +3,18 @@ import { siteContent } from '../data/siteContent';
 ---
 
 <footer class="w-full border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] print:hidden">
-  <div class="max-w-[1280px] mx-auto px-6 sm:px-10 lg:px-12 py-16 sm:py-20">
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-10 py-16 sm:py-20">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 pb-12 border-b border-[var(--rule-hairline)]">
-      <!-- Left 6 cols: Wordmark & Statement -->
+      <!-- Left 6 cols: Signature, Statement & Bio -->
       <div class="lg:col-span-6 space-y-4">
-        <a href="/" aria-label="Tarik Gungor Home" class="inline-block hover:opacity-80 transition-opacity">
+        <a href="/" aria-label="Tarik Gungor Home" class="inline-block hover:opacity-85 transition-opacity">
           <img
-            src="/assets/logos/tarik-gungor-wordmark.png"
+            src="/assets/logos/tarik-gungor-signature.svg"
             alt="Tarik Gungor"
-            width="150"
-            height="40"
+            width="135"
+            height="42"
             loading="lazy"
-            class="w-[130px] sm:w-[150px] h-auto object-contain dark:invert"
+            class="w-[125px] sm:w-[140px] h-auto object-contain dark:invert opacity-90"
           />
         </a>
 
@@ -28,7 +28,6 @@ import { siteContent } from '../data/siteContent';
 
       <!-- Right 6 cols: Direct Channels & Resources -->
       <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm">
-        <!-- Column 1: Connect -->
         <div>
           <h4 class="font-mono-spec text-xs font-semibold text-[var(--signal)] uppercase tracking-wider mb-4">
             Connect
@@ -45,13 +44,13 @@ import { siteContent } from '../data/siteContent';
                 <button
                   type="button"
                   id="footer-copy-email-btn"
-                  class="text-[10px] px-1.5 py-0.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+                  class="text-[10px] px-2 py-0.5 rounded bg-[var(--bg-panel)] border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
                   title="Copy email to clipboard"
                 >
                   copy
                 </button>
               </div>
-              <div id="footer-copy-email-feedback" class="hidden text-[10px] text-[var(--signal)] font-semibold mt-1">
+              <div id="footer-copy-email-feedback" class="hidden text-[11px] text-[var(--signal-emerald)] font-semibold mt-1">
                 ✓ Copied to clipboard
               </div>
             </li>
@@ -80,7 +79,6 @@ import { siteContent } from '../data/siteContent';
           </ul>
         </div>
 
-        <!-- Column 2: Resources -->
         <div>
           <h4 class="font-mono-spec text-xs font-semibold text-[var(--signal)] uppercase tracking-wider mb-4">
             Resources
@@ -100,7 +98,7 @@ import { siteContent } from '../data/siteContent';
                 href="/notes/flexible-but-not-free"
                 class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1"
               >
-                <span>Field Note // "Flexible, But Not Free"</span>
+                <span>Essay: "Flexible, But Not Free"</span>
                 <span class="text-xs text-[var(--text-muted)]">→</span>
               </a>
             </li>
@@ -114,15 +112,6 @@ import { siteContent } from '../data/siteContent';
                 <span class="text-xs text-[var(--text-muted)]">↓</span>
               </a>
             </li>
-            <li>
-              <a
-                href="/llms.txt"
-                target="_blank"
-                class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors inline-flex items-center gap-1 font-mono-spec text-xs"
-              >
-                <span>llms.txt</span>
-              </a>
-            </li>
           </ul>
         </div>
       </div>
@@ -131,12 +120,13 @@ import { siteContent } from '../data/siteContent';
     <!-- Bottom Strip -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-spec text-[var(--text-muted)]">
       <div>
-        © {new Date().getFullYear()} Tarik Gungor. All rights reserved.
+        © {new Date().getFullYear()} Tarik Gungor. Built in Toronto.
       </div>
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-[var(--signal-emerald)]"></span>
         <span>Toronto, ON</span>
         <span>·</span>
-        <span class="text-[var(--text-primary)]" data-toronto-clock>--:--:-- TOR</span>
+        <span class="text-[var(--text-primary)]" data-toronto-clock>--:--:-- EDT</span>
       </div>
     </div>
   </div>

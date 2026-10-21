@@ -6,28 +6,37 @@
 :root {
   color-scheme: light dark;
 
-  /* Modern Systems Engineering Slate & Infrastructure Palette */
+  /* Josh Comeau / Brittany Chiang Inspired Daylight Palette */
   --bg-surface: #f8fafc;
   --bg-panel: #f1f5f9;
   --bg-elevated: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.78);
   --bg-inverse: #0f172a;
 
   --text-primary: #0f172a;
-  --text-secondary: #475569;
+  --text-secondary: #334155;
   --text-muted: #64748b;
   --text-inverse: #f8fafc;
 
   --rule-hairline: rgba(15, 23, 42, 0.08);
-  --rule-strong: rgba(15, 23, 42, 0.22);
+  --rule-strong: rgba(15, 23, 42, 0.18);
+  --card-highlight: rgba(255, 255, 255, 0.9);
+  --card-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.07), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
 
-  /* Engineering International Orange */
-  --signal: #f97316;
-  --signal-soft: rgba(249, 115, 22, 0.08);
-  --grid-dot-color: rgba(15, 23, 42, 0.12);
+  /* Signature Multi-Tone Accents (Cyan / Indigo / Warm Amber / Emerald) */
+  --signal: #0284c7;
+  --signal-secondary: #6366f1;
+  --signal-warm: #d97706;
+  --signal-emerald: #059669;
+  --signal-soft: rgba(2, 132, 199, 0.09);
+  --spotlight-color: rgba(2, 132, 199, 0.06);
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --mouse-x: 50vw;
+  --mouse-y: 30vh;
 
   &:has(> head > meta[name="color-scheme"][content="dark"]) {
     color-scheme: dark;
@@ -39,23 +48,29 @@
 
 html.dark,
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  /* Deep Technical Obsidian Slate */
-  --bg-surface: #0a0d14;
-  --bg-panel: #101522;
-  --bg-elevated: #161d2e;
+  /* Deep Midnight Navy-Slate (Josh Comeau & Brittany Chiang Signature) */
+  --bg-surface: #0b1120;
+  --bg-panel: #111a2e;
+  --bg-elevated: #17233d;
+  --bg-glass: rgba(17, 26, 46, 0.72);
   --bg-inverse: #f8fafc;
 
-  --text-primary: #f1f5f9;
+  --text-primary: #e2e8f0;
   --text-secondary: #94a3b8;
   --text-muted: #64748b;
-  --text-inverse: #0a0d14;
+  --text-inverse: #0b1120;
 
-  --rule-hairline: rgba(255, 255, 255, 0.08);
-  --rule-strong: rgba(255, 255, 255, 0.2);
+  --rule-hairline: rgba(148, 163, 184, 0.12);
+  --rule-strong: rgba(56, 189, 248, 0.35);
+  --card-highlight: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 20px 40px -15px rgba(2, 6, 23, 0.65);
 
-  --signal: #f97316;
-  --signal-soft: rgba(249, 115, 22, 0.14);
-  --grid-dot-color: rgba(148, 163, 184, 0.15);
+  --signal: #38bdf8;
+  --signal-secondary: #818cf8;
+  --signal-warm: #fbbf24;
+  --signal-emerald: #34d399;
+  --signal-soft: rgba(56, 189, 248, 0.12);
+  --spotlight-color: rgba(56, 189, 248, 0.075);
 }
 
 /* Lenis Smooth Scroll Foundation */
@@ -83,41 +98,60 @@ body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
   overflow-x: hidden;
   transition:
-    background-color 0.25s ease,
-    color 0.25s ease;
+    background-color 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Tailscale & Cloudflare Style Topological Network Grid */
-.topological-grid {
+/* Brittany Chiang Style Interactive Mouse Spotlight */
+.pointer-spotlight {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
-  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
+  z-index: 1;
+  background: radial-gradient(
+    650px circle at var(--mouse-x) var(--mouse-y),
+    var(--spotlight-color),
+    transparent 80%
+  );
+  transition: opacity 0.3s ease;
 }
 
-/* Hero Ambient Systems Glow */
-.hero-ambient-glow {
-  position: absolute;
-  top: -120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 480px;
-  background: radial-gradient(circle, var(--signal-soft) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+/* Josh Comeau Tactile Elevated Card */
+.tactile-card {
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--rule-hairline);
+  box-shadow:
+    inset 0 1px 0 0 var(--card-highlight),
+    var(--card-shadow);
+  border-radius: 1rem;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.25s ease,
+    box-shadow 0.35s ease,
+    background-color 0.25s ease;
 }
 
-/* Subtle Blueprint Grid Pattern for Schematics */
-.bg-blueprint-grid {
-  background-size: 24px 24px;
-  background-image:
-    linear-gradient(to right, var(--rule-hairline) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--rule-hairline) 1px, transparent 1px);
+.tactile-card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: var(--rule-strong);
+}
+
+/* Josh Comeau Wavy / Gradient Text Accent */
+.gradient-headline-accent {
+  background: linear-gradient(135deg, var(--signal) 0%, var(--signal-secondary) 55%, var(--signal-emerald) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.wavy-underline {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--signal-warm);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
 }
 
 /* Typography Systems */
@@ -138,8 +172,8 @@ body {
 .clip-line {
   overflow: hidden;
   display: block;
-  padding-bottom: 0.06em;
-  margin-bottom: -0.06em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 
 .clip-line-inner {
@@ -147,36 +181,55 @@ body {
   will-change: transform;
 }
 
-/* Interactive Ledger Row */
-.ledger-row {
-  position: relative;
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.ledger-row:hover {
-  background-color: var(--bg-panel);
-}
-
-.ledger-row[data-active='true'] {
-  background-color: var(--signal-soft);
-}
-
-/* Animated Packet Flow on SVG Schematics */
-@keyframes packet-dash {
+/* Animated Packet Flow on SVG Topology */
+@keyframes packet-flow {
   to {
-    stroke-dashoffset: -24;
+    stroke-dashoffset: -32;
   }
 }
 
-.svg-packet-line {
-  stroke-dasharray: 4 4;
-  animation: packet-dash 1.2s linear infinite;
+.topology-link-animated {
+  stroke-dasharray: 5 5;
+  animation: packet-flow 1.1s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.node-pulse {
+  transform-origin: center;
+  animation: pulse-ring 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes wave-hand {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(16deg); }
+  40% { transform: rotate(-8deg); }
+  60% { transform: rotate(14deg); }
+  80% { transform: rotate(-4deg); }
+}
+
+.wave-on-hover:hover .wave-emoji {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: wave-hand 1s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .svg-packet-line {
+  .topology-link-animated,
+  .node-pulse {
     animation: none;
   }
 }
@@ -193,34 +246,11 @@ body {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  border-radius: 0.5rem;
 }
 
 .skip-link:focus {
   top: 1rem;
-}
-
-/* Progressive enhancement scroll-driven entry */
-@media (prefers-reduced-motion: no-preference) {
-  @supports ((animation-timeline: view()) and (animation-range: entry)) {
-    @keyframes spec-fade-in {
-      from {
-        opacity: 0.85;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .css-scroll-entry {
-      animation: spec-fade-in linear backwards;
-      animation-timeline: view(block);
-      animation-range: entry 0% entry 30%;
-    }
-  }
 }
 
 /* Native Dialog Command Shell */
@@ -234,13 +264,13 @@ dialog#command-dialog {
 }
 
 dialog#command-dialog::backdrop {
-  background: rgba(9, 9, 9, 0.78);
-  backdrop-filter: blur(4px);
+  background: rgba(2, 6, 23, 0.75);
+  backdrop-filter: blur(6px);
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -248,5 +278,6 @@ dialog#command-dialog::backdrop {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-muted);
+  background: var(--rule-strong);
+  border-radius: 3px;
 }

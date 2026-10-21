@@ -58,21 +58,20 @@ const personJsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="color-scheme" content="light dark" />
+    <meta name="color-scheme" content="dark" />
     <script is:inline>
       try {
         const stored = localStorage.getItem('color-scheme');
         const meta = document.querySelector('meta[name="color-scheme"]');
+        const isLight = stored === 'light';
         if (meta) {
-          meta.content = stored ?? 'light dark';
+          meta.content = isLight ? 'light' : 'dark';
         }
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = stored === 'dark' || ((!stored || stored === 'light dark') && prefersDark);
-        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.classList.toggle('dark', !isLight);
       } catch {}
     </script>
 
@@ -117,50 +116,52 @@ const personJsonLd = {
     }
   </head>
   <body
-    class="min-h-screen flex flex-col selection:bg-[var(--signal)] selection:text-white antialiased"
+    class="relative min-h-screen flex flex-col selection:bg-[var(--signal)] selection:text-slate-950 antialiased"
   >
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- Tailscale / Cloudflare Style Topological Network Canvas -->
-    <div class="topological-grid print:hidden" aria-hidden="true"></div>
+    <!-- Brittany Chiang Style Interactive Cursor Spotlight -->
+    <div class="pointer-spotlight print:hidden" aria-hidden="true"></div>
 
-    <!-- Top 2px Industrial Signal Progress Rail -->
+    <!-- Top Reading Progress Line -->
     <div
       class="fixed top-0 left-0 right-0 h-[2px] z-50 pointer-events-none print:hidden"
       aria-hidden="true"
     >
       <div
         id="scroll-progress-bar"
-        class="h-full w-full origin-left scale-x-0 bg-[var(--signal)] transition-none"
+        class="h-full w-full origin-left scale-x-0 bg-gradient-to-r from-[var(--signal)] via-[var(--signal-secondary)] to-[var(--signal-emerald)] transition-none"
       >
       </div>
     </div>
 
-    <slot />
+    <div class="relative z-10 flex-1 flex flex-col">
+      <slot />
+    </div>
 
-    <!-- Fullscreen Interactive Image / Blueprint Lightbox Modal -->
+    <!-- Fullscreen Interactive Image Lightbox Modal -->
     <dialog
       id="lightbox-dialog"
-      class="fixed inset-0 m-auto p-4 max-w-[94vw] max-h-[92vh] bg-transparent border-none outline-none z-50 backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+      class="fixed inset-0 m-auto p-4 max-w-[94vw] max-h-[92vh] bg-transparent border-none outline-none z-50 backdrop:bg-slate-950/85 backdrop:backdrop-blur-md"
       aria-label="Image Zoom Viewport"
     >
-      <div class="border border-[var(--rule-strong)] bg-[var(--bg-surface)] p-2 font-mono-spec max-w-[1100px] mx-auto shadow-2xl">
-        <div class="flex items-center justify-between px-3 py-2 border-b border-[var(--rule-hairline)] text-xs">
-          <span id="lightbox-caption" class="text-[var(--text-primary)] font-semibold">VIEWPORT INSPECTOR</span>
+      <div class="tactile-card p-3 max-w-[1100px] mx-auto shadow-2xl">
+        <div class="flex items-center justify-between px-3 py-2 border-b border-[var(--rule-hairline)] text-xs font-mono-spec">
+          <span id="lightbox-caption" class="text-[var(--text-primary)] font-medium">Preview</span>
           <button
             type="button"
             id="close-lightbox"
-            class="px-2 py-0.5 border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] cursor-pointer"
+            class="px-2.5 py-1 rounded-md border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] cursor-pointer transition-colors"
           >
-            [ESC / CLOSE]
+            Esc / Close
           </button>
         </div>
-        <div class="p-2 overflow-auto max-h-[80vh] flex items-center justify-center bg-black/5">
+        <div class="p-2 overflow-auto max-h-[80vh] flex items-center justify-center">
           <img
             id="lightbox-img"
             src=""
             alt=""
-            class="max-w-full max-h-[76vh] object-contain"
+            class="max-w-full max-h-[76vh] object-contain rounded-lg"
           />
         </div>
       </div>
@@ -177,7 +178,126 @@ const personJsonLd = {
 
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // 1. Lenis Smooth Scroll + GSAP Ticker Sync
+      // 1. Josh Comeau Style Web Audio Tactile Sound Engine (Zero external audio files)
+      let soundEnabled = true;
+      try {
+        const storedSound = localStorage.getItem('tactile-sound');
+        if (storedSound !== null) {
+          soundEnabled = storedSound === 'true';
+        }
+      } catch {}
+
+      let audioCtx: AudioContext | null = null;
+
+      function playTactileSound(type: 'click' | 'switch' | 'pop' = 'click') {
+        if (!soundEnabled) return;
+        try {
+          if (!audioCtx) {
+            const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+            audioCtx = new AudioContextClass();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          if (type === 'switch') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(320, now);
+            osc.frequency.exponentialRampToValueAtTime(640, now + 0.045);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            osc.start(now);
+            osc.stop(now + 0.055);
+          } else if (type === 'pop') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(240, now);
+            osc.frequency.exponentialRampToValueAtTime(520, now + 0.035);
+            gain.gain.setValueAtTime(0.05, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+            osc.start(now);
+            osc.stop(now + 0.045);
+          } else {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(480, now);
+            osc.frequency.exponentialRampToValueAtTime(180, now + 0.025);
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+            osc.start(now);
+            osc.stop(now + 0.032);
+          }
+        } catch {}
+      }
+
+      (window as unknown as { playTactileSound: typeof playTactileSound }).playTactileSound = playTactileSound;
+
+      function updateSoundUI() {
+        document.querySelectorAll<HTMLElement>('[data-sound-toggle]').forEach((btn) => {
+          btn.setAttribute('aria-pressed', String(soundEnabled));
+          const onIcon = btn.querySelector('[data-sound-on]');
+          const offIcon = btn.querySelector('[data-sound-off]');
+          if (onIcon && offIcon) {
+            onIcon.classList.toggle('hidden', !soundEnabled);
+            offIcon.classList.toggle('hidden', soundEnabled);
+          }
+        });
+      }
+
+      updateSoundUI();
+
+      document.querySelectorAll<HTMLButtonElement>('[data-sound-toggle]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          soundEnabled = !soundEnabled;
+          try {
+            localStorage.setItem('tactile-sound', String(soundEnabled));
+          } catch {}
+          updateSoundUI();
+          if (soundEnabled) playTactileSound('switch');
+        });
+      });
+
+      // 2. Brittany Chiang Pointer Spotlight Tracking
+      if (!reducedMotion) {
+        window.addEventListener(
+          'pointermove',
+          (e) => {
+            document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+            document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
+          },
+          { passive: true }
+        );
+      }
+
+      // 3. Dennis Snellenberg Style Magnetic Elements
+      if (!reducedMotion) {
+        document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+          el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const relX = e.clientX - (rect.left + rect.width / 2);
+            const relY = e.clientY - (rect.top + rect.height / 2);
+            gsap.to(el, {
+              x: relX * 0.22,
+              y: relY * 0.22,
+              duration: 0.35,
+              ease: 'power2.out',
+            });
+          });
+          el.addEventListener('mouseleave', () => {
+            gsap.to(el, {
+              x: 0,
+              y: 0,
+              duration: 0.65,
+              ease: 'elastic.out(1, 0.4)',
+            });
+          });
+        });
+      }
+
+      // 4. Lenis Smooth Scroll + GSAP Ticker Sync
       let lenis: Lenis | null = null;
       if (!reducedMotion) {
         lenis = new Lenis({
@@ -188,16 +308,8 @@ const personJsonLd = {
           touchMultiplier: 1.5,
         });
 
-        lenis.on('scroll', ({ scroll, progress }: { scroll: number; progress: number }) => {
+        lenis.on('scroll', () => {
           ScrollTrigger.update();
-          const pct = String(Math.round((progress || 0) * 100)).padStart(3, '0');
-          const ypos = String(Math.round(scroll || 0)).padStart(4, '0');
-          document.querySelectorAll<HTMLElement>('[data-scroll-pct]').forEach((el) => {
-            el.textContent = `${pct}%`;
-          });
-          document.querySelectorAll<HTMLElement>('[data-scroll-ypos]').forEach((el) => {
-            el.textContent = `Y: ${ypos}PX`;
-          });
         });
 
         gsap.ticker.add((time) => {
@@ -210,8 +322,9 @@ const personJsonLd = {
       function scrollToTarget(targetSelector: string) {
         const targetEl = document.querySelector<HTMLElement>(targetSelector);
         if (!targetEl) return;
+        playTactileSound('pop');
         if (lenis) {
-          lenis.scrollTo(targetEl, { offset: -54, duration: 1.1 });
+          lenis.scrollTo(targetEl, { offset: -72, duration: 1.1 });
         } else {
           targetEl.scrollIntoView({ behavior: 'smooth' });
         }
@@ -230,7 +343,7 @@ const personJsonLd = {
         });
       });
 
-      // 2. Top Progress Rail
+      // 5. Top Progress Rail
       const progressBar = document.getElementById('scroll-progress-bar');
       if (progressBar && !reducedMotion) {
         gsap.to(progressBar, {
@@ -245,7 +358,7 @@ const personJsonLd = {
         });
       }
 
-      // 3. GSAP Editorial Reveals & Scroll Choreography
+      // 6. GSAP Editorial Reveals & Scroll Choreography
       if (!reducedMotion) {
         const heroLines = gsap.utils.toArray<HTMLElement>('[data-hero-line]');
         const heroSpecs = gsap.utils.toArray<HTMLElement>('[data-hero-spec]');
@@ -256,8 +369,8 @@ const personJsonLd = {
           if (heroLines.length > 0) {
             tl.fromTo(
               heroLines,
-              { yPercent: 110 },
-              { yPercent: 0, duration: 1.05, stagger: 0.09 },
+              { yPercent: 105 },
+              { yPercent: 0, duration: 1.0, stagger: 0.08 },
               0.05
             );
           }
@@ -267,27 +380,10 @@ const personJsonLd = {
               heroSpecs,
               { y: 18, opacity: 0 },
               { y: 0, opacity: 1, duration: 0.75, stagger: 0.06, ease: 'power3.out' },
-              0.22
+              0.2
             );
           }
         }
-
-        gsap.utils.toArray<HTMLElement>('[data-reveal-heading]').forEach((heading) => {
-          gsap.fromTo(
-            heading,
-            { yPercent: 105 },
-            {
-              yPercent: 0,
-              duration: 0.9,
-              ease: 'expo.out',
-              scrollTrigger: {
-                trigger: heading,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        });
 
         gsap.utils.toArray<HTMLElement>('[data-stagger-group]').forEach((group) => {
           const items = group.querySelectorAll<HTMLElement>('[data-stagger-item]');
@@ -295,12 +391,12 @@ const personJsonLd = {
 
           gsap.fromTo(
             items,
-            { y: 22, opacity: 0 },
+            { y: 24, opacity: 0 },
             {
               y: 0,
               opacity: 1,
               duration: 0.65,
-              stagger: 0.06,
+              stagger: 0.07,
               ease: 'power3.out',
               scrollTrigger: {
                 trigger: group,
@@ -310,47 +406,27 @@ const personJsonLd = {
             }
           );
         });
-
-        gsap.utils.toArray<HTMLElement>('[data-parallax-img]').forEach((img) => {
-          gsap.fromTo(
-            img,
-            { yPercent: -4, scale: 1.04 },
-            {
-              yPercent: 4,
-              scale: 1.04,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: img.parentElement || img,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true,
-              },
-            }
-          );
-        });
       }
 
-      // 5. Theme Toggle Synchronization with <meta name="color-scheme">
-      function applyColorScheme(scheme: 'light' | 'dark' | 'light dark') {
+      // 7. Theme Toggle Synchronization with Animated Sun/Moon Icons
+      function applyColorScheme(scheme: 'light' | 'dark') {
         const meta = document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]');
+        const isDark = scheme === 'dark';
         if (meta) {
           meta.content = scheme;
         }
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const isDark = scheme === 'dark' || (scheme === 'light dark' && prefersDark);
         document.documentElement.classList.toggle('dark', isDark);
 
-        document.querySelectorAll<HTMLElement>('[data-theme-label]').forEach((el) => {
-          el.textContent = isDark ? 'DARK' : 'LIGHT';
+        document.querySelectorAll<HTMLElement>('[data-theme-sun]').forEach((el) => {
+          el.classList.toggle('hidden', !isDark);
+        });
+        document.querySelectorAll<HTMLElement>('[data-theme-moon]').forEach((el) => {
+          el.classList.toggle('hidden', isDark);
         });
       }
 
-      applyColorScheme(
-        (document.querySelector<HTMLMetaElement>('meta[name="color-scheme"]')?.content as
-          | 'light'
-          | 'dark'
-          | 'light dark') || 'light dark'
-      );
+      const initialDark = document.documentElement.classList.contains('dark');
+      applyColorScheme(initialDark ? 'dark' : 'light');
 
       function toggleTheme() {
         const isCurrentlyDark = document.documentElement.classList.contains('dark');
@@ -358,6 +434,7 @@ const personJsonLd = {
         try {
           localStorage.setItem('color-scheme', nextScheme);
         } catch {}
+        playTactileSound('switch');
         applyColorScheme(nextScheme);
       }
 
@@ -365,14 +442,7 @@ const personJsonLd = {
         btn.addEventListener('click', toggleTheme);
       });
 
-      window.addEventListener('storage', (event) => {
-        if (event.key === 'color-scheme') {
-          const next = (event.newValue as 'light' | 'dark' | null) ?? 'light dark';
-          applyColorScheme(next);
-        }
-      });
-
-      // 6. Keyboard Shortcuts with Dialog Protection
+      // 8. Keyboard Shortcuts with Dialog Protection
       const sectionKeyMap: Record<string, string> = {
         '1': '#right-now',
         '2': '#projects',
@@ -387,7 +457,6 @@ const personJsonLd = {
         const cmdDialog = document.getElementById('command-dialog') as HTMLDialogElement | null;
         const lightboxDialog = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
 
-        // If typing in input or if a modal is open, do not trigger single-key page jumps
         if (
           tag === 'input' ||
           tag === 'textarea' ||
@@ -412,7 +481,7 @@ const personJsonLd = {
         }
       });
 
-      // 7. Lightbox Zoom Handler for Project Visuals
+      // 9. Lightbox Zoom Handler
       const lightbox = document.getElementById('lightbox-dialog') as HTMLDialogElement | null;
       const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
       const lightboxCaption = document.getElementById('lightbox-caption');
@@ -421,11 +490,12 @@ const personJsonLd = {
       document.querySelectorAll<HTMLElement>('[data-lightbox]').forEach((trigger) => {
         trigger.addEventListener('click', () => {
           const src = trigger.getAttribute('data-lightbox-src');
-          const alt = trigger.getAttribute('data-lightbox-alt') || 'Viewport Inspector';
+          const alt = trigger.getAttribute('data-lightbox-alt') || 'Preview';
           if (!src || !lightbox || !lightboxImg) return;
+          playTactileSound('pop');
           lightboxImg.src = src;
           lightboxImg.alt = alt;
-          if (lightboxCaption) lightboxCaption.textContent = `INSPECT // ${alt.toUpperCase()}`;
+          if (lightboxCaption) lightboxCaption.textContent = alt;
           lightbox.showModal();
         });
       });
@@ -444,7 +514,7 @@ const personJsonLd = {
         if (outside) lightbox.close();
       });
 
-      // 8. Live Toronto Clock
+      // 10. Live Toronto Clock
       function updateTorontoTime() {
         try {
           const formatter = new Intl.DateTimeFormat('en-CA', {
@@ -456,7 +526,7 @@ const personJsonLd = {
           });
           const formatted = formatter.format(new Date());
           document.querySelectorAll<HTMLElement>('[data-toronto-clock]').forEach((el) => {
-            el.textContent = `${formatted} TOR`;
+            el.textContent = `${formatted} EDT`;
           });
         } catch {}
       }

@@ -1,6 +1,4 @@
 ---
-import { siteContent } from '../data/siteContent';
-
 interface Props {
   variant?: 'home' | 'resume';
 }
@@ -9,114 +7,121 @@ const { variant = 'home' } = Astro.props;
 ---
 
 <header
-  class="sticky top-0 z-40 w-full border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)]/90 backdrop-blur-md print:hidden"
+  class="sticky top-0 z-40 w-full border-b border-[var(--rule-hairline)] bg-[var(--bg-surface)]/80 backdrop-blur-xl print:hidden"
 >
-  <div class="max-w-[1440px] mx-auto h-16 sm:h-[72px] px-6 sm:px-10 lg:px-12 flex items-center justify-between gap-6">
+  <div class="max-w-[1240px] mx-auto h-16 sm:h-[70px] px-6 sm:px-10 flex items-center justify-between gap-6">
     <!-- Brand / Identity -->
     <a
       href="/"
       aria-label="Tarik Gungor Home"
       class="flex items-center gap-3.5 group shrink-0"
     >
-      <img
-        src="/assets/logos/tarik-gungor-monogram.svg"
-        alt="Tarik Gungor monogram"
-        width="38"
-        height="32"
-        fetchpriority="high"
-        class="w-[34px] sm:w-[38px] h-auto shrink-0 dark:invert opacity-90 group-hover:opacity-100 transition-opacity"
-      />
+      <div class="relative flex items-center justify-center w-9 h-9 rounded-xl bg-[var(--bg-panel)] border border-[var(--rule-hairline)] group-hover:border-[var(--signal)] transition-colors">
+        <img
+          src="/assets/logos/tarik-gungor-monogram.svg"
+          alt="Tarik Gungor monogram"
+          width="24"
+          height="20"
+          fetchpriority="high"
+          class="w-[22px] h-auto shrink-0 dark:invert opacity-90 group-hover:scale-105 transition-transform"
+        />
+      </div>
       <div class="flex flex-col">
-        <span class="font-display font-bold text-[15px] sm:text-[16px] tracking-tight text-[var(--text-primary)]">
+        <span class="font-display font-bold text-[15.5px] tracking-tight text-[var(--text-primary)] group-hover:text-[var(--signal)] transition-colors">
           Tarik Gungor
         </span>
-        <span class="text-[11px] text-[var(--text-muted)] font-mono-spec tracking-normal">
+        <span class="text-[11px] text-[var(--text-muted)] font-mono-spec">
           Toronto · Systems &amp; Software
         </span>
       </div>
     </a>
 
-    <!-- Desktop Navigation -->
+    <!-- Desktop Navigation Pill Bar -->
     <nav
       aria-label="Site Navigation"
-      class="hidden md:flex items-center gap-7 lg:gap-9 text-[13px] font-sans font-medium"
+      class="hidden md:flex items-center gap-1 p-1 rounded-full bg-[var(--bg-panel)]/80 border border-[var(--rule-hairline)] text-[13px] font-medium"
     >
       {
         variant === 'home' ? (
           <>
             <a
               href="#right-now"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              data-nav-spy="right-now"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
-              Focus
+              Now
             </a>
             <a
               href="#projects"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              data-nav-spy="projects"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
-              Work
+              Projects
             </a>
             <a
               href="#labs-showcase"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              data-nav-spy="labs-showcase"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
-              Labs
+              Systems Labs
             </a>
             <a
               href="#notes"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              data-nav-spy="notes"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
               Writing
             </a>
             <a
               href="#path"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              data-nav-spy="path"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
-              Ledger
+              Journey
             </a>
             <a
               href="/resume"
-              class="text-[var(--text-primary)] hover:text-[var(--signal)] font-semibold transition-colors inline-flex items-center gap-1"
+              class="px-3.5 py-1.5 rounded-full text-[var(--signal)] hover:bg-[var(--signal-soft)] font-semibold transition-all inline-flex items-center gap-1"
             >
               <span>Resume</span>
-              <span class="text-[var(--signal)] text-xs">→</span>
+              <span class="text-xs">→</span>
             </a>
           </>
         ) : (
           <>
             <a
               href="/"
-              class="text-[var(--text-primary)] hover:text-[var(--signal)] font-semibold transition-colors"
+              class="px-3.5 py-1.5 rounded-full text-[var(--signal)] hover:bg-[var(--signal-soft)] font-semibold transition-all"
             >
-              ← Index
+              ← Home
             </a>
             <a
               href="#summary"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
               Summary
             </a>
             <a
-              href="#skills"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-            >
-              Skills
-            </a>
-            <a
               href="#experience"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
               Experience
             </a>
             <a
+              href="#skills"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
+            >
+              Skills
+            </a>
+            <a
               href="#labs"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
               Labs
             </a>
             <a
               href="#education"
-              class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+              class="px-3.5 py-1.5 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all"
             >
               Education
             </a>
@@ -125,40 +130,78 @@ const { variant = 'home' } = Astro.props;
       }
     </nav>
 
-    <!-- Right Controls -->
-    <div class="flex items-center gap-3">
-      <!-- Search / Command Palette -->
+    <!-- Right Controls: Command Palette, Josh Comeau Sound Toggle & Animated Sun/Moon -->
+    <div class="flex items-center gap-2">
+      <!-- Command Palette Button -->
       <button
         type="button"
         data-open-command
+        data-magnetic
         aria-label="Open command palette"
-        class="hidden sm:inline-flex items-center gap-2 px-2.5 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[11px] font-mono-spec text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+        class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--bg-panel)] border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-xs font-mono-spec text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
       >
         <span>Search</span>
-        <kbd class="px-1 py-0.2 bg-[var(--bg-panel)] text-[10px] text-[var(--signal)] font-semibold">⌘K</kbd>
+        <kbd class="px-1.5 py-0.5 rounded bg-[var(--bg-surface)] text-[10px] text-[var(--signal)] font-semibold">⌘K</kbd>
       </button>
 
-      <!-- Theme Switcher -->
+      <!-- Josh Comeau Style Tactile Sound Toggle -->
+      <button
+        type="button"
+        data-sound-toggle
+        data-magnetic
+        aria-label="Toggle UI sound effects"
+        title="Toggle tactile sound effects"
+        class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--bg-panel)] border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-secondary)] hover:text-[var(--signal)] transition-colors cursor-pointer"
+      >
+        <svg data-sound-on class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <svg data-sound-off class="w-4 h-4 hidden opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <line x1="23" y1="9" x2="17" y2="15"></line>
+          <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+      </button>
+
+      <!-- Josh Comeau Style Animated Sun/Moon Theme Switcher -->
       <button
         type="button"
         data-theme-toggle
-        aria-label="Toggle light and dark color scheme"
-        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-[var(--rule-hairline)] hover:border-[var(--text-primary)] text-[11px] font-mono-spec text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors cursor-pointer"
+        data-magnetic
+        aria-label="Toggle color theme"
+        title="Switch between dark and light mode (T)"
+        class="group inline-flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--bg-panel)] border border-[var(--rule-hairline)] hover:border-[var(--rule-strong)] text-[var(--text-secondary)] hover:text-[var(--signal-warm)] transition-colors cursor-pointer"
       >
-        <span class="w-1.5 h-1.5 rounded-full bg-[var(--signal)] inline-block"></span>
-        <span data-theme-label>LIGHT</span>
+        <!-- Sun Icon (shown in dark mode to switch to light) -->
+        <svg data-theme-sun class="w-4 h-4 text-amber-400 group-hover:rotate-45 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (shown in light mode to switch to dark) -->
+        <svg data-theme-moon class="w-4 h-4 hidden text-sky-600 group-hover:-rotate-12 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
       </button>
 
-      <!-- Mobile Hamburger Menu Button -->
+      <!-- Mobile Menu Trigger -->
       <button
         type="button"
         id="mobile-menu-trigger"
-        class="md:hidden px-2.5 py-1.5 border border-[var(--rule-hairline)] text-[11px] font-mono-spec uppercase text-[var(--text-primary)] cursor-pointer"
+        class="md:hidden px-3 py-1.5 rounded-lg bg-[var(--bg-panel)] border border-[var(--rule-hairline)] text-xs font-mono-spec text-[var(--text-primary)] cursor-pointer"
         aria-label="Toggle navigation drawer"
         aria-expanded="false"
         aria-controls="mobile-nav-drawer"
       >
-        MENU
+        Menu
       </button>
     </div>
   </div>
@@ -166,17 +209,15 @@ const { variant = 'home' } = Astro.props;
   <!-- Mobile Drawer -->
   <div
     id="mobile-nav-drawer"
-    class="hidden md:hidden border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] font-mono-spec text-xs"
+    class="hidden md:hidden border-t border-[var(--rule-hairline)] bg-[var(--bg-surface)] text-sm"
   >
-    <div class="p-6 space-y-3.5">
-      <a href="/#right-now" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">01 / FOCUS</a>
-      <a href="/#projects" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">02 / WORK</a>
-      <a href="/#labs-showcase" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">03 / LABS</a>
-      <a href="/#notes" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">04 / WRITING</a>
-      <a href="/#path" class="block py-1 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">05 / LEDGER</a>
-      <a href="/resume" class="block py-1 font-semibold text-[var(--signal)]">
-        06 / RESUME →
-      </a>
+    <div class="p-6 space-y-3">
+      <a href="/#right-now" class="block py-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Now</a>
+      <a href="/#projects" class="block py-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Projects</a>
+      <a href="/#labs-showcase" class="block py-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Systems Labs</a>
+      <a href="/#notes" class="block py-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Writing</a>
+      <a href="/#path" class="block py-1.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]">Journey</a>
+      <a href="/resume" class="block py-1.5 font-semibold text-[var(--signal)]">Resume →</a>
     </div>
   </div>
 </header>
@@ -189,14 +230,44 @@ const { variant = 'home' } = Astro.props;
     if (!mobileDrawer) return;
     const isHidden = mobileDrawer.classList.toggle('hidden');
     mobileTrigger.setAttribute('aria-expanded', String(!isHidden));
-    mobileTrigger.textContent = isHidden ? 'MENU' : 'CLOSE';
+    mobileTrigger.textContent = isHidden ? 'Menu' : 'Close';
   });
 
   mobileDrawer?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       mobileDrawer.classList.add('hidden');
       mobileTrigger?.setAttribute('aria-expanded', 'false');
-      if (mobileTrigger) mobileTrigger.textContent = 'MENU';
+      if (mobileTrigger) mobileTrigger.textContent = 'Menu';
     });
   });
+
+  // Brittany Chiang / Lee Robinson Scroll-Spy Active Section Highlighting
+  const spyLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-spy]');
+  if (spyLinks.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            spyLinks.forEach((link) => {
+              const active = link.getAttribute('data-nav-spy') === id;
+              link.classList.toggle('bg-[var(--bg-surface)]', active);
+              link.classList.toggle('text-[var(--signal)]', active);
+              link.classList.toggle('shadow-xs', active);
+              link.classList.toggle('text-[var(--text-secondary)]', !active);
+            });
+          }
+        });
+      },
+      { rootMargin: '-25% 0px -60% 0px' }
+    );
+
+    spyLinks.forEach((link) => {
+      const targetId = link.getAttribute('data-nav-spy');
+      if (targetId) {
+        const section = document.getElementById(targetId);
+        if (section) observer.observe(section);
+      }
+    });
+  }
 </script>
