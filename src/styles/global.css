@@ -6,23 +6,24 @@
 :root {
   color-scheme: light dark;
 
-  /* Warm Architectural Paper & Bespoke Ink Palette */
-  --bg-surface: #faf9f5;
-  --bg-panel: #f2f0ea;
+  /* Modern Systems Engineering Slate & Infrastructure Palette */
+  --bg-surface: #f8fafc;
+  --bg-panel: #f1f5f9;
   --bg-elevated: #ffffff;
-  --bg-inverse: #191816;
+  --bg-inverse: #0f172a;
 
-  --text-primary: #191816;
-  --text-secondary: #575550;
-  --text-muted: #8c8983;
-  --text-inverse: #faf9f5;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
 
-  --rule-hairline: rgba(25, 24, 22, 0.09);
-  --rule-strong: #191816;
+  --rule-hairline: rgba(15, 23, 42, 0.08);
+  --rule-strong: rgba(15, 23, 42, 0.22);
 
-  /* Handcrafted Vermilion / Terracotta Ink Accent */
-  --signal: #d94826;
-  --signal-soft: rgba(217, 72, 38, 0.08);
+  /* Engineering International Orange */
+  --signal: #f97316;
+  --signal-soft: rgba(249, 115, 22, 0.08);
+  --grid-dot-color: rgba(15, 23, 42, 0.12);
 
   --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -38,21 +39,23 @@
 
 html.dark,
 :root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  --bg-surface: #141312;
-  --bg-panel: #1b1a18;
-  --bg-elevated: #22211e;
-  --bg-inverse: #faf9f5;
+  /* Deep Technical Obsidian Slate */
+  --bg-surface: #0a0d14;
+  --bg-panel: #101522;
+  --bg-elevated: #161d2e;
+  --bg-inverse: #f8fafc;
 
-  --text-primary: #edebe4;
-  --text-secondary: #a8a59d;
-  --text-muted: #6e6b64;
-  --text-inverse: #141312;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0a0d14;
 
-  --rule-hairline: rgba(237, 235, 228, 0.1);
-  --rule-strong: #edebe4;
+  --rule-hairline: rgba(255, 255, 255, 0.08);
+  --rule-strong: rgba(255, 255, 255, 0.2);
 
-  --signal: #f05c38;
-  --signal-soft: rgba(240, 92, 56, 0.14);
+  --signal: #f97316;
+  --signal-soft: rgba(249, 115, 22, 0.14);
+  --grid-dot-color: rgba(148, 163, 184, 0.15);
 }
 
 /* Lenis Smooth Scroll Foundation */
@@ -84,9 +87,29 @@ body {
     color 0.25s ease;
 }
 
-/* Tactile Architectural Grain Overlay */
-.tactile-grain {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+/* Tailscale & Cloudflare Style Topological Network Grid */
+.topological-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(var(--grid-dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 12%, #000 35%, transparent 92%);
+}
+
+/* Hero Ambient Systems Glow */
+.hero-ambient-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 480px;
+  background: radial-gradient(circle, var(--signal-soft) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Subtle Blueprint Grid Pattern for Schematics */
