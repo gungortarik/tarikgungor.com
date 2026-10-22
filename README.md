@@ -25,7 +25,7 @@ Other scripts: `npm run lint`, `npm run build`.
 
 ## GitHub Pages
 
-Production on `main` deploys as a static export to GitHub Pages (`output: "export"`, artifact from `out/`). See `.github/workflows/deploy-pages.yml` on `main`.
+Production deploys from `main` to GitHub Pages. `npm run build` creates a static export in `out/`; the Pages workflow publishes that directory and preserves the custom-domain `CNAME` from `public/`.
 
 ## Repository structure
 
