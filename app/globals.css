@@ -1,0 +1,230 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Field System — paper-first :root, field-first .dark */
+:root {
+  --surface: #ebe8e2;
+  --surface-elevated: #f3f1ec;
+  --surface-muted: #e0ddd6;
+  --surface-border: rgba(20, 20, 19, 0.12);
+  --surface-border-subtle: rgba(20, 20, 19, 0.07);
+
+  --foreground: #1d1e19;
+  --foreground-muted: #5e5e55;
+  --foreground-subtle: #89877c;
+
+  --depth: #141413;
+  --depth-elevated: #1c1c1a;
+  --depth-surface: #242422;
+  --depth-border: rgba(243, 241, 236, 0.14);
+  --depth-border-subtle: rgba(243, 241, 236, 0.08);
+
+  --on-depth: #f3f1ec;
+  --on-depth-muted: rgba(243, 241, 236, 0.72);
+  --on-depth-subtle: rgba(243, 241, 236, 0.48);
+  --on-depth-border: rgba(243, 241, 236, 0.2);
+  --on-depth-fill: #f3f1ec;
+  --on-depth-fill-fg: #141413;
+
+  --accent: #d4652f;
+  --accent-muted: #b95225;
+  --accent-subtle: rgba(212, 101, 47, 0.15);
+
+  --status-green: #d4652f;
+
+  --background: var(--surface);
+  --color-foreground: var(--foreground);
+
+  --measure: 38rem;
+  --page: 1200px;
+  --header-h: 56px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-h: 60px;
+  }
+}
+
+.dark {
+  --surface: #141413;
+  --surface-elevated: #1c1c1a;
+  --surface-muted: #242422;
+  --surface-border: rgba(243, 241, 236, 0.12);
+  --surface-border-subtle: rgba(243, 241, 236, 0.07);
+
+  --foreground: #f3f1ec;
+  --foreground-muted: #b5b1a8;
+  --foreground-subtle: #8a8680;
+
+  --depth: #0a0a09;
+  --depth-elevated: #121211;
+  --depth-surface: #1a1a18;
+  --depth-border: rgba(243, 241, 236, 0.14);
+  --depth-border-subtle: rgba(243, 241, 236, 0.08);
+
+  --on-depth: #f3f1ec;
+  --on-depth-muted: rgba(243, 241, 236, 0.72);
+  --on-depth-subtle: rgba(243, 241, 236, 0.48);
+  --on-depth-border: rgba(243, 241, 236, 0.2);
+  --on-depth-fill: #ebe8e2;
+  --on-depth-fill-fg: #141413;
+
+  --accent: #e07a45;
+  --accent-muted: #d4652f;
+  --accent-subtle: rgba(224, 122, 69, 0.18);
+
+  --status-green: #e07a45;
+
+  --background: var(--surface);
+  --color-foreground: var(--foreground);
+}
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-border: var(--surface-border);
+  --color-surface-border-subtle: var(--surface-border-subtle);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  --color-depth: var(--depth);
+  --color-depth-elevated: var(--depth-elevated);
+  --color-depth-surface: var(--depth-surface);
+  --color-depth-border: var(--depth-border);
+  --color-depth-border-subtle: var(--depth-border-subtle);
+
+  --color-on-depth: var(--on-depth);
+  --color-on-depth-muted: var(--on-depth-muted);
+  --color-on-depth-subtle: var(--on-depth-subtle);
+  --color-on-depth-border: var(--on-depth-border);
+  --color-on-depth-fill: var(--on-depth-fill);
+  --color-on-depth-fill-fg: var(--on-depth-fill-fg);
+
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-subtle: var(--accent-subtle);
+
+  --color-status-green: var(--status-green);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--background);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-subtle);
+  color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.editorial-rule {
+  height: 1px;
+  background: var(--surface-border);
+}
+
+.field-meta {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.field-display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(2.75rem, 8vw, 6.25rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+.field-lead {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+}
+
+.page-pad {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .page-pad {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-pad {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+.page-width {
+  max-width: var(--page);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

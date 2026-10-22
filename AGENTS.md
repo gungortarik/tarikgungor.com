@@ -146,28 +146,26 @@ If a requested design decision is unclear and would materially change the visual
 
 Current direction:
 
-**Editorial + Personal + Timeless + Technically Credible + Quietly Impressive**
+**Public Field System — Index-led personal platform**
+
+Premium Pass (cream paper `#f3f1ec`, steel `#3d5a80`, Newsreader / Inter Tight, magazine-cover hero) is superseded. Do not restore it.
 
 Important characteristics:
-- warm cream / paper-like base rather than stark white
-- restrained charcoal/dark sections for rhythm
-- subtle muted olive/green accents where appropriate
-- strong typography
-- generous whitespace
-- clear editorial grid
-- thin rules and restrained borders
-- deliberate information hierarchy
-- subtle technical/terminal details only when they add meaning
-- premium rather than template-like
-- excellent responsive behavior
-
-Tarik's name should be visible and recognizable, but it should not dominate the page in enormous typography.
+- dual surfaces: cool graphite **field** (`#141413`) for orientation/index; cool stone **paper** (`#ebe8e2`) for reading
+- oxide accent (`#d4652f`) used sparingly — CTAs, active signals, focus rings
+- Bricolage Grotesque (display) + Source Sans 3 (body) + JetBrains Mono (meta/registry)
+- homepage IA: Masthead → Now → Work → Lab → Path → Connect (no résumé dump, no “Hi, I’m”)
+- Lab is first-class (IT / systems / experiments) beside software Work
+- navigation vocabulary: Index / Work / Lab / Path / Notes / Resume / Contact
+- evidence-led artifacts (real screenshots); default no cards; registry hairlines over rounded tiles
+- restrained motion only (orientation + evidence); respect `prefers-reduced-motion`; no ThreeUI wallpaper
+- Contact and Footer stay clean — no availability begging or co-op pills
+- Field/depth bands must use theme-stable `on-depth*` / on-field ink tokens — never `text-surface` / `bg-surface` for ink on field (theme collapse)
+- strong typography scale extremes; intentional sparsity on the homepage
 
 Current conceptual theme:
 
-**Building. Learning. Living.**
-
-This is a direction, not an untouchable final slogan.
+**Building systems by day. Building tools for real problems. Documenting the path.**
 
 ## Asset situation
 
@@ -205,7 +203,7 @@ Sonoma is currently the strongest real project and should eventually become the 
 Currently paused / effectively cancelled. Do not present it as an active flagship project.
 
 ### CertForge
-May later be rebuilt under a new name, brand, and broader concept. Do not present the current concept as a finished product.
+Active development continues. Live preview: `https://certforge-chi.vercel.app`. Present as in-progress study platform for CCNA and Network+ — not as a finished product. Real screenshots from the live app are preferred over fabricated imagery.
 
 ### Monetization
 Not a current priority. Do not turn the site into a SaaS sales funnel or business-growth website.
@@ -307,13 +305,14 @@ The site should feel intentionally art-directed at both desktop and mobile sizes
 
 ## Animation
 
-Do not add GSAP, Lenis, Framer Motion, or similar animation libraries yet.
+The redesign uses **Lenis** (smooth scroll, desktop only) and **GSAP + ScrollTrigger** (masthead reveal, Path continuum scrub, scroll progress). ThreeUI is not used on the homepage.
 
-Static art direction comes first.
-
-Motion should only be considered after the static page is strong and explicitly approved.
-
-Never use animation to compensate for weak content or weak composition.
+Rules:
+- Respect `prefers-reduced-motion` — disable Lenis and GSAP moments when set.
+- Three.js components must use `dynamic import` with `ssr: false` for static export compatibility.
+- Do not wash full-bleed 3D behind hero content. The homepage opens on a field masthead, then evidence — not ambient WebGL.
+- Do not wrap every section in generic fade-up reveals — motion must be editorial.
+- Never use animation to compensate for weak content or weak composition.
 
 ## Validation
 
@@ -355,3 +354,13 @@ You implement those decisions.
 If something important is intentionally unspecified, do not fill the gap with generic portfolio conventions.
 
 If a decision would significantly affect visual direction, architecture, dependencies, privacy, deployment, or public content, stop and surface the decision instead of guessing.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

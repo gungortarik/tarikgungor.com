@@ -4,12 +4,8 @@ Personal platform, systems engineering lab log, and interactive resume for **Tar
 
 ## Architecture & Stack
 
-- **Framework:** [Astro 5](https://astro.build) (Zero unnecessary client framework overhead, instant static HTML delivery)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com) + Custom Editorial Paper / Deep Ink / Olive design tokens
-- **Smooth Scroll:** [Lenis](https://lenis.darkroom.engineering/) coupled directly to the GSAP ticker
-- **Motion & Choreography:** [GSAP 3 + ScrollTrigger](https://gsap.com/) (Masked headline reveals, scroll-scrubbed progress & timeline tracks, staggered section reveals, magnetic buttons)
-- **Command Palette & Shell:** Native `<dialog>` (`⌘K` / `Ctrl+K`) with quick navigation and terminal commands (`whoami`, `stack`, `status`, `contact`, `theme`, `clear`)
-- **Single Source of Truth:** All content, projects, 7 infrastructure labs, work history, skills, and notes live in [`src/data/siteContent.ts`](./src/data/siteContent.ts)
+- Production site: `main`
+- Active redesign work: `redesign-v1` (not merged to production yet)
 
 ## Preserved Assets & Routes
 
@@ -19,7 +15,20 @@ Personal platform, systems engineering lab log, and interactive resume for **Tar
 - `/resume/tarik-gungor-resume.json` — Machine-readable JSON Resume schema
 - `/assets/logos/*`, `/assets/icons/*`, `/assets/projects/sonoma-dashboard.png` — All original brand & project media preserved
 
-## Commands
+## Local development
+
+```bash
+npm ci
+npm run dev
+```
+
+Other scripts: `npm run lint`, `npm run build`.
+
+## GitHub Pages
+
+Production deploys from `main` to GitHub Pages. `npm run build` creates a static export in `out/`; the Pages workflow publishes that directory and preserves the custom-domain `CNAME` from `public/`.
+
+## Repository structure
 
 ```bash
 npm run dev       # Start local dev server
