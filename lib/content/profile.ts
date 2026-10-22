@@ -8,12 +8,12 @@ export const profile = {
     "Building systems by day. Building tools for real problems. Documenting the path.",
   practiceFrame: "IT · systems study · building",
   shortBio:
-    "Day to day I support endpoints, networks, and business systems. Alongside school and work I build tools like Sonoma and CertForge — then document the path as it happens.",
+    "Day to day I support endpoints, networks, and business systems. Alongside school and work I build Sonoma and CertForge, an in-progress study platform, and document the path as it happens.",
   aboutIntro:
     "A public field surface for craft in progress — not a finished persona.",
   aboutBody: [
     "The foundation is IT support — endpoints, Active Directory, Microsoft 365, networking, and keeping real environments reliable.",
-    "Outside of that I build software for myself. Sonoma is a private vault for expenses and documents. CertForge is a live study platform for CCNA and Network+, still under active development.",
+    "Outside of that I build software for myself. Sonoma is a private vault for expenses and documents. CertForge is an in-progress study platform for CCNA and Network+.",
     "School at George Brown College keeps the systems side deep. This site is where those threads meet — without inventing a persona around them.",
   ],
   contactIntro: "If something here resonates, write me.",

@@ -41,6 +41,7 @@ export function PathContinuum() {
 
   return (
     <section
+      id="path"
       ref={rootRef}
       className="bg-surface border-b border-surface-border"
       aria-labelledby="path-heading"

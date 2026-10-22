@@ -1,127 +1,111 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { featuredProjects } from "@/lib/content/projects";
-import { screenshots } from "@/lib/content/screenshots";
+import { featuredProjects, type Project } from "@/lib/content/projects";
 
-const statusNote: Record<string, string> = {
-  sonoma: "Private · In progress",
-  certforge: "Live preview · In progress",
-};
+function ProjectEntry({ project, index }: { project: Project; index: number }) {
+  const imageFirst = index % 2 === 1;
+
+  return (
+    <article className="border-b border-surface-border last:border-b-0">
+      <div className="page-pad page-width py-10 sm:py-14 lg:py-16">
+        <div className="grid lg:grid-cols-12 gap-7 lg:gap-12 items-center">
+          <div className={`order-1 lg:col-span-4 ${imageFirst ? "lg:order-2 lg:col-start-9" : "lg:col-start-1"}`}>
+            <p className="field-meta flex items-center gap-3 text-foreground-subtle">
+              <span className="text-accent tabular-nums">0{index + 1}</span>
+              <span aria-hidden="true" className="h-px w-7 bg-surface-border" />
+              <span>{project.slug === "sonoma" ? "Private system" : "Study platform"}</span>
+            </p>
+            <h3 className="mt-5 font-display text-[clamp(2.75rem,5vw,4.25rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
+              {project.name}
+            </h3>
+            <p className="mt-3 font-display text-[18px] sm:text-[20px] leading-snug tracking-[-0.02em] text-foreground-muted">
+              {project.tagline}
+            </p>
+            <p className="mt-5 max-w-[34rem] text-[15px] sm:text-[16px] leading-[1.75] text-foreground-muted">
+              {project.description}
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
+              {project.href && (
+                <Link
+                  href={project.href}
+                  className="group inline-flex min-h-11 items-center gap-3 text-[13px] font-semibold text-foreground hover:text-accent transition-colors"
+                >
+                  Explore the project
+                  <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center gap-2 field-meta text-foreground-subtle hover:text-accent transition-colors"
+                >
+                  Live preview <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+          </div>
+
+          <figure className={`order-2 lg:col-span-7 ${imageFirst ? "lg:order-1 lg:col-start-1" : "lg:col-start-6"}`}>
+            {project.cover && (
+              <div
+                data-clip-reveal
+                className="relative w-full overflow-hidden border border-surface-border bg-surface-elevated will-change-[clip-path]"
+                style={{ aspectRatio: `${project.cover.width} / ${project.cover.height}` }}
+              >
+                <Image
+                  src={project.cover.src}
+                  alt={project.cover.alt}
+                  fill
+                  className="object-cover object-left-top"
+                  sizes="(max-width: 1023px) 100vw, 60vw"
+                />
+              </div>
+            )}
+            <figcaption className="mt-3 flex items-center justify-between gap-4 border-t border-surface-border pt-3 field-meta text-foreground-subtle">
+              <span>Interface / {project.name}</span>
+              <span>{project.status === "in-progress" ? "In progress" : project.status}</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export function SelectedArtifacts() {
-  const sonoma = featuredProjects.find((p) => p.slug === "sonoma");
-  const certforge = featuredProjects.find((p) => p.slug === "certforge");
-
   return (
     <section
       className="bg-surface"
+      id="work"
       aria-labelledby="work-heading"
       data-field-chapter="work"
     >
-      <div className="page-pad page-width pt-16 sm:pt-20 lg:pt-24 pb-6">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 border-b border-surface-border pb-6">
-          <div>
-            <p className="field-meta text-foreground-subtle">Work</p>
+      <div className="page-pad page-width pt-16 sm:pt-20 lg:pt-24 pb-4">
+        <div className="grid sm:grid-cols-12 gap-5 sm:gap-8 items-end border-b border-surface-border pb-6">
+          <div className="sm:col-span-8">
+            <p className="field-meta text-foreground-subtle">Work / 02 current builds</p>
             <h2
               id="work-heading"
-              className="mt-3 font-serif text-[28px] sm:text-[36px] lg:text-[42px] tracking-[-0.03em] font-medium leading-[1.1] max-w-[18ch]"
+              className="mt-3 max-w-[18ch] font-display text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.045em]"
             >
-              Selected artifacts
+              Made for problems close to home.
             </h2>
           </div>
           <Link
             href="/work"
-            className="text-[13px] text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
+            className="sm:col-span-4 sm:justify-self-end text-[13px] text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
           >
-            Full registry →
+            Open the work index <span className="ml-3" aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>
 
-      {sonoma && (
-        <article className="border-b border-surface-border">
-          <div className="page-pad page-width py-10 sm:py-14 grid lg:grid-cols-12 gap-8 lg:gap-12">
-            <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1">
-              <p className="field-meta text-accent">{statusNote.sonoma}</p>
-              <h3 className="mt-4 font-serif text-[40px] sm:text-[52px] tracking-[-0.035em] font-semibold leading-none">
-                {sonoma.name}
-              </h3>
-              <p className="mt-3 text-[17px] text-foreground-muted">{sonoma.tagline}</p>
-              <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-foreground-muted max-w-[34rem]">
-                {sonoma.description}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/work/sonoma" size="sm">
-                  Case study →
-                </Button>
-              </div>
-            </div>
-            <div className="lg:col-span-7 order-1 lg:order-2">
-              <div
-                data-clip-reveal
-                className="relative w-full overflow-hidden bg-depth border border-surface-border will-change-[clip-path]"
-                style={{
-                  aspectRatio: `${screenshots.sonomaLanding.width} / ${screenshots.sonomaLanding.height}`,
-                }}
-              >
-                <Image
-                  src={screenshots.sonomaLanding.src}
-                  alt={screenshots.sonomaLanding.alt}
-                  fill
-                  priority
-                  className="object-cover object-left-top"
-                  sizes="(max-width: 1023px) 100vw, 60vw"
-                />
-              </div>
-            </div>
-          </div>
-        </article>
-      )}
-
-      {certforge && (
-        <article>
-          <div className="page-pad page-width py-10 sm:py-14 grid lg:grid-cols-12 gap-8 lg:gap-12">
-            <div className="lg:col-span-7">
-              <div
-                data-clip-reveal
-                className="relative w-full overflow-hidden bg-depth border border-surface-border will-change-[clip-path]"
-                style={{
-                  aspectRatio: `${screenshots.certforgeLanding.width} / ${screenshots.certforgeLanding.height}`,
-                }}
-              >
-                <Image
-                  src={screenshots.certforgeLanding.src}
-                  alt={screenshots.certforgeLanding.alt}
-                  fill
-                  className="object-cover object-left-top"
-                  sizes="(max-width: 1023px) 100vw, 60vw"
-                />
-              </div>
-            </div>
-            <div className="lg:col-span-5 flex flex-col justify-center">
-              <p className="field-meta text-accent">{statusNote.certforge}</p>
-              <h3 className="mt-4 font-serif text-[36px] sm:text-[44px] tracking-[-0.035em] font-semibold leading-none">
-                {certforge.name}
-              </h3>
-              <p className="mt-3 text-[17px] text-foreground-muted">{certforge.tagline}</p>
-              <p className="mt-5 text-[15px] sm:text-[16px] leading-[1.7] text-foreground-muted max-w-[34rem]">
-                {certforge.description}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/work/certforge" size="sm" variant="secondary">
-                  Case study →
-                </Button>
-                {certforge.liveUrl && (
-                  <Button href={certforge.liveUrl} external size="sm" variant="ghost">
-                    Live preview ↗
-                  </Button>
-                )}
-              </div>
-            </div>
-          </div>
-        </article>
-      )}
+      {featuredProjects.map((project, index) => (
+        <ProjectEntry key={project.slug} project={project} index={index} />
+      ))}
     </section>
   );
 }

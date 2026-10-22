@@ -1,10 +1,10 @@
 export const certforgeCaseStudy = {
   slug: "certforge",
   name: "CertForge",
-  status: "Live preview · In progress",
-  tagline: "A study platform I am building while I study",
+  status: "In progress",
+  tagline: "CCNA & Network+ study platform",
   overview:
-    "CertForge is an in-progress study platform for Cisco CCNA and CompTIA Network+. It is live so I can use it, not because it is finished. Practice is mapped to official exam domains, questions carry real device output, and a subnet lab sits next to the question loop.",
+    "CertForge is an in-progress study platform for Cisco CCNA and CompTIA Network+. It brings objective-aligned practice, questions with device output, and subnetting tools together. It is still being built, not a finished product.",
   problem:
     "Static dumps reward memorization. I needed a place to practice against the blueprint, see why an answer is wrong, and work subnetting and routing as systems — not as flashcards.",
   system: [

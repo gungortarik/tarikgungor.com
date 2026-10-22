@@ -35,7 +35,7 @@ export const projects: Project[] = [
     name: "CertForge",
     tagline: "CCNA & Network+ study platform",
     description:
-      "Objective-aligned practice with real device output, a subnet and CIDR lab, and review loops for Cisco CCNA and CompTIA Network+. Live preview while it keeps evolving.",
+      "An in-progress study platform for CCNA and Network+ that brings objective-aligned practice, device output, and subnetting tools into one place. It is still being built, not a finished product.",
     stack: ["Next.js", "TypeScript", "Tailwind CSS"],
     status: "in-progress",
     featured: true,

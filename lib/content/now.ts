@@ -22,9 +22,9 @@ export const nowSignals: NowSignal[] = [
     external: true,
   },
   {
-    id: "certs",
+    id: "study",
     label: "Studying",
-    title: "Network+ and CCNA in progress",
-    href: "/lab",
+    title: "Computer Systems Technology at George Brown College",
+    href: "/path",
   },
 ];

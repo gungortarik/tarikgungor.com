@@ -27,6 +27,6 @@ export const milestones: Milestone[] = [
     year: "2026",
     title: "GBC · building",
     description:
-      "Computer Systems Technology at George Brown College. Building Sonoma privately and developing CertForge in public.",
+      "Computer Systems Technology at George Brown College. Building Sonoma privately, developing CertForge in public, and continuing to learn about systems and networking.",
   },
 ];

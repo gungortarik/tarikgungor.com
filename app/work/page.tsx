@@ -6,7 +6,7 @@ import { projects } from "@/lib/content/projects";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Software projects by Tarik Gungor — Sonoma, CertForge, and the systems around them.",
+  description: "Software projects by Tarik Gungor, including Sonoma and CertForge — both in progress.",
   alternates: { canonical: "/work" },
 };
 

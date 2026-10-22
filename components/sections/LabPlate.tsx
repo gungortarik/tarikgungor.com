@@ -6,6 +6,7 @@ const featuredLabs = labProjects.slice(0, 4);
 export function LabPlate() {
   return (
     <section
+      id="lab"
       className="bg-depth text-on-depth"
       aria-labelledby="lab-heading"
       data-field-chapter="lab"

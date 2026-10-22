@@ -10,9 +10,9 @@
   --surface-border: rgba(20, 20, 19, 0.12);
   --surface-border-subtle: rgba(20, 20, 19, 0.07);
 
-  --foreground: #141413;
-  --foreground-muted: #5c5954;
-  --foreground-subtle: #9a968e;
+  --foreground: #1d1e19;
+  --foreground-muted: #5e5e55;
+  --foreground-subtle: #89877c;
 
   --depth: #141413;
   --depth-elevated: #1c1c1a;
@@ -28,8 +28,8 @@
   --on-depth-fill-fg: #141413;
 
   --accent: #d4652f;
-  --accent-muted: #8b4f2e;
-  --accent-subtle: rgba(212, 101, 47, 0.14);
+  --accent-muted: #b95225;
+  --accent-subtle: rgba(212, 101, 47, 0.15);
 
   --status-green: #d4652f;
 
@@ -72,8 +72,8 @@
   --on-depth-fill-fg: #141413;
 
   --accent: #e07a45;
-  --accent-muted: #c45c26;
-  --accent-subtle: rgba(224, 122, 69, 0.16);
+  --accent-muted: #d4652f;
+  --accent-subtle: rgba(224, 122, 69, 0.18);
 
   --status-green: #e07a45;
 
@@ -179,7 +179,7 @@ body {
 
 .field-display {
   font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  font-size: clamp(2.75rem, 8vw, 6.25rem);
   line-height: 0.95;
   letter-spacing: -0.04em;
   font-weight: 600;
