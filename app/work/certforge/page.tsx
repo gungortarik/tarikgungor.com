@@ -23,7 +23,10 @@ export default function CertForgePage() {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
             <div className="lg:col-span-8">
               <p className="font-mono text-[12px] text-accent">Study platform · CCNA &amp; Network+</p>
-              <h1 className="font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4">
+              <h1
+                data-vt-title="certforge"
+                className="w-fit font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4"
+              >
                 CertForge
               </h1>
               <p className="font-serif text-[27px] sm:text-[34px] leading-[1.15] text-foreground mt-8 max-w-[22ch]">
@@ -56,6 +59,7 @@ export default function CertForgePage() {
           <div className="page-pad page-width">
             <ProjectScreens
               name="CertForge"
+              vtSlug="certforge"
               depth
               screens={[
                 { label: "Landing", ...screenshots.certforgeLanding },
