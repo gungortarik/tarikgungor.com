@@ -5,3 +5,13 @@ dist/
 *.log
 .next/
 out/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local tooling
+.vercel/
+.turbo/
+coverage/
