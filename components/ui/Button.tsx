@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink } from "@/components/motion/TransitionLink";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 type ButtonSize = "sm" | "md";
@@ -75,8 +75,8 @@ export function Button({
   }
 
   return (
-    <Link href={href} className={classes}>
+    <TransitionLink href={href} className={classes}>
       {children}
-    </Link>
+    </TransitionLink>
   );
 }

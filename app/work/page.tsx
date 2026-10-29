@@ -45,14 +45,15 @@ export default function WorkPage() {
               {project.cover && (
                 <div className="lg:col-span-7">
                   <div
+                    data-vt-cover={project.slug}
                     style={{ aspectRatio: `${project.cover.width} / ${project.cover.height}` }}
-                    className="relative overflow-hidden border border-surface-border bg-depth"
+                    className="group relative overflow-hidden border border-surface-border bg-depth"
                   >
                     <Image
                       src={project.cover.src}
                       alt={project.cover.alt}
                       fill
-                      className="object-cover object-left-top"
+                      className="object-cover object-left-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                       sizes="(max-width: 1024px) 100vw, 60vw"
                       priority={index === 0}
                     />
@@ -65,7 +66,10 @@ export default function WorkPage() {
                   {String(index + 1).padStart(2, "0")} · {statusLabels[project.status]}
                   {project.liveUrl ? " · Live preview" : project.slug === "sonoma" ? " · Private" : ""}
                 </p>
-                <h2 className="font-serif text-[32px] sm:text-[40px] text-foreground font-semibold tracking-[-0.03em] mt-3 leading-none">
+                <h2
+                  data-vt-title={project.slug}
+                  className="w-fit font-serif text-[32px] sm:text-[40px] text-foreground font-semibold tracking-[-0.03em] mt-3 leading-none"
+                >
                   {project.name}
                 </h2>
                 <p className="text-[15px] text-foreground-muted mt-2">{project.tagline}</p>

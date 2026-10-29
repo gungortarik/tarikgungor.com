@@ -218,7 +218,77 @@ body {
   margin-right: auto;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  .vt-nav-indicator {
+    view-transition-name: vt-nav-indicator;
+  }
+
+  html[data-active-transition="sonoma"] [data-vt-title="sonoma"],
+  html[data-active-transition="certforge"] [data-vt-title="certforge"] {
+    view-transition-name: vt-project-title;
+    width: fit-content;
+  }
+
+  html[data-active-transition="sonoma"] [data-vt-cover="sonoma"],
+  html[data-active-transition="certforge"] [data-vt-cover="certforge"] {
+    view-transition-name: vt-project-cover;
+  }
+
+  ::view-transition-group(vt-project-cover),
+  ::view-transition-group(vt-project-title),
+  ::view-transition-group(vt-nav-indicator) {
+    animation-duration: 0.56s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  ::view-transition-old(vt-project-cover),
+  ::view-transition-new(vt-project-cover) {
+    height: 100%;
+    object-fit: cover;
+  }
+
+  ::view-transition-old(root) {
+    animation: 0.36s cubic-bezier(0.4, 0, 0.2, 1) both vt-field-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: 0.46s cubic-bezier(0.22, 1, 0.36, 1) both vt-field-in;
+  }
+}
+
+@keyframes vt-field-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes vt-field-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

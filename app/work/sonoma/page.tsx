@@ -23,7 +23,10 @@ export default function SonomaPage() {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
             <div className="lg:col-span-8">
               <p className="font-mono text-[12px] text-accent">Private finance archive</p>
-              <h1 className="font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4">
+              <h1
+                data-vt-title="sonoma"
+                className="w-fit font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4"
+              >
                 Sonoma
               </h1>
               <p className="font-serif text-[27px] sm:text-[34px] leading-[1.15] text-foreground mt-8 max-w-[22ch]">
@@ -56,10 +59,13 @@ export default function SonomaPage() {
           <div className="page-pad page-width">
             <ProjectScreens
               name="Sonoma"
+              vtSlug="sonoma"
               depth
               screens={[
                 { label: "Landing", ...screenshots.sonomaLanding },
                 { label: "Dashboard", ...screenshots.sonomaDashboard },
+                { label: "Receipts", ...screenshots.sonomaReceipts },
+                { label: "Export", ...screenshots.sonomaExport },
               ]}
             />
             <p className="max-w-[44rem] mt-8 text-[15px] sm:text-[17px] leading-[1.75] text-on-depth-muted">

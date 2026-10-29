@@ -1,0 +1,160 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750">
+  <defs>
+    <style>
+      .bg { fill: #0d0d0c; }
+      .panel { fill: #151514; stroke: #262624; stroke-width: 1; }
+      .panel-accent { fill: #1c1c1a; stroke: #ff3b00; stroke-width: 1; }
+      .text-head { fill: #f2f2ee; font-family: 'Space Grotesk', -apple-system, sans-serif; font-weight: 700; }
+      .text-mono { fill: #8c8c85; font-family: 'IBM Plex Mono', monospace; font-size: 13px; }
+      .text-code { fill: #f2f2ee; font-family: 'IBM Plex Mono', monospace; font-size: 14px; }
+      .orange { fill: #ff3b00; }
+      .orange-stroke { stroke: #ff3b00; stroke-width: 2; fill: none; }
+      .grid-line { stroke: #1e1e1c; stroke-width: 1; }
+      .green { fill: #22c55e; }
+      .blue { fill: #38bdf8; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="750" class="bg" />
+
+  <!-- Blueprint Grid Pattern -->
+  <g opacity="0.35">
+    <line x1="0" y1="56" x2="1200" y2="56" class="grid-line" />
+    <line x1="0" y1="120" x2="1200" y2="120" class="grid-line" />
+    <line x1="0" y1="380" x2="1200" y2="380" class="grid-line" />
+    <line x1="0" y1="680" x2="1200" y2="680" class="grid-line" />
+    <line x1="280" y1="56" x2="280" y2="750" class="grid-line" />
+    <line x1="880" y1="56" x2="880" y2="750" class="grid-line" />
+  </g>
+
+  <!-- Header Bar -->
+  <rect x="0" y="0" width="1200" height="56" fill="#111110" stroke="#222220" stroke-width="1" />
+  <circle cx="28" cy="28" r="6" class="orange" />
+  <text x="46" y="34" class="text-head" font-size="16" letter-spacing="1">CERTFORGE // STUDY PLATFORM</text>
+  <text x="360" y="34" class="text-mono" font-size="12">MODULE: N10-009 &amp; 200-301 LAB DRILLS</text>
+  <rect x="940" y="16" width="100" height="24" fill="#1c1c1a" stroke="#333330" rx="3" />
+  <text x="955" y="32" class="text-mono" font-size="11">CLI MODE</text>
+  <rect x="1055" y="16" width="120" height="24" fill="#ff3b00" rx="3" />
+  <text x="1070" y="32" fill="#ffffff" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="600">VERIFY [Enter]</text>
+
+  <!-- Left Sidebar: Domain Navigation -->
+  <rect x="20" y="76" width="240" height="654" class="panel" rx="4" />
+  <text x="38" y="106" class="text-mono" font-size="11" font-weight="600" letter-spacing="1">ACTIVE DRILL DOMAINS</text>
+  
+  <!-- Sidebar Items -->
+  <rect x="30" y="126" width="220" height="42" class="panel-accent" rx="3" />
+  <text x="44" y="152" class="text-code" font-size="13" font-weight="600">01. Subnetting &amp; CIDR</text>
+  
+  <rect x="30" y="178" width="220" height="40" fill="#141413" stroke="#222220" rx="3" />
+  <text x="44" y="203" class="text-mono" font-size="13">02. OSI &amp; Packet Flow</text>
+
+  <rect x="30" y="228" width="220" height="40" fill="#141413" stroke="#222220" rx="3" />
+  <text x="44" y="253" class="text-mono" font-size="13">03. OSPF Single-Area</text>
+
+  <rect x="30" y="278" width="220" height="40" fill="#141413" stroke="#222220" rx="3" />
+  <text x="44" y="303" class="text-mono" font-size="13">04. 802.1Q VLAN Trunk</text>
+
+  <rect x="30" y="328" width="220" height="40" fill="#141413" stroke="#222220" rx="3" />
+  <text x="44" y="353" class="text-mono" font-size="13">05. DNS &amp; DHCP DORA</text>
+
+  <text x="38" y="650" class="text-mono" font-size="11">DRILL SCORE: 48/50</text>
+  <rect x="38" y="665" width="204" height="6" fill="#222220" rx="3" />
+  <rect x="38" y="665" width="195" height="6" class="orange" rx="3" />
+  <text x="38" y="695" class="text-mono" font-size="10">ACCURACY: 96% · STREAK: 14</text>
+
+  <!-- Center Workspace: Interactive Drill & Packet Flow Simulator -->
+  <rect x="280" y="76" width="580" height="654" class="panel" rx="4" />
+  
+  <!-- Question Breadcrumb -->
+  <text x="305" y="110" class="text-mono" font-size="12">SCENARIO #142 // IPv4 VARIABLE LENGTH SUBNET MASKING</text>
+  <text x="305" y="145" class="text-head" font-size="20">Allocate subnets for 3 branch offices from 192.168.10.0/24:</text>
+  <text x="305" y="175" class="text-mono" font-size="13" fill="#a2a29a">Branch A requires 60 hosts, Branch B requires 28 hosts, Point-to-Point WAN link requires 2 hosts.</text>
+
+  <!-- Interactive Network Topology Canvas Inside CertForge -->
+  <rect x="305" y="205" width="530" height="230" fill="#0c0c0b" stroke="#222220" rx="4" />
+  <text x="320" y="230" class="text-mono" font-size="11">LIVE TOPOLOGY SIMULATOR</text>
+
+  <!-- Topology Nodes -->
+  <!-- Core Router -->
+  <rect x="525" y="250" width="90" height="45" class="panel-accent" rx="3" />
+  <text x="540" y="278" class="text-code" font-size="12" font-weight="600">R1-CORE</text>
+
+  <!-- Branch A -->
+  <rect x="340" y="340" width="95" height="45" class="panel" rx="3" />
+  <text x="352" y="362" class="text-code" font-size="11">BRANCH A</text>
+  <text x="352" y="378" class="text-mono" font-size="9" fill="#ff3b00">/26 (62 hosts)</text>
+
+  <!-- Branch B -->
+  <rect x="522" y="340" width="95" height="45" class="panel" rx="3" />
+  <text x="534" y="362" class="text-code" font-size="11">BRANCH B</text>
+  <text x="534" y="378" class="text-mono" font-size="9" fill="#ff3b00">/27 (30 hosts)</text>
+
+  <!-- WAN Link -->
+  <rect x="705" y="340" width="95" height="45" class="panel" rx="3" />
+  <text x="722" y="362" class="text-code" font-size="11">WAN LINK</text>
+  <text x="722" y="378" class="text-mono" font-size="9" fill="#ff3b00">/30 (2 hosts)</text>
+
+  <!-- Connecting Lines -->
+  <line x1="570" y1="295" x2="387" y2="340" class="orange-stroke" stroke-dasharray="4 4" />
+  <line x1="570" y1="295" x2="570" y2="340" class="orange-stroke" stroke-dasharray="4 4" />
+  <line x1="570" y1="295" x2="752" y2="340" class="orange-stroke" stroke-dasharray="4 4" />
+
+  <!-- Subnetting Allocation Table -->
+  <text x="305" y="475" class="text-mono" font-size="12" font-weight="600">PROPOSED SUBNET TABLE:</text>
+  
+  <rect x="305" y="490" width="530" height="34" fill="#181816" stroke="#222220" />
+  <text x="320" y="512" class="text-code" font-size="12">Branch A: 192.168.10.0/26</text>
+  <text x="560" y="512" class="text-mono" font-size="11">Range: .1 - .62 (Mask: 255.255.255.192)</text>
+  <circle cx="810" cy="507" r="5" class="green" />
+
+  <rect x="305" y="534" width="530" height="34" fill="#181816" stroke="#222220" />
+  <text x="320" y="556" class="text-code" font-size="12">Branch B: 192.168.10.64/27</text>
+  <text x="560" y="556" class="text-mono" font-size="11">Range: .65 - .94 (Mask: 255.255.255.224)</text>
+  <circle cx="810" cy="551" r="5" class="green" />
+
+  <rect x="305" y="578" width="530" height="34" fill="#181816" stroke="#222220" />
+  <text x="320" y="600" class="text-code" font-size="12">WAN Link: 192.168.10.96/30</text>
+  <text x="560" y="600" class="text-mono" font-size="11">Range: .97 - .98 (Mask: 255.255.255.252)</text>
+  <circle cx="810" cy="595" r="5" class="green" />
+
+  <rect x="305" y="635" width="530" height="70" fill="#121211" stroke="#ff3b00" stroke-width="1" rx="3" />
+  <text x="325" y="660" fill="#ff3b00" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600">&gt; VERIFICATION PASSED</text>
+  <text x="325" y="682" class="text-mono" font-size="11" fill="#f2f2ee">No overlapping address blocks detected. Zero broadcast collision. Ready for Cisco IOS commit.</text>
+
+  <!-- Right Sidebar: Live Packet Inspector & Command Terminal -->
+  <rect x="880" y="76" width="300" height="654" class="panel" rx="4" />
+  <text x="900" y="106" class="text-mono" font-size="11" font-weight="600" letter-spacing="1">PACKET INSPECTOR &amp; CLI</text>
+
+  <!-- Protocol Header Dissection -->
+  <rect x="895" y="126" width="270" height="180" fill="#10100f" stroke="#222220" rx="3" />
+  <text x="910" y="150" class="text-mono" font-size="10" fill="#ff3b00">LAYER 3 // IP HEADER</text>
+  <text x="910" y="172" class="text-mono" font-size="11">SRC: 192.168.10.5</text>
+  <text x="910" y="192" class="text-mono" font-size="11">DST: 192.168.10.98</text>
+  <text x="910" y="212" class="text-mono" font-size="11">TTL: 64 · PROTO: OSPF (89)</text>
+  <text x="910" y="232" class="text-mono" font-size="11">CHECKSUM: 0x4f12 [VALID]</text>
+  <text x="910" y="260" class="text-mono" font-size="10" fill="#38bdf8">LAYER 2 // ETHERNET II</text>
+  <text x="910" y="280" class="text-mono" font-size="11">VLAN TAG: 10 (802.1Q)</text>
+
+  <!-- Realtime Terminal Log -->
+  <rect x="895" y="326" width="270" height="380" fill="#0a0a0a" stroke="#222220" rx="3" />
+  <text x="910" y="350" class="text-mono" font-size="11" fill="#a2a29a"># R1-CORE# show ip route</text>
+  <text x="910" y="375" class="text-mono" font-size="10" fill="#8c8c85">Codes: C - connected, S - static,</text>
+  <text x="910" y="392" class="text-mono" font-size="10" fill="#8c8c85">       O - OSPF, IA - OSPF inter area</text>
+  
+  <text x="910" y="420" class="text-mono" font-size="10" fill="#22c55e">C  192.168.10.0/26 is directly</text>
+  <text x="910" y="435" class="text-mono" font-size="10" fill="#22c55e">   connected, GigabitEthernet0/1</text>
+  
+  <text x="910" y="465" class="text-mono" font-size="10" fill="#22c55e">C  192.168.10.64/27 is directly</text>
+  <text x="910" y="480" class="text-mono" font-size="10" fill="#22c55e">   connected, GigabitEthernet0/2</text>
+  
+  <text x="910" y="510" class="text-mono" font-size="10" fill="#22c55e">C  192.168.10.96/30 is directly</text>
+  <text x="910" y="525" class="text-mono" font-size="10" fill="#22c55e">   connected, Serial0/1/0</text>
+
+  <text x="910" y="565" class="text-mono" font-size="11" fill="#ff3b00">&gt; ping 192.168.10.98</text>
+  <text x="910" y="585" class="text-mono" font-size="10" fill="#f2f2ee">Sending 5, 100-byte ICMP Echos:</text>
+  <text x="910" y="605" class="text-mono" font-size="10" fill="#f2f2ee">!!!!!</text>
+  <text x="910" y="625" class="text-mono" font-size="10" fill="#22c55e">Success rate is 100 percent (5/5)</text>
+
+  <text x="910" y="685" class="text-mono" font-size="10" fill="#8c8c85">SYSTEM: READY</text>
+</svg>

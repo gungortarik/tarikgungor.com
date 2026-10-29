@@ -7,8 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Homepage Field System motion: chapter fades, artifact clip reveals,
- * Now-row stagger, Path item scrub. Disabled when prefers-reduced-motion.
+ * Homepage Field System motion: chapter fades, optical counter-scale clip reveals,
+ * inner scroll parallax, Now-row stagger, Lab schematic reveals, and Path item scrub.
+ * Disabled when prefers-reduced-motion.
  */
 export function HomeMotion({ children }: { children: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -22,37 +23,78 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
 
     const ctx = gsap.context(() => {
       // Chapter enter (skip masthead — it has its own load reveal)
-      root.querySelectorAll<HTMLElement>("[data-field-chapter]:not([data-field-chapter='masthead'])").forEach((chapter) => {
-        gsap.fromTo(
-          chapter,
-          { opacity: 0.35, y: 28 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.85,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: chapter,
-              start: "top 86%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      });
+      root
+        .querySelectorAll<HTMLElement>("[data-field-chapter]:not([data-field-chapter='masthead'])")
+        .forEach((chapter) => {
+          gsap.fromTo(
+            chapter,
+            { opacity: 0.35, y: 26 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.85,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: chapter,
+                start: "top 86%",
+                toggleActions: "play none none none",
+              },
+            }
+          );
+        });
 
-      // Artifact clip reveals
+      // Optical Lens Artifact Reveals (clip-path curtain + counter-scale + subtle scroll parallax)
       root.querySelectorAll<HTMLElement>("[data-clip-reveal]").forEach((frame) => {
+        const lens = frame.querySelector<HTMLElement>("[data-lens-image]");
         gsap.set(frame, { clipPath: "inset(100% 0 0 0)" });
-        gsap.to(frame, {
-          clipPath: "inset(0% 0 0 0)",
-          duration: 1.15,
-          ease: "power3.inOut",
+        if (lens) {
+          gsap.set(lens, { scale: 1.09 });
+        }
+
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: frame,
             start: "top 82%",
             toggleActions: "play none none none",
           },
         });
+
+        tl.to(
+          frame,
+          {
+            clipPath: "inset(0% 0 0 0)",
+            duration: 1.15,
+            ease: "power3.inOut",
+          },
+          0
+        );
+
+        if (lens) {
+          tl.to(
+            lens,
+            {
+              scale: 1,
+              duration: 1.35,
+              ease: "power3.out",
+            },
+            0.05
+          );
+
+          gsap.fromTo(
+            lens,
+            { yPercent: -2.5 },
+            {
+              yPercent: 2.5,
+              ease: "none",
+              scrollTrigger: {
+                trigger: frame,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            }
+          );
+        }
       });
 
       // Now rows stagger
@@ -119,7 +161,7 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
         );
       }
 
-      // Path milestones stagger + continuum bar (handled in PathContinuum too; reinforce items)
+      // Path milestones stagger
       const pathItems = root.querySelectorAll<HTMLElement>("[data-path-item]");
       if (pathItems.length) {
         gsap.fromTo(
