@@ -13,15 +13,27 @@ export interface Screenshot {
 export const screenshots = {
   sonomaDashboard: {
     src: "/assets/projects/sonoma-dashboard.png",
-    alt: "Sonoma dashboard showing monthly expenses and a spending trend",
-    width: 3390,
-    height: 1844,
+    alt: "Sonoma dashboard — Hybrid Glass Shell and Warm Ivory Ledger showing confirmed monthly spending and recent receipts",
+    width: 2480,
+    height: 1482,
   },
   sonomaLanding: {
     src: "/assets/projects/sonoma-landing.png",
-    alt: "Sonoma landing page — a private vault by invitation",
-    width: 1664,
-    height: 929,
+    alt: "Sonoma landing page — Every receipt kept in full, nothing is guessed",
+    width: 3328,
+    height: 2082,
+  },
+  sonomaReceipts: {
+    src: "/assets/projects/sonoma-receipts.png",
+    alt: "Sonoma receipts archive — Evidence Continuum and side peek inspection",
+    width: 2480,
+    height: 950,
+  },
+  sonomaExport: {
+    src: "/assets/projects/sonoma-export.png",
+    alt: "Sonoma archive and export — canonical year packet and Drive backup controls",
+    width: 2480,
+    height: 950,
   },
   certforgeLanding: {
     src: "/assets/projects/certforge-landing.png",

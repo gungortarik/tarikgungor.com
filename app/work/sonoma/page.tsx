@@ -64,6 +64,8 @@ export default function SonomaPage() {
               screens={[
                 { label: "Landing", ...screenshots.sonomaLanding },
                 { label: "Dashboard", ...screenshots.sonomaDashboard },
+                { label: "Receipts", ...screenshots.sonomaReceipts },
+                { label: "Export", ...screenshots.sonomaExport },
               ]}
             />
             <p className="max-w-[44rem] mt-8 text-[15px] sm:text-[17px] leading-[1.75] text-on-depth-muted">
