@@ -2,89 +2,18 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TransitionLink } from "@/components/motion/TransitionLink";
 import { mainNav } from "@/lib/content/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-
-const CHAPTER_LABELS: Record<string, string> = {
-  masthead: "01 // INDEX",
-  now: "02 // NOW",
-  work: "03 // WORK",
-  lab: "04 // LAB",
-  path: "05 // PATH",
-  connect: "06 // CONNECT",
-};
-
-const ROUTE_HUD: Record<string, string> = {
-  "/work": "03 // WORK",
-  "/work/sonoma": "03.1 // SONOMA",
-  "/work/certforge": "03.2 // CERTFORGE",
-  "/lab": "04 // LAB",
-  "/path": "05 // PATH",
-  "/notes": "06 // NOTES",
-  "/resume": "07 // RESUME",
-  "/contact": "08 // CONTACT",
-};
+import { LiveDate } from "@/components/ui/LiveDate";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeChapter, setActiveChapter] = useState("masthead");
   const pathname = usePathname();
 
   const primary = mainNav.filter((item) => !item.utility);
   const utility = mainNav.filter((item) => item.utility);
-
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const handleScroll = () => {
-      if (window.scrollY < 120) {
-        setActiveChapter("masthead");
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    const sections = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-field-chapter]")
-    );
-    if (!sections.length) {
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (window.scrollY < 120) {
-          setActiveChapter("masthead");
-          return;
-        }
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) {
-          const ch = (visible[0].target as HTMLElement).dataset.fieldChapter;
-          if (ch) setActiveChapter(ch);
-        }
-      },
-      {
-        rootMargin: "-20% 0px -55% 0px",
-        threshold: [0.1, 0.35, 0.6],
-      }
-    );
-
-    sections.forEach((sec) => observer.observe(sec));
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      observer.disconnect();
-    };
-  }, [pathname]);
-
-  const hudLabel =
-    pathname === "/"
-      ? CHAPTER_LABELS[activeChapter] ?? "01 / INDEX"
-      : ROUTE_HUD[pathname] ?? "00 / FIELD";
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-surface-border/80 bg-surface/94 backdrop-blur-md">
@@ -113,7 +42,7 @@ export function Header() {
             className="hidden md:inline-flex items-center gap-2 border-l border-surface-border pl-4 font-mono text-[10px] tracking-[0.14em] uppercase text-foreground-subtle tabular-nums"
           >
             <span className="h-1.5 w-1.5 bg-accent" aria-hidden="true" />
-            {hudLabel}
+            <LiveDate />
           </span>
         </div>
 

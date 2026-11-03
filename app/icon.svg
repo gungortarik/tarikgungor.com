@@ -1,16 +1,29 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
-  <!-- Public Field Base Tile -->
-  <rect width='512' height='512' rx='112' fill='#141413'/>
-  <rect x='1.5' y='1.5' width='509' height='509' rx='110.5' fill='none' stroke='#2b2b29' stroke-width='3'/>
+  <!-- Dark Field background with squircle radius -->
+  <rect width='512' height='512' rx='112' fill='#121211'/>
+  <rect x='2' y='2' width='508' height='508' rx='110' fill='none' stroke='#282826' stroke-width='4'/>
   
-  <!-- TG Monogram - optically centered and strengthened for small viewports -->
-  <g transform='translate(58, 48) scale(1.12)' stroke='#ebe8e2' stroke-width='26' stroke-linecap='round' stroke-linejoin='round' fill='none'>
-    <path d='M95.4141 195.02C80.1797 194.258 71.0391 190.449 71.0391 185.117C71.0391 174.453 103.031 156.934 136.547 143.223C183.773 124.18 242.426 108.184 301.84 103.613C319.359 102.09 334.594 102.09 342.211 103.613C344.496 104.375 345.258 105.898 343.734 108.184'/>
-    <path d='M242.426 126.465C224.145 158.457 205.863 192.734 187.582 227.012C166.254 267.383 147.211 305.469 130.453 341.27'/>
-    <path d='M267.562 197.305C250.805 179.785 224.906 180.547 202.055 198.066C176.156 218.633 164.73 246.055 169.301 268.145C173.871 290.234 195.199 300.137 220.336 293.281C243.949 287.187 265.277 272.715 287.367 253.672'/>
-    <path d='M286.605 253.672C271.371 284.141 254.613 313.848 236.332 342.031C223.383 362.598 211.957 380.117 202.055 387.734C193.676 394.59 187.582 393.066 186.82 386.211C186.059 375.547 195.961 357.266 208.91 341.27C226.43 319.941 248.52 302.422 272.895 289.473C300.316 275.762 330.023 268.145 359.73 267.383C365.824 267.383 369.633 268.906 371.918 270.43'/>
-  </g>
+  <!-- Solid Bold T glyph -->
+  <path d='M64 140 H236 V196 H178 V372 H122 V196 H64 Z' fill='#F5F3EC'/>
   
-  <!-- Oxide telemetry indicator -->
-  <rect x='396' y='84' width='32' height='32' rx='6' fill='#d4652f'/>
+  <!-- Solid Bold G glyph: geometric precision with high-contrast inner cut -->
+  <path fill-rule='evenodd' clip-rule='evenodd' d='
+    M356 140
+    C430 140 456 186 456 216
+    H396
+    C396 200 382 196 356 196
+    C312 196 288 226 288 256
+    C288 286 312 316 356 316
+    C388 316 398 300 398 278
+    H344
+    V226
+    H456
+    V298
+    C442 346 406 372 356 372
+    C276 372 228 320 228 256
+    C228 192 276 140 356 140
+    Z' fill='#F5F3EC'/>
+  
+  <!-- Oxide telemetry active indicator -->
+  <rect x='410' y='92' width='38' height='38' rx='8' fill='#D4652F'/>
 </svg>
