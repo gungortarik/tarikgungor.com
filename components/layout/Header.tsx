@@ -8,23 +8,23 @@ import { mainNav } from "@/lib/content/navigation";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const CHAPTER_LABELS: Record<string, string> = {
-  masthead: "01 / INDEX",
-  now: "02 / NOW",
-  work: "03 / WORK",
-  lab: "04 / LAB",
-  path: "05 / PATH",
-  connect: "06 / CONNECT",
+  masthead: "01 // INDEX",
+  now: "02 // NOW",
+  work: "03 // WORK",
+  lab: "04 // LAB",
+  path: "05 // PATH",
+  connect: "06 // CONNECT",
 };
 
 const ROUTE_HUD: Record<string, string> = {
-  "/work": "03 / WORK",
-  "/work/sonoma": "03.1 / SONOMA",
-  "/work/certforge": "03.2 / CERTFORGE",
-  "/lab": "04 / LAB",
-  "/path": "05 / PATH",
-  "/notes": "06 / NOTES",
-  "/resume": "07 / RESUME",
-  "/contact": "08 / CONTACT",
+  "/work": "03 // WORK",
+  "/work/sonoma": "03.1 // SONOMA",
+  "/work/certforge": "03.2 // CERTFORGE",
+  "/lab": "04 // LAB",
+  "/path": "05 // PATH",
+  "/notes": "06 // NOTES",
+  "/resume": "07 // RESUME",
+  "/contact": "08 // CONTACT",
 };
 
 export function Header() {
@@ -38,13 +38,28 @@ export function Header() {
   useEffect(() => {
     if (pathname !== "/") return;
 
+    const handleScroll = () => {
+      if (window.scrollY < 120) {
+        setActiveChapter("masthead");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     const sections = Array.from(
       document.querySelectorAll<HTMLElement>("[data-field-chapter]")
     );
-    if (!sections.length) return;
+    if (!sections.length) {
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (window.scrollY < 120) {
+          setActiveChapter("masthead");
+          return;
+        }
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
@@ -60,7 +75,10 @@ export function Header() {
     );
 
     sections.forEach((sec) => observer.observe(sec));
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, [pathname]);
 
   const hudLabel =

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FieldReveal } from "@/components/motion/FieldReveal";
+import { LiveClock } from "@/components/ui/LiveClock";
 import { profile } from "@/lib/content/profile";
 
 const indexLinks = [
@@ -28,9 +29,12 @@ export function FieldMasthead() {
               />
               Public field system
             </p>
-            <div data-telemetry className="flex items-center gap-6">
-              <p className="field-meta hidden sm:block text-on-depth-subtle">
+            <div data-telemetry className="flex items-center gap-4 sm:gap-6">
+              <p className="field-meta hidden md:block text-on-depth-subtle">
                 SYS.STAT / ACTIVE
+              </p>
+              <p className="field-meta text-on-depth-subtle hidden sm:block">
+                <LiveClock />
               </p>
               <p className="field-meta text-on-depth-subtle">{profile.location}</p>
             </div>

@@ -95,7 +95,7 @@ export default function Image() {
             color: "#9a968e",
           }}
         >
-          <div>Vaughan · IT · Systems study · Building</div>
+          <div>Toronto · IT · Systems study · Building</div>
           <div style={{ color: "#d4652f" }}>tarikgungor.com</div>
         </div>
       </div>

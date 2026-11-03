@@ -27,7 +27,7 @@ const jsonLd = {
   email: profile.contact.email,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Vaughan",
+    addressLocality: "Toronto",
     addressRegion: "ON",
     addressCountry: "CA",
   },
@@ -99,7 +99,7 @@ export default function ResumePage() {
             </div>
 
             <div className="pt-3 border-t border-surface-border text-sm text-foreground-muted flex flex-wrap gap-x-4 gap-y-1">
-              <span className="font-mono text-foreground font-medium">Vaughan, ON</span>
+              <span className="font-mono text-foreground font-medium">Toronto, ON</span>
               <a href={`mailto:${profile.contact.email}`} className="hover:text-foreground underline-offset-2 hover:underline">
                 {profile.contact.email}
               </a>

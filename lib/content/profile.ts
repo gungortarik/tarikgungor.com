@@ -1,6 +1,6 @@
 export const profile = {
   name: "Tarik Gungor",
-  location: "Vaughan, Canada",
+  location: "Toronto, Canada",
   tagline: "Systems, tools, and the path between them.",
   positioning:
     "I support systems by day, study Computer Systems Technology in Toronto, and build software for problems I actually have.",
