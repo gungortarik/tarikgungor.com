@@ -4,10 +4,10 @@ import { labProjects } from "@/lib/content/experience";
 const featuredLabs = labProjects.slice(0, 4);
 
 const labCodes = [
-  "TOPOLOGY // HYPER-V · ESXI",
-  "DIRECTORY // OU · GPO",
-  "RESOLVER // AD-DNS ZONES",
-  "SEGMENT // LINUX DHCP",
+  "HYPER-V · ESXI",
+  "OU · GPO",
+  "AD-DNS ZONES",
+  "LINUX DHCP",
 ];
 
 function LabSchematic({ index }: { index: number }) {
@@ -17,7 +17,7 @@ function LabSchematic({ index }: { index: number }) {
       return (
         <svg
           viewBox="0 0 180 44"
-          className="h-10 w-40 text-on-depth-subtle group-hover:text-on-depth transition-colors duration-300"
+          className="h-10 w-40 text-on-depth-subtle"
           fill="none"
           aria-hidden="true"
         >
@@ -37,13 +37,12 @@ function LabSchematic({ index }: { index: number }) {
             r="7"
             stroke="currentColor"
             strokeWidth="1"
-            className="group-hover:stroke-accent transition-colors duration-300"
           />
           <circle
             cx="76"
             cy="22"
             r="2.2"
-            className="fill-on-depth-subtle group-hover:fill-accent transition-colors duration-300"
+            className="fill-on-depth-subtle"
           />
           <path d="M83 22H112M112 22V10H142M112 22V34H142" stroke="currentColor" strokeWidth="1" />
           <rect x="142" y="4" width="32" height="12" stroke="currentColor" strokeWidth="1" />
@@ -52,13 +51,13 @@ function LabSchematic({ index }: { index: number }) {
             cx="148"
             cy="10"
             r="1.5"
-            className="fill-accent opacity-60 group-hover:opacity-100 transition-opacity"
+            className="fill-accent "
           />
           <circle
             cx="148"
             cy="34"
             r="1.5"
-            className="fill-accent opacity-60 group-hover:opacity-100 transition-opacity"
+            className="fill-accent "
           />
         </svg>
       );
@@ -67,7 +66,7 @@ function LabSchematic({ index }: { index: number }) {
       return (
         <svg
           viewBox="0 0 180 44"
-          className="h-10 w-40 text-on-depth-subtle group-hover:text-on-depth transition-colors duration-300"
+          className="h-10 w-40 text-on-depth-subtle"
           fill="none"
           aria-hidden="true"
         >
@@ -78,7 +77,6 @@ function LabSchematic({ index }: { index: number }) {
             height="14"
             stroke="currentColor"
             strokeWidth="1"
-            className="group-hover:stroke-accent transition-colors duration-300"
           />
           <circle cx="13" cy="22" r="2" className="fill-accent" />
           <path d="M32 22H66M66 9V35M66 9H102M66 22H102M66 35H102" stroke="currentColor" strokeWidth="1" />
@@ -98,7 +96,7 @@ function LabSchematic({ index }: { index: number }) {
             cx="170"
             cy="22"
             r="2.5"
-            className="fill-on-depth-subtle group-hover:fill-accent transition-colors"
+            className="fill-on-depth-subtle"
           />
         </svg>
       );
@@ -107,7 +105,7 @@ function LabSchematic({ index }: { index: number }) {
       return (
         <svg
           viewBox="0 0 180 44"
-          className="h-10 w-40 text-on-depth-subtle group-hover:text-on-depth transition-colors duration-300"
+          className="h-10 w-40 text-on-depth-subtle"
           fill="none"
           aria-hidden="true"
         >
@@ -117,7 +115,6 @@ function LabSchematic({ index }: { index: number }) {
             d="M46 17H134"
             stroke="currentColor"
             strokeWidth="1"
-            className="group-hover:stroke-accent transition-colors duration-300"
           />
           <path d="M134 27H46" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
           <circle cx="90" cy="17" r="2.5" className="fill-accent" />
@@ -125,13 +122,13 @@ function LabSchematic({ index }: { index: number }) {
             cx="28"
             cy="22"
             r="2"
-            className="fill-on-depth-subtle group-hover:fill-accent transition-colors"
+            className="fill-on-depth-subtle"
           />
           <circle
             cx="152"
             cy="22"
             r="2"
-            className="fill-on-depth-subtle group-hover:fill-accent transition-colors"
+            className="fill-on-depth-subtle"
           />
         </svg>
       );
@@ -140,7 +137,7 @@ function LabSchematic({ index }: { index: number }) {
       return (
         <svg
           viewBox="0 0 180 44"
-          className="h-10 w-40 text-on-depth-subtle group-hover:text-on-depth transition-colors duration-300"
+          className="h-10 w-40 text-on-depth-subtle"
           fill="none"
           aria-hidden="true"
         >
@@ -155,7 +152,7 @@ function LabSchematic({ index }: { index: number }) {
                 className={
                   idx === 1
                     ? "fill-accent"
-                    : "fill-depth stroke-current group-hover:fill-accent transition-colors duration-300"
+                    : "fill-depth stroke-current"
                 }
                 strokeWidth="1"
               />
@@ -174,13 +171,13 @@ export function LabPlate() {
       aria-labelledby="lab-heading"
       data-field-chapter="lab"
     >
-      <div className="page-pad page-width py-16 sm:py-20 lg:py-24">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
+      <div className="page-pad page-width py-12 sm:py-16 lg:py-20">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-4 flex flex-col justify-between">
             <div>
               <p className="field-meta flex items-center gap-2.5 text-on-depth-subtle">
                 <span className="h-1.5 w-1.5 bg-accent" aria-hidden="true" />
-                Lab / 03 infrastructure
+                Lab
               </p>
               <h2
                 id="lab-heading"
@@ -207,7 +204,7 @@ export function LabPlate() {
             </div>
 
             <div className="hidden lg:block border-t border-on-depth-border pt-4 mt-12">
-              <p className="field-meta text-on-depth-subtle">ENV // HYPER-V · ESXI · LINUX · AD</p>
+              <p className="field-meta text-on-depth-subtle">HYPER-V · ESXI · LINUX · AD</p>
             </div>
           </div>
 
@@ -216,30 +213,23 @@ export function LabPlate() {
               <li
                 key={lab.title}
                 data-lab-item
-                className="group relative border-b border-on-depth-border sm:odd:border-r py-6 sm:odd:pr-6 sm:even:pl-6 transition-colors duration-300 hover:bg-depth-elevated/60"
+                className="relative border-b border-on-depth-border sm:odd:border-r py-6 sm:odd:pr-6 sm:even:pl-6"
               >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute left-0 top-0 bottom-0 w-[2px] bg-accent origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"
-                />
                 <div className="flex items-center justify-between gap-3">
                   <span className="font-mono text-[11px] text-accent">0{index + 1}</span>
-                  <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-on-depth-subtle">
+                  <span className="font-mono text-[12px] tracking-[0.04em] uppercase text-on-depth-subtle">
                     {labCodes[index]}
                   </span>
                 </div>
 
                 <div className="mt-4 py-2 border-y border-on-depth-border/50 flex items-center justify-between">
                   <LabSchematic index={index} />
-                  <span className="font-mono text-[10px] text-on-depth-subtle group-hover:text-accent transition-colors">
-                    NODE.0{index + 1}
-                  </span>
                 </div>
 
-                <h3 className="mt-4 font-serif text-[18px] sm:text-[20px] leading-snug text-on-depth group-hover:text-accent transition-colors">
+                <h3 className="mt-4 font-serif text-[18px] sm:text-[20px] leading-snug text-on-depth">
                   {lab.title}
                 </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-on-depth-muted">
+                <p className="mt-2 text-[16px] leading-relaxed text-on-depth-muted">
                   {lab.description}
                 </p>
               </li>

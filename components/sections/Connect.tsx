@@ -8,8 +8,8 @@ export function Connect() {
       aria-labelledby="connect-heading"
       data-field-chapter="connect"
     >
-      <div className="page-pad page-width py-16 sm:py-20 lg:py-24">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 border-t border-surface-border pt-12 sm:pt-16">
+      <div className="page-pad page-width py-12 sm:py-16 lg:py-20">
+        <div className="grid lg:grid-cols-12 gap-5 lg:gap-10 border-t border-surface-border pt-8 sm:pt-10">
           <div className="lg:col-span-3">
             <p className="field-meta text-foreground-subtle">Connect</p>
           </div>

@@ -8,13 +8,12 @@ export function NowSignal() {
       aria-labelledby="now-heading"
       data-field-chapter="now"
     >
-      <div className="page-pad page-width py-10 sm:py-12">
+      <div className="page-pad page-width py-8 sm:py-10">
         <div className="flex items-baseline justify-between gap-4 mb-6">
           <h2 id="now-heading" className="field-meta flex items-center gap-2.5 text-foreground-subtle">
             <span className="h-1.5 w-1.5 bg-accent" aria-hidden="true" />
-            Now / Live signal
+            Right now
           </h2>
-          <p className="field-meta text-foreground-subtle hidden sm:block">Active threads</p>
         </div>
 
         <ul className="divide-y divide-surface-border border-y border-surface-border">
@@ -30,7 +29,7 @@ export function NowSignal() {
                   className="pointer-events-none absolute left-0 top-1.5 bottom-1.5 w-[2px] bg-accent origin-top scale-y-0 transition-transform duration-300 ease-out group-hover:scale-y-100"
                 />
                 <span
-                  className="relative overflow-hidden h-4 w-8 font-mono text-[11px] text-accent tabular-nums shrink-0 inline-flex items-center"
+                  className="relative overflow-hidden h-4 w-8 font-mono text-[11px] text-accent-ink tabular-nums shrink-0 inline-flex items-center"
                   {...(index === 0 ? { "data-now-mark": "" } : {})}
                 >
                   <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
@@ -43,14 +42,14 @@ export function NowSignal() {
                     {num}
                   </span>
                 </span>
-                <span className="field-meta text-foreground-subtle shrink-0 w-[5.5rem]">
+                <span className="field-meta text-foreground-subtle shrink-0 w-[6.5rem]">
                   {signal.label}
                 </span>
                 <span className="text-[15px] sm:text-[16px] text-foreground leading-snug flex-1">
                   {signal.title}
                 </span>
                 <span
-                  className="text-foreground-subtle group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 shrink-0"
+                  className="text-foreground-subtle group-hover:text-accent-ink group-hover:translate-x-1 transition-all duration-300 shrink-0"
                   aria-hidden="true"
                 >
                   →

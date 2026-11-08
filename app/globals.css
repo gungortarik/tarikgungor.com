@@ -12,7 +12,7 @@
 
   --foreground: #1d1e19;
   --foreground-muted: #5e5e55;
-  --foreground-subtle: #89877c;
+  --foreground-subtle: #646257;
 
   --depth: #141413;
   --depth-elevated: #1c1c1a;
@@ -22,12 +22,13 @@
 
   --on-depth: #f3f1ec;
   --on-depth-muted: rgba(243, 241, 236, 0.72);
-  --on-depth-subtle: rgba(243, 241, 236, 0.48);
+  --on-depth-subtle: rgba(243, 241, 236, 0.65);
   --on-depth-border: rgba(243, 241, 236, 0.2);
   --on-depth-fill: #f3f1ec;
   --on-depth-fill-fg: #141413;
 
   --accent: #d4652f;
+  --accent-ink: #a74720;
   --accent-muted: #b95225;
   --accent-subtle: rgba(212, 101, 47, 0.15);
 
@@ -56,7 +57,7 @@
 
   --foreground: #f3f1ec;
   --foreground-muted: #b5b1a8;
-  --foreground-subtle: #8a8680;
+  --foreground-subtle: #aaa69d;
 
   --depth: #0a0a09;
   --depth-elevated: #121211;
@@ -66,12 +67,13 @@
 
   --on-depth: #f3f1ec;
   --on-depth-muted: rgba(243, 241, 236, 0.72);
-  --on-depth-subtle: rgba(243, 241, 236, 0.48);
+  --on-depth-subtle: rgba(243, 241, 236, 0.65);
   --on-depth-border: rgba(243, 241, 236, 0.2);
   --on-depth-fill: #ebe8e2;
   --on-depth-fill-fg: #141413;
 
   --accent: #e07a45;
+  --accent-ink: #e07a45;
   --accent-muted: #d4652f;
   --accent-subtle: rgba(224, 122, 69, 0.18);
 
@@ -111,6 +113,7 @@
   --color-on-depth-fill-fg: var(--on-depth-fill-fg);
 
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-muted: var(--accent-muted);
   --color-accent-subtle: var(--accent-subtle);
 
@@ -172,8 +175,8 @@ body {
 
 .field-meta {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 

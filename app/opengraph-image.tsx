@@ -40,16 +40,18 @@ export default function Image() {
             width: "100%",
           }}
         >
-          <img
-            src={wordmarkBase64}
-            alt="Tarik Gungor"
+          <svg
+            width="166"
+            height="44"
+            viewBox="0 0 166 44"
+            role="img"
+            aria-label="Tarik Gungor"
             style={{
-              height: "44px",
-              width: "166px",
-              objectFit: "contain",
               filter: "invert(1)",
             }}
-          />
+          >
+            <image href={wordmarkBase64} width="166" height="44" preserveAspectRatio="xMidYMid meet" />
+          </svg>
           <div
             style={{
               fontSize: "12px",
@@ -95,7 +97,7 @@ export default function Image() {
             color: "#9a968e",
           }}
         >
-          <div>Vaughan · IT · Systems study · Building</div>
+          <div>Toronto · IT · Systems study · Building</div>
           <div style={{ color: "#d4652f" }}>tarikgungor.com</div>
         </div>
       </div>

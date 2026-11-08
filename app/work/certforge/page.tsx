@@ -22,7 +22,7 @@ export default function CertForgePage() {
           </div>
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[12px] text-accent">Study platform · CCNA &amp; Network+</p>
+              <p className="font-mono text-[12px] text-accent-ink">Study platform · CCNA &amp; Network+</p>
               <h1
                 data-vt-title="certforge"
                 className="w-fit font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4"
@@ -99,7 +99,7 @@ export default function CertForgePage() {
                     key={item.title}
                     className="py-8 md:px-7 md:first:pl-0 border-b md:border-b-0 md:border-r md:last:border-r-0 border-surface-border"
                   >
-                    <p className="font-mono text-[11px] text-accent">0{index + 1}</p>
+                    <p className="font-mono text-[11px] text-accent-ink">0{index + 1}</p>
                     <h2 className="font-serif text-[28px] leading-tight text-foreground mt-6">{item.title}</h2>
                     <p className="text-[15px] leading-[1.75] text-foreground-muted mt-4">{item.body}</p>
                   </section>

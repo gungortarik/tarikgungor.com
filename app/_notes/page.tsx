@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+// Temporarily unpublished: the private folder excludes this page from routing.
 import { PageShell } from "@/components/ui/PageShell";
 import { notes } from "@/lib/content/notes";
 

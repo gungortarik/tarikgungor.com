@@ -27,7 +27,7 @@ const jsonLd = {
   email: profile.contact.email,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Vaughan",
+    addressLocality: "Toronto",
     addressRegion: "ON",
     addressCountry: "CA",
   },
@@ -47,9 +47,9 @@ export default function ResumePage() {
       />
 
       <header className="w-full border-b border-surface-border bg-surface/92 backdrop-blur-xs md:sticky md:top-0 z-30 py-3 print:hidden">
-        <div className="max-w-[1080px] mx-auto px-6 sm:px-10 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 min-w-0">
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0">
+        <div className="max-w-[1080px] mx-auto px-4 sm:px-10 flex items-center justify-between gap-2 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <Link href="/" aria-label="Tarik Gungor — Index" className="flex items-center gap-2 hover:opacity-80 transition-opacity shrink-0">
               <Image
                 src="/assets/logos/tarik-gungor-monogram.svg"
                 alt=""
@@ -61,20 +61,20 @@ export default function ResumePage() {
                 {profile.name}
               </span>
             </Link>
-            <span className="text-surface-border select-none" aria-hidden="true">|</span>
+            <span className="hidden sm:inline text-surface-border select-none" aria-hidden="true">|</span>
             <Link
               href="/"
-              className="text-xs font-mono text-foreground-muted hover:text-foreground transition-colors"
+              className="inline-flex items-center min-h-11 whitespace-nowrap text-xs font-mono text-foreground-muted hover:text-foreground transition-colors"
             >
               ← Home
             </Link>
           </div>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <a
               href="/resume/tarik-gungor-resume.pdf"
               download="tarik-gungor-resume.pdf"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-sm bg-foreground text-surface dark:bg-on-depth-fill dark:text-on-depth-fill-fg font-medium text-xs hover:opacity-90 transition-colors"
+              className="inline-flex items-center min-h-11 whitespace-nowrap gap-1.5 px-3 sm:px-4 py-2 rounded-sm bg-foreground text-surface dark:bg-on-depth-fill dark:text-on-depth-fill-fg font-medium text-xs hover:opacity-90 transition-colors"
             >
               Download PDF ↓
             </a>
@@ -99,7 +99,7 @@ export default function ResumePage() {
             </div>
 
             <div className="pt-3 border-t border-surface-border text-sm text-foreground-muted flex flex-wrap gap-x-4 gap-y-1">
-              <span className="font-mono text-foreground font-medium">Vaughan, ON</span>
+              <span className="font-mono text-foreground font-medium">Toronto, ON</span>
               <a href={`mailto:${profile.contact.email}`} className="hover:text-foreground underline-offset-2 hover:underline">
                 {profile.contact.email}
               </a>
@@ -156,7 +156,7 @@ export default function ResumePage() {
                       {exp.location} · {exp.period}
                     </div>
                   </div>
-                  <ul className="mt-3 space-y-1.5 text-[14px] text-foreground-muted leading-relaxed list-disc list-outside pl-4 marker:text-accent max-w-[800px]">
+                  <ul className="mt-3 space-y-1.5 text-[14px] text-foreground-muted leading-relaxed list-disc list-outside pl-4 marker:text-accent-ink max-w-[800px]">
                     {exp.bullets.map((bullet) => (
                       <li key={bullet}>{renderMarkdownBold(bullet)}</li>
                     ))}
@@ -208,7 +208,7 @@ export default function ResumePage() {
           </section>
 
           <div className="pt-8 border-t border-surface-border flex flex-col sm:flex-row sm:items-center justify-between gap-4 print:hidden">
-            <Link href="/work" className="text-sm font-medium text-foreground hover:text-accent transition-colors">
+            <Link href="/work" className="text-sm font-medium text-foreground hover:text-accent-ink transition-colors">
               See software projects →
             </Link>
             <a

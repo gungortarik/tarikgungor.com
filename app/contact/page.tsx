@@ -30,7 +30,7 @@ export default function ContactPage() {
                 <span className="field-meta text-foreground-subtle">Email</span>
                 <a
                   href={`mailto:${profile.contact.email}`}
-                  className="block text-[18px] sm:text-[20px] text-foreground font-medium mt-2 hover:text-accent transition-colors"
+                  className="block text-[18px] sm:text-[20px] text-foreground font-medium mt-2 hover:text-accent-ink transition-colors"
                 >
                   {profile.contact.email}
                 </a>
@@ -41,7 +41,7 @@ export default function ContactPage() {
                   href={profile.contact.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-6 border-t border-surface-border hover:text-accent transition-colors sm:pr-6"
+                  className="py-6 border-t border-surface-border hover:text-accent-ink transition-colors sm:pr-6"
                 >
                   <span className="field-meta text-foreground-subtle">LinkedIn</span>
                   <p className="text-[16px] text-foreground font-medium mt-2">tarikgungor</p>
@@ -51,7 +51,7 @@ export default function ContactPage() {
                   href={profile.contact.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-6 border-t border-surface-border hover:text-accent transition-colors"
+                  className="py-6 border-t border-surface-border hover:text-accent-ink transition-colors"
                 >
                   <span className="field-meta text-foreground-subtle">GitHub</span>
                   <p className="text-[16px] text-foreground font-medium mt-2">gungortarik</p>

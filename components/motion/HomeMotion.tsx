@@ -7,7 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Homepage Field System motion: chapter fades, optical counter-scale clip reveals,
+ * Homepage Field System motion: optical counter-scale clip reveals,
  * inner scroll parallax, Now-row stagger, Lab schematic reveals, and Path item scrub.
  * Disabled when prefers-reduced-motion.
  */
@@ -22,26 +22,7 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Chapter enter (skip masthead — it has its own load reveal)
-      root
-        .querySelectorAll<HTMLElement>("[data-field-chapter]:not([data-field-chapter='masthead'])")
-        .forEach((chapter) => {
-          gsap.fromTo(
-            chapter,
-            { opacity: 0.35, y: 26 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.85,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: chapter,
-                start: "top 86%",
-                toggleActions: "play none none none",
-              },
-            }
-          );
-        });
+      // Text stays at full contrast while scrolling.
 
       // Optical Lens Artifact Reveals (clip-path curtain + counter-scale + subtle scroll parallax)
       root.querySelectorAll<HTMLElement>("[data-clip-reveal]").forEach((frame) => {
@@ -102,7 +83,7 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
       if (nowRows.length) {
         gsap.fromTo(
           nowRows,
-          { opacity: 0, x: -12 },
+          { x: -12 },
           {
             opacity: 1,
             x: 0,
@@ -145,7 +126,7 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
       if (labItems.length) {
         gsap.fromTo(
           labItems,
-          { opacity: 0, y: 18 },
+          { y: 18 },
           {
             opacity: 1,
             y: 0,
@@ -166,7 +147,7 @@ export function HomeMotion({ children }: { children: React.ReactNode }) {
       if (pathItems.length) {
         gsap.fromTo(
           pathItems,
-          { opacity: 0, y: 20 },
+          { y: 20 },
           {
             opacity: 1,
             y: 0,

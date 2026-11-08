@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { waitForMainSwap } from "@/lib/utils/wait-for-main-swap";
 import { useRouter } from "next/navigation";
 import type { ComponentProps, MouseEvent } from "react";
 
@@ -11,32 +12,6 @@ interface TransitionLinkProps extends ComponentProps<typeof Link> {
 function inferProjectSlug(path: string): string | undefined {
   const match = path.match(/^\/work\/(sonoma|certforge)(?:\/|$)/);
   return match ? match[1] : undefined;
-}
-
-function waitForMainSwap(timeoutMs = 260): Promise<void> {
-  return new Promise((resolve) => {
-    const main = document.querySelector("main");
-    if (!main) {
-      window.setTimeout(resolve, 48);
-      return;
-    }
-
-    let settled = false;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      observer.disconnect();
-      window.clearTimeout(timer);
-      requestAnimationFrame(() => resolve());
-    };
-
-    const observer = new MutationObserver(() => {
-      finish();
-    });
-
-    observer.observe(main, { childList: true, subtree: true });
-    const timer = window.setTimeout(finish, timeoutMs);
-  });
 }
 
 export function TransitionLink({
@@ -72,6 +47,8 @@ export function TransitionLink({
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const docWithVT = document as Document & {
       startViewTransition?: (cb: () => Promise<void> | void) => {
+        ready: Promise<void>;
+        updateCallbackDone: Promise<void>;
         finished: Promise<void>;
       };
     };
@@ -94,10 +71,24 @@ export function TransitionLink({
       html.dataset.activeTransition = "route";
     }
 
+    const viewport = { width: window.innerWidth, height: window.innerHeight };
     const transition = docWithVT.startViewTransition(async () => {
       const swapPromise = waitForMainSwap();
       router.push(rawUrl);
       await swapPromise;
+    });
+
+    // A resized viewport can skip the animation while navigation still succeeds.
+    // `ready` rejects independently of `finished`, so both must be handled.
+    void transition.ready.catch((error: unknown) => {
+      const resized = viewport.width !== window.innerWidth || viewport.height !== window.innerHeight;
+      if (error instanceof DOMException && (
+        error.name === "AbortError" || (error.name === "InvalidStateError" && resized)
+      )) return;
+      console.error("Page transition animation failed:", error);
+    });
+    void transition.updateCallbackDone.catch(() => {
+      // Navigation failures are reported by `finished` below.
     });
 
     transition.finished.finally(() => {
@@ -109,6 +100,8 @@ export function TransitionLink({
         }
         heading.focus({ preventScroll: true });
       }
+    }).catch((error: unknown) => {
+      console.error("Page transition failed:", error);
     });
   };
 
