@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FieldReveal } from "@/components/motion/FieldReveal";
-import { LiveClock } from "@/components/ui/LiveClock";
 import { profile } from "@/lib/content/profile";
+import { TorontoTime } from "@/components/ui/TorontoTime";
 
 const indexLinks = [
   { label: "Work", href: "#work", number: "01" },
@@ -27,15 +27,11 @@ export function FieldMasthead() {
                 className="h-1.5 w-1.5 bg-accent shadow-[0_0_10px_var(--accent)]"
                 aria-hidden="true"
               />
-              Public field system
+              Work, learning & life
             </p>
-            <div data-telemetry className="flex items-center gap-4 sm:gap-6">
-              <p className="field-meta hidden md:block text-on-depth-subtle">
-                SYS.STAT / ACTIVE
-              </p>
-              <p className="field-meta text-on-depth-subtle hidden sm:block">
-                <LiveClock />
-              </p>
+            <div data-telemetry className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <TorontoTime variant="date" className="xl:hidden field-meta text-on-depth-subtle" />
+              <TorontoTime variant="time" className="field-meta text-on-depth-subtle" />
               <p className="field-meta text-on-depth-subtle">{profile.location}</p>
             </div>
             <div
@@ -45,14 +41,14 @@ export function FieldMasthead() {
             />
           </div>
 
-          <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-12 py-14 sm:py-20 lg:py-24">
+          <div className="relative grid lg:grid-cols-12 gap-8 lg:gap-10 py-9 sm:py-12 lg:py-16">
             <div className="lg:col-span-9">
               <p data-telemetry className="field-meta text-on-depth-subtle">
                 Systems / study / things made
               </p>
               <h1
                 id="field-masthead-heading"
-                className="mt-6 field-display max-w-[13ch] sm:max-w-[16ch] lg:max-w-none text-balance"
+                className="mt-5 field-display !text-[clamp(2.25rem,6.5vw,5.25rem)] !leading-[1.02] max-w-[16ch] lg:max-w-none text-balance"
               >
                 <span className="block overflow-hidden pb-[0.07em]">
                   <span data-line-inner className="block">
@@ -68,7 +64,7 @@ export function FieldMasthead() {
 
               {/* Architectural Oxide Baseline Gauge */}
               <div
-                className="mt-7 sm:mt-8 relative h-px w-full max-w-[38rem] bg-on-depth-border/40"
+                className="mt-5 sm:mt-6 relative h-px w-full max-w-[38rem] bg-on-depth-border/40"
                 aria-hidden="true"
               >
                 <div
@@ -77,7 +73,7 @@ export function FieldMasthead() {
                 />
               </div>
 
-              <div className="mt-7 sm:mt-9 grid sm:grid-cols-12 gap-6 sm:gap-8 items-end">
+              <div className="mt-5 sm:mt-6 grid sm:grid-cols-12 gap-3 sm:gap-6 items-end">
                 <p
                   data-telemetry
                   className="sm:col-span-7 max-w-[34rem] text-[15px] sm:text-[17px] leading-[1.7] text-on-depth-muted"
@@ -114,16 +110,12 @@ export function FieldMasthead() {
               </div>
             </div>
 
-            <aside className="hidden lg:flex lg:col-span-3 relative flex-col justify-between pl-6 xl:pl-8">
+            <aside className="hidden lg:flex lg:col-span-3 relative flex-col justify-end pl-6 xl:pl-8">
               <div
                 data-grid-v
                 aria-hidden="true"
                 className="absolute inset-y-0 left-0 w-px bg-on-depth-border/60"
               />
-              <div data-telemetry className="space-y-2">
-                <p className="field-meta text-on-depth-subtle">Index / 01—06</p>
-                <p className="font-mono text-[11px] text-accent">FIELD.REV // 02</p>
-              </div>
               <p
                 data-telemetry
                 className="max-w-[15ch] font-display text-[22px] leading-[1.2] tracking-[-0.025em] text-on-depth-muted"

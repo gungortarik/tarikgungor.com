@@ -44,7 +44,7 @@ export default function LabPage() {
                   key={lab.title}
                   className="grid sm:grid-cols-[3rem_1fr] gap-3 sm:gap-6 py-7 border-b border-surface-border"
                 >
-                  <span className="font-mono text-[11px] text-accent pt-1">
+                  <span className="font-mono text-[11px] text-accent-ink pt-1">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>

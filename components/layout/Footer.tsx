@@ -28,7 +28,7 @@ export function Footer() {
               href={profile.contact.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
+              className="text-foreground-muted hover:text-accent-ink transition-colors min-h-11 inline-flex items-center"
             >
               GitHub
             </a>
@@ -36,13 +36,13 @@ export function Footer() {
               href={profile.contact.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
+              className="text-foreground-muted hover:text-accent-ink transition-colors min-h-11 inline-flex items-center"
             >
               LinkedIn
             </a>
             <a
               href={`mailto:${profile.contact.email}`}
-              className="text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
+              className="text-foreground-muted hover:text-accent-ink transition-colors min-h-11 inline-flex items-center"
             >
               {profile.contact.email}
             </a>

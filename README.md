@@ -9,13 +9,15 @@ Personal platform, systems engineering lab log, and interactive resume for **Tar
 
 ## Preserved Assets & Routes
 
-- `/` — Main portfolio, live Systems & Telemetry Cockpit, Right Now, Software Projects (*Sonoma*, *CertForge*), Recent Notes (*Flexible, but Not Free*), Systems & Infrastructure Labs, and Path So Far
+- `/` — Main portfolio, live Systems & Telemetry Cockpit, Right Now, Software Projects (*Sonoma*, *CertForge*), Systems & Infrastructure Labs, and Path So Far
 - `/resume` — Full interactive & print-ready curriculum vitae
 - `/resume/tarik-gungor-resume.pdf` — Original ATS-friendly PDF resume
 - `/resume/tarik-gungor-resume.json` — Machine-readable JSON Resume schema
 - `/assets/logos/*`, `/assets/icons/*`, `/assets/projects/sonoma-dashboard.png` — All original brand & project media preserved
 
 ## Local development
+
+Notes is temporarily unpublished. Its page is preserved in `app/_notes/page.tsx` and its content in `lib/content/notes.ts`; restore the route, navigation entry, and sitemap entry together when ready.
 
 ```bash
 npm ci

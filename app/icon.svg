@@ -2,10 +2,10 @@
   <!-- Dark Field background with squircle radius -->
   <rect width='512' height='512' rx='112' fill='#121211'/>
   <rect x='2' y='2' width='508' height='508' rx='110' fill='none' stroke='#282826' stroke-width='4'/>
-  
+
   <!-- Solid Bold T glyph -->
   <path d='M64 140 H236 V196 H178 V372 H122 V196 H64 Z' fill='#F5F3EC'/>
-  
+
   <!-- Solid Bold G glyph: geometric precision with high-contrast inner cut -->
   <path fill-rule='evenodd' clip-rule='evenodd' d='
     M356 140
@@ -23,7 +23,7 @@
     C276 372 228 320 228 256
     C228 192 276 140 356 140
     Z' fill='#F5F3EC'/>
-  
+
   <!-- Oxide telemetry active indicator -->
   <rect x='410' y='92' width='38' height='38' rx='8' fill='#D4652F'/>
 </svg>

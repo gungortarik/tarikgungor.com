@@ -53,7 +53,7 @@ export default function PathPage() {
                   key={`${item.year}-${item.title}`}
                   className="grid sm:grid-cols-[5rem_1fr] gap-3 sm:gap-8 py-7 border-b border-surface-border"
                 >
-                  <span className="font-mono text-[11px] text-accent pt-1">{item.year}</span>
+                  <span className="font-mono text-[11px] text-accent-ink pt-1">{item.year}</span>
                   <div>
                     <h3 className="font-serif text-[22px] text-foreground">{item.title}</h3>
                     <p className="mt-2 text-[15px] text-foreground-muted leading-relaxed max-w-[40rem]">

@@ -64,12 +64,12 @@ export function PathContinuum() {
       aria-labelledby="path-heading"
       data-field-chapter="path"
     >
-      <div className="page-pad page-width py-16 sm:py-20 lg:py-24">
+      <div className="page-pad page-width py-12 sm:py-16 lg:py-20">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
           <div>
             <p className="field-meta flex items-center gap-2.5 text-foreground-subtle">
               <span className="h-1.5 w-1.5 bg-accent" aria-hidden="true" />
-              Path / 04 continuum
+              Path
             </p>
             <h2
               id="path-heading"
@@ -79,12 +79,9 @@ export function PathContinuum() {
             </h2>
           </div>
           <div className="flex items-center gap-6">
-            <span className="hidden sm:inline-block font-mono text-[11px] text-foreground-subtle tabular-nums">
-              LOCK // {milestones[activeIndex]?.year ?? "2023"}
-            </span>
             <TransitionLink
               href="/path"
-              className="group text-[13px] text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center gap-2"
+              className="group text-[13px] text-foreground-muted hover:text-accent-ink transition-colors min-h-11 inline-flex items-center gap-2"
             >
               Full path
               <span
@@ -142,7 +139,7 @@ export function PathContinuum() {
                 }`}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <p className="font-mono text-[11px] text-accent flex items-center gap-2">
+                  <p className="font-mono text-[12px] text-foreground-muted flex items-center gap-2">
                     <span
                       aria-hidden="true"
                       className={`h-1.5 w-1.5 rounded-full transition-transform duration-300 ${
@@ -151,14 +148,14 @@ export function PathContinuum() {
                     />
                     {item.year}
                   </p>
-                  <span className="font-mono text-[10px] text-foreground-subtle">
+                  <span className="font-mono text-[12px] text-foreground-subtle">
                     0{idx + 1}
                   </span>
                 </div>
                 <h3 className="mt-3 font-serif text-[18px] text-foreground leading-snug">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-foreground-muted">
+                <p className="mt-2 text-[16px] leading-relaxed text-foreground-muted">
                   {item.description}
                 </p>
               </li>

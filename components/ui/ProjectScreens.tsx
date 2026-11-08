@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ScreenshotPreview } from "@/components/ui/ScreenshotPreview";
 import { useId, useState } from "react";
 
 interface Screen {
@@ -30,7 +31,7 @@ export function ProjectScreens({ name, vtSlug, screens, depth = false }: Project
         <div
           role="group"
           aria-label={`${name} screenshots`}
-          className={`flex gap-1 mb-4 border-b ${
+          className={`flex flex-wrap gap-1 mb-4 border-b ${
             depth ? "border-on-depth-border" : "border-surface-border"
           }`}
         >
@@ -45,7 +46,7 @@ export function ProjectScreens({ name, vtSlug, screens, depth = false }: Project
                 active === index
                   ? depth
                     ? "border-accent text-on-depth"
-                    : "border-accent text-accent"
+                    : "border-accent text-accent-ink"
                   : depth
                     ? "border-transparent text-on-depth-muted hover:text-on-depth"
                     : "border-transparent text-foreground-muted hover:text-foreground"
@@ -55,34 +56,37 @@ export function ProjectScreens({ name, vtSlug, screens, depth = false }: Project
             </button>
           ))}
         </div>
-        <div
-          id={id}
-          {...(vtSlug ? { "data-vt-cover": vtSlug } : {})}
-          style={{ aspectRatio: `${current.width} / ${current.height}` }}
-          className={`relative overflow-hidden border ${
-            depth
-              ? "border-on-depth-border bg-depth-elevated"
-              : "border-surface-border bg-surface-muted"
-          }`}
-        >
-          {screens.map((screen, index) => {
-            const isActive = active === index;
-            return (
-              <Image
-                key={screen.src}
-                src={screen.src}
-                alt={screen.alt}
-                fill
-                sizes="(max-width: 1023px) 100vw, 90vw"
-                className={`object-cover transition-all duration-500 ease-out ${
-                  isActive
-                    ? "opacity-100 scale-100 pointer-events-auto"
-                    : "opacity-0 scale-[1.015] pointer-events-none"
-                }`}
-              />
-            );
-          })}
-        </div>
+        <ScreenshotPreview key={current.src} shot={current} label={`${name} / ${current.label}`}>
+          <div
+            id={id}
+            {...(vtSlug ? { "data-vt-cover": vtSlug } : {})}
+            style={{ aspectRatio: `${current.width} / ${current.height}` }}
+            className={`relative overflow-hidden border ${
+              depth
+                ? "border-on-depth-border bg-depth-elevated"
+                : "border-surface-border bg-surface-muted"
+            }`}
+          >
+            {screens.map((screen, index) => {
+              const isActive = active === index;
+              return (
+                <Image
+                  key={screen.src}
+                  src={screen.src}
+                  alt={isActive ? screen.alt : ""}
+                  aria-hidden={!isActive}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 90vw"
+                  className={`object-cover transition-all duration-500 ease-out ${
+                    isActive
+                      ? "opacity-100 scale-100 pointer-events-auto"
+                      : "opacity-0 scale-[1.015] pointer-events-none"
+                  }`}
+                />
+              );
+            })}
+          </div>
+        </ScreenshotPreview>
         <figcaption
           className={`mt-3 flex items-center justify-between font-mono text-[11px] ${
             depth ? "text-on-depth-muted" : "text-foreground-muted"

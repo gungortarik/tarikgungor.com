@@ -22,7 +22,7 @@ export default function SonomaPage() {
           </div>
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-10 sm:pt-14">
             <div className="lg:col-span-8">
-              <p className="font-mono text-[12px] text-accent">Private finance archive</p>
+              <p className="font-mono text-[12px] text-accent-ink">Private finance archive</p>
               <h1
                 data-vt-title="sonoma"
                 className="w-fit font-serif text-[54px] sm:text-[76px] lg:text-[104px] text-foreground font-medium leading-[0.9] tracking-[-0.035em] mt-4"
@@ -88,7 +88,7 @@ export default function SonomaPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-14 border-t border-surface-border">
             {sonomaCaseStudy.approach.map((item, index) => (
               <div key={item} className="border-b md:border-r md:last:border-r-0 border-surface-border p-5 sm:p-6 min-h-40">
-                <p className="font-mono text-[11px] text-accent">0{index + 1}</p>
+                <p className="font-mono text-[11px] text-accent-ink">0{index + 1}</p>
                 <p className="text-[15px] leading-[1.6] text-foreground mt-7">{item}</p>
               </div>
             ))}
@@ -104,7 +104,7 @@ export default function SonomaPage() {
               <div className="lg:col-span-9 grid md:grid-cols-3 gap-0 border-t border-surface-border">
                 {sonomaCaseStudy.system.map((item, index) => (
                   <section key={item.title} className="py-8 md:px-7 md:first:pl-0 border-b md:border-b-0 md:border-r md:last:border-r-0 border-surface-border">
-                    <p className="font-mono text-[11px] text-accent">0{index + 1}</p>
+                    <p className="font-mono text-[11px] text-accent-ink">0{index + 1}</p>
                     <h2 className="font-serif text-[28px] leading-tight text-foreground mt-6">{item.title}</h2>
                     <p className="text-[15px] leading-[1.75] text-foreground-muted mt-4">{item.body}</p>
                   </section>
@@ -123,7 +123,7 @@ export default function SonomaPage() {
               <ul className="border-t border-surface-border">
                 {sonomaCaseStudy.learnings.map((item, index) => (
                   <li key={item} className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-surface-border py-5 text-[16px] sm:text-[18px] leading-[1.55]">
-                    <span className="font-mono text-[11px] text-accent pt-1">0{index + 1}</span>
+                    <span className="font-mono text-[11px] text-accent-ink pt-1">0{index + 1}</span>
                     <span>{item}</span>
                   </li>
                 ))}

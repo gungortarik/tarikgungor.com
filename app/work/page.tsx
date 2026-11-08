@@ -62,7 +62,7 @@ export default function WorkPage() {
               )}
 
               <div className="lg:col-span-5 flex flex-col justify-center">
-                <p className="field-meta text-accent">
+                <p className="field-meta text-accent-ink">
                   {String(index + 1).padStart(2, "0")} · {statusLabels[project.status]}
                   {project.liveUrl ? " · Live preview" : project.slug === "sonoma" ? " · Private" : ""}
                 </p>
@@ -96,7 +96,7 @@ export default function WorkPage() {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[13px] font-mono text-foreground-muted hover:text-accent transition-colors min-h-11 inline-flex items-center"
+                      className="text-[13px] font-mono text-foreground-muted hover:text-accent-ink transition-colors min-h-11 inline-flex items-center"
                     >
                       GitHub
                     </a>
