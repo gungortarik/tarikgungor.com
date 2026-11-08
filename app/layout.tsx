@@ -40,8 +40,11 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/assets/icons/tarik-gungor-favicon.png",
-    apple: "/assets/icons/tarik-gungor-favicon.png",
+    icon: [
+      { url: "/assets/icons/tarik-gungor-favicon.svg", type: "image/svg+xml" },
+      { url: "/assets/icons/tarik-gungor-favicon.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/assets/icons/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
